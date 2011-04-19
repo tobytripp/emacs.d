@@ -1,0 +1,75 @@
+;; Key-bindings
+;; Most of these are pulled from the awesome emacs starter kit:
+;;  https://github.com/technomancy/emacs-starter-kit
+
+(setq mouse-wheel-scroll-amount '(1))
+(setq mouse-wheel-progressive-speed nil)
+
+(setq
+  ns-command-modifier   'meta       ; Apple/Command key is Meta
+  ns-alternate-modifier 'super      ; Option is the Mac Option key
+  ns-pop-up-frames      nil
+  )
+
+(global-set-key (kbd "M-g") 'goto-line)
+(global-set-key (kbd "M-z") 'undo)
+
+(global-set-key (kbd "C-x \\") 'align-regexp)
+(global-set-key (kbd "M-/")    'hippie-expand)
+
+(define-key global-map (kbd "C-+") 'text-scale-increase)
+(define-key global-map (kbd "C--") 'text-scale-decrease)
+
+(global-set-key (kbd "C-s")   'isearch-forward-regexp)
+(global-set-key (kbd "\C-r")  'isearch-backward-regexp)
+(global-set-key (kbd "C-M-s") 'isearch-forward)
+(global-set-key (kbd "C-M-r") 'isearch-backward)
+
+;; Jump to definition in file
+(global-set-key (kbd "C-x C-i") 'ido-imenu)
+
+(global-set-key (kbd "C-x M-f") 'ido-find-file-other-window)
+(global-set-key (kbd "C-x C-M-f") 'find-file-in-project)
+(global-set-key (kbd "C-x f") 'recentf-ido-find-file)
+(global-set-key (kbd "C-c y") 'bury-buffer)
+(global-set-key (kbd "C-c r") 'revert-buffer)
+(global-set-key (kbd "M-`") 'file-cache-minibuffer-complete)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+
+(windmove-default-keybindings) ;; Shift+direction
+(global-set-key (kbd "C-x O") (lambda () (interactive) (other-window -1))) ;; back one
+(global-set-key (kbd "C-x C-o") (lambda () (interactive) (other-window 2))) ;; forward two
+
+(global-set-key (kbd "C-x m") 'eshell)
+;; Start a new eshell even if one is active.
+(global-set-key (kbd "C-x M") (lambda () (interactive) (eshell t)))
+
+;; Help should search more than just commands
+(global-set-key (kbd "C-h a") 'apropos)
+
+;; Should be able to eval-and-replace anywhere.
+(global-set-key (kbd "C-c e") 'eval-and-replace)
+
+;; For debugging Emacs modes
+(global-set-key (kbd "C-c p") 'message-point)
+
+;; So good!
+(global-set-key (kbd "C-x g") 'magit-status)
+
+(global-set-key (kbd "C-c q") 'join-line)
+
+;; This is a little hacky since VC doesn't support git add internally
+(eval-after-load 'vc
+  (define-key vc-prefix-map "i" '(lambda () (interactive)
+                                   (if (not (eq 'Git (vc-backend buffer-file-name)))
+                                       (vc-register)
+                                     (shell-command (format "git add %s" buffer-file-name))
+                                     (message "Staged changes.")))))
+
+;; Activate occur easily inside isearch
+(define-key isearch-mode-map (kbd "C-o")
+  (lambda () (interactive)
+    (let ((case-fold-search isearch-case-fold-search))
+      (occur (if isearch-regexp isearch-string (regexp-quote isearch-string))))))
+
+(provide 'keybindings)

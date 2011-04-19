@@ -1,0 +1,2 @@
+(require 'peepopen)
+(textmate-mode)

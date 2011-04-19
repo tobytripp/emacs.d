@@ -28,17 +28,17 @@
 ;; Jump to definition in file
 (global-set-key (kbd "C-x C-i") 'ido-imenu)
 
-(global-set-key (kbd "C-x M-f") 'ido-find-file-other-window)
+(global-set-key (kbd "C-x M-f")   'ido-find-file-other-window)
 (global-set-key (kbd "C-x C-M-f") 'find-file-in-project)
-(global-set-key (kbd "C-x f") 'recentf-ido-find-file)
-(global-set-key (kbd "C-c y") 'bury-buffer)
-(global-set-key (kbd "C-c r") 'revert-buffer)
-(global-set-key (kbd "M-`") 'file-cache-minibuffer-complete)
-(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "C-x f")     'recentf-ido-find-file)
+(global-set-key (kbd "C-c y")     'bury-buffer)
+(global-set-key (kbd "C-c r")     'revert-buffer)
+(global-set-key (kbd "M-`")       'file-cache-minibuffer-complete)
+(global-set-key (kbd "C-x C-b")   'ibuffer)
 
 (windmove-default-keybindings) ;; Shift+direction
-(global-set-key (kbd "C-x O") (lambda () (interactive) (other-window -1))) ;; back one
-(global-set-key (kbd "C-x C-o") (lambda () (interactive) (other-window 2))) ;; forward two
+(global-set-key (kbd "C-x O")   (lambda () (interactive) (other-window -1))) ;; back one
+(global-set-key (kbd "C-x C-o") (lambda () (interactive) (other-window  2))) ;; forward two
 
 (global-set-key (kbd "C-x m") 'eshell)
 ;; Start a new eshell even if one is active.
@@ -71,5 +71,27 @@
   (lambda () (interactive)
     (let ((case-fold-search isearch-case-fold-search))
       (occur (if isearch-regexp isearch-string (regexp-quote isearch-string))))))
+
+(global-unset-key (kbd "M-s"))
+
+(global-set-key (kbd "s-s") 'paredit-splice-sexp)
+(global-set-key (kbd "M-s") 'save-buffer)
+
+(global-set-key [(meta shift a)]       'ack)
+(global-set-key [(meta super shift a)] 'ack-same)
+
+(global-unset-key (kbd "C-;"))
+(global-set-key (kbd "C-:") 'toggle-mac-option-modifier)
+(define-key *textmate-mode-map* (kbd "C-;") 'insert-rocket)
+
+(define-key *textmate-mode-map* [(meta shift l)] 'textmate-select-line)
+
+(define-key *textmate-mode-map* [(meta \[)]      'textmate-shift-left)
+(define-key *textmate-mode-map* [(meta \])]      'textmate-shift-right)
+
+(global-set-key [(meta t)] 'peepopen-goto-file-gui)
+(define-key *textmate-mode-map* [(super t)]      'textmate-goto-file)
+
+(global-set-key (kbd "C-S-g") 'magit-status)
 
 (provide 'keybindings)

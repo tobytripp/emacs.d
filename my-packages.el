@@ -27,6 +27,8 @@
 	(:name css-mode	      :type elpa)
 	(:name yaml-mode      :type elpa)
 	(:name idle-highlight :type elpa)
+	(:name auto-complete  :type git :url "https://github.com/m2ym/auto-complete.git"
+	       )
 	(:name rsense         :type git :url "https://github.com/m2ym/rsense.git"
 	       :build ("ant" "ruby etc/config.rb > ~/.rsense"))
 	(:name ibuffer-git    :type git :url "https://github.com/jrockway/ibuffer-git.git")

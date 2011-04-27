@@ -1,4 +1,5 @@
 (setq debug-on-error t)
+(setq debug-ignored-errors nil)
 
 (if (fboundp 'tool-bar-mode)   (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
@@ -21,7 +22,6 @@
   (add-to-list 'package-archives source t))
 (package-initialize)
 
-
 (setq autoload-file (concat dotfiles-dir "loaddefs.el"))
 
 (setq custom-file "~/.emacs.d/custom.el")
@@ -29,12 +29,13 @@
 
 (load "env.el")
 (require 'my-packages)
-(require 'keybindings)
 (require 'ansi-color)
 (require 'recentf)
 (require 'uniquify)
 
 (mapc #'load (directory-files lib-dir nil ".*el$"))
+
+(require 'keybindings)
 
 (global-hl-line-mode 1)
 (put 'downcase-region 'disabled nil)

@@ -1,0 +1,6 @@
+# name  : module
+# group : definitions
+# --
+module ${ModuleName}
+  $0
+end

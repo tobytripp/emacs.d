@@ -4,7 +4,10 @@
 (setq el-get-sources
       '(el-get gist switch-window vkill nxhtml yasnippet
 	       color-theme full-ack browse-kill-ring mode-compile
-	       ;; haskell-mode ; needs darcs on the PATH
+	       json ruby-block paredit
+               rvm
+
+	(:name align :type emacswiki)
 
 	(:name enclose
 	       :after (lambda () (add-hook 'ruby-mode-hook 'enclose-mode)))
@@ -22,16 +25,19 @@
                                                     (require 'asciidoc)))))
 
 	(:name lisppaste      :type elpa)
-	(:name textmate	      :type git :url "http://github.com/defunkt/textmate.el.git")
+	(:name textmate-mode  :type git :url "http://github.com/defunkt/textmate.el.git")
+	(:name ruby-mode      :type elpa)
 	(:name inf-ruby	      :type elpa)
 	(:name css-mode	      :type elpa)
 	(:name yaml-mode      :type elpa)
 	(:name idle-highlight :type elpa)
-	(:name auto-complete  :type git :url "https://github.com/m2ym/auto-complete.git"
-	       )
+	(:name auto-complete  :type git :url "https://github.com/m2ym/auto-complete.git")
 	(:name rsense         :type git :url "https://github.com/m2ym/rsense.git"
 	       :build ("ant" "ruby etc/config.rb > ~/.rsense"))
 	(:name ibuffer-git    :type git :url "https://github.com/jrockway/ibuffer-git.git")
+	(:name rspec-mode     :type git :url "https://github.com/pezra/rspec-mode.git")
+	(:name feature-mode   :type git :url "https://github.com/michaelklishin/cucumber.el.git")
+
         ))
 
 (el-get)

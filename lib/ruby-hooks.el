@@ -27,7 +27,6 @@
 
 (add-hook 'ruby-mode-hook (lambda () (interactive) (column-marker-1 80)))
 
-(require 'feature-mode)
 (add-to-list 'auto-mode-alist '("\.feature$" . feature-mode))
 
 (add-hook 'feature-mode-hook

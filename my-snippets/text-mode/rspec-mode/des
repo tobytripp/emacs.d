@@ -1,0 +1,6 @@
+# name : describe
+# group : definitions
+# --
+describe ${type} do
+  $0
+end

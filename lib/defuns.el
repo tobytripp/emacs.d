@@ -25,3 +25,23 @@
   "If you can't pair program with a human, use this instead."
   (interactive)
   (message (if (y-or-n-p "Do you have a test for that? ") "Good." "Bad!")))
+
+(defun replace-all-in-buffer (exp replace)
+  (save-excursion
+    (goto-char (point-min))
+    (while (re-search-forward exp nil t)
+      (replace-match replace))
+    ))
+
+(defun fix-parens ()
+  "Fix misplaced parens in code buffers."
+  (interactive)
+  (replace-all-in-buffer "(\\([^ )]\\)" "( \\1")
+  (replace-all-in-buffer "\\([^ (]\\))" "\\1 )")
+  )
+
+(defun git-grep (regexp)
+  "Run git-grep on ruby files in the current project"
+  (interactive "sSearch for (regexp): ")
+  (vc-git-grep regexp "'*.rb'" (textmate-project-root))
+  )

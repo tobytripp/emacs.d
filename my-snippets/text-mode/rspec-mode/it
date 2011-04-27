@@ -1,0 +1,6 @@
+# name : it "description" { ... }
+# group : definitions
+# --
+it "${does something}" do
+  $0
+end

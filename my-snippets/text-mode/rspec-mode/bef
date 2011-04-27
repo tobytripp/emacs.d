@@ -1,0 +1,6 @@
+# name  : before :each { ... }
+# group : definitions
+# --
+before ${:each} do
+  $0
+end

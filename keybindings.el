@@ -11,6 +11,9 @@
   ns-pop-up-frames      nil
   )
 
+;; Escape is C-g
+(global-set-key [escape] 'keyboard-quit)
+
 (global-set-key (kbd "M-g") 'goto-line)
 (global-set-key (kbd "M-z") 'undo)
 
@@ -50,12 +53,6 @@
 ;; Should be able to eval-and-replace anywhere.
 (global-set-key (kbd "C-c e") 'eval-and-replace)
 
-;; For debugging Emacs modes
-(global-set-key (kbd "C-c p") 'message-point)
-
-;; So good!
-(global-set-key (kbd "C-x g") 'magit-status)
-
 (global-set-key (kbd "C-c q") 'join-line)
 
 ;; This is a little hacky since VC doesn't support git add internally
@@ -93,5 +90,8 @@
 (define-key *textmate-mode-map* [(super t)]      'textmate-goto-file)
 
 (global-set-key (kbd "C-S-g") 'magit-status)
+
+(global-set-key [\M-\S-up]   'move-text-up)
+(global-set-key [\M-\S-down] 'move-text-down) 
 
 (provide 'keybindings)

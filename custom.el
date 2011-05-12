@@ -6,6 +6,8 @@
  '(aquamacs-additional-fontsets nil t)
  '(aquamacs-customization-version-id 211 t)
  '(aquamacs-tool-bar-user-customization nil t)
+ '(coffee-args-compile (quote ("-c" "-o js")))
+ '(coffee-tab-width 2)
  '(compilation-ask-about-save nil)
  '(default-frame-alist (quote ((vertical-scroll-bars) (menu-bar-lines . 1) (cursor-type . box) (internal-border-width . 0) (left-fringe . 1) (right-fringe) (fringe) (background-color . "#211E1E") (background-mode . dark) (background-toolbar-color . "#cf3ccf3ccf3c") (border-color . "Grey") (bottom-toolbar-shadow-color . "#79e77df779e7") (cursor-color . "#FFFFFF") (foreground-color . "#DADADA") (mouse-color . "Grey") (top-toolbar-shadow-color . "#fffffbeeffff") (viper-saved-cursor-color-in-replace-mode . "Red3") (tool-bar-lines . 0))))
  '(erc-server "irc.freenode.net")
@@ -13,6 +15,8 @@
  '(glasses-separate-parentheses-p nil)
  '(glasses-uncapitalize-p nil)
  '(global-hl-line-mode t)
+ '(js-expr-indent-offset 2)
+ '(js-indent-level 2)
  '(ns-alternate-modifier (quote super))
  '(ns-tool-bar-display-mode nil t)
  '(ns-tool-bar-size-mode nil t)
@@ -25,6 +29,7 @@
  '(rspec-use-rvm t)
  '(ruby-deep-arglist nil)
  '(ruby-deep-indent-paren nil)
+ '(safe-local-variable-values (quote ((encoding . utf-8) (whitespace-line-column . 80) (lexical-binding . t))))
  '(visual-line-mode nil t))
 (custom-set-faces
   ;; custom-set-faces was added by Custom.

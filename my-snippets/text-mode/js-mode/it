@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: it( "", function() {});
+# group: definitions
+# --
+it( "${1:does something}", function() {
+  $0
+  expect( ${2:assertion} ).${3:toBe()};
+});

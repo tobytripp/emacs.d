@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: describe( "", function() { ... } );
+# group: definitions
+# --
+describe( "${subject}", function() {
+  $0
+});

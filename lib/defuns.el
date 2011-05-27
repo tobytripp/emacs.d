@@ -45,3 +45,14 @@
   (interactive "sSearch for (regexp): ")
   (vc-git-grep regexp "'*.rb'" (textmate-project-root))
   )
+
+(defun insert-rocket ()
+  (interactive)
+  (delete-horizontal-space)
+  (insert " => ")
+  )
+
+(defun insert-ellipses ()
+  (interactive)
+  (delete-horizontal-space)
+  (insert "…"))

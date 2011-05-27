@@ -60,11 +60,19 @@
              (regexp . "\\(\\s-*\\)=\\s-*[^# \t\n]")
              (repeat . t)
              (modes  . '(ruby-mode))))
-(add-to-list 'align-rules-list          ;TODO add to rcodetools.el
+(add-to-list 'align-rules-list
            '(ruby-xmpfilter-mark
              (regexp . "\\(\\s-*\\)# => [^#\t\n]")
              (repeat . nil)
              (modes  . '(ruby-mode))))
+
+;; (easy-menu-define ruby-mode-menu ruby-mode-map
+;;   "Ruby mode menu"
+;;   '("Ruby"
+;;     ["Beginning of block" ruby-beginning-of-block]
+;;     ["End of block"       ruby-end-of-block]
+;;     ["Forward sexp"       ruby-forward-sexp]
+;;     ))
 
 (provide 'ruby-hooks)
 

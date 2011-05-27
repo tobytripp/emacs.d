@@ -1,5 +1,10 @@
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
-(require 'el-get)
+(unless (require 'el-get nil t)
+  (url-retrieve
+   "https://github.com/dimitri/el-get/raw/master/el-get-install.el"
+   (lambda (s)
+     (end-of-buffer)
+     (eval-print-last-sexp))))
 
 (setq el-get-sources
       '(el-get
@@ -9,6 +14,7 @@
         full-ack
         gist
         json
+        js2-mode
         mode-compile
         nxhtml
         paredit

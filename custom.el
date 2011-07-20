@@ -14,6 +14,7 @@
  '(glasses-face (quote bold))
  '(glasses-separate-parentheses-p nil)
  '(glasses-uncapitalize-p nil)
+ '(global-auto-revert-mode t)
  '(global-hl-line-mode t)
  '(js-expr-indent-offset 2)
  '(js-indent-level 2)
@@ -21,6 +22,8 @@
  '(js2-bounce-indent-p t)
  '(js2-cleanup-whitespace t)
  '(js2-mirror-mode t)
+ '(js2-mode-show-parse-errors nil)
+ '(js2-mode-show-strict-warnings nil)
  '(ns-alternate-modifier (quote super))
  '(ns-tool-bar-display-mode nil t)
  '(ns-tool-bar-size-mode nil t)
@@ -41,5 +44,6 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(column-marker-1 ((t (:background "red4"))))
+ '(magit-item-highlight ((((class color) (background dark)) (:background "gray7"))))
  '(mumamo-background-chunk-major ((((class color) (min-colors 88) (background dark)) nil)))
  '(mumamo-background-chunk-submode1 ((((class color) (min-colors 88) (background dark)) (:background "gray15")))))

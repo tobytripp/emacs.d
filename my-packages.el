@@ -1,4 +1,5 @@
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+
 (unless (require 'el-get nil t)
   (url-retrieve
    "https://github.com/dimitri/el-get/raw/master/el-get-install.el"
@@ -7,28 +8,7 @@
      (eval-print-last-sexp))))
 
 (setq el-get-sources
-      '(el-get
-        browse-kill-ring
-        coffee-mode
-        color-theme
-        full-ack
-        gist
-        json
-        js2-mode
-        mode-compile
-        nxhtml
-        paredit
-        ruby-block
-        ruby-end
-        rvm
-        switch-window
-        twittering-mode
-        vkill
-        yasnippet
-        yaml-mode
-        zencoding-mode
-        
-        (:name align :type emacswiki)
+      '((:name align    :type emacswiki)
         (:name easymenu :type emacswiki)
         
         (:name enclose
@@ -45,8 +25,9 @@
                         (add-hook 'doc-mode-hook '(lambda ()
                                                     (turn-on-auto-fill)
                                                     (require 'asciidoc)))))
-
-        (:name findr          :type elpa
+        (:name dictionary-el :type elpa) ;; Dependency of some other package in here...
+        (:name findr
+               :type elpa
                :after (lambda ()
                         (autoload 'findr "findr" "Find file name." t)
                         (define-key global-map [(meta control S)] 'findr)
@@ -67,8 +48,35 @@
         (:name ibuffer-git    :type git :url "https://github.com/jrockway/ibuffer-git.git")
         (:name rspec-mode     :type git :url "https://github.com/pezra/rspec-mode.git")
         (:name feature-mode   :type git :url "https://github.com/michaelklishin/cucumber.el.git")
-
         ))
 
-(el-get)
+(setq my-packages
+      (append
+       '(el-get
+        autopair
+        browse-kill-ring
+        coffee-mode
+        color-theme
+        full-ack
+        gist
+        git-emacs
+        haskell-mode
+        json
+        js2-mode
+        mode-compile
+        nxhtml
+        paredit
+        ruby-block
+        ruby-end
+        rvm
+        switch-window
+        twittering-mode
+        vkill
+        yasnippet
+        yaml-mode
+        zencoding-mode
+        )
+       (mapcar 'el-get-source-name el-get-sources)))
+
+(el-get 'sync my-packages)
 (provide 'my-packages)

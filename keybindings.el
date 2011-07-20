@@ -55,6 +55,8 @@
 
 (global-set-key (kbd "C-c q") 'join-line)
 
+(global-set-key [f5] '(lambda () (interactive) (revert-buffer nil t nil)))
+
 ;; This is a little hacky since VC doesn't support git add internally
 (eval-after-load 'vc
   (define-key vc-prefix-map "i" '(lambda () (interactive)
@@ -92,6 +94,16 @@
 (global-set-key (kbd "C-S-g") 'magit-status)
 
 (global-set-key [\M-\S-up]   'move-text-up)
-(global-set-key [\M-\S-down] 'move-text-down) 
+(global-set-key [\M-\S-down] 'move-text-down)
+
+(global-set-key (kbd "C-c t") 'twittering-update-status-interactive)
+
+(defun split-to-page ()
+  "Split the window vertically, sizing the current window to a page width."
+  (interactive)
+  (split-window-horizontally 88)
+  )
+(global-set-key (kbd "C-x 6") 'split-to-page)
+
 
 (provide 'keybindings)

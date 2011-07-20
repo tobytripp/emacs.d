@@ -1,0 +1,6 @@
+# name  : it( "description", function() { ... });
+# group : definitions
+# --
+it( "${does something}", function() {
+  $0
+});

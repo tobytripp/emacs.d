@@ -1,0 +1,3 @@
+# name : mock.should_receive ...
+# --
+${mock}.should_receive( :${method} )${.once}$0

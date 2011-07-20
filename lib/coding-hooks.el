@@ -60,3 +60,6 @@
   (indent-buffer)
   (untabify-buffer)
   (delete-trailing-whitespace))
+
+;; (autopair-global-mode 1)
+

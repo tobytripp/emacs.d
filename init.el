@@ -1,5 +1,5 @@
-(setq debug-on-error t)
-(setq debug-ignored-errors nil)
+;; (setq debug-on-error t)
+;; (setq debug-ignored-errors nil)
 
 (if (fboundp 'tool-bar-mode)   (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
@@ -13,14 +13,6 @@
 
 (setq lib-dir (concat dotfiles-dir "/lib"))
 (add-to-list 'load-path lib-dir)
-
-(require 'package)
-(setq package-user-dir  (concat dotfiles-dir "elpa"))
-(setq package-archives ())
-(dolist (source '(("technomancy" . "http://repo.technomancy.us/emacs/")
-                  ("elpa" . "http://tromey.com/elpa/")))
-  (add-to-list 'package-archives source t))
-(package-initialize)
 
 (setq autoload-file (concat dotfiles-dir "loaddefs.el"))
 

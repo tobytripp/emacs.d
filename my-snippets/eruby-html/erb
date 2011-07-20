@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: <%= -%>
+# key: C->
+# binding: direct-keybinding
+# type: command
+# --
+<%= $0 -%>

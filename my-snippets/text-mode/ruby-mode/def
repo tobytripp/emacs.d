@@ -1,0 +1,6 @@
+# name : def method ...
+# group : definitions
+# --
+def ${1:method}(${ *args })
+  $0
+end

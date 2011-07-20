@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: beforeEach( function() ...
+# group: definitions
+# --
+beforeEach( function() {
+  $0            
+});

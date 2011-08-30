@@ -56,3 +56,9 @@
   (interactive)
   (delete-horizontal-space)
   (insert "…"))
+
+(defun insert-arrow ()
+  (interactive)
+  (delete-horizontal-space)
+  (insert " -> ")
+  )

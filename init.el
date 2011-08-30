@@ -1,5 +1,5 @@
-;; (setq debug-on-error t)
-;; (setq debug-ignored-errors nil)
+(setq debug-on-error t)
+(setq debug-ignored-errors nil)
 
 (if (fboundp 'tool-bar-mode)   (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))

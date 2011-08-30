@@ -80,7 +80,8 @@
 
 (global-unset-key (kbd "C-;"))
 (global-set-key (kbd "C-:") 'toggle-mac-option-modifier)
-(define-key *textmate-mode-map* (kbd "C-;") 'insert-rocket)
+(define-key ruby-mode-map (kbd "C-;") 'insert-rocket)
+;; (define-key haskell-mode-map (kbd "C-;") 'insert-arrow)
 (global-set-key (kbd "s-;") 'insert-ellipses)
 
 (define-key *textmate-mode-map* [(meta shift l)] 'textmate-select-line)

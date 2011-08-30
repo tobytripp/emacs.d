@@ -83,7 +83,7 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 (random t) ;; Seed the random-number generator
 
-(defalias 'auto-revert-tail-mode 'tail-mode)
+;; (defalias 'auto-revert-tail-mode 'tail-mode)
 
 ;; Hippie expand: at times perhaps too hip
 (delete 'try-expand-line hippie-expand-try-functions-list)

@@ -9,6 +9,7 @@
 
 (setq el-get-sources
       '((:name align    :type emacswiki)
+        (:name cycle-buffer :type emacswiki)
         (:name easymenu :type emacswiki)
         
         (:name enclose
@@ -63,7 +64,9 @@
         haskell-mode
         json
         js2-mode
+        markdown-mode
         mode-compile
+        mmm-mode
         nxhtml
         paredit
         ruby-block

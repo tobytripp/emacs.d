@@ -1,3 +1,5 @@
+(push "~/.cabal/bin" exec-path)
+
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
 (unless (require 'el-get nil t)
@@ -6,6 +8,12 @@
    (lambda (s)
      (end-of-buffer)
      (eval-print-last-sexp))))
+
+(setq el-get-default-process-sync t)
+;; http://www.viget.com/extend/emacs-24-rails-development-environment-from-scratch-to-productive-in-5-minu/
+(require 'package)
+(setq package-archives (cons '("tromey" . "http://tromey.com/elpa/") package-archives))
+(package-initialize)
 
 (setq el-get-sources
       '((:name align    :type emacswiki)
@@ -17,15 +25,6 @@
 
         (:name magit
                :after (lambda () (global-set-key (kbd "C-x C-z") 'magit-status)))
-
-        (:name asciidoc
-               :type elpa
-               :after (lambda ()
-                        (autoload 'doc-mode "doc-mode" nil t)
-                        (add-to-list 'auto-mode-alist '("\\.adoc$" . doc-mode))
-                        (add-hook 'doc-mode-hook '(lambda ()
-                                                    (turn-on-auto-fill)
-                                                    (require 'asciidoc)))))
         (:name dictionary-el :type elpa) ;; Dependency of some other package in here...
         (:name findr
                :type elpa
@@ -45,7 +44,7 @@
         (:name idle-highlight :type elpa)
         (:name auto-complete  :type git :url "https://github.com/m2ym/auto-complete.git")
         (:name rsense         :type git :url "https://github.com/m2ym/rsense.git"
-               :build ("ant" "ruby etc/config.rb > ~/.rsense"))
+                              :build ("ant" "ruby etc/config.rb > ~/.rsense"))
         (:name ibuffer-git    :type git :url "https://github.com/jrockway/ibuffer-git.git")
         (:name rspec-mode     :type git :url "https://github.com/pezra/rspec-mode.git")
         (:name feature-mode   :type git :url "https://github.com/michaelklishin/cucumber.el.git")
@@ -82,4 +81,5 @@
        (mapcar 'el-get-source-name el-get-sources)))
 
 (el-get 'sync my-packages)
+
 (provide 'my-packages)

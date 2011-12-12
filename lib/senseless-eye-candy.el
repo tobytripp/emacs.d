@@ -19,4 +19,6 @@
 (setq twittering-username "tobytripp")
 (setq twittering-icon-mode t)
 
-(set-frame-font "Monaco-12")
+(set-frame-font "Menlo-14")
+(set-fringe-style -1)
+

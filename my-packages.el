@@ -1,7 +1,6 @@
 (push "~/.cabal/bin" exec-path)
 
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
-
 (unless (require 'el-get nil t)
   (url-retrieve
    "https://github.com/dimitri/el-get/raw/master/el-get-install.el"
@@ -10,6 +9,7 @@
      (eval-print-last-sexp))))
 
 (setq el-get-default-process-sync t)
+
 ;; http://www.viget.com/extend/emacs-24-rails-development-environment-from-scratch-to-productive-in-5-minu/
 
 (setq el-get-sources
@@ -18,7 +18,6 @@
 
         (:name enclose
                :after (lambda () (add-hook 'ruby-mode-hook 'enclose-mode)))
-
         (:name magit
                :after (lambda () (global-set-key (kbd "C-x C-z") 'magit-status)))
         (:name dictionary-el :type elpa) ;; Dependency of some other package in here...
@@ -40,7 +39,6 @@
                :url "http://github.com/defunkt/textmate.el.git")
         (:name ruby-mode      :type elpa)
         (:name inf-ruby       :type elpa)
-        (:name css-mode       :type elpa)
         (:name idle-highlight :type elpa)
         (:name auto-complete  :type elpa)
         (:name auto-complete-etags :type elpa)
@@ -86,6 +84,6 @@
         )
        (mapcar 'el-get-source-name el-get-sources)))
 
-(el-get 'sync my-packages)
+(el-get 'wait my-packages)
 
 (provide 'my-packages)

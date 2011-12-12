@@ -41,7 +41,7 @@
 (add-hook 'coding-hook 'pretty-lambdas)
 (add-hook 'coding-hook 'add-watchwords)
 (add-hook 'coding-hook 'idle-highlight)
-  
+
 (defun run-coding-hook ()
   "Enable things that are convenient across all coding buffers."
   (run-hooks 'coding-hook))
@@ -63,3 +63,5 @@
 
 ;; (autopair-global-mode 1)
 
+;; one-button testing, tada!
+(global-set-key [f12] 'compile)

@@ -36,8 +36,17 @@
 (defun fix-parens ()
   "Fix misplaced parens in code buffers."
   (interactive)
-  (replace-all-in-buffer "(\\([^ )]\\)" "( \\1")
-  (replace-all-in-buffer "\\([^ (]\\))" "\\1 )")
+  (replace-all-in-buffer "(\\([^[:space:])]\\)" "( \\1")
+  (replace-all-in-buffer "\\([^[:space:](]\\))" "\\1 )")
+;  (replace-all-in-buffer "{\\([{}()0-9a-zA-Z_-]\\)" "{ \\1")
+;  (replace-all-in-buffer "\\([{}()0-9a-zA-Z_-]\\)}" "\\1 }")
+  )
+
+(defun decompress-hash-rockets ()
+  "Fix compressed hash rockets"
+  (interactive)
+  (replace-all-in-buffer
+   "\\([^[:space:]]\\)=>\\([^[:space:]]\\)" "\\1 => \\2")
   )
 
 (defun git-grep (regexp)

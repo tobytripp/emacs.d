@@ -20,10 +20,19 @@
 (load custom-file 'noerror)
 
 (load "env.el")
+(load "package.el")
+
 (require 'my-packages)
 (require 'ansi-color)
 (require 'recentf)
 (require 'uniquify)
+
+(require 'package)
+(setq package-archives
+      (cons '("tromey" . "http://tromey.com/elpa/") package-archives))
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(package-initialize)
 
 (mapc #'load (directory-files lib-dir nil ".*el$"))
 

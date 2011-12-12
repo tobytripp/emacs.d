@@ -31,13 +31,14 @@
  '(revert-without-query (quote (".*")))
  '(rspec-compilation-buffer-name "*specs*")
  '(rspec-rake-command "bundle exec rake")
- '(rspec-spec-command "spec")
+ '(rspec-spec-command "spec --drb ")
  '(rspec-use-rake-flag nil)
  '(rspec-use-rvm t)
  '(ruby-deep-arglist nil)
  '(ruby-deep-indent-paren nil)
  '(safe-local-variable-values (quote ((encoding . utf-8) (whitespace-line-column . 80) (lexical-binding . t))))
- '(visual-line-mode nil t))
+ '(visual-line-mode nil t)
+ '(whitespace-style (quote (trailing tab-mark))))
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.

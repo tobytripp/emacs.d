@@ -11,15 +11,11 @@
 
 (setq el-get-default-process-sync t)
 ;; http://www.viget.com/extend/emacs-24-rails-development-environment-from-scratch-to-productive-in-5-minu/
-(require 'package)
-(setq package-archives (cons '("tromey" . "http://tromey.com/elpa/") package-archives))
-(package-initialize)
 
 (setq el-get-sources
-      '((:name align    :type emacswiki)
-        (:name cycle-buffer :type emacswiki)
+      '((:name cycle-buffer :type emacswiki)
         (:name easymenu :type emacswiki)
-        
+
         (:name enclose
                :after (lambda () (add-hook 'ruby-mode-hook 'enclose-mode)))
 
@@ -36,18 +32,27 @@
                         (autoload 'findr-query-replace "findr" "Replace text in files." t)
                         (define-key global-map [(meta control r)] 'findr-query-replace)
                         ))
+        (:name jquery-doc     :type git
+               :url "https://github.com/ananthakumaran/jquery-doc.el.git")
         (:name lisppaste      :type elpa)
-        (:name textmate-mode  :type git :url "http://github.com/defunkt/textmate.el.git")
+        (:name pianobar       :type emacswiki)
+        (:name textmate-mode  :type git
+               :url "http://github.com/defunkt/textmate.el.git")
         (:name ruby-mode      :type elpa)
         (:name inf-ruby       :type elpa)
         (:name css-mode       :type elpa)
         (:name idle-highlight :type elpa)
-        (:name auto-complete  :type git :url "https://github.com/m2ym/auto-complete.git")
-        (:name rsense         :type git :url "https://github.com/m2ym/rsense.git"
-                              :build ("ant" "ruby etc/config.rb > ~/.rsense"))
-        (:name ibuffer-git    :type git :url "https://github.com/jrockway/ibuffer-git.git")
-        (:name rspec-mode     :type git :url "https://github.com/pezra/rspec-mode.git")
-        (:name feature-mode   :type git :url "https://github.com/michaelklishin/cucumber.el.git")
+        (:name auto-complete  :type elpa)
+        (:name auto-complete-etags :type elpa)
+        (:name rsense         :type git
+               :url "https://github.com/m2ym/rsense.git"
+               :build ("ant" "ruby etc/config.rb > ~/.rsense"))
+        (:name ibuffer-git    :type git
+               :url "https://github.com/jrockway/ibuffer-git.git")
+        (:name rspec-mode     :type git
+               :url "https://github.com/pezra/rspec-mode.git")
+        (:name feature-mode   :type git
+               :url "https://github.com/michaelklishin/cucumber.el.git")
         ))
 
 (setq my-packages
@@ -68,6 +73,7 @@
         mmm-mode
         nxhtml
         paredit
+        rdebug
         ruby-block
         ruby-end
         rvm

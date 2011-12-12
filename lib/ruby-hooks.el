@@ -45,28 +45,29 @@
 (autoload 'rdebug "rdebug" "ruby-debug interface" t)
 
 (require 'align)
-(add-hook 'align-load-hook (lambda () 
-			     (add-to-list 'align-rules-list
-					  '(ruby-comma-delimiter
-					    (regexp . ",\\(\\s-*\\)[^# \t\n]")
-					    (repeat . t)
-					    (modes  . '(ruby-mode))))
-			     (add-to-list 'align-rules-list
-					  '(ruby-hash-literal
-					    (regexp . "\\(\\s-*\\)=>\\s-*[^# \t\n]")
-					    (repeat . t)
-					    (modes  . '(ruby-mode))))
-			     (add-to-list 'align-rules-list
-					  '(ruby-assignment-literal
-					    (regexp . "\\(\\s-*\\)=\\s-*[^# \t\n]")
-					    (repeat . t)
-					    (modes  . '(ruby-mode))))
-			     (add-to-list 'align-rules-list
-					  '(ruby-xmpfilter-mark
-					    (regexp . "\\(\\s-*\\)# => [^#\t\n]")
-					    (repeat . nil)
-					    (modes  . '(ruby-mode))))
-			     ))
+(add-hook 'align-load-hook
+          (lambda ()
+            (add-to-list 'align-rules-list
+                         '(ruby-comma-delimiter
+                           (regexp . ",\\(\\s-*\\)[^# \t\n]")
+                           (repeat . t)
+                           (modes  . '(ruby-mode))))
+            (add-to-list 'align-rules-list
+                         '(ruby-hash-literal
+                           (regexp . "\\(\\s-*\\)=>\\s-*[^# \t\n]")
+                           (repeat . t)
+                           (modes  . '(ruby-mode))))
+            (add-to-list 'align-rules-list
+                         '(ruby-assignment-literal
+                           (regexp . "\\(\\s-*\\)=\\s-*[^# \t\n]")
+                           (repeat . t)
+                           (modes  . '(ruby-mode))))
+            (add-to-list 'align-rules-list
+                         '(ruby-xmpfilter-mark
+                           (regexp . "\\(\\s-*\\)# => [^#\t\n]")
+                           (repeat . nil)
+                           (modes  . '(ruby-mode))))
+            ))
 
 ;; (easy-menu-define ruby-mode-menu ruby-mode-map
 ;;   "Ruby mode menu"
@@ -75,6 +76,8 @@
 ;;     ["End of block"       ruby-end-of-block]
 ;;     ["Forward sexp"       ruby-forward-sexp]
 ;;     ))
+
+(require 'rdebug)
 
 (provide 'ruby-hooks)
 

@@ -99,12 +99,14 @@
 
 (global-set-key (kbd "C-c t") 'twittering-update-status-interactive)
 
-(defun split-to-page ()
-  "Split the window vertically, sizing the current window to a page width."
+(defun split-in-thirds ()
+  "Split the window vertically into three segments."
   (interactive)
-  (split-window-horizontally 88)
+  (split-window-horizontally)
+  (split-window-horizontally)
+  (balance-windows)
   )
-(global-set-key (kbd "C-x 6") 'split-to-page)
+(global-set-key (kbd "C-x 6") 'split-in-thirds)
 
 
 (provide 'keybindings)

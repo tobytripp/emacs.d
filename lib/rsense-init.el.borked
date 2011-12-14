@@ -1,4 +1,4 @@
-(setq rsense-home (concat el-get-dir "rsense"))
+(setq rsense-home (concat dotfiles-dir "rsense"))
 (add-to-list 'load-path (concat rsense-home "/etc"))
 
 (require 'auto-complete-config)

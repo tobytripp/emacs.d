@@ -33,10 +33,10 @@
 (require 'ansi-color)
 (require 'recentf)
 (require 'uniquify)
-
-;; (mapc #'load (directory-files lib-dir nil ".*el$"))
-
 (require 'keybindings)
 
 (global-hl-line-mode 1)
 (put 'downcase-region 'disabled nil)
+
+(mapc #'load (directory-files lib-dir nil ".*el$"))
+

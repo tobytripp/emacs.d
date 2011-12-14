@@ -7,25 +7,34 @@
     browse-kill-ring
     coffee-mode
     color-theme
+    feature-mode
+    flymake-coffee
+    flymake-jshint
+    flymake-ruby
     full-ack
     haskell-mode
+    idle-highlight
     inf-ruby
-    json
+    jira
     js2-mode
+    json
     magit
+    markdown-mode
     paredit
     parenface
     peepopen
+    ruby-block
+    ruby-end
     smex
     starter-kit-eshell
-    starter-kit-ruby
     starter-kit-js
     starter-kit-lisp
+    starter-kit-ruby
     textmate
     textmate-to-yas
     yaml-mode
-    yasnippet
     yas-jit
+    yasnippet
     )
   "The list of packages to ensure are installed at launch.")
 

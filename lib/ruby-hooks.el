@@ -5,19 +5,19 @@
 			 (save-excursion
 			   (untabify (point-min) (point-max))
 			   )))
-	    
+
 	    (local-set-key (kbd "M-RET") 'textmate-next-line)
-	    
+
 	    (set (make-local-variable 'indent-tabs-mode) 'nil)
 	    (set (make-local-variable 'tab-width) 2)
-	    
+
 	    (require 'rspec-mode)
 	    (local-set-key (kbd "M-r")   'rspec-verify)
 	    (local-set-key (kbd "M-S-r") 'rspec-verify-single)
-	    
+
 	    (require 'rvm)
 	    (rvm-activate-corresponding-ruby)
-	    
+
 	    (outline-minor-mode)
 	    (setq outline-regexp " *\\(def \\|describe \\|it \\|class\\|module\\)")
           ))
@@ -42,7 +42,7 @@
   "Command to kill a compilation launched by `mode-compile'" t)
 (global-set-key (kbd "C-c k") 'mode-compile-kill)
 (setq mode-compile-save-all-p t)
-(autoload 'rdebug "rdebug" "ruby-debug interface" t)
+;; (autoload 'rdebug "rdebug" "ruby-debug interface" t)
 
 (require 'align)
 (add-hook 'align-load-hook
@@ -77,7 +77,7 @@
 ;;     ["Forward sexp"       ruby-forward-sexp]
 ;;     ))
 
-(require 'rdebug)
+;; (require 'rdebug)
 
 (provide 'ruby-hooks)
 

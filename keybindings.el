@@ -80,17 +80,21 @@
 
 (global-unset-key (kbd "C-;"))
 (global-set-key (kbd "C-:") 'toggle-mac-option-modifier)
-(define-key ruby-mode-map (kbd "C-;") 'insert-rocket)
+
+(add-hook 'ruby-mode-hook
+	  (lambda ()
+	    (define-key ruby-mode-map (kbd "C-;") 'insert-rocket)
+	    ))
+
 ;; (define-key haskell-mode-map (kbd "C-;") 'insert-arrow)
 (global-set-key (kbd "s-;") 'insert-ellipses)
 
-(define-key *textmate-mode-map* [(meta shift l)] 'textmate-select-line)
-
-(define-key *textmate-mode-map* [(meta \[)]      'textmate-shift-left)
-(define-key *textmate-mode-map* [(meta \])]      'textmate-shift-right)
+;; (define-key *textmate-mode-map* [(meta shift l)] 'textmate-select-line)
+;; (define-key *textmate-mode-map* [(meta \[)]      'textmate-shift-left)
+;; (define-key *textmate-mode-map* [(meta \])]      'textmate-shift-right)
+;; (define-key *textmate-mode-map* [(super t)]      'textmate-goto-file)
 
 (global-set-key [(meta t)] 'peepopen-goto-file-gui)
-(define-key *textmate-mode-map* [(super t)]      'textmate-goto-file)
 
 (global-set-key (kbd "C-S-g") 'magit-status)
 

@@ -1,7 +1,17 @@
 ;; (load "haskell-site-file")
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-ghci)
+
+(defun my-haskell-keys ()
+  (local-unset-key (kbd "M-r"))
+  (global-unset-key (kbd "M-r"))
+
+  (local-set-key (kbd "M-r") 'inferior-haskell-load-and-run)
+  )
+
+(add-hook 'haskell-mode-hook 'my-haskell-keys)
+(setq haskell-font-lock-symbols nil)
+
 ; (add-hook 'haskell-mode-hook 'my-haskell-mmm-mode)
 
 ;(mmm-add-classes

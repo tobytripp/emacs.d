@@ -8,7 +8,6 @@
                     (or (buffer-file-name) load-file-name)))
 (add-to-list 'load-path dotfiles-dir)
 
-;; For Peepopen, really
 (setq vendor-dir (concat dotfiles-dir "/vendor"))
 (add-to-list 'load-path vendor-dir)
 
@@ -23,8 +22,6 @@
 (load "env.el")
 
 (require 'package)
-;(setq package-archives
-;     (cons '("tromey" . "http://tromey.com/elpa/") package-archives))
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (package-initialize)

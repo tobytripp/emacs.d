@@ -38,6 +38,7 @@
 (global-set-key (kbd "C-c r")     'revert-buffer)
 (global-set-key (kbd "M-`")       'file-cache-minibuffer-complete)
 (global-set-key (kbd "C-x C-b")   'ibuffer)
+(global-set-key (kbd "C-s-f")     'ns-toggle-fullscreen)
 
 (windmove-default-keybindings) ;; Shift+direction
 (global-set-key (kbd "C-x O")   (lambda () (interactive) (other-window -1))) ;; back one
@@ -113,5 +114,6 @@
   )
 (global-set-key (kbd "C-x 6") 'split-in-thirds)
 
+(setq echo-keystrokes 0.02)
 
 (provide 'keybindings)

@@ -7,3 +7,4 @@ abbref_defs
 .smex-items
 places
 url/*
+*.elc

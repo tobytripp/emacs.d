@@ -7,3 +7,6 @@
 [submodule "vendor/auto-complete"]
 	path = vendor/auto-complete
 	url = git://github.com/m2ym/auto-complete.git
+[submodule "vendor/rspec-mode"]
+	path = vendor/rspec-mode
+	url = https://github.com/pezra/rspec-mode.git

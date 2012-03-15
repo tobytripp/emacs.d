@@ -9,6 +9,7 @@
  '(coffee-args-compile (quote ("-c" "-o js")))
  '(coffee-tab-width 2)
  '(compilation-ask-about-save nil)
+ '(custom-enabled-themes (quote (tsdh-light)))
  '(default-frame-alist (quote ((vertical-scroll-bars) (cursor-type . box) (internal-border-width . 0) (left-fringe . 1) (right-fringe) (fringe) (background-color . "#211E1E") (background-mode . dark) (background-toolbar-color . "#cf3ccf3ccf3c") (border-color . "Grey") (bottom-toolbar-shadow-color . "#79e77df779e7") (cursor-color . "#FFFFFF") (foreground-color . "#DADADA") (mouse-color . "Grey") (top-toolbar-shadow-color . "#fffffbeeffff") (viper-saved-cursor-color-in-replace-mode . "Red3"))))
  '(erc-server "irc.freenode.net")
  '(glasses-face (quote bold))
@@ -47,7 +48,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(column-marker-1 ((t (:background "red4"))))
- '(magit-item-highlight ((((class color) (background dark)) (:background "gray7"))))
- '(mumamo-background-chunk-major ((((class color) (min-colors 88) (background dark)) nil)))
- '(mumamo-background-chunk-submode1 ((((class color) (min-colors 88) (background dark)) (:background "gray15")))))
+ '(column-marker-1 ((t (:background "red4"))) t)
+ '(magit-item-highlight ((((class color) (background dark)) (:background "gray7"))) t)
+ '(mumamo-background-chunk-major ((((class color) (min-colors 88) (background dark)) nil)) t)
+ '(mumamo-background-chunk-submode1 ((((class color) (min-colors 88) (background dark)) (:background "gray15"))) t))

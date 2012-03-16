@@ -16,7 +16,6 @@
     idle-highlight
     inf-ruby
     jira
-    js2-mode
     json
     magit
     markdown-mode
@@ -30,6 +29,7 @@
     starter-kit-js
     starter-kit-lisp
     starter-kit-ruby
+    switch-window
     textmate
     textmate-to-yas
     yaml-mode

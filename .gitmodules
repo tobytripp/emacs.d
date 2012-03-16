@@ -1,0 +1,9 @@
+[submodule "vendor/rspec-mode"]
+	path = vendor/rspec-mode
+	url = git://github.com/pezra/rspec-mode.git
+[submodule "vendor/highlight-indentation-for-emacs"]
+	path = vendor/highlight-indentation-for-emacs
+	url = git://github.com/antonj/Highlight-Indentation-for-Emacs.git
+[submodule "vendor/fill-column-indicator"]
+	path = vendor/fill-column-indicator
+	url = git://github.com/alpaker/Fill-Column-Indicator.git

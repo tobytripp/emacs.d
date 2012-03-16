@@ -1,28 +1,25 @@
 (add-hook 'ruby-mode-hook
           (lambda ()
-	    (add-hook 'write-file-functions
-		      '(lambda()
-			 (save-excursion
-			   (untabify (point-min) (point-max))
-			   )))
+            (local-set-key (kbd "M-RET") 'textmate-next-line)
 
-	    (local-set-key (kbd "M-RET") 'textmate-next-line)
+            (set (make-local-variable 'indent-tabs-mode) 'nil)
+            (set (make-local-variable 'tab-width) 2)
 
-	    (set (make-local-variable 'indent-tabs-mode) 'nil)
-	    (set (make-local-variable 'tab-width) 2)
+            (add-to-list 'load-path (concat vendor-dir "/rspec-mode"))
+            (require 'rspec-mode)
+            (local-set-key (kbd "M-r")   'rspec-verify)
+            (local-set-key (kbd "M-S-r") 'rspec-verify-single)
 
-	    (require 'rspec-mode)
-	    (local-set-key (kbd "M-r")   'rspec-verify)
-	    (local-set-key (kbd "M-S-r") 'rspec-verify-single)
+            (require 'rvm)
+            (rvm-activate-corresponding-ruby)
 
-	    (require 'rvm)
-	    (rvm-activate-corresponding-ruby)
-
-	    (outline-minor-mode)
-	    (setq outline-regexp " *\\(def \\|describe \\|it \\|class\\|module\\)")
+            (outline-minor-mode)
+            (setq outline-regexp " *\\(def \\|describe \\|it \\|class\\|module\\)")
           ))
 
-;; (add-hook 'ruby-mode-hook (lambda () (interactive) (column-marker-1 80)))
+(require 'column-marker)
+(add-hook 'ruby-mode-hook (lambda () (interactive) (column-marker-1 80)))
+(add-hook 'ruby-mode-hook (lambda () (interactive) (pretty-lambdas)))
 
 (add-to-list 'auto-mode-alist '("\.feature$" . feature-mode))
 
@@ -32,7 +29,7 @@
             (local-set-key (kbd "M-S-r") 'feature-verify-scenario-at-pos)
             ))
 
-(add-to-list 'auto-mode-alist '("\\.erb" . eruby-html-mumamo-mode))
+;; (add-to-list 'auto-mode-alist '("\\.erb" . eruby-html-mumamo-mode))
 
 ; Install mode-compile to give friendlier compiling support
 (autoload 'mode-compile "mode-compile"
@@ -80,4 +77,3 @@
 ;; (require 'rdebug)
 
 (provide 'ruby-hooks)
-

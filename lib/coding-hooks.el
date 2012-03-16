@@ -41,6 +41,8 @@
 (add-hook 'coding-hook 'pretty-lambdas)
 (add-hook 'coding-hook 'add-watchwords)
 (add-hook 'coding-hook 'idle-highlight)
+(add-hook 'coding-hook 'hightlight-indentation-current-column-mode)
+
 
 (defun run-coding-hook ()
   "Enable things that are convenient across all coding buffers."

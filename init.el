@@ -8,7 +8,6 @@
                     (or (buffer-file-name) load-file-name)))
 (add-to-list 'load-path dotfiles-dir)
 
-;; For Peepopen, really
 (setq vendor-dir (concat dotfiles-dir "/vendor"))
 (add-to-list 'load-path vendor-dir)
 
@@ -34,9 +33,9 @@
 (require 'recentf)
 (require 'uniquify)
 (require 'keybindings)
+(require 'switch-window)
 
 (global-hl-line-mode 1)
 (put 'downcase-region 'disabled nil)
 
 (mapc #'load (directory-files lib-dir nil ".*el$"))
-

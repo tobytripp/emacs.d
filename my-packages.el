@@ -71,6 +71,7 @@
         mmm-mode
         nxhtml
         paredit
+        rainbow-mode
         rdebug
         ruby-block
         ruby-end

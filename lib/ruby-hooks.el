@@ -1,24 +1,25 @@
-(add-hook 'ruby-mode-hook
-          (lambda ()
-            (local-set-key (kbd "M-RET") 'textmate-next-line)
+(add-hook
+ 'ruby-mode-hook
+ (lambda ()
+   (local-set-key (kbd "M-RET") 'textmate-next-line)
 
-            (set (make-local-variable 'indent-tabs-mode) 'nil)
-            (set (make-local-variable 'tab-width) 2)
+   (set (make-local-variable 'indent-tabs-mode) 'nil)
+   (set (make-local-variable 'tab-width) 2)
 
-            (add-to-list 'load-path (concat vendor-dir "/rspec-mode"))
-            (require 'rspec-mode)
-            (local-set-key (kbd "M-r")   'rspec-verify)
-            (local-set-key (kbd "M-S-r") 'rspec-verify-single)
+   (add-to-list 'load-path (concat vendor-dir "/rspec-mode"))
+   (require 'rspec-mode)
+   (local-set-key (kbd "M-r")   'rspec-verify)
+   (local-set-key (kbd "M-S-r") 'rspec-verify-single)
 
-            (require 'rvm)
-            (rvm-activate-corresponding-ruby)
+   (require 'rvm)
+   (rvm-activate-corresponding-ruby)
 
-            (outline-minor-mode)
-            (setq outline-regexp " *\\(def \\|describe \\|it \\|class\\|module\\)")
-            
-      	    (require 'rvm)
-      	    (rvm-activate-corresponding-ruby)
-          ))
+   (outline-minor-mode)
+   (setq outline-regexp " *\\(def \\|describe \\|it \\|class\\|module\\)")
+
+   (require 'rvm)
+   (rvm-activate-corresponding-ruby)
+   ))
 
 (require 'column-marker)
 (add-hook 'ruby-mode-hook (lambda () (interactive) (column-marker-1 80)))

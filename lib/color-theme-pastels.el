@@ -887,4 +887,6 @@
      (zmacs-region ((t (:background "DarkSlateBlue")))))))
 (add-to-list 'color-themes '(color-theme-pastels  "Pastels" "Toby Tripp"))
 
-(color-theme-pastels)
+;; (color-theme-pastels)
+
+(provide 'color-theme-pastels)

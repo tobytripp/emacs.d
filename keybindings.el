@@ -38,6 +38,7 @@
 (global-set-key (kbd "C-c r")     'revert-buffer)
 (global-set-key (kbd "M-`")       'file-cache-minibuffer-complete)
 (global-set-key (kbd "C-x C-b")   'ibuffer)
+(global-set-key (kbd "C-s-f")     'ns-toggle-fullscreen)
 
 (windmove-default-keybindings) ;; Shift+direction
 (global-set-key (kbd "C-x O")   (lambda () (interactive) (other-window -1))) ;; back one
@@ -59,11 +60,12 @@
 
 ;; This is a little hacky since VC doesn't support git add internally
 (eval-after-load 'vc
-  (define-key vc-prefix-map "i" '(lambda () (interactive)
-                                   (if (not (eq 'Git (vc-backend buffer-file-name)))
-                                       (vc-register)
-                                     (shell-command (format "git add %s" buffer-file-name))
-                                     (message "Staged changes.")))))
+  (define-key vc-prefix-map "i"
+    '(lambda () (interactive)
+       (if (not (eq 'Git (vc-backend buffer-file-name)))
+           (vc-register)
+         (shell-command (format "git add %s" buffer-file-name))
+         (message "Staged changes.")))))
 
 ;; Activate occur easily inside isearch
 (define-key isearch-mode-map (kbd "C-o")
@@ -112,5 +114,6 @@
   )
 (global-set-key (kbd "C-x 6") 'split-in-thirds)
 
+(setq echo-keystrokes 0.02)
 
 (provide 'keybindings)

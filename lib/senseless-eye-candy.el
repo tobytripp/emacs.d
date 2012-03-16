@@ -22,6 +22,11 @@
 (set-frame-font "Menlo-14")
 (set-fringe-style -1)
 
+(require 'color-theme)
+(eval-after-load "color-theme"
+  '(progn
+;;     (color-theme-initialize)
+     (color-theme-pastels)))
 (add-to-list 'load-path (concat vendor-dir "/highlight-indentation"))
 (require 'highlight-indentation)
 

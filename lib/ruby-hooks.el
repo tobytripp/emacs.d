@@ -15,6 +15,9 @@
 
             (outline-minor-mode)
             (setq outline-regexp " *\\(def \\|describe \\|it \\|class\\|module\\)")
+            
+      	    (require 'rvm)
+      	    (rvm-activate-corresponding-ruby)
           ))
 
 (require 'column-marker)
@@ -31,7 +34,7 @@
 
 ;; (add-to-list 'auto-mode-alist '("\\.erb" . eruby-html-mumamo-mode))
 
-; Install mode-compile to give friendlier compiling support
+;; Install mode-compile to give friendlier compiling support
 (autoload 'mode-compile "mode-compile"
   "Command to compile current buffer file based on the major mode" t)
 (global-set-key (kbd "C-c c") 'mode-compile)
@@ -39,7 +42,8 @@
   "Command to kill a compilation launched by `mode-compile'" t)
 (global-set-key (kbd "C-c k") 'mode-compile-kill)
 (setq mode-compile-save-all-p t)
-;; (autoload 'rdebug "rdebug" "ruby-debug interface" t)
+
+(autoload 'rdebug "rdebug" "ruby-debug interface" t)
 
 (require 'align)
 (add-hook 'align-load-hook

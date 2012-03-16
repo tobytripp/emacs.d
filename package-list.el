@@ -7,6 +7,7 @@
     browse-kill-ring
     coffee-mode
     color-theme
+    el-autoyas
     feature-mode
     flymake-coffee
     flymake-jshint
@@ -24,6 +25,7 @@
     peepopen
     ruby-block
     ruby-end
+    rvm
     smex
     starter-kit-eshell
     starter-kit-js

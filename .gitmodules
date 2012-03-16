@@ -1,3 +1,12 @@
+[submodule "snippets/text-mode/haskell-mode"]
+	path = snippets/text-mode/haskell-mode
+	url = git://github.com/rmies/yasnippet-haskell.git
+[submodule "vendor/epresent"]
+	path = vendor/epresent
+	url = git://github.com/eschulte/epresent.git
+[submodule "vendor/auto-complete"]
+	path = vendor/auto-complete
+	url = git://github.com/m2ym/auto-complete.git
 [submodule "vendor/rspec-mode"]
 	path = vendor/rspec-mode
 	url = git://github.com/pezra/rspec-mode.git

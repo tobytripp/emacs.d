@@ -18,6 +18,7 @@
     inf-ruby
     jira
     json
+    js-comint
     magit
     markdown-mode
     paredit

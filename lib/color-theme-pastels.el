@@ -640,7 +640,7 @@
      (p4-diff-ins-face ((t (:foreground "steelblue1"))))
      (paren-blink-off ((t (:foreground "gray80"))))
      (paren-blink-on ((t (:foreground "LightSlateBlue"))))
-     (paren-face ((t (:background "black" :foreground "darkgreen"))))
+     (paren-face ((t (:background "#211E1E" :foreground "grey30"))))
      (paren-face-match ((t (:background "black" :foreground "springgreen"))))
      (paren-face-mismatch ((t (:background "black" :foreground "#00CC00" :strike-through t))))
      (paren-face-no-match ((t (:background "black" :foreground "red"))))

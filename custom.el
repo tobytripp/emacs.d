@@ -52,4 +52,5 @@
  '(magit-item-highlight ((((class color) (background dark)) (:background "gray7"))) t)
  '(minibuffer-prompt ((t (:background "#2C2828" :foreground "wheat" :box nil :weight bold))))
  '(mumamo-background-chunk-major ((((class color) (min-colors 88) (background dark)) nil)) t)
- '(mumamo-background-chunk-submode1 ((((class color) (min-colors 88) (background dark)) (:background "gray15"))) t))
+ '(mumamo-background-chunk-submode1 ((((class color) (min-colors 88) (background dark)) (:background "gray15"))) t)
+ '(paren-face ((t (:background "black" :foreground "wheat")))))

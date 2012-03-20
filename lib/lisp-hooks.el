@@ -1,2 +1,2 @@
 (require 'parenface)
-(set-face-foreground 'paren-face "blue4")
+;; (set-face-foreground 'paren-face "blue4")

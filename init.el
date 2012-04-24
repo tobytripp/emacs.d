@@ -43,3 +43,7 @@
         (add-to-list 'load-path (concat vendor-dir "/" path)))
       (directory-files vendor-dir nil "^[a-z]"))
 (mapc #'load (directory-files lib-dir nil ".*el$"))
+
+(toby-mode)
+(add-hook 'find-file-hook 'toby-mode)
+(add-hook 'after-change-major-mode-hook 'toby-mode)

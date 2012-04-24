@@ -32,6 +32,7 @@
  '(ns-tool-bar-display-mode nil t)
  '(ns-tool-bar-size-mode nil t)
  '(nxhtml-autoload-web nil)
+ '(org-agenda-files (quote ("~/Dropbox/org/ib-tasks.org" "~/Dropbox/org/my-tasks.org")))
  '(revert-without-query (quote (".*")))
  '(rspec-compilation-buffer-name "*specs*")
  '(rspec-rake-command "bundle exec rake")
@@ -49,8 +50,10 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(column-marker-1 ((t (:background "red4"))))
- '(magit-item-highlight ((((class color) (background dark)) (:background "gray7"))) t)
+ '(magit-item-highlight ((((class color) (background dark)) (:background "gray7"))))
  '(minibuffer-prompt ((t (:background "#2C2828" :foreground "wheat" :box nil :weight bold))))
  '(mumamo-background-chunk-major ((((class color) (min-colors 88) (background dark)) nil)) t)
  '(mumamo-background-chunk-submode1 ((((class color) (min-colors 88) (background dark)) (:background "gray15"))) t)
- '(paren-face ((t (:background "black" :foreground "wheat")))))
+ '(org-date ((t (:foreground "violet" :underline t))))
+ '(paren-face ((t (:background "black" :foreground "wheat"))))
+ '(secondary-selection ((t (:background "grey13")))))

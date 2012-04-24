@@ -2,22 +2,30 @@
 
 (defun define-keys-from-key-alist (map keylist)
   (dolist (keypair tobys-keys-alist)
-    (let ((key (car keypair)) (sym (cdr keypair)))
+    (let (
+          (key (car keypair))
+          (sym (cdr keypair)))
       (define-key map (read-kbd-macro key) sym)
       ))
   )
 
 (defconst tobys-keys-alist
   (list
-   (cons "C-x m"   'eshell)
-   (cons "M-g"     'goto-line)
-   (cons "s-z"     'undo)
-   (cons "M-z"     'undo)
-   (cons "C-x \\"  'align-regexp)
-   (cons "M-/"     'hippie-expand)
-   (cons "s-/"     'hippie-expand)
+   '("C-x m"  . 'eshell)
+   '("M-g"    . 'goto-line)
+   '("s-z"    . 'undo)
+   '("M-z"    . 'undo)
+   '("C-x \\" . 'align-regexp)
+   '("M-/"    . 'hippie-expand)
+   '("s-/"    . 'hippie-expand)
 
-   (cons "C-S-d"   'duplicate-line)
+   '("C-S-d"  . 'duplicate-line)
+
+   '("M-o"    . 'peepopen-goto-file-gui)
+   '("M-O"    . 'ns-open-file-using-panel)
+
+   '("S-s-<up>"   . 'move-text-up)
+   '("S-s-<down>" . 'move-text-down)
    )
   "An alist of keys and the functions they're bound to")
 
@@ -33,13 +41,25 @@
     (yank)
     ))
 
-(defvar *tobys-mode-map*
+(defvar *tobys-mode-map* (make-sparse-keymap)
   (let ((map (make-sparse-keymap)))
     (define-keys-from-key-alist map tobys-keys-alist)
-    ))
+    )
+ )
+
+;; (define-keys-from-key-alist *tobys-mode-map* tobys-keys-alist)
 
 (define-minor-mode toby-mode
   "Customization minor mode for ME"
-  :lighter " π" :global t :keymap *tobys-mode-map*)
+  :lighter " π"
+  :global t
+  :keymap *tobys-mode-map*)
+
+(define-minor-mode global-toby-mode
+  "Toggle Toby Mode globally"
+  :lighter " π"
+  :global t
+  :keymap *tobys-mode-map*
+  )
 
 (provide 'toby)

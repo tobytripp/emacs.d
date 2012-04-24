@@ -12,6 +12,16 @@
   ns-pop-up-frames      nil
   )
 
+(define-key input-decode-map "\e[1;5A" [C-up])
+(define-key input-decode-map "\e[1;5B" [C-down])
+(define-key input-decode-map "\e[1;5C" [C-right])
+(define-key input-decode-map "\e[1;5D" [C-left])
+
+(define-key function-key-map "\M-[ a"  [C-up])
+(define-key function-key-map "\M-[ b"  [C-down])
+(define-key function-key-map "\M-[ c"  [C-right])
+(define-key function-key-map "\M-[ d"  [C-left])
+
 ;; Escape is C-g
 (global-set-key [escape] 'keyboard-quit)
 (global-set-key (kbd "s-x") 'smex)   ; s-x == M-x

@@ -8,3 +8,4 @@ abbref_defs
 places
 url/*
 *.elc
+/bookmarks

@@ -5,7 +5,8 @@
   (paredit-mode 1))
 
 (defun esk-space-for-delimiter? (endp delimiter)
-  (not (member major-mode '(ruby-mode espresso-mode js2-mode))))
+  (not (member major-mode
+               '(ruby-mode espresso-mode javascript-mode js-mode js2-mode))))
 
 (eval-after-load 'paredit
   '(add-to-list 'paredit-space-for-delimiter-predicates

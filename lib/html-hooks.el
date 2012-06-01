@@ -1,7 +1,13 @@
-(add-to-list 'load-path (concat vendor-dir "/html-helper-mode"))
-(autoload 'html-helper-mode "html-helper-mode" "HTML Mode" t)
+(load "nxhtml/autostart.el")
 
-(add-to-list 'auto-mode-alist '("\\.html" . html-helper-mode))
-(add-to-list 'auto-mode-alist '("\\.erb"  . html-helper-mode))
+(setq
+ nxhtml-global-minor-mode t
+ mumamo-chunk-coloring 'submode-colored
+ rng-nxml-auto-validate-flag nil
+ indent-region-mode t
+ nxml-degraded t
+ )
 
-;; (load "nxhtml/autostart.el")
+(add-hook 'sgml-mode-hook 'zencoding-mode)
+;;(define-key sgml-mode-map (kbd "C-j") 'zencoding-expand-line)
+;;(define-key nxhtml-mode-map  (kbd "C-j") 'zencoding-expand-yas)

@@ -6,7 +6,8 @@
 (add-hook 'js-mode-hook
           (lambda ()
             (glasses-mode t)
-            (flymake-mode t)
+            (if (and (not (null buffer-file-name)) (file-writable-p buffer-file-name))
+                (flymake-mode t))
             ))
 
 (defun jslint-thisfile ()

@@ -382,7 +382,7 @@
      (font-latex-warning-face ((t (:foreground "Pink"))))
      (font-lock-builtin-face ((t (:foreground "#6f61ff"))))
      (font-lock-comment-delimiter-face ((t (:foreground "OrangeRed3"))))
-     (font-lock-comment-face ((t (:foreground "grey30"))))
+     (font-lock-comment-face ((t (:foreground "salmon"))))
      (font-lock-constant-face ((t (:foreground "#e98e23"))))
      (font-lock-doc-face ((t (:foreground "OrangeRed3"))))
      (font-lock-doc-string-face ((t (:foreground "#e98e07"))))

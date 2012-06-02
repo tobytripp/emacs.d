@@ -8,3 +8,7 @@ abbref_defs
 places
 url/*
 *.elc
+/bookmarks
+history
+/.emacs.keyfreq
+/.recentf

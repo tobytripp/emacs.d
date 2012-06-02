@@ -1,39 +1,36 @@
 (add-hook
  'ruby-mode-hook
  (lambda ()
-   (local-set-key (kbd "M-RET") 'textmate-next-line)
-
    (set (make-local-variable 'indent-tabs-mode) 'nil)
    (set (make-local-variable 'tab-width) 2)
 
-   (add-to-list 'load-path (concat vendor-dir "/rspec-mode"))
-   (require 'rspec-mode)
-   (local-set-key (kbd "M-r")   'rspec-verify)
-   (local-set-key (kbd "M-S-r") 'rspec-verify-single)
+   (if (and (not (null buffer-file-name)) (file-writable-p buffer-file-name))
+       (flymake-mode))
 
-   (require 'rvm)
-   (rvm-activate-corresponding-ruby)
+   (add-to-list 'load-path (concat vendor-dir "/rspec-mode"))
 
    (outline-minor-mode)
    (setq outline-regexp " *\\(def \\|describe \\|it \\|class\\|module\\)")
 
-   (require 'rvm)
-   (rvm-activate-corresponding-ruby)
+   (column-marker-1 80)
+   (pretty-lambdas)
    ))
 
+(require 'rspec-mode)
+(local-set-key (kbd "M-r")   'rspec-verify)
+(local-set-key (kbd "M-S-r") 'rspec-verify-single)
+
+(require 'rvm)
 (require 'column-marker)
-(add-hook 'ruby-mode-hook (lambda () (interactive) (column-marker-1 80)))
-(add-hook 'ruby-mode-hook (lambda () (interactive) (pretty-lambdas)))
 
 (add-to-list 'auto-mode-alist '("\.feature$" . feature-mode))
-
 (add-hook 'feature-mode-hook
           (lambda ()
             (local-set-key (kbd "M-r")   'feature-verify-all-scenarios-in-buffer)
             (local-set-key (kbd "M-S-r") 'feature-verify-scenario-at-pos)
             ))
 
-;; (add-to-list 'auto-mode-alist '("\\.erb" . eruby-html-mumamo-mode))
+(add-to-list 'auto-mode-alist '("\\.erb" . eruby-nxhtml-mumamo-mode))
 
 ;; Install mode-compile to give friendlier compiling support
 (autoload 'mode-compile "mode-compile"

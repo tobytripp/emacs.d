@@ -1,5 +1,5 @@
-(setq debug-on-error t)
-(setq debug-ignored-errors nil)
+;; (setq debug-on-error t)
+;; (setq debug-ignored-errors nil)
 
 (if (fboundp 'tool-bar-mode)   (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
@@ -39,6 +39,7 @@
 (require 'switch-window)
 
 (global-hl-line-mode 1)
+(delete-selection-mode t)
 (put 'downcase-region 'disabled nil)
 
 (mapc (lambda (path)
@@ -48,5 +49,10 @@
 
 (require 'toby-mode)
 (toby-mode)
+(add-hook 'find-file-hook 'toby-mode)
+(add-hook 'after-change-major-mode-hook 'toby-mode)
+(put 'ido-exit-minibuffer 'disabled nil)
+(put 'upcase-region 'disabled nil)
+
 (put 'ido-exit-minibuffer 'disabled nil)
 (put 'upcase-region 'disabled nil)

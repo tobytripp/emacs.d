@@ -6,7 +6,6 @@
     autopair
     browse-kill-ring
     coffee-mode
-    color-theme
     el-autoyas
     feature-mode
     flymake-coffee
@@ -28,6 +27,7 @@
     ruby-end
     rvm
     smex
+    solarized-theme
     starter-kit-eshell
     starter-kit-js
     starter-kit-lisp

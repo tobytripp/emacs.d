@@ -19,7 +19,7 @@
 (setq twittering-username "tobytripp")
 (setq twittering-icon-mode t)
 
-(set-frame-font "Menlo-14")
+(set-frame-font "Monaco-13")
 (set-fringe-style -1)
 
 (add-to-list 'load-path (concat vendor-dir "/highlight-indentation"))
@@ -43,3 +43,5 @@
         (tab-mark 9 [9655 9] [92 9]) ; tab, ▷
         ))
 (global-whitespace-mode)
+
+(load-theme 'solarized-dark)

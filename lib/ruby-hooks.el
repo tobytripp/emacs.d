@@ -16,6 +16,7 @@
    (pretty-lambdas)
    ))
 
+(require 'ruby-end)
 (require 'rspec-mode)
 (local-set-key (kbd "M-r")   'rspec-verify)
 (local-set-key (kbd "M-S-r") 'rspec-verify-single)

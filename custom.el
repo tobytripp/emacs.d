@@ -11,7 +11,7 @@
  '(coffee-tab-width 2)
  '(compilation-ask-about-save nil)
  '(custom-enabled-themes (quote (tsdh-light)))
- '(custom-safe-themes (quote ("180be8ecbfeebff1032191e90095149e58b0eeff86ea5a4f8dff4bf8b5de86ae" "72cc9ae08503b8e977801c6d6ec17043b55313cda34bcf0e6921f2f04cf2da56" "d2622a2a2966905a5237b54f35996ca6fda2f79a9253d44793cfe31079e3c92b" "501caa208affa1145ccbb4b74b6cd66c3091e41c5bb66c677feda9def5eab19c" default)))
+ '(custom-safe-themes (quote ("f7f676cd4428f33b6a83d99d181ebff3942686e168a78d583174358ef69009db" "8327109de3cb68be9e88a7837c6c57eefacf29e5b4bf0637c26cc6b95a075116" "7cd8074097c86bee5a787bc448b54a25e8809e4aba525ae3dfc9a4c5ccaff1fa" "8fae7236cb9be6a5ae053270e70d22186d860459cd51434ad533107855aa03d2" "180be8ecbfeebff1032191e90095149e58b0eeff86ea5a4f8dff4bf8b5de86ae" "72cc9ae08503b8e977801c6d6ec17043b55313cda34bcf0e6921f2f04cf2da56" "d2622a2a2966905a5237b54f35996ca6fda2f79a9253d44793cfe31079e3c92b" "501caa208affa1145ccbb4b74b6cd66c3091e41c5bb66c677feda9def5eab19c" default)))
  '(default-frame-alist (quote ((vertical-scroll-bars) (cursor-type . box) (internal-border-width . 0) (left-fringe . 1) (right-fringe) (fringe) (background-color . "#211E1E") (background-mode . dark) (background-toolbar-color . "#cf3ccf3ccf3c") (border-color . "Grey") (bottom-toolbar-shadow-color . "#79e77df779e7") (cursor-color . "#FFFFFF") (foreground-color . "#DADADA") (mouse-color . "Grey") (top-toolbar-shadow-color . "#fffffbeeffff") (viper-saved-cursor-color-in-replace-mode . "Red3"))))
  '(erc-modules (quote (autojoin button completion fill irccontrols list match menu move-to-prompt netsplit networks noncommands readonly ring scrolltobottom smiley stamp spelling track)))
  '(erc-server "irc.freenode.net")
@@ -23,7 +23,6 @@
  '(glasses-separator " ")
  '(glasses-uncapitalize-p nil)
  '(global-auto-revert-mode t)
- '(global-hl-line-mode t)
  '(haskell-font-lock-symbols (quote unicode) t)
  '(js-expr-indent-offset 2)
  '(js-indent-level 2)
@@ -34,7 +33,6 @@
  '(js2-mode-show-parse-errors nil)
  '(js2-mode-show-strict-warnings nil)
  '(magit-process-popup-time 20)
- '(ns-alternate-modifier (quote super))
  '(ns-tool-bar-display-mode nil t)
  '(ns-tool-bar-size-mode nil t)
  '(org-agenda-files (quote ("~/Dropbox/org/ib-tasks.org" "~/Dropbox/org/my-tasks.org")))
@@ -56,4 +54,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(hl-line ((t (:background "#002b36")))))

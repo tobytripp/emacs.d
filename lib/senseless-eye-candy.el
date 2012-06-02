@@ -44,4 +44,4 @@
         ))
 (global-whitespace-mode)
 
-(load-theme 'solarized-dark)
+(load-theme 'toby)

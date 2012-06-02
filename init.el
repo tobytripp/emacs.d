@@ -35,11 +35,11 @@
 (require 'ansi-color)
 (require 'recentf)
 (require 'uniquify)
-(require 'keybindings)
 (require 'switch-window)
 
 (global-hl-line-mode 1)
 (delete-selection-mode t)
+
 (put 'downcase-region 'disabled nil)
 
 (mapc (lambda (path)
@@ -48,11 +48,12 @@
 (mapc #'load (directory-files lib-dir nil ".*el$"))
 
 (require 'toby-mode)
-(toby-mode)
-(add-hook 'find-file-hook 'toby-mode)
-(add-hook 'after-change-major-mode-hook 'toby-mode)
+(global-toby-mode)
+
 (put 'ido-exit-minibuffer 'disabled nil)
 (put 'upcase-region 'disabled nil)
 
 (put 'ido-exit-minibuffer 'disabled nil)
 (put 'upcase-region 'disabled nil)
+
+(require 'keybindings)

@@ -1,4 +1,4 @@
-;; (setq debug-on-error t)
+(setq debug-on-error t)
 (setq debug-ignored-errors nil)
 
 (if (fboundp 'tool-bar-mode)   (tool-bar-mode -1))
@@ -27,6 +27,8 @@
 (require 'package)
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 
 (require 'package-list)
@@ -46,3 +48,5 @@
 
 (require 'toby-mode)
 (toby-mode)
+(put 'ido-exit-minibuffer 'disabled nil)
+(put 'upcase-region 'disabled nil)

@@ -17,6 +17,8 @@
    (cons "M-/"     'hippie-expand)
    (cons "s-/"     'hippie-expand)
 
+   (cons "s-<"     'beginning-of-buffer)
+
    (cons "C-S-d"   'duplicate-line)
    )
   "An alist of keys and the functions they're bound to")
@@ -42,4 +44,4 @@
   "Customization minor mode for ME"
   :lighter " π" :global t :keymap *tobys-mode-map*)
 
-(provide 'toby)
+(provide 'toby-mode)

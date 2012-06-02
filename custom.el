@@ -10,7 +10,9 @@
  '(coffee-tab-width 2)
  '(compilation-ask-about-save nil)
  '(custom-enabled-themes (quote (tsdh-light)))
+ '(custom-safe-themes (quote ("501caa208affa1145ccbb4b74b6cd66c3091e41c5bb66c677feda9def5eab19c" default)))
  '(default-frame-alist (quote ((vertical-scroll-bars) (cursor-type . box) (internal-border-width . 0) (left-fringe . 1) (right-fringe) (fringe) (background-color . "#211E1E") (background-mode . dark) (background-toolbar-color . "#cf3ccf3ccf3c") (border-color . "Grey") (bottom-toolbar-shadow-color . "#79e77df779e7") (cursor-color . "#FFFFFF") (foreground-color . "#DADADA") (mouse-color . "Grey") (top-toolbar-shadow-color . "#fffffbeeffff") (viper-saved-cursor-color-in-replace-mode . "Red3"))))
+ '(erc-modules (quote (autojoin button completion fill irccontrols list match menu move-to-prompt netsplit networks noncommands readonly ring scrolltobottom smiley stamp spelling track)))
  '(erc-server "irc.freenode.net")
  '(glasses-face (quote bold))
  '(glasses-original-separator "␣")
@@ -35,7 +37,8 @@
  '(revert-without-query (quote (".*")))
  '(rspec-compilation-buffer-name "*specs*")
  '(rspec-rake-command "bundle exec rake")
- '(rspec-spec-command "spec --drb ")
+ '(rspec-spec-command "rspec --drb ")
+ '(rspec-use-bundler-when-possible nil)
  '(rspec-use-rake-flag nil)
  '(rspec-use-rvm t)
  '(ruby-deep-arglist nil)
@@ -49,7 +52,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(column-marker-1 ((t (:background "red4"))))
- '(magit-item-highlight ((((class color) (background dark)) (:background "gray7"))) t)
+ '(magit-item-highlight ((((class color) (background dark)) (:background "gray7"))))
  '(minibuffer-prompt ((t (:background "#2C2828" :foreground "wheat" :box nil :weight bold))))
  '(mumamo-background-chunk-major ((((class color) (min-colors 88) (background dark)) nil)) t)
  '(mumamo-background-chunk-submode1 ((((class color) (min-colors 88) (background dark)) (:background "gray15"))) t)

@@ -4,6 +4,7 @@
 
 (defvar bitlbee-password "password")
 (add-hook 'erc-join-hook 'bitlbee-identify)
+
 (defun bitlbee-identify ()
   "If we're on the bitlbee server, send the identify command to the
  &bitlbee channel."

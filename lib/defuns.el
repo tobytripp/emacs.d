@@ -40,21 +40,30 @@
   )
 
 (defun insert-rocket ()
+  "Insert => rocket"
   (interactive)
   (delete-horizontal-space)
   (insert " => ")
+  )
+
+(defun insert-arrow ()
+  "Insert a single arrow (Haskell syntax)"
+  (interactive)
+  (delete-horizontal-space)
+  (insert " -> ")
+  )
+
+(defun insert-larrow ()
+  "Insert <- arrow (Haskell monad return)"
+  (interactive)
+  (delete-horizontal-space)
+  (insert " <- ")
   )
 
 (defun insert-ellipses ()
   (interactive)
   (delete-horizontal-space)
   (insert "…"))
-
-(defun insert-arrow ()
-  (interactive)
-  (delete-horizontal-space)
-  (insert " -> ")
-  )
 
 (defun what-face (pos)
   (interactive "d")

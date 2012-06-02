@@ -36,8 +36,17 @@
 (add-hook
  'haskell-mode-hook
  '(lambda ()
+    (define-key haskell-mode-map (kbd "s-r") 'inferior-haskell-load-and-run)
+    (define-key haskell-mode-map (kbd "C-;") 'insert-arrow)
+    (define-key haskell-mode-map (kbd "C-:") 'insert-rocket)
+    (define-key haskell-mode-map (kbd "C-=") 'insert-larrow)
+
     (define-key haskell-mode-map "\C-cd"
-      'credmp/flymake-display-err-minibuf)))
+      'credmp/flymake-display-err-minibuf)
+    (define-key haskell-mode-map (kbd "C-h h") 'hoogle)
+
+    (paredit-mode 1)
+    ))
 
 ; (add-hook 'haskell-mode-hook 'my-haskell-mmm-mode)
 

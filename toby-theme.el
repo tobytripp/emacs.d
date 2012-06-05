@@ -367,6 +367,7 @@
  '(which-func ((((class color) (min-colors 89)) (:foreground "#859900"))))
  '(yascroll:thumb-text-area ((((class color) (min-colors 89)) (:foreground "#586e75" :background "#586e75"))))
  '(yascroll:thumb-fringe ((((class color) (min-colors 89)) (:foreground "#586e75" :background "#586e75"))))
- '(default ((t (:background "#211E1E" :foreground "#DADADA")))))
+ '(default ((t (:background "#211E1E" :foreground "#DADADA"))))
+ '(idle-highlight ((t (:inherit region :foreground "black")))))
 
 (provide-theme 'toby)

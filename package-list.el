@@ -38,6 +38,7 @@
     yaml-mode
     yas-jit
     yasnippet
+    zencoding-mode
     )
   "The list of packages to ensure are installed at launch.")
 

@@ -7,6 +7,7 @@
     browse-kill-ring
     coffee-mode
     el-autoyas
+    ess
     feature-mode
     flymake-coffee
     flymake-jshint
@@ -20,6 +21,7 @@
     js-comint
     magit
     markdown-mode
+    org
     paredit
     parenface
     peepopen

@@ -1,5 +1,5 @@
 (deftheme toby
-  "Created 2012-06-02.")
+  "Created 2012-06-09.")
 
 (custom-theme-set-variables
  'toby
@@ -249,7 +249,7 @@
  '(org-agenda-done ((((class color) (min-colors 89)) (:foreground "#859900"))))
  '(org-archived ((((class color) (min-colors 89)) (:foreground "#586e75" :weight normal))))
  '(org-block ((((class color) (min-colors 89)) (:foreground "#586e75"))))
- '(org-block-begin-line ((((class color) (min-colors 89)) (:foreground "#586e75" :slant italic))))
+ '(org-block-begin-line ((t (:foreground "#586e75" :slant italic))))
  '(org-checkbox ((((class color) (min-colors 89)) (:background "#002b36" :foreground "#839496" :box (:line-width 1 :style released-button)))))
  '(org-code ((((class color) (min-colors 89)) (:foreground "#586e75"))))
  '(org-date ((((class color) (min-colors 89)) (:foreground "#268bd2" :underline t))))
@@ -367,7 +367,9 @@
  '(which-func ((((class color) (min-colors 89)) (:foreground "#859900"))))
  '(yascroll:thumb-text-area ((((class color) (min-colors 89)) (:foreground "#586e75" :background "#586e75"))))
  '(yascroll:thumb-fringe ((((class color) (min-colors 89)) (:foreground "#586e75" :background "#586e75"))))
+ '(idle-highlight ((t (:inherit region :foreground "black"))))
  '(default ((t (:background "#211E1E" :foreground "#DADADA"))))
- '(idle-highlight ((t (:inherit region :foreground "black")))))
+ '(org-block-background ((t nil)))
+ '(org-block-end-line ((t (:inherit (org-meta-line))))))
 
 (provide-theme 'toby)

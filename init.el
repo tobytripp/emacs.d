@@ -49,6 +49,7 @@
 
 (require 'toby-mode)
 (global-toby-mode)
+(load-theme 'toby)
 
 (put 'ido-exit-minibuffer 'disabled nil)
 (put 'upcase-region 'disabled nil)

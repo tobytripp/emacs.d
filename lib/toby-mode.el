@@ -29,6 +29,7 @@
 
     (define-key map (kbd "S-s-<up>")   'move-text-up)
     (define-key map (kbd "S-s-<down>") 'move-text-down)
+    (define-key map [(super return)]   'textmate-next-line)
     map)
   "Keymap used for my local customizations."
   )

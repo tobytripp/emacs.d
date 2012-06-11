@@ -1,5 +1,5 @@
 (deftheme toby
-  "Created 2012-06-09.")
+  "Created 2012-06-10.")
 
 (custom-theme-set-variables
  'toby
@@ -43,7 +43,7 @@
  '(mode-line-buffer-id ((((class color) (min-colors 89)) (:foreground "#93a1a1" :weight bold))))
  '(mode-line-emphasis ((t (:weight bold))))
  '(mode-line-highlight ((((class color) (min-colors 88)) (:box (:line-width 2 :color "grey40" :style released-button))) (t (:inherit (highlight)))))
- '(mode-line-inactive ((((class color) (min-colors 89)) (:foreground "#839496" :background "#002b36" :box (:line-width -1 :style released-button)))))
+ '(mode-line-inactive ((((class color) (min-colors 89)) (:box (:line-width -1 :style released-button) :background "#1c1c1c" :foreground "#839496"))))
  '(isearch ((((class color) (min-colors 89)) (:foreground "#b58900" :background "#073642"))))
  '(isearch-fail ((((class color) (min-colors 89)) (:foreground "#839496" :background "#dc322f"))))
  '(lazy-highlight ((((class color) (min-colors 89)) (:foreground "#b58900" :background "#073642"))))
@@ -368,8 +368,8 @@
  '(yascroll:thumb-text-area ((((class color) (min-colors 89)) (:foreground "#586e75" :background "#586e75"))))
  '(yascroll:thumb-fringe ((((class color) (min-colors 89)) (:foreground "#586e75" :background "#586e75"))))
  '(idle-highlight ((t (:inherit region :foreground "black"))))
- '(default ((t (:background "#211E1E" :foreground "#DADADA"))))
  '(org-block-background ((t nil)))
- '(org-block-end-line ((t (:inherit (org-meta-line))))))
+ '(org-block-end-line ((t (:inherit (org-meta-line)))))
+ '(default ((t (:background "#211E1E" :foreground "#DADADA")))))
 
 (provide-theme 'toby)

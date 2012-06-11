@@ -20,9 +20,11 @@
     js-comint
     magit
     markdown-mode
+    outline-magic
     paredit
     parenface
     peepopen
+    rspec-mode
     ruby-block
     ruby-end
     rvm

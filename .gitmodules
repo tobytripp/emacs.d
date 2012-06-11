@@ -7,9 +7,6 @@
 [submodule "vendor/auto-complete"]
 	path = vendor/auto-complete
 	url = git://github.com/m2ym/auto-complete.git
-[submodule "vendor/rspec-mode"]
-	path = vendor/rspec-mode
-	url = git://github.com/pezra/rspec-mode.git
 [submodule "vendor/highlight-indentation-for-emacs"]
 	path = vendor/highlight-indentation-for-emacs
 	url = git://github.com/antonj/Highlight-Indentation-for-Emacs.git

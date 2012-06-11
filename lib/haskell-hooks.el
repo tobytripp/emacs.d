@@ -1,4 +1,6 @@
-;; (load "haskell-site-file")
+(load "haskell-site-file")
+;;(autoload 'haskell-mode "haskell-mode" "Haskell Mode." t)
+
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 
@@ -65,11 +67,5 @@
 ;  (setq mmm-global-mode 'true))
 
 (setq mmm-submode-decoration-level 0)
-
-;; other haskell indent modes
-;;(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
-;;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
-
-
 
 (provide 'haskell-hooks)

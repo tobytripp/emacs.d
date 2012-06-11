@@ -79,14 +79,14 @@
 
 ;; (require 'rdebug)
 
-(add-hook 'outline-mode-hook
-          (lambda ()
-            (require 'outline-cycle)))
+;; (add-hook 'outline-mode-hook
+;;           (lambda ()
+;;             (require 'outline-cycle)))
 
-(add-hook 'outline-minor-mode-hook
-          (lambda ()
-            (require 'outline-magic)
-            (define-key outline-minor-mode-map [(f10)] 'outline-cycle)))
+;; (add-hook 'outline-minor-mode-hook
+;;           (lambda ()
+;;             (require 'outline-magic)
+;;             (define-key outline-minor-mode-map [(f10)] 'outline-cycle)))
 
 
 (provide 'ruby-hooks)

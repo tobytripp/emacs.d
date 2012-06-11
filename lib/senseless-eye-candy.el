@@ -19,7 +19,6 @@
 (setq twittering-username "tobytripp")
 (setq twittering-icon-mode t)
 
-(set-frame-font "Monaco-13")
 (set-fringe-style -1)
 
 (add-to-list 'load-path (concat vendor-dir "/highlight-indentation"))

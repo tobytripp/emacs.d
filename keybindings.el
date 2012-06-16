@@ -96,9 +96,9 @@
 (global-set-key (kbd "C-:") 'toggle-mac-option-modifier)
 
 (add-hook 'ruby-mode-hook
-	  (lambda ()
-	    (define-key ruby-mode-map (kbd "C-;") 'insert-rocket)
-	    ))
+          (lambda ()
+            (define-key ruby-mode-map (kbd "C-;") 'insert-rocket)
+            ))
 
 ;; (define-key haskell-mode-map (kbd "C-;") 'insert-arrow)
 (global-set-key (kbd "s-;") 'insert-ellipses)

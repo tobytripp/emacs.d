@@ -13,7 +13,7 @@
  '(variable-pitch ((t (:family "Sans Serif"))))
  '(escape-glyph ((((background dark)) (:foreground "cyan")) (((type pc)) (:foreground "magenta")) (t (:foreground "brown"))))
  '(minibuffer-prompt ((t (:background "#211E1E" :foreground "#93a1a1" :box (:line-width -1 :color "dark gray" :style released-button)))))
- '(highlight ((((class color) (min-colors 89)) (:background "#073642"))))
+ '(highlight ((t (:background "#073642"))))
  '(region ((((class color) (min-colors 89)) (:foreground "#002b36" :background "#93a1a1"))))
  '(shadow ((((class color grayscale) (min-colors 88) (background light)) (:foreground "grey50")) (((class color grayscale) (min-colors 88) (background dark)) (:foreground "grey70")) (((class color) (min-colors 8) (background light)) (:foreground "green")) (((class color) (min-colors 8) (background dark)) (:foreground "yellow"))))
  '(secondary-selection ((((class color) (min-colors 89)) (:background "#002b36"))))
@@ -368,8 +368,10 @@
  '(yascroll:thumb-text-area ((((class color) (min-colors 89)) (:foreground "#586e75" :background "#586e75"))))
  '(yascroll:thumb-fringe ((((class color) (min-colors 89)) (:foreground "#586e75" :background "#586e75"))))
  '(idle-highlight ((t (:inherit region :foreground "black"))))
+ '(yas/field-highlight-face ((t (:background "#073642" :foreground "#DADADA"))))
  '(org-block-background ((t nil)))
  '(org-block-end-line ((t (:inherit (org-meta-line)))))
- '(default ((t (:background "#211E1E" :foreground "#DADADA")))))
+'(default ((t (:background "#211E1E" :foreground "#DADADA")))))
+
 
 (provide-theme 'toby)

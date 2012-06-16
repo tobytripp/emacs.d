@@ -3,4 +3,4 @@
 
 (yas/initialize)
 (yas/load-directory (concat dotfiles-dir "/snippets"))
-
+(yas/load-directory (concat vendor-dir   "/snippets"))

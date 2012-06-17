@@ -12,3 +12,4 @@ url/*
 history
 /.emacs.keyfreq
 /.recentf
+/.org-id-locations

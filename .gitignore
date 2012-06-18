@@ -12,4 +12,5 @@ url/*
 history
 /.emacs.keyfreq
 /.recentf
-/web-vcs-log.org
+/.org-id-locations
+web-vcs-log.org

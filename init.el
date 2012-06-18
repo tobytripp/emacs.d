@@ -7,6 +7,16 @@
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 
+;; Initial window layout
+(setq default-frame-alist
+      '((top . 0) (left . 750)
+        (width . 80) (height . 53)
+        ))
+(setq initial-frame-alist
+      '((width . 80) (height . 53)
+        (top . 0) (left . 750)
+        ))
+
 (setq dotfiles-dir (file-name-directory
                     (or (buffer-file-name) load-file-name)))
 (add-to-list 'load-path dotfiles-dir)

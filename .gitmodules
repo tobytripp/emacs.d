@@ -1,6 +1,3 @@
-[submodule "snippets/text-mode/haskell-mode"]
-	path = snippets/text-mode/haskell-mode
-	url = git://github.com/rmies/yasnippet-haskell.git
 [submodule "vendor/epresent"]
 	path = vendor/epresent
 	url = git://github.com/eschulte/epresent.git
@@ -13,3 +10,6 @@
 [submodule "vendor/fill-column-indicator"]
 	path = vendor/fill-column-indicator
 	url = git://github.com/alpaker/Fill-Column-Indicator.git
+[submodule "vendor/snippets/text-mode/haskell-mode"]
+	path = vendor/snippets/text-mode/haskell-mode
+	url = git://github.com/rmies/yasnippet-haskell.git

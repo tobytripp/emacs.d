@@ -1,5 +1,5 @@
 (deftheme toby
-  "Created 2012-06-10.")
+  "Created 2012-06-17.")
 
 (custom-theme-set-variables
  'toby
@@ -12,7 +12,7 @@
  '(fixed-pitch ((t (:family "Monospace"))))
  '(variable-pitch ((t (:family "Sans Serif"))))
  '(escape-glyph ((((background dark)) (:foreground "cyan")) (((type pc)) (:foreground "magenta")) (t (:foreground "brown"))))
- '(minibuffer-prompt ((t (:background "#211E1E" :foreground "#93a1a1" :box (:line-width -1 :color "dark gray" :style released-button)))))
+ '(minibuffer-prompt ((t (:background "#211E1E" :foreground "#93a1a1" :box nil))))
  '(highlight ((t (:background "#073642"))))
  '(region ((((class color) (min-colors 89)) (:foreground "#002b36" :background "#93a1a1"))))
  '(shadow ((((class color grayscale) (min-colors 88) (background light)) (:foreground "grey50")) (((class color grayscale) (min-colors 88) (background dark)) (:foreground "grey70")) (((class color) (min-colors 8) (background light)) (:foreground "green")) (((class color) (min-colors 8) (background dark)) (:foreground "yellow"))))
@@ -371,7 +371,7 @@
  '(yas/field-highlight-face ((t (:background "#073642" :foreground "#DADADA"))))
  '(org-block-background ((t nil)))
  '(org-block-end-line ((t (:inherit (org-meta-line)))))
-'(default ((t (:background "#211E1E" :foreground "#DADADA")))))
-
+ '(default ((t (:background "#211E1E" :foreground "#DADADA"))))
+ '(comint-highlight-prompt ((t (:inherit minibuffer-prompt)))))
 
 (provide-theme 'toby)

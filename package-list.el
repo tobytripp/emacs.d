@@ -8,6 +8,7 @@
     coffee-mode
     el-autoyas
     ess
+    expand-region
     feature-mode
     flymake-coffee
     flymake-jshint

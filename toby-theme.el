@@ -1,5 +1,5 @@
 (deftheme toby
-  "Created 2012-06-17.")
+  "Created 2012-06-18.")
 
 (custom-theme-set-variables
  'toby
@@ -371,7 +371,9 @@
  '(yas/field-highlight-face ((t (:background "#073642" :foreground "#DADADA"))))
  '(org-block-background ((t nil)))
  '(org-block-end-line ((t (:inherit (org-meta-line)))))
+ '(comint-highlight-prompt ((t (:inherit minibuffer-prompt))))
  '(default ((t (:background "#211E1E" :foreground "#DADADA"))))
- '(comint-highlight-prompt ((t (:inherit minibuffer-prompt)))))
+ '(mumamo-background-chunk-submode1 ((t (:background "gray17"))))
+ '(mumamo-background-chunk-major ((t (:background "#211E1E")))))
 
 (provide-theme 'toby)

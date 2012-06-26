@@ -372,8 +372,9 @@
  '(org-block-background ((t nil)))
  '(org-block-end-line ((t (:inherit (org-meta-line)))))
  '(comint-highlight-prompt ((t (:inherit minibuffer-prompt))))
- '(default ((t (:background "#211E1E" :foreground "#DADADA"))))
  '(mumamo-background-chunk-submode1 ((t (:background "gray17"))))
- '(mumamo-background-chunk-major ((t (:background "#211E1E")))))
+ '(mumamo-background-chunk-major ((t (:background "#211E1E"))))
+ '(default ((t (:background "#211E1E" :foreground "#DADADA"))))
+ '(mumamo-region ((t (:background "grey19")))))
 
 (provide-theme 'toby)

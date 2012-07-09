@@ -43,4 +43,7 @@
         ))
 (global-whitespace-mode)
 
+;; http://ergoemacs.org/emacs/emacs23_features.html
+(global-visual-line-mode 1)
+
 (load-theme 'toby)

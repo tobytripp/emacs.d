@@ -12,6 +12,22 @@
     (yank)
     ))
 
+(defun swap-modifiers ()
+  "Swap meta and super"
+  (interactive)
+  (cond
+   ((equal ns-command-modifier 'super)
+    (setq ns-command-modifier   'meta
+          ns-alternate-modifier 'super)
+    )
+   (t
+    (setq ns-command-modifier   'super
+          ns-alternate-modifier 'meta)
+    ))
+  )
+
+(equal ns-command-modifier 'super)
+
 (defvar *tobys-mode-map*
   (let ((map (make-sparse-keymap)))
     (define-key map (kbd "C-x m")      'eshell)
@@ -25,6 +41,8 @@
     (define-key map (kbd "C-S-d")      'duplicate-line)
 
     (define-key map (kbd "M-o")        'peepopen-goto-file-gui)
+    ;; Watch out! This can crash an Emacs session with a frame inside
+    ;; a terminal.
     ;;    (define-key map (kbd "M-O")        'ns-open-file-using-panel)
 
     (define-key map (kbd "S-s-<up>")   'move-text-up)

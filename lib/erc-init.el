@@ -19,3 +19,5 @@
 ;; (setq erc-autojoin-channels-alist
 ;;       '(("freenode.net" "#emacs" "#mongo")
 ;;         ("localhost" "&bitlbee")))
+
+(setq erc-hide-list '("JOIN" "PART" "QUIT"))

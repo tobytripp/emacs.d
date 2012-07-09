@@ -1,5 +1,5 @@
-;; (setq debug-on-error t)
-;; (setq debug-ignored-errors nil)
+(setq debug-on-error       nil)
+(setq debug-ignored-errors nil)
 
 (if (fboundp 'tool-bar-mode)   (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
@@ -57,14 +57,10 @@
       (directory-files vendor-dir nil "^[a-z]"))
 (mapc #'load (directory-files lib-dir nil ".*el$"))
 
+(require 'keybindings)
 (require 'toby-mode)
 (global-toby-mode)
 (load-theme 'toby)
 
 (put 'ido-exit-minibuffer 'disabled nil)
 (put 'upcase-region 'disabled nil)
-
-(put 'ido-exit-minibuffer 'disabled nil)
-(put 'upcase-region 'disabled nil)
-
-(require 'keybindings)

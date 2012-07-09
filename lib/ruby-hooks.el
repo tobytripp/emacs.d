@@ -1,3 +1,5 @@
+(autoload 'ruby-mode "ruby-mode" "Major mode for Ruby" t)
+
 (add-hook
  'ruby-mode-hook
  (lambda ()

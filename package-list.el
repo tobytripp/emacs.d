@@ -3,6 +3,7 @@
 
 (defvar my-packages
   '(
+    ace-jump-mode
     autopair
     browse-kill-ring
     coffee-mode

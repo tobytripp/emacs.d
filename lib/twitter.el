@@ -1,3 +1,4 @@
+(autoload 'twittering-mode "twittering-mode")
 (add-hook 'twittering-mode-hook
           (lambda ()
             (interactive)

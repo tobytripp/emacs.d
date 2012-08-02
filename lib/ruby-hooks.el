@@ -6,7 +6,8 @@
    (set (make-local-variable 'indent-tabs-mode) 'nil)
    (set (make-local-variable 'tab-width) 2)
 
-   (if (and (not (null buffer-file-name)) (file-writable-p buffer-file-name))
+   (if (and (not (null buffer-file-name))
+            (file-writable-p buffer-file-name))
        (flymake-mode))
 
    (add-to-list 'load-path (concat vendor-dir "/rspec-mode"))
@@ -16,6 +17,8 @@
 
    (column-marker-1 80)
    (pretty-lambdas)
+
+   (cd (textmate-project-root))
    ))
 
 (require 'ruby-end)
@@ -25,6 +28,8 @@
 
 (require 'rvm)
 (require 'column-marker)
+
+(autoload 'xmp "rcodetools")
 
 (add-to-list 'auto-mode-alist '("\.feature$" . feature-mode))
 (add-hook 'feature-mode-hook

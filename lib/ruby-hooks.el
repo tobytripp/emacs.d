@@ -36,6 +36,7 @@
             (local-set-key (kbd "M-S-r") 'feature-verify-scenario-at-pos)
             ))
 
+(add-to-list 'auto-mode-alist '("\\.rabl" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.erb" . eruby-nxhtml-mumamo-mode))
 
 ;; Install mode-compile to give friendlier compiling support

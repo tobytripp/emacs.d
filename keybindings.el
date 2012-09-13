@@ -108,8 +108,6 @@
 ;; (define-key *textmate-mode-map* [(meta \])]      'textmate-shift-right)
 ;; (define-key *textmate-mode-map* [(super t)]      'textmate-goto-file)
 
-(global-set-key [(meta t)] 'peepopen-goto-file-gui)
-
 (global-set-key (kbd "C-S-g") 'magit-status)
 
 (global-set-key [\M-\S-up]   'move-text-up)
@@ -125,6 +123,11 @@
   (balance-windows)
   )
 (global-set-key (kbd "C-x 6") 'split-in-thirds)
+
+
+;; one-button testing, tada!
+(global-set-key [f12] 'compile)
+(global-set-key (kbd "S-<f12>") 'recompile)
 
 (setq echo-keystrokes 0.02)
 

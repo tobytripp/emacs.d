@@ -64,6 +64,3 @@
   (delete-trailing-whitespace))
 
 ;; (autopair-global-mode 1)
-
-;; one-button testing, tada!
-(global-set-key [f12] 'compile)

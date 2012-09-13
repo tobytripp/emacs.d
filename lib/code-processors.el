@@ -1,3 +1,4 @@
+
 (defun fix-parens ()
   "Fix misplaced parens in code buffers."
 
@@ -41,7 +42,7 @@ region or the entire buffer."
       (replace-match replace))
     ))
 
-(defun toggle-pride ()
+(defun add-pride ()
   (interactive)
   (fix-parens)
   (decompress-hash-rockets)

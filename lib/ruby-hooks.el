@@ -17,8 +17,6 @@
 
    (column-marker-1 80)
    (pretty-lambdas)
-
-   (cd (textmate-project-root))
    ))
 
 (require 'ruby-end)
@@ -86,9 +84,9 @@
 
 ;; (require 'rdebug)
 
-;; (add-hook 'outline-mode-hook
-;;           (lambda ()
-;;             (require 'outline-cycle)))
+(add-hook 'outline-mode-hook
+          (lambda ()
+            (require 'outline-cycle)))
 
 ;; (add-hook 'outline-minor-mode-hook
 ;;           (lambda ()

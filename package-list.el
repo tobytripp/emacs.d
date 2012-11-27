@@ -30,6 +30,7 @@
     rspec-mode
     ruby-block
     ruby-end
+    ruby-mode
     rvm
     smex
     solarized-theme
@@ -40,6 +41,7 @@
     switch-window
     textmate
     textmate-to-yas
+    vline
     yaml-mode
     yas-jit
     yasnippet

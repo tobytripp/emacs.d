@@ -1,5 +1,5 @@
 (deftheme toby
-  "Created 2012-08-02.")
+  "Created 2012-09-13.")
 
 (custom-theme-set-variables
  'toby
@@ -11,7 +11,7 @@
  '(cursor ((((class color) (min-colors 89)) (:foreground "#002b36" :background "#839496" :inverse-video t))))
  '(fixed-pitch ((t (:family "Monospace"))))
  '(variable-pitch ((t (:family "Sans Serif"))))
- '(escape-glyph ((((background dark)) (:foreground "cyan")) (((type pc)) (:foreground "magenta")) (t (:foreground "brown"))))
+ '(escape-glyph ((t (:foreground "goldenrod4"))))
  '(minibuffer-prompt ((t (:background "#211E1E" :foreground "#93a1a1" :box nil))))
  '(highlight ((t (:background "#073642"))))
  '(region ((((class color) (min-colors 89)) (:foreground "#002b36" :background "#93a1a1"))))
@@ -20,7 +20,7 @@
  '(trailing-whitespace ((((class color) (min-colors 89)) (:background "#dc322f"))))
  '(font-lock-builtin-face ((((class color) (min-colors 89)) (:foreground "#268bd2" :slant italic))))
  '(font-lock-comment-delimiter-face ((((class color) (min-colors 89)) (:foreground "#586e75"))))
- '(font-lock-comment-face ((((class color) (min-colors 89)) (:foreground "#586e75"))))
+ '(font-lock-comment-face ((t (:foreground "#586e75"))))
  '(font-lock-constant-face ((((class color) (min-colors 89)) (:foreground "#268bd2" :weight bold))))
  '(font-lock-doc-face ((((class color) (min-colors 89)) (:foreground "#2aa198" :slant italic))))
  '(font-lock-function-name-face ((((class color) (min-colors 89)) (:foreground "#268bd2"))))
@@ -375,7 +375,7 @@
  '(mumamo-background-chunk-submode1 ((t (:background "gray17"))))
  '(mumamo-background-chunk-major ((t (:background "#211E1E"))))
  '(mumamo-region ((t (:background "grey19"))))
- '(default ((t (:background "#211E1E" :foreground "#DADADA"))))
- '(column-marker-1 ((t (:background "firebrick")))))
+ '(column-marker-1 ((t (:background "firebrick"))))
+ '(default ((t (:background "#211E1E" :foreground "#DADADA")))))
 
 (provide-theme 'toby)

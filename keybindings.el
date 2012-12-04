@@ -6,7 +6,7 @@
 (setq mouse-wheel-progressive-speed nil)
 
 (setq
-  ns-command-modifier   'super       ; Apple/Command key is Meta
+  ns-command-modifier   'meta        ; Apple/Command key is Meta
   ns-alternate-modifier 'meta        ; Option is the Mac Option key
   ns-function-modifier  'hyper       ; 'super or 'hyper
   ns-pop-up-frames      nil

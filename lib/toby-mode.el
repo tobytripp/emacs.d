@@ -38,14 +38,14 @@
 
     (define-key map (kbd "C-S-d")      'duplicate-line)
 
-    (define-key map (kbd "s-o")        'peepopen-goto-file-gui)
+    (define-key map (kbd "H-t")        'peepopen-goto-file-gui)
     ;; Watch out! This can crash an Emacs session with a frame inside
     ;; a terminal.
     ;;    (define-key map (kbd "M-O")        'ns-open-file-using-panel)
 
     (define-key map (kbd "S-s-<up>")   'move-text-up)
     (define-key map (kbd "S-s-<down>") 'move-text-down)
-    (define-key map [(super return)]   'textmate-next-line)
+    (define-key map [(meta return)]   'textmate-next-line)
     map)
   "Keymap used for my local customizations."
   )

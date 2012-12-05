@@ -1,6 +1,3 @@
-(setq debug-on-error       nil)
-(setq debug-ignored-errors nil)
-
 (if (fboundp 'tool-bar-mode)   (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
@@ -50,7 +47,6 @@
 (global-hl-line-mode 1)
 (delete-selection-mode t)
 
-(put 'downcase-region 'disabled nil)
 
 (mapc (lambda (path)
         (add-to-list 'load-path (concat vendor-dir "/" path)))
@@ -62,10 +58,11 @@
 (global-toby-mode)
 (load-theme 'toby)
 
+(put 'downcase-region     'disabled nil)
 (put 'ido-exit-minibuffer 'disabled nil)
-(put 'upcase-region 'disabled nil)
-(put 'narrow-to-region 'disabled nil)
-(put 'scroll-left 'disabled nil)
+(put 'upcase-region       'disabled nil)
+(put 'narrow-to-region    'disabled nil)
+(put 'scroll-left         'disabled nil)
 
 (setq inhibit-splash-screen t)
 
@@ -76,3 +73,6 @@
 ;; (add-to-list 'load-path "/Users/ttripp/.rvm/rubies/ruby-1.9.2-p180/share/emacs/site-lisp")
 ;;(require 'el4r)
 ;;(el4r-boot)
+
+(setq debug-on-error       nil)
+(setq debug-ignored-errors nil)

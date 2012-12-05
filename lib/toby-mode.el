@@ -19,11 +19,14 @@
    ((equal ns-command-modifier 'super)
     (setq ns-command-modifier   'meta
           ns-alternate-modifier 'super)
+    (message "Command is Meta")
     )
    (t
     (setq ns-command-modifier   'super
           ns-alternate-modifier 'meta)
-    ))
+    (message "Alt is Meta")
+    )
+   )
   )
 
 (defvar *tobys-mode-map*
@@ -46,6 +49,8 @@
     (define-key map (kbd "S-s-<up>")   'move-text-up)
     (define-key map (kbd "S-s-<down>") 'move-text-down)
     (define-key map [(meta return)]   'textmate-next-line)
+
+    (define-key map [f6] 'swap-modifiers)
     map)
   "Keymap used for my local customizations."
   )

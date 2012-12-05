@@ -7,9 +7,9 @@
 
 (setq
   ns-command-modifier   'meta        ; Apple/Command key is Meta
-  ns-alternate-modifier 'meta        ; Option is the Mac Option key
+  ns-alternate-modifier 'super       ; Option is the Mac Option key
   ns-function-modifier  'hyper       ; 'super or 'hyper
-  ns-pop-up-frames      nil
+  ns-pop-up-frames       nil
   )
 
 (define-key input-decode-map "\e[1;5A" [C-up])

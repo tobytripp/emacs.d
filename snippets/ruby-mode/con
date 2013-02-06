@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: context "description" do ...
+# group: definitions
+# --
+context "${description}" do
+  $0
+end

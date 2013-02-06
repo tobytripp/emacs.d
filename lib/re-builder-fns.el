@@ -1,4 +1,5 @@
 (require 're-builder)
+(setq reb-re-syntax 'string)
 
 (defun reb-query-replace-this-regxp (replace)
   "Uses the regexp built with re-builder to query the target buffer.

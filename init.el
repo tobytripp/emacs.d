@@ -76,3 +76,5 @@
 
 (setq debug-on-error       nil)
 (setq debug-ignored-errors nil)
+
+(ergoemacs-mode 1)

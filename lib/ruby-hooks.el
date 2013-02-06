@@ -1,5 +1,7 @@
 (autoload 'ruby-mode "ruby-mode" "Major mode for Ruby" t)
 
+(defalias 'inf-ruby-keys 'inf-ruby-setup-keybindings)
+
 (add-hook
  'ruby-mode-hook
  (lambda ()

@@ -26,6 +26,8 @@
 (global-set-key [escape] 'keyboard-quit)
 (global-set-key (kbd "s-x") 'smex)   ; s-x == M-x
 
+;; (global-set-key (kbd "M-s") 'save-buffer)
+
 (global-set-key (kbd "M-g") 'goto-line)
 (global-set-key (kbd "M-z") 'undo)
 (global-set-key (kbd "s-z") 'undo)
@@ -102,6 +104,10 @@
 
 ;; (define-key haskell-mode-map (kbd "C-;") 'insert-arrow)
 (global-set-key (kbd "s-;") 'insert-ellipses)
+;; Interferes with normal arrow-key functionality in terminals
+;; (global-set-key (kbd "M-[") 'insert-pair)
+(global-set-key (kbd "M-{") 'insert-pair)
+(global-set-key (kbd "M-\"") 'insert-pair)
 
 ;; (define-key *textmate-mode-map* [(meta shift l)] 'textmate-select-line)
 ;; (define-key *textmate-mode-map* [(meta \[)]      'textmate-shift-left)

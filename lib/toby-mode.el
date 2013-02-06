@@ -29,6 +29,22 @@
    )
   )
 
+(defun toby/open-line ()
+  "Insert a newline after the current line and move down"
+  (interactive)
+  (end-of-visual-line)
+  (newline-and-indent)
+  )
+
+(defun touch ()
+  "update the mtime of the file for the current buffer"
+  (interactive)
+  (shell-command (concat "touch " (shell-quote-argument (buffer-file-name))))
+  (clear-visited-file-modtime)
+  (message "I'm touched")
+  )
+
+
 (defvar *tobys-mode-map*
   (let ((map (make-sparse-keymap)))
     (define-key map (kbd "C-x m")      'eshell)
@@ -40,6 +56,7 @@
     (define-key map (kbd "s-/")        'hippie-expand)
 
     (define-key map (kbd "C-S-d")      'duplicate-line)
+    (define-key map (kbd "C-RET")      'toby/open-line)
 
     (define-key map (kbd "H-t")        'peepopen-goto-file-gui)
     ;; Watch out! This can crash an Emacs session with a frame inside
@@ -50,6 +67,7 @@
     (define-key map (kbd "S-s-<down>") 'move-text-down)
     (define-key map [(meta return)]   'textmate-next-line)
 
+    (define-key map [f5] 'touch)
     (define-key map [f6] 'swap-modifiers)
     map)
   "Keymap used for my local customizations."

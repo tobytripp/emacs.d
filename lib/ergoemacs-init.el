@@ -7,6 +7,6 @@
 
 ;; ErgoEmacs bindings for which I prefer the old version
 ;;
-(ergoemacs-local-unset-key (kbd "C-n"))
-(ergoemacs-local-unset-key (kbd "C-p"))
-(ergoemacs-local-unset-key (kbd "C-a"))
+(global-set-key (kbd "C-n") 'next-line)
+(global-set-key (kbd "C-p") 'previous-line)
+(global-set-key (kbd "C-a") 'beginning-of-visual-line)

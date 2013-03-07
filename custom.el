@@ -39,6 +39,7 @@
  '(ns-tool-bar-display-mode nil t)
  '(ns-tool-bar-size-mode nil t)
  '(org-agenda-files (quote ("~/Dropbox/org/ib-tasks.org" "~/Dropbox/org/my-tasks.org")))
+ '(rbenv-installation-dir "/usr/local")
  '(revert-without-query (quote (".*")))
  '(rspec-compilation-buffer-name "*specs*")
  '(rspec-rake-command "bundle exec rake")
@@ -51,7 +52,7 @@
  '(safe-local-variable-values (quote ((encoding . utf-8) (whitespace-line-column . 80) (lexical-binding . t))))
  '(visual-line-mode nil t)
  '(warning-minimum-level :error)
- '(whitespace-style (quote (trailing tab-mark))))
+ '(whitespace-style (quote (trailing tab-mark)) t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

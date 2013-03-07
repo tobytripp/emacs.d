@@ -1,5 +1,12 @@
 (eval-when-compile (require 'cl))
 
+(defun sudo-file ()
+  (interactive)
+  (let ((p (point)))
+    (find-alternate-file
+     (concat "/sudo::" (buffer-file-name)))
+        (goto-char p)))
+
 (defun duplicate-line ()
   "Duplicate the current line"
   (interactive)

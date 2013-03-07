@@ -41,7 +41,7 @@
 (add-hook 'coding-hook 'pretty-lambdas)
 (add-hook 'coding-hook 'add-watchwords)
 (add-hook 'coding-hook 'idle-highlight)
-(add-hook 'coding-hook 'hightlight-indentation-current-column-mode)
+(add-hook 'coding-hook 'highlight-indentation-current-column-mode)
 
 
 (defun run-coding-hook ()

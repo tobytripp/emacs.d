@@ -76,3 +76,4 @@
 
 (setq debug-on-error       nil)
 (setq debug-ignored-errors nil)
+(put 'set-goal-column 'disabled nil)

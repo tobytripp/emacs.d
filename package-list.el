@@ -27,11 +27,11 @@
     paredit
     parenface
     peepopen
+    rbenv
     rspec-mode
     ruby-block
     ruby-end
     ruby-mode
-    rvm
     smex
     solarized-theme
     starter-kit-eshell

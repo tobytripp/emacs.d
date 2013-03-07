@@ -26,7 +26,6 @@
 (local-set-key (kbd "M-r")   'rspec-verify)
 (local-set-key (kbd "M-S-r") 'rspec-verify-single)
 
-(require 'rvm)
 (require 'column-marker)
 
 (autoload 'xmp "rcodetools")
@@ -51,6 +50,16 @@
 (setq mode-compile-save-all-p t)
 
 (autoload 'rdebug "rdebug" "ruby-debug interface" t)
+
+(setenv "PATH"
+        (concat (getenv "HOME") "/.rbenv/shims:"
+                (getenv "HOME") "/.rbenv/bin:"
+                (getenv "PATH")))
+(setq exec-path
+      (cons (concat (getenv "HOME") "/.rbenv/shims")
+            (cons (concat (getenv "HOME") "/.rbenv/bin")
+                  exec-path)))
+
 
 (require 'align)
 (add-hook 'align-load-hook

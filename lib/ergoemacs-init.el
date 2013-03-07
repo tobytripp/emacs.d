@@ -3,10 +3,15 @@
 ;;
 (setq ergoemacs-redundant-keys '())
 
-(ergoemacs-mode 1)
+;; (ergoemacs-mode 1)
 
 ;; ErgoEmacs bindings for which I prefer the old version
 ;;
+(global-unset-key (kbd "C-n"))
 (global-set-key (kbd "C-n") 'next-line)
+
+(global-unset-key (kbd "C-p"))
 (global-set-key (kbd "C-p") 'previous-line)
+
+(global-unset-key (kbd "C-a"))
 (global-set-key (kbd "C-a") 'beginning-of-visual-line)

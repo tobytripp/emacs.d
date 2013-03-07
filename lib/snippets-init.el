@@ -1,9 +1,9 @@
 (require 'yasnippet)
-
+(setq yas/trigger-key (kbd "C-c /"))
+(setq yas-trigger-key (kbd "C-c /"))
 (yas-global-mode 1)
 (yas/load-directory (concat dotfiles-dir "/snippets"))
 (yas/load-directory (concat vendor-dir   "/snippets"))
-(setq yas/trigger-key (kbd "C-c /"))
 
 ;; http://stackoverflow.com/questions/10211730/insert-yasnippet-by-name
 (defun yas/insert-by-name (name)

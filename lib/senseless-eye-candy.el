@@ -21,10 +21,7 @@
 
 (set-fringe-style -1)
 
-(add-to-list 'load-path (concat vendor-dir "/highlight-indentation"))
 (require 'highlight-indentation)
-
-(add-to-list 'load-path (concat vendor-dir "/fill-column-indicator"))
 (require 'fill-column-indicator)
 (setq fci-rule-color "grey20")
 (setq fci-rule-column 77)

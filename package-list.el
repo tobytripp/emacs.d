@@ -7,15 +7,18 @@
     autopair
     browse-kill-ring
     coffee-mode
+    column-marker
     el-autoyas
     ess
     expand-region
     feature-mode
+    fill-column-indicator
     flymake-coffee
     flymake-jshint
     flymake-ruby
     full-ack
     haskell-mode
+    highlight-indentation
     idle-highlight
     inf-ruby
     jira

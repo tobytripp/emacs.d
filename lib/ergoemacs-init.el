@@ -3,7 +3,7 @@
 ;;
 (setq ergoemacs-redundant-keys '())
 
-;; (ergoemacs-mode 1)
+(ergoemacs-mode 1)
 
 ;; ErgoEmacs bindings for which I prefer the old version
 ;;
@@ -15,3 +15,9 @@
 
 (global-unset-key (kbd "C-a"))
 (global-set-key (kbd "C-a") 'beginning-of-visual-line)
+
+(global-unset-key (kbd "C-w"))
+(global-set-key (kbd "C-w") 'kill-region)
+
+;; Interferes with cursor escape sequences inside the terminal
+(global-unset-key (kbd "M-O"))

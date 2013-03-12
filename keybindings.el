@@ -133,6 +133,7 @@
   )
 (global-set-key (kbd "C-x 6") 'split-in-thirds)
 
+(global-set-key (kbd "C-x f") 'find-file-in-repository)
 
 ;; one-button testing, tada!
 (global-set-key [f12] 'compile)

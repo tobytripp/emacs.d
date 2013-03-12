@@ -19,5 +19,8 @@
 (global-unset-key (kbd "C-w"))
 (global-set-key (kbd "C-w") 'kill-region)
 
+(global-unset-key (kbd "C-y"))
+(global-set-key   (kbd "C-y") 'yank)
+
 ;; Interferes with cursor escape sequences inside the terminal
 (global-unset-key (kbd "M-O"))

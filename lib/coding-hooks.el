@@ -43,7 +43,6 @@
 (add-hook 'coding-hook 'idle-highlight)
 (add-hook 'coding-hook 'highlight-indentation-current-column-mode)
 
-
 (defun run-coding-hook ()
   "Enable things that are convenient across all coding buffers."
   (run-hooks 'coding-hook))
@@ -63,4 +62,5 @@
   (untabify-buffer)
   (delete-trailing-whitespace))
 
+(global-rainbow-delimiters-mode)
 ;; (autopair-global-mode 1)

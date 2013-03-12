@@ -26,10 +26,13 @@
     js-comint
     magit
     markdown-mode
+    multi-term
+    nrepl
     org
     paredit
     parenface
     peepopen
+    rainbow-delimiters
     rbenv
     rspec-mode
     ruby-block

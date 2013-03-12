@@ -47,16 +47,15 @@
 (global-hl-line-mode 1)
 (delete-selection-mode t)
 
-
 (mapc (lambda (path)
         (add-to-list 'load-path (concat vendor-dir "/" path)))
       (directory-files vendor-dir nil "^[a-z]"))
 (mapc #'load (directory-files lib-dir nil ".*el$"))
 
 (require 'keybindings)
+
 (require 'toby-mode)
 (global-toby-mode)
-(load-theme 'toby)
 
 (put 'downcase-region     'disabled nil)
 (put 'ido-exit-minibuffer 'disabled nil)

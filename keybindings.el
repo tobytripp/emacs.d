@@ -118,6 +118,8 @@
 
 (global-unset-key [f1])
 (global-set-key [f1] 'vc-annotate)
+(global-unset-key [f2])
+(global-set-key [f2] 'magit-status)
 
 (global-set-key [\M-\S-up]   'move-text-up)
 (global-set-key [\M-\S-down] 'move-text-down)

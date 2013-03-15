@@ -27,7 +27,7 @@
  '(glasses-separator " ")
  '(glasses-uncapitalize-p nil)
  '(global-auto-revert-mode t)
- '(global-linum-mode nil)
+ '(global-linum-mode t)
  '(global-toby-mode t)
  '(haskell-font-lock-symbols (quote unicode) t)
  '(js-expr-indent-offset 2)
@@ -53,6 +53,7 @@
  '(ruby-deep-arglist nil)
  '(ruby-deep-indent-paren nil)
  '(safe-local-variable-values (quote ((encoding . utf-8) (whitespace-line-column . 80) (lexical-binding . t))))
+ '(visual-line-fringe-indicators (quote (nil right-curly-arrow)))
  '(visual-line-mode nil t)
  '(warning-minimum-level :error)
  '(whitespace-style (quote (trailing tab-mark))))
@@ -63,5 +64,5 @@
  ;; If there is more than one, they won't work right.
  '(highlight ((t (:background "color-18" :foreground "white"))))
  '(hl-line ((t (:background "#002b36"))))
- '(magit-item-highlight ((t (:inherit highlight))) t)
+ '(magit-item-highlight ((t (:inherit highlight))))
  '(rainbow-delimiters-depth-1-face ((t (:foreground "wheat")))))

@@ -62,5 +62,5 @@
   (untabify-buffer)
   (delete-trailing-whitespace))
 
-(global-rainbow-delimiters-mode)
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 ;; (autopair-global-mode 1)

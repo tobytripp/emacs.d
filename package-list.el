@@ -13,6 +13,7 @@
     expand-region
     feature-mode
     fill-column-indicator
+    find-file-in-repository
     flymake-coffee
     flymake-jshint
     flymake-ruby
@@ -27,10 +28,13 @@
     js-comint
     magit
     markdown-mode
+    multi-term
+    nrepl
     org
     paredit
     parenface
     peepopen
+    rainbow-delimiters
     rbenv
     rspec-mode
     ruby-block

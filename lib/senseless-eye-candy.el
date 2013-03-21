@@ -22,10 +22,10 @@
 (set-fringe-style -1)
 
 (require 'highlight-indentation)
+
 (require 'fill-column-indicator)
 (setq fci-rule-color "grey20")
 (setq fci-rule-column 77)
-
 (add-hook 'coding-hook 'fci-mode)
 
 (setq whitespace-display-mappings

@@ -13,3 +13,6 @@
 [submodule "vendor/snippets/text-mode/haskell-mode"]
 	path = vendor/snippets/text-mode/haskell-mode
 	url = git://github.com/rmies/yasnippet-haskell.git
+[submodule "vendor/emacs-pry"]
+	path = vendor/emacs-pry
+	url = git://github.com/jacott/emacs-pry.git

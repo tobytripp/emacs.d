@@ -29,6 +29,7 @@
 (require 'column-marker)
 
 (autoload 'xmp "rcodetools")
+(autoload 'run-pry "pry")
 
 (add-to-list 'auto-mode-alist '("\.feature$" . feature-mode))
 (add-hook 'feature-mode-hook
@@ -76,24 +77,10 @@
                            (modes  . '(ruby-mode))))
             ))
 
-;; (easy-menu-define ruby-mode-menu ruby-mode-map
-;;   "Ruby mode menu"
-;;   '("Ruby"
-;;     ["Beginning of block" ruby-beginning-of-block]
-;;     ["End of block"       ruby-end-of-block]
-;;     ["Forward sexp"       ruby-forward-sexp]
-;;     ))
-
-;; (require 'rdebug)
-
 (add-hook 'outline-mode-hook
           (lambda ()
             (require 'outline-cycle)))
 
-;; (add-hook 'outline-minor-mode-hook
-;;           (lambda ()
-;;             (require 'outline-magic)
-;;             (define-key outline-minor-mode-map [(f10)] 'outline-cycle)))
 
 
 (provide 'ruby-hooks)

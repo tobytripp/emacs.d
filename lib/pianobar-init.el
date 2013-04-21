@@ -1,4 +1,5 @@
 (autoload 'pianobar "pianobar" "Thin wrapper around the pianobar utitlity")
+(global-set-key [f8] 'pianobar)
 
 (add-hook 'pianobar-mode-hook
           (lambda ()

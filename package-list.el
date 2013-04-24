@@ -28,6 +28,7 @@
     js-comint
     magit
     markdown-mode
+    mmm-mode
     multi-term
     nrepl
     org

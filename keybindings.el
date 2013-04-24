@@ -44,6 +44,8 @@
 (global-set-key (kbd "C-M-s") 'isearch-forward)
 (global-set-key (kbd "C-M-r") 'isearch-backward)
 
+(global-set-key (kbd "M-%")   'query-replace-regexp)
+
 ;; Jump to definition in file
 (global-set-key (kbd "C-x C-i") 'ido-imenu)
 

@@ -143,6 +143,9 @@
 (global-set-key [f12] 'compile)
 (global-set-key (kbd "S-<f12>") 'recompile)
 
+(global-unset-key (kbd "M-SPC"))
+(global-set-key   (kbd "M-SPC") 'ace-jump-mode)
+
 (setq echo-keystrokes 0.02)
 
 (provide 'keybindings)

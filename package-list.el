@@ -18,7 +18,7 @@
     flymake-jshint
     flymake-ruby
     full-ack
-    git-gutter-fringe
+    git-gutter
     haskell-mode
     highlight-indentation
     idle-highlight

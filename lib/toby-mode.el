@@ -57,7 +57,7 @@
     (define-key map (kbd "C-x m")      'eshell)
     (define-key map (kbd "M-g")        'goto-line)
     (define-key map (kbd "s-z")        'undo)
-    (define-key map (kbd "M-z")        'undo)
+    (define-key map (kbd "M-z")        'zap-to-char)
     (define-key map (kbd "C-x \\")     'align-regexp)
     (define-key map (kbd "M-/")        'hippie-expand)
     (define-key map (kbd "s-/")        'hippie-expand)
@@ -79,6 +79,8 @@
     map)
   "Keymap used for my local customizations."
   )
+
+
 
 (defun toby/set-overlay-properties ()
   (put 'toby-open-parenthesis 'evaporate t)

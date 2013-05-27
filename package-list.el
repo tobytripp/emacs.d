@@ -18,7 +18,7 @@
     flymake-jshint
     flymake-ruby
     full-ack
-    git-gutter-fringe
+    git-gutter
     haskell-mode
     highlight-indentation
     idle-highlight
@@ -58,8 +58,12 @@
     )
   "The list of packages to ensure are installed at launch.")
 
-(dolist (p my-packages)
-  (when (not (package-installed-p p))
-    (package-install p)))
+(defun toby/assert-installed-packages ()
+  "Run through the packages listed in .emacs.d and make sure they're all installed."
+  (interactive)
+  (dolist (p my-packages)
+    (when (not (package-installed-p p))
+      (package-install p))))
 
+(toby/assert-installed-packages)
 (provide 'package-list)

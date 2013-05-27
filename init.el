@@ -18,10 +18,10 @@
                     (or (buffer-file-name) load-file-name)))
 (add-to-list 'load-path dotfiles-dir)
 
-(setq vendor-dir (concat dotfiles-dir "/vendor"))
+(setq vendor-dir (concat dotfiles-dir "vendor/"))
 (add-to-list 'load-path vendor-dir)
 
-(setq lib-dir (concat dotfiles-dir "/lib"))
+(setq lib-dir (concat dotfiles-dir "lib/"))
 (add-to-list 'load-path lib-dir)
 
 (setq autoload-file (concat dotfiles-dir "loaddefs.el"))

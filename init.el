@@ -50,12 +50,17 @@
 (mapc (lambda (path)
         (add-to-list 'load-path (concat vendor-dir "/" path)))
       (directory-files vendor-dir nil "^[a-z]"))
-(mapc #'load (directory-files lib-dir nil ".*el$"))
+
+(mapc #'load
+      (mapcar 'file-name-sans-extension
+              (directory-files lib-dir nil ".*el$")))
+
+(message "lib files loaded!")
 
 (require 'keybindings)
-
 (require 'toby-mode)
 (global-toby-mode)
+
 
 (put 'downcase-region     'disabled nil)
 (put 'ido-exit-minibuffer 'disabled nil)

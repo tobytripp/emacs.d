@@ -1,7 +1,5 @@
 (autoload 'ruby-mode "ruby-mode" "Major mode for Ruby" t)
 
-(defalias 'inf-ruby-keys 'inf-ruby-setup-keybindings)
-
 (add-hook
  'ruby-mode-hook
  (lambda ()
@@ -12,13 +10,14 @@
             (file-writable-p buffer-file-name))
        (flymake-mode))
 
-   (add-to-list 'load-path (concat vendor-dir "/rspec-mode"))
-
    (outline-minor-mode)
    (setq outline-regexp " *\\(def \\|describe \\|it \\|class\\|module\\)")
 
    (column-marker-1 80)
    (pretty-lambdas)
+
+   ; Doesn't work in the terminal, unfortunately…
+   (define-key ruby-mode-map (kbd "C-;") 'insert-rocket)
    ))
 
 (require 'ruby-end)
@@ -38,8 +37,11 @@
             (local-set-key (kbd "M-S-r") 'feature-verify-scenario-at-pos)
             ))
 
-(add-to-list 'auto-mode-alist '("\\.rabl" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.erb" . eruby-nxhtml-mumamo-mode))
+(add-to-list 'auto-mode-alist '("\\.rabl$" . ruby-mode))
+
+(toby/require-package 'rhtml-mode)
+(autoload 'rhtml-mode "rhtml-mode" "RHTML Mode" t)
+(add-to-list 'auto-mode-alist '("\\.html.erb$" . rhtml-mode))
 
 ;; Install mode-compile to give friendlier compiling support
 (autoload 'mode-compile "mode-compile"
@@ -80,7 +82,5 @@
 (add-hook 'outline-mode-hook
           (lambda ()
             (require 'outline-cycle)))
-
-
 
 (provide 'ruby-hooks)

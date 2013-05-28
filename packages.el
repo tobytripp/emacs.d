@@ -8,6 +8,7 @@
     browse-kill-ring
     coffee-mode
     column-marker
+    diminish
     el-autoyas
     ess
     expand-region
@@ -28,7 +29,7 @@
     js-comint
     magit
     markdown-mode
-    mmm-mode
+    ;; mmm-mode
     multi-term
     nrepl
     org
@@ -37,6 +38,7 @@
     peepopen
     rainbow-delimiters
     rbenv
+    rhtml-mode
     rspec-mode
     ruby-block
     ruby-end
@@ -58,12 +60,15 @@
     )
   "The list of packages to ensure are installed at launch.")
 
+(defun toby/require-package (package-name)
+  (unless (package-installed-p package-name)
+    (package-install package-name)))
+
 (defun toby/assert-installed-packages ()
   "Run through the packages listed in .emacs.d and make sure they're all installed."
   (interactive)
   (dolist (p my-packages)
-    (when (not (package-installed-p p))
-      (package-install p))))
+    (toby/require-package p)))
 
 (toby/assert-installed-packages)
 (provide 'package-list)

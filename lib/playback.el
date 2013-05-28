@@ -1,5 +1,5 @@
 (toby/require-package 'centered-cursor-mode)
-(autoload 'centered-cursor-mode)
+(autoload 'centered-cursor-mode "centered-cursor-mode")
 
 (defun toby/playback-current-kill ()
   "Slowly replay the text in the head of the kill-ring"

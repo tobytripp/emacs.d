@@ -38,7 +38,7 @@
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 
-(require 'package-list)
+(require 'packages)
 (require 'ansi-color)
 (require 'recentf)
 (require 'uniquify)

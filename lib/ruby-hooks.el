@@ -15,6 +15,9 @@
 
    (column-marker-1 80)
    (pretty-lambdas)
+
+   ; Doesn't work in the terminal, unfortunately…
+   (define-key ruby-mode-map (kbd "C-;") 'insert-rocket)
    ))
 
 (require 'ruby-end)

@@ -71,4 +71,4 @@
     (toby/require-package p)))
 
 (toby/assert-installed-packages)
-(provide 'package-list)
+(provide 'packages)

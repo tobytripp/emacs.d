@@ -55,7 +55,7 @@
       (mapcar 'file-name-sans-extension
               (directory-files lib-dir nil ".*el$")))
 
-(message "lib files loaded!")
+(message "Lib files loaded!")
 
 (require 'keybindings)
 (require 'toby-mode)

@@ -1,3 +1,10 @@
+(require 'package)
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(package-initialize)
+
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
 (unless (require 'el-get nil 'noerror)
@@ -12,6 +19,7 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
+;; A number of these have el-get recipes, but they appear to be broken
 (setq el-get-sources
       '(
         (:name browse-kill-ring :type elpa)
@@ -21,6 +29,7 @@
         (:name git-gutter :type elpa)
         (:name haskell-mode :type elpa)
         (:name idle-highlight :type elpa)
+        (:name inflections :type elpa)
         (:name magit :type elpa)
         (:name peepopen :type elpa)
         (:name rbenv :type elpa)
@@ -92,6 +101,7 @@
   "The list of packages to ensure are installed at launch.")
 
 (defun toby/require-package (package-name)
+  "Ensure that the given ELPA package has been installed."
   (unless (package-installed-p package-name)
     (package-install package-name)))
 

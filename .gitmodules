@@ -16,6 +16,3 @@
 [submodule "vendor/emacs-pry"]
 	path = vendor/emacs-pry
 	url = git://github.com/jacott/emacs-pry.git
-[submodule "vendor/git-wip"]
-	path = vendor/git-wip
-	url = git://github.com/bartman/git-wip.git

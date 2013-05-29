@@ -12,6 +12,27 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
+(setq el-get-sources
+      '(
+        (:name browse-kill-ring :type elpa)
+        (:name find-file-in-repository :type elpa)
+        (:name flymake-coffee :type elpa)
+        (:name flymake-jshint :type elpa)
+        (:name git-gutter :type elpa)
+        (:name haskell-mode :type elpa)
+        (:name idle-highlight :type elpa)
+        (:name magit :type elpa)
+        (:name peepopen :type elpa)
+        (:name rbenv :type elpa)
+        (:name ruby-block :type elpa)
+        (:name ruby-end :type elpa)
+        (:name solarized-theme :type elpa)
+        (:name starter-kit-eshell :type elpa)
+        (:name starter-kit-js :type elpa)
+        (:name starter-kit-lisp :type elpa)
+        (:name starter-kit-ruby :type elpa)
+        ))
+
 (defvar my-packages
   '(
     ace-jump-mode
@@ -20,8 +41,9 @@
     coffee-mode
     column-marker
     diminish
+    dired+
     el-autoyas
-    ess
+    epresent
     expand-region
     feature-mode
     fill-column-indicator
@@ -40,7 +62,6 @@
     js-comint
     magit
     markdown-mode
-    ;; mmm-mode
     multi-term
     nrepl
     org
@@ -51,7 +72,6 @@
     rbenv
     rhtml-mode
     rspec-mode
-    ruby-block
     ruby-end
     ruby-mode
     smex
@@ -75,16 +95,6 @@
   (unless (package-installed-p package-name)
     (package-install package-name)))
 
-(defun toby/assert-installed-packages ()
-  "Run through the packages listed in .emacs.d and make sure they're all installed."
-  (interactive)
-  (dolist (p my-packages)
-    (toby/require-package p)))
-
-(toby/assert-installed-packages)
-
-(el-get 'sync)
-
-
+(el-get 'sync my-packages)
 
 (provide 'packages)

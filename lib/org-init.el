@@ -1,11 +1,10 @@
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((R . t)
-   (emacs-lisp . t)
-   (haskell . t)
-   (ruby . t)
-   (js . t)))
-
+;;(org-babel-do-load-languages
+;; 'org-babel-load-languages
+;; '((emacs-lisp . t)
+;;   (haskell . t)
+;;   (ruby . t)
+;;   (js . t)))
+;;
 (setq org-src-fontify-natively t)
 
 (defun toby/tangle-and-run ()

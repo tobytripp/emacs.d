@@ -8,7 +8,6 @@
     browse-kill-ring
     coffee-mode
     column-marker
-    diminish
     el-autoyas
     ess
     expand-region
@@ -43,6 +42,7 @@
     ruby-block
     ruby-end
     ruby-mode
+    smart-mode-line
     smex
     solarized-theme
     starter-kit-eshell

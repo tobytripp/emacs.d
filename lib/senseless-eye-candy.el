@@ -23,10 +23,10 @@
 
 (require 'highlight-indentation)
 
-(require 'fill-column-indicator)
-(setq fci-rule-color "grey20")
-(setq fci-rule-column 77)
-(add-hook 'coding-hook 'fci-mode)
+;; (require 'fill-column-indicator)
+;; (setq fci-rule-color "grey20")
+;; (setq fci-rule-column 77)
+;; (add-hook 'coding-hook 'fci-mode)
 
 (setq whitespace-display-mappings
       '((space-mark 32   [183]  [46])   ; normal space, ·
@@ -38,7 +38,9 @@
         (newline-mark 10 [182 10])   ; newlne, ¶
         (tab-mark 9 [9655 9] [92 9]) ; tab, ▷
         ))
-(global-whitespace-mode)
+(setq whitespace-line-column 78)
+(setq whitespace-style  '(face lines-tail))
+(global-whitespace-mode +1)
 
 ;; http://ergoemacs.org/emacs/emacs23_features.html
 (global-visual-line-mode 1)

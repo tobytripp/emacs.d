@@ -47,3 +47,19 @@ region or the entire buffer."
   (fix-parens)
   (decompress-hash-rockets)
   )
+
+(defun break-ruby-hash ()
+  "Break the ruby hash around point into multiple lines at commas"
+  (interactive)
+  (let ((chars "^{}") p1 p2)
+    (save-excursion
+      (skip-chars-backward chars)
+      (setq p1 (point))
+      (skip-chars-forward chars)
+      (setq p2 (point))
+
+      (goto-char p1) (insert "\n")
+      (goto-char p2) (forward-char 1) (insert "\n")
+      (replace-in ", " ",\n" p1 p2)
+      (indent-region p1 (+ 2 p2))
+      )))

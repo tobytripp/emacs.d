@@ -1,12 +1,8 @@
-(toby/require-package 'diminish)
+(toby/require-package 'smart-mode-line)
 
-(when (require 'diminish nil 'noerror)
-  (eval-after-load "paredit"   '(diminish 'paredit-mode  "Pe"))
-  (eval-after-load "abbrev"    '(diminish 'abbrev-mode   "Ab"))
-  (eval-after-load "textmate"  '(diminish 'textmate-mode "Tm"))
-  (eval-after-load "yasnippet"
-    '(progn
-       (cond
-        ((assq 'yas/minor-mode minor-mode-alist) (diminish 'yas/minor-mode " Y"))
-        ((assq 'yas-minor-mode minor-mode-alist) (diminish 'yas-minor-mode " Y"))
-        ))))
+(if after-init-time (sml/setup)
+    (add-hook 'after-init-hook 'sml/setup))
+
+(add-to-list 'sml/replacer-regexp-list '("^~/Dropbox/" ":DB:"))
+(add-to-list 'sml/replacer-regexp-list '("^~/Code/investor-bridge" ":IB:"))
+(add-to-list 'sml/replacer-regexp-list '("^~/.*/lib/ruby/gems" ":GEMS" ))

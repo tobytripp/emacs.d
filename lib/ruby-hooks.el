@@ -1,8 +1,7 @@
 (autoload 'ruby-mode "ruby-mode" "Major mode for Ruby" t)
+(defalias 'inf-ruby-keys 'inf-ruby-setup-keybindings)
 
-(add-hook
- 'ruby-mode-hook
- (lambda ()
+(defun toby/ruby-init ()
    (set (make-local-variable 'indent-tabs-mode) 'nil)
    (set (make-local-variable 'tab-width) 2)
 
@@ -16,16 +15,21 @@
    (column-marker-1 80)
    (pretty-lambdas)
 
+   (git-gutter+-mode)
+
    ; Doesn't work in the terminal, unfortunately…
    (define-key ruby-mode-map (kbd "C-;") 'insert-rocket)
-   ))
+
+   (push 'company-robe company-backends)
+  )
+
+(add-hook 'ruby-mode-hook 'toby/ruby-init)
+(add-hook 'ruby-mode-hook 'robe-mode)
 
 (require 'ruby-end)
 (require 'rspec-mode)
 (local-set-key (kbd "M-r")   'rspec-verify)
 (local-set-key (kbd "M-S-r") 'rspec-verify-single)
-
-(require 'column-marker)
 
 (autoload 'xmp "rcodetools")
 (autoload 'run-pry "pry")
@@ -79,8 +83,8 @@
                            (modes  . '(ruby-mode))))
             ))
 
-(add-hook 'outline-mode-hook
-          (lambda ()
-            (require 'outline-cycle)))
+;; (add-hook 'outline-mode-hook
+;;           (lambda ()
+;;             (require 'outline-cycle)))
 
 (provide 'ruby-hooks)

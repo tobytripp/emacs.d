@@ -23,16 +23,23 @@
 (setq el-get-sources
       '(
         (:name browse-kill-ring :type elpa)
+        (:name company :type elpa)
         (:name find-file-in-repository :type elpa)
         (:name flymake-coffee :type elpa)
         (:name flymake-jshint :type elpa)
         (:name git-gutter :type elpa)
+        (:name git-gutter+ :type elpa)
         (:name haskell-mode :type elpa)
         (:name idle-highlight :type elpa)
         (:name inflections :type elpa)
         (:name magit :type elpa)
+        (:name org :type elpa)
+        (:name org-reveal :type github
+               :pkgname "yjwen/org-reveal")
         (:name peepopen :type elpa)
         (:name rbenv :type elpa)
+        (:name rhtml-mode :type elpa)
+        (:name robe :type elpa)
         (:name ruby-block :type elpa)
         (:name ruby-end :type elpa)
         (:name solarized-theme :type elpa)
@@ -49,7 +56,7 @@
     browse-kill-ring
     coffee-mode
     column-marker
-    diminish
+    company
     dired+
     el-autoyas
     epresent
@@ -61,7 +68,7 @@
     flymake-jshint
     flymake-ruby
     full-ack
-    git-gutter
+    git-gutter+
     haskell-mode
     highlight-indentation
     idle-highlight
@@ -74,12 +81,14 @@
     multi-term
     nrepl
     org
+    org-reveal
     paredit
     parenface
     peepopen
     rainbow-delimiters
     rbenv
     rhtml-mode
+    robe
     rspec-mode
     ruby-end
     ruby-mode

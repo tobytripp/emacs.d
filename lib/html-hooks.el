@@ -3,5 +3,5 @@
 (add-hook 'zencoding-mode-hook
           '(lambda ()
              (define-key sgml-mode-map    (kbd "C-j") 'zencoding-expand-line)
-             (define-key nxhtml-mode-map  (kbd "C-j") 'zencoding-expand-yas)
+             ;; (define-key nxhtml-mode-map  (kbd "C-j") 'zencoding-expand-yas)
              ))

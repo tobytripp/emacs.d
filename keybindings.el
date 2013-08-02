@@ -26,10 +26,10 @@
 (global-set-key [escape] 'keyboard-quit)
 (global-set-key (kbd "s-x") 'smex)   ; s-x == M-x
 
-;; (global-set-key (kbd "M-s") 'save-buffer)
+(global-set-key (kbd "M-s") 'save-buffer)
 
 (global-set-key (kbd "M-g") 'goto-line)
-(global-set-key (kbd "M-z") 'undo)
+(global-set-key (kbd "M-z") 'zap-to-char)
 (global-set-key (kbd "s-z") 'undo)
 
 (global-set-key (kbd "C-x \\") 'align-regexp)

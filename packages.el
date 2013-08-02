@@ -23,6 +23,7 @@
 (setq el-get-sources
       '(
         (:name browse-kill-ring :type elpa)
+        (:name centered-cursor-mode :type elpa)
         (:name company :type elpa)
         (:name find-file-in-repository :type elpa)
         (:name flymake-coffee :type elpa)
@@ -38,11 +39,14 @@
                :pkgname "yjwen/org-reveal")
         (:name peepopen :type elpa)
         (:name rbenv :type elpa)
-        (:name rhtml-mode :type elpa)
+        (:name rhtml-mode :type github
+                :pkgname "eschulte/rhtml")
         (:name robe :type elpa)
         (:name ruby-block :type elpa)
         (:name ruby-end :type elpa)
         (:name solarized-theme :type elpa)
+        (:name smart-mode-line :type github
+               :pkgname "Bruce-Connor/smart-mode-line")
         (:name starter-kit-eshell :type elpa)
         (:name starter-kit-js :type elpa)
         (:name starter-kit-lisp :type elpa)
@@ -54,6 +58,7 @@
     ace-jump-mode
     autopair
     browse-kill-ring
+    centered-cursor-mode
     coffee-mode
     column-marker
     company
@@ -79,7 +84,7 @@
     magit
     markdown-mode
     multi-term
-    nrepl
+;;    nrepl
     org
     org-reveal
     paredit
@@ -92,6 +97,7 @@
     rspec-mode
     ruby-end
     ruby-mode
+    smart-mode-line
     smex
     solarized-theme
     starter-kit-eshell
@@ -108,11 +114,6 @@
     zencoding-mode
     )
   "The list of packages to ensure are installed at launch.")
-
-(defun toby/require-package (package-name)
-  "Ensure that the given ELPA package has been installed."
-  (unless (package-installed-p package-name)
-    (package-install package-name)))
 
 (el-get 'sync my-packages)
 

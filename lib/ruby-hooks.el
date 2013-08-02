@@ -7,34 +7,36 @@
 (setq inf-ruby-prompt-pattern "^\\([0-9.]+\\) ([^)]+):[0-9]+ [>*]")
 
 (defun toby/ruby-init ()
-   (set (make-local-variable 'indent-tabs-mode) 'nil)
-   (set (make-local-variable 'tab-width) 2)
+  (message "loading ruby hooks...")
+  (set (make-local-variable 'indent-tabs-mode) 'nil)
+  (set (make-local-variable 'tab-width) 2)
 
-   (if (and (not (null buffer-file-name))
-            (file-writable-p buffer-file-name))
-       (flymake-mode))
+  (if (and (not (null buffer-file-name))
+           (file-writable-p buffer-file-name))
+      (flymake-mode))
 
-   (outline-minor-mode)
-   (setq outline-regexp " *\\(def \\|describe \\|it \\|class\\|module\\)")
+  (outline-minor-mode)
+  (setq outline-regexp " *\\(def \\|describe \\|it \\|class\\|module\\)")
 
-   (column-marker-1 80)
-   (pretty-lambdas)
+  (column-marker-1 80)
+  (pretty-lambdas)
 
-   (git-gutter+-mode)
+  (git-gutter+-mode)
 
    ; Doesn't work in the terminal, unfortunately…
-   (define-key ruby-mode-map (kbd "C-;") 'insert-rocket)
+  (define-key ruby-mode-map (kbd "C-;") 'insert-rocket)
 
-   (push 'company-robe company-backends)
+  (push 'company-robe company-backends)
+
+  (require 'rspec-mode)
+  (local-set-key (kbd "M-r")   'rspec-verify)
+  (local-set-key (kbd "M-S-r") 'rspec-verify-single)
+
+  (require 'ruby-end)
   )
 
 (add-hook 'ruby-mode-hook 'toby/ruby-init)
-(add-hook 'ruby-mode-hook 'robe-mode)
-
-(require 'ruby-end)
-(require 'rspec-mode)
-(local-set-key (kbd "M-r")   'rspec-verify)
-(local-set-key (kbd "M-S-r") 'rspec-verify-single)
+;; (add-hook 'ruby-mode-hook 'robe-mode)
 
 (autoload 'xmp "rcodetools")
 (autoload 'run-pry "pry")
@@ -48,7 +50,6 @@
 
 (add-to-list 'auto-mode-alist '("\\.rabl$" . ruby-mode))
 
-(toby/require-package 'rhtml-mode)
 (autoload 'rhtml-mode "rhtml-mode" "RHTML Mode" t)
 (add-to-list 'auto-mode-alist '("\\.html.erb$" . rhtml-mode))
 

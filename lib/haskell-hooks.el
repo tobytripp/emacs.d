@@ -1,4 +1,4 @@
-(load "haskell-site-file")
+;; (load "haskell-site-file")
 ;;(autoload 'haskell-mode "haskell-mode" "Haskell Mode." t)
 
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)

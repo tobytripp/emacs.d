@@ -57,10 +57,6 @@
 (bookmark-bmenu-list)
 (switch-to-buffer "*Bookmark List*")
 
-;; (add-to-list 'load-path "/Users/ttripp/.rvm/rubies/ruby-1.9.2-p180/share/emacs/site-lisp")
-;;(require 'el4r)
-;;(el4r-boot)
-
 (setq debug-on-error       nil)
 (setq debug-ignored-errors nil)
 (put 'set-goal-column 'disabled nil)

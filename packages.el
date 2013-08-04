@@ -32,6 +32,7 @@
         (:name haskell-mode :type elpa)
         (:name idle-highlight :type elpa)
         (:name inflections :type elpa)
+        (:name keyfreq :type elpa)
         (:name magit :type elpa)
         (:name org :type elpa)
         (:name org-reveal :type github
@@ -76,6 +77,7 @@
     jira
     json
     js-comint
+    keyfreq
     magit
     markdown-mode
     multi-term

@@ -3,5 +3,6 @@
 (add-hook 'zencoding-mode-hook
           '(lambda ()
              (define-key sgml-mode-map    (kbd "C-j") 'zencoding-expand-line)
-             ;; (define-key nxhtml-mode-map  (kbd "C-j") 'zencoding-expand-yas)
              ))
+
+(add-to-list 'auto-mode-alist '("\.scss$" . sass-mode))

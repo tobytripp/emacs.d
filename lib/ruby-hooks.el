@@ -1,6 +1,11 @@
 (autoload 'ruby-mode "ruby-mode" "Major mode for Ruby" t)
 (defalias 'inf-ruby-keys 'inf-ruby-setup-keybindings)
 
+(add-to-list 'inf-ruby-implementations '("pry" . "pry"))
+(add-to-list 'inf-ruby-implementations '("rails" . "rails console"))
+(setq inf-ruby-default-implementation "pry")
+(setq inf-ruby-prompt-pattern "^\\([0-9.]+\\) ([^)]+):[0-9]+ [>*]")
+
 (defun toby/ruby-init ()
    (set (make-local-variable 'indent-tabs-mode) 'nil)
    (set (make-local-variable 'tab-width) 2)
@@ -43,7 +48,6 @@
 
 (add-to-list 'auto-mode-alist '("\\.rabl$" . ruby-mode))
 
-(toby/require-package 'rhtml-mode)
 (autoload 'rhtml-mode "rhtml-mode" "RHTML Mode" t)
 (add-to-list 'auto-mode-alist '("\\.html.erb$" . rhtml-mode))
 

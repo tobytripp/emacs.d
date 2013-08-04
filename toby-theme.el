@@ -1,10 +1,9 @@
 (deftheme toby
-  "Created 2013-03-27.")
+  "Created 2013-07-30.")
 
 (custom-theme-set-variables
  'toby
- '(ansi-color-names-vector [solarized-bg red green yellow blue magenta cyan solarized-fg])
- '(fci-rule-color "#073642"))
+ '(ansi-color-names-vector [solarized-bg red green yellow blue magenta cyan solarized-fg]))
 
 (custom-theme-set-faces
  'toby
@@ -39,11 +38,11 @@
  '(fringe ((((class color) (min-colors 89)) (:foreground "#839496" :background "#073642"))))
  '(header-line ((((class color) (min-colors 89)) (:foreground "#b58900" :background "#073642" :box (:line-width -1 :style released-button)))))
  '(tooltip ((((class color) (min-colors 89)) (:background "#7B6000" :foreground "#DEB542" :inherit variable-pitch))))
- '(mode-line ((((class color) (min-colors 89)) (:box (:line-width -1 :style released-button) :background "#073642" :foreground "#839496"))))
+ '(mode-line ((((class color) (min-colors 89)) (:box (:line-width -1 :style released-button) :background "#000000" :foreground "#839496"))))
  '(mode-line-buffer-id ((((class color) (min-colors 89)) (:foreground "#93a1a1" :weight bold))))
  '(mode-line-emphasis ((t (:weight bold))))
  '(mode-line-highlight ((((class color) (min-colors 88)) (:box (:line-width 2 :color "grey40" :style released-button))) (t (:inherit (highlight)))))
- '(mode-line-inactive ((((class color) (min-colors 89)) (:box (:line-width -1 :style released-button) :background "#000000" :foreground "#839496"))))
+ '(mode-line-inactive ((((class color) (min-colors 89)) (:foreground "#839496" :background "#7f7f7f" :box (:line-width -1 :style released-button)))))
  '(isearch ((((class color) (min-colors 89)) (:foreground "#b58900" :background "#073642"))))
  '(isearch-fail ((((class color) (min-colors 89)) (:foreground "#839496" :background "#dc322f"))))
  '(lazy-highlight ((((class color) (min-colors 89)) (:foreground "#b58900" :background "#073642"))))

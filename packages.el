@@ -39,7 +39,8 @@
                :pkgname "yjwen/org-reveal")
         (:name peepopen :type elpa)
         (:name rbenv :type elpa)
-        (:name rhtml-mode :type elpa)
+        (:name rhtml-mode :type github
+               :pkgname "eschulte/rhtml")
         (:name robe :type elpa)
         (:name ruby-block :type elpa)
         (:name ruby-end :type elpa)
@@ -94,6 +95,7 @@
     rspec-mode
     ruby-end
     ruby-mode
+    smart-mode-line
     smex
     solarized-theme
     starter-kit-eshell
@@ -110,11 +112,6 @@
     zencoding-mode
     )
   "The list of packages to ensure are installed at launch.")
-
-(defun toby/require-package (package-name)
-  "Ensure that the given ELPA package has been installed."
-  (unless (package-installed-p package-name)
-    (package-install package-name)))
 
 (el-get 'sync my-packages)
 

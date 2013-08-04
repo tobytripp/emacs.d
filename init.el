@@ -38,14 +38,13 @@
       (mapcar 'file-name-sans-extension
               (directory-files lib-dir nil ".*el$")))
 
-(message "lib files loaded!")
+(message "Lib files loaded!")
 
 (require 'keybindings)
 (require 'toby-mode)
 (global-toby-mode)
 
 
-(put 'downcase-region     'disabled nil)
 (put 'ido-exit-minibuffer 'disabled nil)
 (put 'upcase-region       'disabled nil)
 (put 'narrow-to-region    'disabled nil)
@@ -60,3 +59,4 @@
 (setq debug-on-error       nil)
 (setq debug-ignored-errors nil)
 (put 'set-goal-column 'disabled nil)
+(put 'downcase-region 'disabled nil)

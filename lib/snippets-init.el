@@ -1,11 +1,11 @@
 (require 'yasnippet)
-(yas/global-mode 1)
+;(yas/global-mode 1)
 
 (setq yas/trigger-key (kbd "C-c /"))
 
 (setq toby/snippets-dir
       (expand-file-name "snippets" dotfiles-dir))
-(add-to-list 'yas/root-directory toby/snippets-dir)
+; (add-to-list 'yas/root-directory toby/snippets-dir)
 
 ;; http://stackoverflow.com/questions/10211730/insert-yasnippet-by-name
 (defun yas/insert-by-name (name)

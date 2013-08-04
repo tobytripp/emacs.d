@@ -23,6 +23,7 @@
 (setq el-get-sources
       '(
         (:name browse-kill-ring :type elpa)
+        (:name centered-cursor-mode :type elpa)
         (:name company :type elpa)
         (:name find-file-in-repository :type elpa)
         (:name flymake-coffee :type elpa)
@@ -45,6 +46,8 @@
         (:name ruby-block :type elpa)
         (:name ruby-end :type elpa)
         (:name solarized-theme :type elpa)
+        (:name smart-mode-line :type github
+               :pkgname "Bruce-Connor/smart-mode-line")
         (:name starter-kit-eshell :type elpa)
         (:name starter-kit-js :type elpa)
         (:name starter-kit-lisp :type elpa)
@@ -56,6 +59,7 @@
     ace-jump-mode
     autopair
     browse-kill-ring
+    centered-cursor-mode
     coffee-mode
     column-marker
     company
@@ -82,7 +86,7 @@
     magit
     markdown-mode
     multi-term
-    nrepl
+;;    nrepl
     org
     org-reveal
     paredit

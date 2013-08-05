@@ -15,18 +15,13 @@
 (global-set-key (kbd "C-0") '(lambda()(interactive)
                                (modify-frame-parameters nil `((alpha . 100)))))
 
-;; (require 'twittering-mode)
+(autoload 'twittering-mode "twittering-mode" "Twitter stream in Emacs")
 (setq twittering-username "tobytripp")
 (setq twittering-icon-mode t)
 
 (set-fringe-style -1)
 
 (require 'highlight-indentation)
-
-;; (require 'fill-column-indicator)
-;; (setq fci-rule-color "grey20")
-;; (setq fci-rule-column 77)
-;; (add-hook 'coding-hook 'fci-mode)
 
 (setq whitespace-display-mappings
       '((space-mark 32   [183]  [46])   ; normal space, ·

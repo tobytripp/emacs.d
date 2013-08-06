@@ -38,6 +38,8 @@
         (:name org :type elpa)
         (:name org-reveal :type github
                :pkgname "yjwen/org-reveal")
+        (:name outline-magic :type github
+               :pkgname tj64/outline-magic)
         (:name peepopen :type elpa)
         (:name rbenv :type elpa)
         (:name rhtml-mode :type github
@@ -89,6 +91,7 @@
 ;;    nrepl
     org
     org-reveal
+    outline-magic
     paredit
     parenface
     peepopen

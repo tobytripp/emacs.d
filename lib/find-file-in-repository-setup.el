@@ -27,7 +27,7 @@
   )
 
 ;; (global-set-key (kbd "C-x f") 'find-file-in-repository)
-(global-set-key (kbd "C-x f") 'toby/ido-project-files)
+;; (global-set-key (kbd "C-x f") 'toby/ido-project-files)
 
 (recentf-mode 1)
 (global-unset-key (kbd "<f4>"))

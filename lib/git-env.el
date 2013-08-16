@@ -8,6 +8,7 @@
 ;; https://github.com/nonsequitur/git-gutter-plus
 (require 'git-gutter+)
 (global-git-gutter+-mode t)
+(setq git-gutter+-diff-options "-w")
 
 (global-set-key (kbd "C-x n") 'git-gutter+-next-hunk)
 (global-set-key (kbd "C-x p") 'git-gutter+-previous-hunk)

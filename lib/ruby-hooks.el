@@ -31,6 +31,9 @@
   (require 'rspec-mode)
   (local-set-key (kbd "M-r")   'rspec-verify)
   (local-set-key (kbd "M-S-r") 'rspec-verify-single)
+  (local-set-key [f12] 'rspec-verify)
+  (local-set-key [f12] 'rspec-verify-single)
+  (local-set-key (kbd "S-<f12>") 'rspec-rerun)
 
   (require 'ruby-end)
   )
@@ -45,7 +48,9 @@
 (add-hook 'feature-mode-hook
           (lambda ()
             (local-set-key (kbd "M-r")   'feature-verify-all-scenarios-in-buffer)
+            (local-set-key [f12]         'feature-verify-all-scenarios-in-buffer)
             (local-set-key (kbd "M-S-r") 'feature-verify-scenario-at-pos)
+            (local-set-key [f11]         'feature-verify-scenario-at-pos)
             ))
 
 (add-to-list 'auto-mode-alist '("\\.rabl$" . ruby-mode))

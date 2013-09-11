@@ -68,6 +68,7 @@
     dired+
     el-autoyas
     epresent
+    ert
     expand-region
     feature-mode
     fill-column-indicator
@@ -88,7 +89,7 @@
     magit
     markdown-mode
     multi-term
-;;    nrepl
+    nrepl
     org
     org-reveal
     outline-magic

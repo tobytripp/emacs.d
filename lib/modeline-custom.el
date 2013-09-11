@@ -1,7 +1,7 @@
 (require 'smart-mode-line)
 
 (setq sml/mode-width 25) ; https://github.com/Bruce-Connor/smart-mode-line/issues/12
-;; (setq sml/shorten-modes nil)
+(setq sml/shorten-modes nil)
 (if after-init-time (sml/setup)
     (add-hook 'after-init-hook 'sml/setup))
 

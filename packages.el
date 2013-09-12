@@ -25,7 +25,7 @@
         (:name browse-kill-ring :type elpa)
         (:name centered-cursor-mode :type elpa)
         (:name company :type elpa)
-	(:name dash    :type elpa)
+        (:name dash    :type elpa)
         (:name emacs-pry :type github
                :pkgname "jacott/emacs-pry")
         (:name find-file-in-repository :type elpa)
@@ -115,6 +115,7 @@
     switch-window
     textmate
     textmate-to-yas
+    twittering-mode
     vline
     yaml-mode
     yas-jit

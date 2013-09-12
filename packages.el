@@ -25,6 +25,9 @@
         (:name browse-kill-ring :type elpa)
         (:name centered-cursor-mode :type elpa)
         (:name company :type elpa)
+	(:name dash    :type elpa)
+        (:name emacs-pry :type github
+               :pkgname "jacott/emacs-pry")
         (:name find-file-in-repository :type elpa)
         (:name flymake-coffee :type elpa)
         (:name flymake-jshint :type elpa)
@@ -68,7 +71,6 @@
     dired+
     el-autoyas
     epresent
-    ert
     expand-region
     feature-mode
     fill-column-indicator
@@ -88,8 +90,8 @@
     keyfreq
     magit
     markdown-mode
+    mmm-mode
     multi-term
-    nrepl
     org
     org-reveal
     outline-magic
@@ -122,5 +124,6 @@
   "The list of packages to ensure are installed at launch.")
 
 (el-get 'sync my-packages)
+(message "el-get packages synced")
 
 (provide 'packages)

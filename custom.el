@@ -55,6 +55,7 @@
  '(rspec-use-rvm nil)
  '(ruby-deep-arglist nil)
  '(ruby-deep-indent-paren nil)
+ '(ruby-use-encoding-map t)
  '(safe-local-variable-values (quote ((encoding . utf-8) (whitespace-line-column . 80) (lexical-binding . t))))
  '(visual-line-mode nil t)
  '(warning-minimum-level :error)

@@ -19,3 +19,7 @@
           (lambda ()
             (defalias 'ff 'find-file)
             ))
+
+(setq comint-buffer-maximum-size 10240)
+(add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
+(add-hook 'comint-output-filter-functions 'comint-watch-for-password-prompt)

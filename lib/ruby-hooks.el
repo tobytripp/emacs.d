@@ -4,7 +4,8 @@
 (add-to-list 'inf-ruby-implementations '("pry" . "pry"))
 (add-to-list 'inf-ruby-implementations '("rails" . "rails console"))
 (setq inf-ruby-default-implementation "pry")
-(setq inf-ruby-prompt-pattern "^\\([0-9.]+\\) ([^)]+):[0-9]+ [>*]")
+;; "^[0-9.]+ (.*):[0-9]+ [>*] "
+(setq inf-ruby-prompt-pattern "^[0-9.]+ ([^)]+):[0-9]+ [>*]")
 
 (defun toby/ruby-init ()
   (message "loading ruby hooks...")
@@ -32,8 +33,9 @@
   (local-set-key (kbd "M-r")   'rspec-verify)
   (local-set-key (kbd "M-S-r") 'rspec-verify-single)
   (local-set-key [f12] 'rspec-verify)
-  (local-set-key [f12] 'rspec-verify-single)
+  (local-set-key [f11] 'rspec-verify-single)
   (local-set-key (kbd "S-<f12>") 'rspec-rerun)
+  (local-set-key [f10] 'next-error)
 
   (require 'ruby-end)
   )

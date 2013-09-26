@@ -30,12 +30,11 @@
         (space-mark 2336 [2340] [95])
         (space-mark 3616 [3620] [95])
         (space-mark 3872 [3876] [95])
-        (newline-mark 10 [182 10])   ; newlne, ¶
-        (tab-mark 9 [9655 9] [92 9]) ; tab, ▷
+        (newline-mark 10 [182 10])      ; newlne, ¶
+        (tab-mark 9 [9655 9] [92 9])    ; tab, ▷
         ))
 (setq whitespace-line-column 78)
 (setq whitespace-style  '(face lines-tail))
-(global-whitespace-mode +1)
 
 ;; http://ergoemacs.org/emacs/emacs23_features.html
 (global-visual-line-mode 1)

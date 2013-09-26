@@ -26,6 +26,8 @@
         (:name centered-cursor-mode :type elpa)
         (:name company :type elpa)
         (:name dash    :type elpa)
+        (:name dash-at-point :type github
+               :pkgname "stanaka/dash-at-point")
         (:name emacs-pry :type github
                :pkgname "jacott/emacs-pry")
         (:name find-file-in-repository :type elpa)

@@ -1,3 +1,12 @@
+; -*- coding: utf-8 -*-
+(defmacro toby/defhook (hook &rest body)
+  (declare (indent 1))
+  (let ((function (intern (concat (symbol-name hook) "-function"))))
+    `(progn
+       (defun ,function ()
+         ,@body)
+       (add-hook ',hook #',function))))
+
 (defun sudo-edit (&optional arg)
   (interactive "p")
   (if (or arg (not buffer-file-name))
@@ -15,6 +24,15 @@
    "reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla "
    "pariatur. Excepteur sint occaecat cupidatat non proident, sunt in "
    "culpa qui officia deserunt mollit anim id est laborum."))
+
+(defun train-wreck ()
+  "Insert a train wreck"
+  (interactive)
+  (insert
+   "     💭___.-==-,🔥______  _______  _______  _______  _..._\n"
+   "   🔥{     L🙈 I|[ 🙀  ' ]['🔥'  ''][''  '💀'][''   😲 ][LI LI]\n"
+   "🏃 💥 💥OO====OO`'OO---OO''OO---OO''OO---OO''OO---OO`'OO-OO'   🚒\n"
+   ))
 
 (defun insert-date ()
   "Insert a time-stamp according to locale's date and time format."

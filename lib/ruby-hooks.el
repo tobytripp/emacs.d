@@ -21,10 +21,11 @@
 
   (column-marker-1 80)
   (pretty-lambdas)
+  (whitespace-mode t)
 
   (git-gutter+-mode)
 
-   ; Doesn't work in the terminal, unfortunately…
+  ; Doesn't work in the terminal, unfortunately…
   (define-key ruby-mode-map (kbd "C-;") 'insert-rocket)
 
   (push 'company-robe company-backends)

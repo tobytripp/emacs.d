@@ -8,3 +8,6 @@
 (require 'keyfreq)
 (keyfreq-mode 1)
 (keyfreq-autosave-mode 1)
+
+(global-unset-key (kbd "<f3>"))
+(global-set-key (kbd "<f3>") 'occur)

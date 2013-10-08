@@ -40,3 +40,6 @@
 (global-visual-line-mode 1)
 
 (load-theme 'toby)
+;; Make sure terminals pick up the theme settings:
+(setq term-default-fg-color (face-foreground 'default))
+(setq term-default-bg-color (face-background 'default))

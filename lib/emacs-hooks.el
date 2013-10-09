@@ -7,3 +7,4 @@
 ;; (add-hook 'after-init-hook 'server-start)
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+(setq dired-listing-switches "-alh")

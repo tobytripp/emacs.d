@@ -21,8 +21,7 @@
 
 ;; A number of these have el-get recipes, but they appear to be broken
 (setq el-get-sources
-      '(
-        (:name browse-kill-ring :type elpa)
+      '((:name browse-kill-ring :type elpa)
         (:name centered-cursor-mode :type elpa)
         (:name company :type elpa)
         (:name dash    :type elpa)
@@ -32,7 +31,9 @@
                :pkgname "jacott/emacs-pry")
         (:name find-file-in-repository :type elpa)
         (:name flymake-coffee :type elpa)
+        (:name flymake-haskell-multi :type elpa)
         (:name flymake-jshint :type elpa)
+        (:name flx-ido :type elpa)
         (:name git-gutter :type elpa)
         (:name git-gutter+ :type elpa)
         (:name haskell-mode :type elpa)
@@ -47,6 +48,7 @@
                :pkgname tj64/outline-magic)
         (:name peepopen :type elpa)
         (:name rbenv :type elpa)
+        (:name real-auto-save :type elpa)
         (:name rhtml-mode :type github
                :pkgname "eschulte/rhtml")
         (:name robe :type elpa)
@@ -101,6 +103,7 @@
     parenface
     peepopen
     rainbow-delimiters
+    real-auto-save
     rbenv
     rhtml-mode
     robe

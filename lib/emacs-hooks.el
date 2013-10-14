@@ -6,5 +6,6 @@
               (local-set-key (kbd "C-x k") 'server-edit))))
 ;; (add-hook 'after-init-hook 'server-start)
 
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+(add-hook 'before-save-hook 'toby/delete-trailing-whitespace)
 (setq dired-listing-switches "-alh")
+(setq gc-cons-threshold 20000000)

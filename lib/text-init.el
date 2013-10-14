@@ -11,3 +11,6 @@
 
 (global-unset-key (kbd "<f3>"))
 (global-set-key (kbd "<f3>") 'occur)
+
+(require 'real-auto-save)
+(add-hook 'text-mode-hook 'turn-on-real-auto-save)

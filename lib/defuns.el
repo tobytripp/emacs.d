@@ -7,6 +7,18 @@
          ,@body)
        (add-hook ',hook #',function))))
 
+(defun toby/delete-trailing-whitespace ()
+  "Ignore current line when deleting trailing whitespace"
+  (interactive)
+  (let ((first-part-start (point-min))
+        (first-part-end   (point-at-bol))
+        (second-part-start (point-at-eol))
+        (second-part-end  (point-max))
+        )
+    (delete-trailing-whitespace first-part-start first-part-end)
+    (delete-trailing-whitespace second-part-start second-part-end)
+    ))
+
 (defun sudo-edit (&optional arg)
   (interactive "p")
   (if (or arg (not buffer-file-name))

@@ -109,3 +109,5 @@
     (message "Window %sdedicated to %s"
              (if dedicated "no longer " "")
              (buffer-name))))
+
+(provide 'defuns)

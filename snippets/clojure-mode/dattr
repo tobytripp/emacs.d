@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: datomic attribute
+# key: dattr
+# --
+{:db/id          #db/id[:db.part/db]
+ :db/ident       :${namespace/attr}
+ :db/valueType   :db.type/${string}
+ :db/cardinality :db.cardinality/${one}
+ :db/doc "${comment}"
+ :db.install/_attribute :db.part/db}
+

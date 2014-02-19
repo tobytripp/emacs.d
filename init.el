@@ -34,10 +34,10 @@
         (add-to-list 'load-path (concat vendor-dir "/" path)))
       (directory-files vendor-dir nil "^[a-z]"))
 
+(require 'defuns) ; pre-load function definitions
 (mapc #'load
       (mapcar 'file-name-sans-extension
               (directory-files lib-dir nil ".*el$")))
-
 (message "Lib files loaded!")
 
 (require 'keybindings)

@@ -1,9 +1,9 @@
 (require 'package)
+(package-initialize)
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(package-initialize)
 
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
@@ -27,6 +27,7 @@
         (:name dash    :type elpa)
         (:name dash-at-point :type github
                :pkgname "stanaka/dash-at-point")
+        (:name elisp-slime-nav :type elpa)
         (:name emacs-pry :type github
                :pkgname "jacott/emacs-pry")
         (:name find-file-in-repository :type elpa)
@@ -34,6 +35,7 @@
         (:name flymake-haskell-multi :type elpa)
         (:name flymake-jshint :type elpa)
         (:name flx-ido :type elpa)
+        (:name free-keys :type github :pkgname "Fuco1/free-keys")
         (:name git-gutter :type elpa)
         (:name git-gutter+ :type elpa)
         (:name haskell-mode :type elpa)
@@ -82,6 +84,7 @@
     flymake-coffee
     flymake-jshint
     flymake-ruby
+    free-keys
     full-ack
     git-gutter+
     haskell-mode

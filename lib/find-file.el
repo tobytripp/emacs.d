@@ -48,7 +48,8 @@
              "EmacsClient")))
   )
 
-(global-set-key (kbd "C-x f") 'toby/goto-file)
+;; (global-set-key (kbd "C-x f") 'toby/goto-file)
+(global-set-key (kbd "C-x f") 'peepopen-goto-file-gui)
 
 (recentf-mode 1)
 (global-unset-key (kbd "<f4>"))

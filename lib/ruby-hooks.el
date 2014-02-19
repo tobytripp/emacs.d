@@ -6,6 +6,7 @@
 (setq inf-ruby-default-implementation "pry")
 ;; "^[0-9.]+ (.*):[0-9]+ [>*] "
 (setq inf-ruby-prompt-pattern "^[0-9.]+ ([^)]+):[0-9]+ [>*]")
+(setq inf-ruby-first-prompt-pattern "^[0-9.]+ ([^)]+):[0-9]+ [>*]")
 
 (defun toby/ruby-init ()
   (message "loading ruby hooks...")

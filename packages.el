@@ -1,9 +1,10 @@
 (require 'package)
-(package-initialize)
+
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(package-initialize)
 
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
@@ -21,117 +22,50 @@
 
 ;; A number of these have el-get recipes, but they appear to be broken
 (setq el-get-sources
-      '((:name browse-kill-ring :type elpa)
-        (:name centered-cursor-mode :type elpa)
-        (:name company :type elpa)
-        (:name dash    :type elpa)
-        (:name dash-at-point :type github
-               :pkgname "stanaka/dash-at-point")
-        (:name elisp-slime-nav :type elpa)
-        (:name emacs-pry :type github
-               :pkgname "jacott/emacs-pry")
-        (:name find-file-in-repository :type elpa)
-        (:name flymake-coffee :type elpa)
-        (:name flymake-haskell-multi :type elpa)
-        (:name flymake-jshint :type elpa)
-        (:name flx-ido :type elpa)
-        (:name free-keys :type github :pkgname "Fuco1/free-keys")
-        (:name git-gutter :type elpa)
+      '((:name company :type elpa)
         (:name git-gutter+ :type elpa)
-        (:name haskell-mode :type elpa)
-        (:name idle-highlight :type elpa)
-        (:name inflections :type elpa)
         (:name keyfreq :type elpa)
-        (:name magit :type elpa)
-        (:name org :type elpa)
-        (:name org-reveal :type github
-               :pkgname "yjwen/org-reveal")
-        (:name outline-magic :type github
-               :pkgname tj64/outline-magic)
         (:name peepopen :type elpa)
-        (:name rbenv :type elpa)
         (:name real-auto-save :type elpa)
-        (:name rhtml-mode :type github
-               :pkgname "eschulte/rhtml")
-        (:name robe :type elpa)
-        (:name ruby-block :type elpa)
-        (:name ruby-end :type elpa)
-        (:name solarized-theme :type elpa)
-        (:name smart-mode-line :type github
-               :pkgname "Bruce-Connor/smart-mode-line")
         (:name starter-kit-eshell :type elpa)
         (:name starter-kit-js :type elpa)
         (:name starter-kit-lisp :type elpa)
         (:name starter-kit-ruby :type elpa)
         ))
 
-(defvar my-packages
-  '(
-    ace-jump-mode
-    autopair
-    browse-kill-ring
-    centered-cursor-mode
-    coffee-mode
-    column-marker
-    company
-    dired+
-    el-autoyas
-    epresent
-    expand-region
-    feature-mode
-    fill-column-indicator
-    find-file-in-repository
-    flymake-coffee
-    flymake-jshint
-    flymake-ruby
-    free-keys
-    full-ack
-    git-gutter+
-    haskell-mode
-    highlight-indentation
-    idle-highlight
-    inf-ruby
-    jira
-    json
-    js-comint
-    keyfreq
-    magit
-    markdown-mode
-    mmm-mode
-    multi-term
-    org
-    org-reveal
-    outline-magic
-    paredit
-    parenface
-    peepopen
-    rainbow-delimiters
-    real-auto-save
-    rbenv
-    rhtml-mode
-    robe
-    rspec-mode
-    ruby-end
-    ruby-mode
-    smart-mode-line
-    smex
-    solarized-theme
-    starter-kit-eshell
-    starter-kit-js
-    starter-kit-lisp
-    starter-kit-ruby
-    switch-window
-    textmate
-    textmate-to-yas
-    twittering-mode
-    vline
-    yaml-mode
-    yas-jit
-    yasnippet
-    )
-  "The list of packages to ensure are installed at launch.")
+(setq my-packages
+  (append
+   '(ace-jump-mode                           magit
+     autopair                                markdown-mode
+     browse-kill-ring                        mmm-mode
+     centered-cursor-mode                    multi-term
+     cider                                   org
+     coffee-mode                             org-reveal
+     column-marker                           outline-magic
+     company                                 paredit
+     dired+                                  parenface
+     el-autoyas                              rainbow-delimiters
+     epresent                                rbenv
+     expand-region                           rhtml-mode
+                                             rspec-mode
+     fill-column-indicator                   ruby-end
+     flymake-coffee                          ruby-mode
+     flymake-ruby                            smart-mode-line
+     full-ack                                smex
+     git-gutter+                             solarized-theme
+     haskell-mode                            switch-window
+     highlight-indentation                   textmate
+     idle-highlight-mode                     textmate-to-yas
+     inf-ruby                                twittering-mode
+     jira                                    vline
+     json                                    yaml-mode
+     js-comint                               yas-jit
+                                             yasnippet
+     )
+   (mapcar 'el-get-as-symbol (mapcar 'el-get-source-name el-get-sources))))
 
-(el-get 'sync my-packages)
-(message "el-get packages synced")
+(with-demoted-errors
+  (el-get 'sync my-packages)
+  (message "el-get packages synced"))
 
 (provide 'packages)

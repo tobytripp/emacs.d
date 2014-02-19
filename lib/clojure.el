@@ -1,11 +1,11 @@
 (defun repl/eval-and-print ()
   "Evaluate the last s-expression and print in a comment"
   (interactive)
-  (let ((form (nrepl-expression-at-point)))
+  (let ((form (cider-expression-at-point)))
     (end-of-visual-line)
     (comment-indent)
     (insert " ")
-    (nrepl-interactive-eval-print form)
+    (cider-interactive-eval-print form)
     ))
 
 (eval-after-load 'cider

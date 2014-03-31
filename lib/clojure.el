@@ -12,6 +12,11 @@
   '(progn
      (define-key cider-mode-map (kbd "C-x M-e") 'repl/eval-and-print)))
 
+(eval-after-load 'clojure-test-mode
+  '(progn
+     (define-key clojure-test-mode-map (kbd "<f12>") 'clojure-test-run-tests)
+     (define-key clojure-test-mode-map (kbd "<f11>") 'clojure-test-run-test)))
+
 (defun toby/compojure-init ()
   (define-clojure-indent
     (defroutes 'defun)

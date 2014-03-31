@@ -29,6 +29,7 @@
 
 (push '(".+\\.hs$" flymake-Haskell-init flymake-simple-java-cleanup)
       flymake-allowed-file-name-masks)
+
 (push '(".+\\.lhs$" flymake-Haskell-init flymake-simple-java-cleanup)
       flymake-allowed-file-name-masks)
 (push

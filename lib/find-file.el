@@ -1,27 +1,3 @@
-(defun toby/ido-project-files ()
-  "Use ido to select a file from the git project"
-  (interactive)
-
-  (let (project-files tbl)
-    (setq project-files (toby/project-files))
-    (setq tbl (make-hash-table :test 'equal))
-
-    ;; (let (ido-list)
-    ;;   (mapc (lambda (path)
-    ;;           ;; format path for display in ido list
-    ;;           (setq key (replace-regexp-in-string "\\(.*?\\)\\([^/]+?\\)$" "\\2|\\1" path))
-    ;;           ;; remove trailing | or /
-    ;;           (setq key (replace-regexp-in-string "\\(|\\|/\\)$" "" key))
-    ;;           (puthash key path tbl)
-    ;;           (push key ido-list))
-    ;;         project-files)
-    ;;   (find-file (gethash (ido-completing-read "project-files: " ido-list) tbl))
-    ;;   )
-    (find-file (concat (textmate-project-root)
-                       (ido-completing-read "project-files: " (toby/project-files))))
-    ))
-
-
 (defun toby/project-files ()
   (split-string (shell-command-to-string "git ls-tree --full-tree -r --name-only HEAD | awk '!/(vendor|images)/'"))
   )
@@ -48,8 +24,14 @@
              "EmacsClient")))
   )
 
-;; (global-set-key (kbd "C-x f") 'toby/goto-file)
-(global-set-key (kbd "C-x f") 'peepopen-goto-file-gui)
+; (global-set-key (kbd "C-x f") 'peepopen-goto-file-gui)
+; (autoload 'projectile-find-file "projectile-mode" "Project navigation")
+(projectile-global-mode)
+(global-set-key (kbd "C-x f") 'projectile-find-file)
+(require 'flx-ido)
+(ido-mode 1)
+(ido-everywhere 1)
+(flx-ido-mode 1)
 
 (recentf-mode 1)
 (global-unset-key (kbd "<f4>"))

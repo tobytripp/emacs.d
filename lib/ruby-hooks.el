@@ -2,8 +2,8 @@
 
 (defalias 'inf-ruby-keys 'inf-ruby-setup-keybindings)
 
-;(add-to-list 'inf-ruby-implementations '("pry" . "pry"))
-;(add-to-list 'inf-ruby-implementations '("rails" . "rails console"))
+(add-to-list 'inf-ruby-implementations '("pry" . "pry"))
+(add-to-list 'inf-ruby-implementations '("rails" . "rails console"))
 (setq inf-ruby-default-implementation "pry")
 ;; "^[0-9.]+ (.*):[0-9]+ [>*] "
 (setq inf-ruby-prompt-pattern "^[0-9.]+ ([^)]+):[0-9]+ [>*]")
@@ -14,6 +14,10 @@
   (set (make-local-variable 'indent-tabs-mode) 'nil)
   (set (make-local-variable 'tab-width) 2)
 
+  ;; (if (and (not (null buffer-file-name))
+  ;;          (file-writable-p buffer-file-name))
+  ;;     (flymake-mode))
+
   (outline-minor-mode)
   (setq outline-regexp " *\\(def \\|describe \\|it \\|class\\|module\\)")
 
@@ -21,9 +25,9 @@
   (pretty-lambdas)
   (whitespace-mode t)
 
-  (git-gutter+-mode)
+  ;; (git-gutter+-mode)
 
-  ; Doesn't work in the terminal, unfortunately…
+                                        ; Doesn't work in the terminal, unfortunately…
   (define-key ruby-mode-map (kbd "C-;") 'insert-rocket)
 
   (push 'company-robe company-backends)

@@ -31,6 +31,7 @@
      company-mode                            paredit
      dired+                                  parenface
                                              peepopen
+                                             projectile
      el-autoyas                              rainbow-delimiters
      epresent                                rbenv
      expand-region                           rhtml-mode

@@ -49,8 +49,8 @@
      expand-region                           rhtml-mode
                                              rspec-mode
      fill-column-indicator                   ruby-end
-     flymake-coffee                          ruby-mode
-     flymake-ruby                            smart-mode-line
+                                             ruby-mode
+                                             smart-mode-line
      full-ack                                smex
      git-gutter+                             solarized-theme
      haskell-mode                            switch-window

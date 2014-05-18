@@ -1,14 +1,11 @@
 (setenv "NODE_PATH" "~/node_modules")
 
 ;; (add-to-list 'load-path (concat vendor-dir "/jshint-mode"))
-;; (require 'flymake-jshint)
 
 (add-hook
  'js-mode-hook
  (lambda ()
    (glasses-mode t)
-   (if (and (not (null buffer-file-name)) (file-writable-p buffer-file-name))
-       (flymake-mode t))
    (setq mode-name "Js")
    ))
 

@@ -14,10 +14,6 @@
   (set (make-local-variable 'indent-tabs-mode) 'nil)
   (set (make-local-variable 'tab-width) 2)
 
-  (if (and (not (null buffer-file-name))
-           (file-writable-p buffer-file-name))
-      (flymake-mode))
-
   (outline-minor-mode)
   (setq outline-regexp " *\\(def \\|describe \\|it \\|class\\|module\\)")
 

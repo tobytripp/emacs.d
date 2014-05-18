@@ -17,7 +17,8 @@
      (define-key clojure-test-mode-map (kbd "<f12>") 'clojure-test-run-tests)
      (define-key clojure-test-mode-map (kbd "<f11>") 'clojure-test-run-test)))
 
-(defun toby/compojure-init ()
+(defun toby/clojure-init ()
+  (clojure-test-mode)
   (define-clojure-indent
     (defroutes 'defun)
     (GET 2)
@@ -28,7 +29,7 @@
     (ANY 2)
     (context 2)))
 
-(add-hook 'clojure-mode-hook 'toby/compojure-init)
+(add-hook 'clojure-mode-hook 'toby/clojure-init)
 (add-hook 'cider-interaction-mode-hook
           'cider-turn-on-eldoc-mode)
 

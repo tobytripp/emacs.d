@@ -2,9 +2,6 @@
 (setq exec-path (append exec-path '("/usr/local/bin")))
 (setq exec-path (append exec-path '("/usr/local/git/bin")))
 
-(magit-wip-mode 1)
-(global-magit-wip-save-mode 1)
-
 ;; https://github.com/nonsequitur/git-gutter-plus
 (if (require 'git-gutter+ nil 'noerror)
     (progn
@@ -15,9 +12,9 @@
       ))
 
 
-;; full screen magit-status
 (eval-after-load "magit"
   '(progn
+     ;; full screen magit-status
      (defadvice magit-status (around magit-fullscreen activate)
        (window-configuration-to-register :magit-fullscreen)
        ad-do-it
@@ -29,5 +26,6 @@
        (kill-buffer)
        (jump-to-register :magit-fullscreen))
 
+     (global-magit-wip-save-mode 1)
      (define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
      ))

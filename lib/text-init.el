@@ -5,12 +5,15 @@
 
 (browse-kill-ring-default-keybindings)
 
-(require 'keyfreq)
-(keyfreq-mode 1)
-(keyfreq-autosave-mode 1)
+
+(if (require 'keyfreq nil 'noerror)
+    (progn
+      (keyfreq-mode 1)
+      (keyfreq-autosave-mode 1)
+      ))
 
 (global-unset-key (kbd "<f3>"))
 (global-set-key (kbd "<f3>") 'occur)
 
-(require 'real-auto-save)
-(add-hook 'text-mode-hook 'turn-on-real-auto-save)
+(if (require 'real-auto-save nil 'noerror)
+    (add-hook 'text-mode-hook 'turn-on-real-auto-save))

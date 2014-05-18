@@ -45,7 +45,6 @@
  '(ns-tool-bar-display-mode nil t)
  '(ns-tool-bar-size-mode nil t)
  '(org-agenda-files (quote ("~/Dropbox/org/ib-tasks.org" "~/Dropbox/org/my-tasks.org")))
- '(rbenv-installation-dir "/usr/local")
  '(revert-without-query (quote (".*")))
  '(rspec-compilation-buffer-name "*specs*")
  '(rspec-rake-command "bundle exec rake")

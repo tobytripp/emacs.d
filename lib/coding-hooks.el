@@ -64,3 +64,8 @@
 
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 ;; (autopair-global-mode 1)
+
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
+(provide 'coding-hooks)
+;;; coding-hooks.el ends here

@@ -1,0 +1,5 @@
+(:name peepopen
+       :description "Support for the Peepopen gui"
+       :depends textmate
+       :type http
+       :url "https://raw.githubusercontent.com/topfunky/PeepOpen/master/Support/peepopen.el")

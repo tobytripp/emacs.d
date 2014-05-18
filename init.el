@@ -25,7 +25,6 @@
 (require 'ansi-color)
 (require 'recentf)
 (require 'uniquify)
-(require 'switch-window)
 
 (global-hl-line-mode 1)
 (delete-selection-mode t)

@@ -1,5 +1,4 @@
 (require 'package)
-
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (add-to-list 'package-archives
@@ -20,37 +19,25 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
-;; A number of these have el-get recipes, but they appear to be broken
-(setq el-get-sources
-      '((:name company :type elpa)
-        (:name git-gutter+ :type elpa)
-        (:name keyfreq :type elpa)
-        (:name peepopen :type elpa)
-        (:name real-auto-save :type elpa)
-        (:name starter-kit-eshell :type elpa)
-        (:name starter-kit-js :type elpa)
-        (:name starter-kit-lisp :type elpa)
-        (:name starter-kit-ruby :type elpa)
-        ))
-
-(setq my-packages
+(defvar my-packages
   (append
    '(ace-jump-mode                           magit
      autopair                                markdown-mode
      browse-kill-ring                        mmm-mode
      centered-cursor-mode                    multi-term
-     cider                                   org
+     cider                                   org-mode
      coffee-mode                             org-reveal
      column-marker                           outline-magic
-     company                                 paredit
+     company-mode                            paredit
      dired+                                  parenface
+                                             peepopen
      el-autoyas                              rainbow-delimiters
      epresent                                rbenv
      expand-region                           rhtml-mode
                                              rspec-mode
      fill-column-indicator                   ruby-end
                                              ruby-mode
-                                             smart-mode-line
+     flycheck                                smart-mode-line
      full-ack                                smex
      git-gutter+                             solarized-theme
      haskell-mode                            switch-window
@@ -62,10 +49,12 @@
      js-comint                               yas-jit
                                              yasnippet
      )
-   (mapcar 'el-get-as-symbol (mapcar 'el-get-source-name el-get-sources))))
+   (mapcar 'el-get-source-name el-get-sources)))
 
-(with-demoted-errors
+(with-demoted-errors "Error loading packages: %S"
+  (el-get-cleanup my-packages)
   (el-get 'sync my-packages)
   (message "el-get packages synced"))
 
 (provide 'packages)
+;;; packages.el ends here

@@ -18,5 +18,3 @@
      (format "open 'peepopen://%s?editor=%s'"
              (expand-file-name root)
              "emacsclient"))))
-
-(global-set-key (kbd "C-x f") 'peepopen-goto-file-gui)

@@ -50,8 +50,6 @@
 (global-set-key (kbd "C-x C-i") 'ido-imenu)
 
 (global-set-key (kbd "C-x M-f")   'ido-find-file-other-window)
-(global-set-key (kbd "C-x C-M-f") 'find-file-in-project)
-(global-set-key (kbd "C-x f")     'recentf-ido-find-file)
 (global-set-key (kbd "C-c y")     'bury-buffer)
 (global-set-key (kbd "C-c r")     'revert-buffer)
 (global-set-key (kbd "M-`")       'file-cache-minibuffer-complete)
@@ -136,8 +134,6 @@
   (balance-windows)
   )
 (global-set-key (kbd "C-x 6") 'split-in-thirds)
-
-(global-set-key (kbd "C-x f") 'find-file-in-repository)
 
 ;; one-button testing, tada!
 (global-set-key [f12] 'compile)

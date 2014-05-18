@@ -37,7 +37,7 @@
      expand-region                           rhtml-mode
                                              rspec-mode
      fill-column-indicator                   ruby-end
-                                             ruby-mode
+     flx                                     ruby-mode
      flycheck                                smart-mode-line
      full-ack                                smex
      git-gutter+                             solarized-theme

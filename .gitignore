@@ -15,3 +15,4 @@ history
 /.org-id-locations
 web-vcs-log.org
 /el-get/*
+projectile-bookmarks.eld

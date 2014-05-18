@@ -4,17 +4,17 @@
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 
-(setq dotfiles-dir (file-name-directory
+(defvar dotfiles-dir (file-name-directory
                     (or (buffer-file-name) load-file-name)))
 (add-to-list 'load-path dotfiles-dir)
 
-(setq vendor-dir (concat dotfiles-dir "vendor/"))
+(defvar vendor-dir (concat dotfiles-dir "vendor/"))
 (add-to-list 'load-path vendor-dir)
 
-(setq lib-dir (concat dotfiles-dir "lib/"))
+(defvar lib-dir (concat dotfiles-dir "lib/"))
 (add-to-list 'load-path lib-dir)
 
-(setq autoload-file (concat dotfiles-dir "loaddefs.el"))
+(defvar autoload-file (concat dotfiles-dir "loaddefs.el"))
 
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)

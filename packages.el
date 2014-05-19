@@ -25,12 +25,12 @@
      autopair                                markdown-mode
      browse-kill-ring                        mmm-mode
      centered-cursor-mode                    multi-term
-     cider                                   org-mode
-     coffee-mode                             org-reveal
-     column-marker                           outline-magic
-     company-mode                            paredit
-     dired+                                  parenface
-                                             peepopen
+     change-inner                            org-mode
+     cider                                   org-reveal
+     coffee-mode                             outline-magic
+     column-marker                           paredit
+     company-mode                            parenface
+     dired+                                  peepopen
                                              projectile
      el-autoyas                              rainbow-delimiters
      epresent                                rbenv

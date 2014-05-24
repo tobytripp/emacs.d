@@ -41,6 +41,7 @@
      flycheck                                smart-mode-line
      full-ack                                smex
      git-gutter+                             solarized-theme
+     god-mode
      haskell-mode                            switch-window
      highlight-indentation                   textmate
      idle-highlight-mode                     textmate-to-yas

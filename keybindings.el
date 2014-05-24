@@ -23,7 +23,7 @@
 (define-key function-key-map "\M-[ d"  [C-left])
 
 ;; Escape is C-g
-(global-set-key [escape] 'keyboard-quit)
+;; (global-set-key [escape] 'keyboard-quit)
 (global-set-key (kbd "s-x") 'smex)   ; s-x == M-x
 
 (global-set-key (kbd "M-s") 'save-buffer)

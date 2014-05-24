@@ -43,3 +43,5 @@
 ;; Make sure terminals pick up the theme settings:
 (setq term-default-fg-color (face-foreground 'default))
 (setq term-default-bg-color (face-background 'default))
+
+(provide 'senseless-eye-candy)

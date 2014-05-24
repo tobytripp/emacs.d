@@ -23,7 +23,7 @@
 
   ;; (git-gutter+-mode)
 
-                                        ; Doesn't work in the terminal, unfortunately…
+  ;; Doesn't work in the terminal, unfortunately…
   (define-key ruby-mode-map (kbd "C-;") 'insert-rocket)
 
   (push 'company-robe company-backends)
@@ -55,6 +55,7 @@
             ))
 
 (add-to-list 'auto-mode-alist '("\\.rabl$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
 
 (autoload 'rhtml-mode "rhtml-mode" "RHTML Mode" t)
 (add-to-list 'auto-mode-alist '("\\.html.erb$" . rhtml-mode))

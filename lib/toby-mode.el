@@ -178,4 +178,23 @@ defaults to `toby'."
         (jit-lock-unregister 'toby/on-change)
         ))))
 
+(defun toby/increment-number-at-point (&optional arg)
+  "Increment the decimal number at point by 'arg'."
+  (interactive "p*")
+  (save-excursion
+    (save-match-data
+      (let ((number (number-at-point))
+	    (inc-by (if arg arg 1)))
+	(when number
+	  (progn
+	    (forward-word)
+	    (search-backward (number-to-string number))
+	    (replace-match (number-to-string (+ number inc-by)))
+	    ))))))
+
+(define-key *tobys-mode-map* (kbd "C-c C-a") 'toby/increment-number-at-point)
+
+
+
 (provide 'toby-mode)
+;;; toby-mode.el ends here

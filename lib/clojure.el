@@ -10,7 +10,9 @@
 
 (eval-after-load 'cider
   '(progn
-     (define-key cider-mode-map (kbd "C-x M-e") 'repl/eval-and-print)))
+     (define-key cider-mode-map (kbd "C-x M-e") 'repl/eval-and-print)
+     (define-key cider-mode-map (kbd "<f3>") 'cider-eval-defun-at-point)
+     ))
 
 (eval-after-load 'clojure-test-mode
   '(progn
@@ -35,5 +37,6 @@
 
 (toby/defhook cider-mode-hook
   (paredit-mode)
-  (define-key cider-mode-map (kbd "C-c C-e") 'cider-eval-print-last-sexp)
-  )
+  (define-key cider-mode-map (kbd "C-c C-e") 'cider-eval-print-last-sexp))
+
+(provide 'clojure)

@@ -8,5 +8,14 @@
 
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
-            (add-hook 'after-save-hook 'byte-compile-current-buffer)
-            ))
+            (add-hook 'after-save-hook 'byte-compile-current-buffer)))
+
+(defun toby/paredit-init ()
+  (progn
+    (define-key paredit-mode-map (kbd "C-0") 'paredit-forward-slurp-sexp)
+    (define-key paredit-mode-map (kbd "C-0") 'paredit-backward-slurp-sexp)
+    ))
+
+(eval-after-load 'paredit-mode 'toby/paredit-init)
+
+(provide 'lisp-hooks)

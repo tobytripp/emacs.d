@@ -50,6 +50,7 @@
      json                                    yaml-mode
      js-comint                               yas-jit
                                              yasnippet
+     zencoding-mode
      )
    (mapcar 'el-get-source-name el-get-sources)))
 

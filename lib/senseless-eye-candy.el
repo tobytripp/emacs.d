@@ -7,13 +7,22 @@
     (when (and (>= newalpha frame-alpha-lower-limit) (<= newalpha 100))
       (modify-frame-parameters nil (list (cons 'alpha newalpha))))))
 
- ;; C-8 will increase opacity (== decrease transparency)
- ;; C-9 will decrease opacity (== increase transparency
- ;; C-0 will returns the state to normal
-(global-set-key (kbd "C-8") '(lambda()(interactive)(djcb-opacity-modify)))
-(global-set-key (kbd "C-9") '(lambda()(interactive)(djcb-opacity-modify t)))
-(global-set-key (kbd "C-0") '(lambda()(interactive)
-                               (modify-frame-parameters nil `((alpha . 100)))))
+(defun toby/increase-frame-opacity ()
+  (interactive)
+  (djcb-opacity-modify))
+(defun toby/decrease-frame-opacity ()
+  (interactive)
+  (djcb-opacity-modify t))
+(defun toby/reset-frame-opacity ()
+  (interactive)
+  (modify-frame-parameters nil `((alpha . 100))))
+
+ ;; C-c C-8 will increase opacity (== decrease transparency)
+ ;; C-c C-9 will decrease opacity (== increase transparency
+ ;; C-c C-0 will returns the state to normal
+(global-set-key (kbd "C-c C-8") 'toby/increase-frame-opacity)
+(global-set-key (kbd "C-c C-9") 'toby/decrease-frame-opacity)
+(global-set-key (kbd "C-c C-0") 'toby/reset-frame-opacity)
 
 (autoload 'twittering-mode "twittering-mode" "Twitter stream in Emacs")
 (setq twittering-username "tobytripp")

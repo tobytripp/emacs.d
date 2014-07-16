@@ -10,3 +10,4 @@
 (setq dired-listing-switches "-alh")
 (require 'dired-x)
 (setq gc-cons-threshold 20000000)
+

@@ -31,8 +31,8 @@
      column-marker                           paredit
      company-mode                            parenface
      dired+                                  peepopen
-                                             projectile
-     el-autoyas                              rainbow-delimiters
+     el-autoyas                              projectile
+     emmet-mode                              rainbow-delimiters
      epresent                                rbenv
      expand-region                           rhtml-mode
                                              rspec-mode
@@ -50,7 +50,7 @@
      json                                    yaml-mode
      js-comint                               yas-jit
                                              yasnippet
-     zencoding-mode
+
      )
    (mapcar 'el-get-source-name el-get-sources)))
 

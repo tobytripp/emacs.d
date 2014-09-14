@@ -1,8 +1,6 @@
-(autoload 'zencoding-mode "zencoding-mode")
-(add-hook 'sgml-mode-hook 'zencoding-mode)
-(add-hook 'zencoding-mode-hook
-          '(lambda ()
-             (define-key sgml-mode-map    (kbd "C-j") 'zencoding-expand-line)
-             ))
+(autoload 'emmet-mode "emmet-mode")
+(add-hook 'sgml-mode-hook 'emmet-mode)
+(add-hook 'css-mode-hook 'emmet-mode)
+(add-hook 'sass-mode-hook 'emmet-mode)
 
 (add-to-list 'auto-mode-alist '("\.scss$" . sass-mode))

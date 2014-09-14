@@ -1,4 +1,3 @@
-
 (defun fix-parens ()
   "Fix misplaced parens in code buffers."
 
@@ -63,3 +62,23 @@ region or the entire buffer."
       (replace-in ", " ",\n" p1 p2)
       (indent-region p1 (+ 2 p2))
       )))
+
+
+(defun underscore-region (start end)
+  (interactive "r")
+  (let ((case-fold-search nil)
+	(exp "\\(\\b\\|[[:lower:]]\\)\\([[:upper:]]+\\)"))
+    (save-restriction
+      (narrow-to-region start end)
+      (goto-char (point-min))
+      (while (re-search-forward exp nil t)
+	(replace-match
+	  (concat (match-string 1) "_" (downcase (match-string 2)))
+	   )))))
+
+(defun underscore-word ()
+  (interactive)
+  (let ((bounds (bounds-of-thing-at-point 'word)))
+    (let ((start (car bounds))
+	    (end   (cdr bounds)))
+      (underscore-region start end))))

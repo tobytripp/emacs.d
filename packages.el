@@ -30,8 +30,7 @@
      coffee-mode                             outline-magic
      column-marker                           paredit
      company-mode                            parenface
-     dired+                                  peepopen
-                                             projectile
+     dired+                                  projectile
      el-autoyas                              rainbow-delimiters
      epresent                                rbenv
      expand-region                           rhtml-mode

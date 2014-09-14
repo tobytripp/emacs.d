@@ -143,6 +143,10 @@
 (global-unset-key (kbd "M-SPC"))
 (global-set-key   (kbd "M-SPC") 'ace-jump-mode)
 
+(global-unset-key (kbd "<f3>"))
+(global-set-key (kbd "<f3>") 'other-window)
+
+
 (setq echo-keystrokes 0.02)
 
 (provide 'keybindings)

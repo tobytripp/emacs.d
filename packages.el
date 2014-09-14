@@ -30,8 +30,9 @@
      coffee-mode                             outline-magic
      column-marker                           paredit
      company-mode                            parenface
-     dired+                                  projectile
-     el-autoyas                              rainbow-delimiters
+     dired+
+     el-autoyas                              projectile
+     emmet-mode                              rainbow-delimiters
      epresent                                rbenv
      expand-region                           rhtml-mode
                                              rspec-mode
@@ -49,6 +50,7 @@
      json                                    yaml-mode
      js-comint                               yas-jit
                                              yasnippet
+
      )
    (mapcar 'el-get-source-name el-get-sources)))
 

@@ -25,6 +25,5 @@
        (kill-buffer)
        (jump-to-register :magit-fullscreen))
 
-     (global-magit-wip-save-mode 1)
      (define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
      ))

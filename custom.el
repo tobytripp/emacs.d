@@ -18,7 +18,7 @@
  '(custom-enabled-themes (quote (tsdh-light)))
  '(custom-safe-themes
    (quote
-    ("6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" "526e738d6d89317f821becd58d3165b5ecf5afe336ff1c96e331fdfca5e8fe03" default)))
+    ("756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" "526e738d6d89317f821becd58d3165b5ecf5afe336ff1c96e331fdfca5e8fe03" default)))
  '(default-frame-alist
     (quote
      ((vertical-scroll-bars)

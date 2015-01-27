@@ -8,19 +8,21 @@
     (cider-interactive-eval-print form)
     ))
 
+(defun toby/save-and-eval-buffer ()
+  (interactive)
+  (save-some-buffers 't)
+  (cider-eval-buffer))
+
+(defvar clojure--prettify-symbols-alist nil)
 (eval-after-load 'cider
   '(progn
      (define-key cider-mode-map (kbd "C-x M-e") 'repl/eval-and-print)
-     (define-key cider-mode-map (kbd "<f3>") 'cider-eval-defun-at-point)
+     (define-key cider-mode-map (kbd "<f3>")    'cider-eval-defun-at-point)
+     (define-key cider-mode-map (kbd "<f5>")    'toby/save-and-eval-buffer)
      ))
 
-(eval-after-load 'clojure-test-mode
-  '(progn
-     (define-key clojure-test-mode-map (kbd "<f12>") 'clojure-test-run-tests)
-     (define-key clojure-test-mode-map (kbd "<f11>") 'clojure-test-run-test)))
-
 (defun toby/clojure-init ()
-  (clojure-test-mode)
+  (paredit-mode 1)
   (define-clojure-indent
     (defroutes 'defun)
     (GET 2)

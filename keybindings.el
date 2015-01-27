@@ -60,6 +60,7 @@
 (global-set-key (kbd "C-x O")   (lambda () (interactive) (other-window -1))) ;; back one
 (global-set-key (kbd "C-x C-o") (lambda () (interactive) (other-window  2))) ;; forward two
 (global-set-key (kbd "C-x o") 'switch-window)
+(global-set-key (kbd "<f14>") 'other-window)
 
 (global-set-key (kbd "C-x m") 'eshell)
 ;; Start a new eshell even if one is active.

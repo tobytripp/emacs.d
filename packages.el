@@ -2,7 +2,7 @@
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+             '("melpa" . "http://melpa.org/packages/") t)
 (package-initialize)
 
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
@@ -21,11 +21,13 @@
 
 (defvar my-packages
   (append
-   '(ace-jump-mode                           magit
+   '(cl-lib                                  s
+     ace-jump-mode                           magit
      autopair                                markdown-mode
      browse-kill-ring                        mmm-mode
      centered-cursor-mode                    multi-term
      change-inner                            org-mode
+     clojure-mode
      cider                                   org-reveal
      coffee-mode                             outline-magic
      column-marker                           paredit
@@ -40,7 +42,7 @@
      flx                                     ruby-mode
      flycheck                                smart-mode-line
      full-ack                                smex
-     git-gutter+                             solarized-theme
+                                             solarized-theme
      god-mode
      haskell-mode                            switch-window
      highlight-indentation                   textmate

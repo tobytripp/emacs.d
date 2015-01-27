@@ -5,7 +5,7 @@
 (setq auto-save-default nil)
 
 (defvar dotfiles-dir (file-name-directory
-                    (or (buffer-file-name) load-file-name)))
+		      (or (buffer-file-name) load-file-name)))
 (add-to-list 'load-path dotfiles-dir)
 
 (defvar vendor-dir (concat dotfiles-dir "vendor/"))
@@ -14,14 +14,13 @@
 (defvar lib-dir (concat dotfiles-dir "lib/"))
 (add-to-list 'load-path lib-dir)
 
-(defvar autoload-file (concat dotfiles-dir "loaddefs.el"))
-
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
 
 (load "env.el")
 
 (require 'packages)
+
 (require 'ansi-color)
 (require 'recentf)
 (require 'uniquify)

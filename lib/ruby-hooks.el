@@ -3,6 +3,7 @@
 (defalias 'inf-ruby-keys 'inf-ruby-setup-keybindings)
 
 (setq inf-ruby-prompt-pattern "^[0-9.]+ ([^)]+):[0-9]+ [>*]")
+(setq inf-ruby-prompt-pattern "^irb([^)]+)[0-9:]+[>*]")
 (setq inf-ruby-first-prompt-pattern "^[0-9.]+ ([^)]+):[0-9]+ [>*]")
 
 (defun toby/ruby-init ()

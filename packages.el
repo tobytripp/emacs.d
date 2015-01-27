@@ -32,7 +32,7 @@
      coffee-mode                             outline-magic
      column-marker                           paredit
      company-mode                            parenface
-     dired+                                  peepopen
+     dired+
      el-autoyas                              projectile
      emmet-mode                              rainbow-delimiters
      epresent                                rbenv

@@ -12,8 +12,5 @@
       (keyfreq-autosave-mode 1)
       ))
 
-(global-unset-key (kbd "<f3>"))
-(global-set-key (kbd "<f3>") 'occur)
-
 (if (require 'real-auto-save nil 'noerror)
     (add-hook 'text-mode-hook 'turn-on-real-auto-save))

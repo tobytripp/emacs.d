@@ -5,7 +5,7 @@
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 
 (setq haskell-program-name "/usr/bin/ghci")
-(add-hook 'haskell-mode-hook 'turn-on-haskell-ghci)
+;; (add-hook 'haskell-mode-hook 'turn-on-haskell-ghci)
 
 (defun my-haskell-keys ()
   (local-unset-key (kbd "M-r"))

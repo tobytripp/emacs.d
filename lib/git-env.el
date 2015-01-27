@@ -5,7 +5,6 @@
 ;; https://github.com/nonsequitur/git-gutter-plus
 (if (require 'git-gutter+ nil 'noerror)
     (progn
-      (global-git-gutter+-mode t)
       (setq git-gutter+-diff-options "-w")
       (global-set-key (kbd "C-x n") 'git-gutter+-next-hunk)
       (global-set-key (kbd "C-x p") 'git-gutter+-previous-hunk)
@@ -26,6 +25,5 @@
        (kill-buffer)
        (jump-to-register :magit-fullscreen))
 
-     (global-magit-wip-save-mode 1)
      (define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
      ))

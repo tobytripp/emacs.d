@@ -28,9 +28,8 @@
 (setq twittering-username "tobytripp")
 (setq twittering-icon-mode t)
 
-(set-fringe-style -1)
-
-(require 'highlight-indentation)
+(autoload 'highlight-indentation-current-column-mode "highlight-indentation")
+(autoload 'highlight-indentation-mode "highlight-indentation")
 
 (setq whitespace-display-mappings
       '((space-mark 32   [183]  [46])   ; normal space, ·

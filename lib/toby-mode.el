@@ -47,7 +47,8 @@
   "update the mtime of the file for the current buffer"
   (interactive)
   (save-some-buffers 't)
-  (shell-command (concat "touch " (shell-quote-argument (buffer-file-name))))
+  (shell-command (concat "touch "
+			 (shell-quote-argument (buffer-file-name))))
   (clear-visited-file-modtime)
   (message "I'm touched")
   )

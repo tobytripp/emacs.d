@@ -26,8 +26,6 @@
 ;; (global-set-key [escape] 'keyboard-quit)
 (global-set-key (kbd "s-x") 'smex)   ; s-x == M-x
 
-(global-set-key (kbd "M-s") 'save-buffer)
-
 (global-set-key (kbd "M-g") 'goto-line)
 (global-set-key (kbd "M-z") 'zap-to-char)
 (global-set-key (kbd "s-z") 'undo)
@@ -72,19 +70,6 @@
 ;; Should be able to eval-and-replace anywhere.
 (global-set-key (kbd "C-c e") 'eval-and-replace)
 
-(global-set-key (kbd "C-c q") 'join-line)
-
-(global-set-key [f5] '(lambda () (interactive) (revert-buffer nil t nil)))
-
-;; This is a little hacky since VC doesn't support git add internally
-(eval-after-load 'vc
-  (define-key vc-prefix-map "i"
-    '(lambda () (interactive)
-       (if (not (eq 'Git (vc-backend buffer-file-name)))
-           (vc-register)
-         (shell-command (format "git add %s" buffer-file-name))
-         (message "Staged changes.")))))
-
 ;; Activate occur easily inside isearch
 (define-key isearch-mode-map (kbd "C-o")
   (lambda () (interactive)
@@ -99,11 +84,6 @@
 (global-unset-key (kbd "C-;"))
 (global-set-key (kbd "C-:") 'toggle-mac-option-modifier)
 
-(add-hook 'ruby-mode-hook
-          (lambda ()
-            (define-key ruby-mode-map (kbd "C-;") 'insert-rocket)
-            ))
-
 ;; (define-key haskell-mode-map (kbd "C-;") 'insert-arrow)
 (global-set-key (kbd "s-;") 'insert-ellipses)
 ;; Interferes with normal arrow-key functionality in terminals
@@ -114,12 +94,10 @@
 ;; (define-key *textmate-mode-map* [(meta shift l)] 'textmate-select-line)
 ;; (define-key *textmate-mode-map* [(meta \[)]      'textmate-shift-left)
 ;; (define-key *textmate-mode-map* [(meta \])]      'textmate-shift-right)
-;; (define-key *textmate-mode-map* [(super t)]      'textmate-goto-file)
-
-(global-set-key (kbd "C-S-g") 'magit-status)
 
 (global-unset-key [f1])
 (global-set-key [f1] 'vc-annotate)
+
 (global-unset-key [f2])
 (global-set-key [f2] 'magit-status)
 

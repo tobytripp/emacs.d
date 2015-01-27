@@ -102,7 +102,7 @@ Export it to HTML with:
 
  Also create a place to put my various initialization hooks.
  #+BEGIN_SRC emacs-lisp
-   (defvar lib-dir (concat dotfiles-dir "lib/"))
+   (defvar lib-dir (concat dotfiles-dir "elisp/"))
    (add-to-list 'load-path lib-dir)
  #+END_SRC
 
@@ -128,6 +128,15 @@ I keep these in a separate file to make it easy to find them.
 #+BEGIN_SRC emacs-lisp
   (require 'packages)
 #+END_SRC
+
+*** TODO Missing Packages?
+    These packages seem to be required to initialize but are missing
+    from the package list.
+    - flx-ido
+    - js-comint
+    - org
+    - yasnippet
+    - dired+
 
 ** Load Third-Party Libraries from =Vendor=
 
@@ -158,9 +167,12 @@ I keep these in a separate file to make it easy to find them.
      (require 'ob-tangle)
 
      (defun toby/babel-load-file (relative-path)
-       "Load the given file using org-babel-load-file.  Path should be relative to lib-dir"
-       (org-babel-load-file (expand-file-name relative-path lib-dir)))
+       "Load the given file using org-babel-load-file.  Path should be
+     relative to lib-dir"
+       (org-babel-load-file (expand-file-name relative-path lib-dir) t))
    #+END_SRC
+
+   Consider =byte-compile-directory=
 
    #+BEGIN_SRC emacs-lisp
      (defun toby/init-compile (&optional prefix-arg)

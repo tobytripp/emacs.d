@@ -8,6 +8,7 @@
    turn this off temporarily press: =C-f=.
 
    #+BEGIN_SRC emacs-lisp
+     (require-package 'f) ;; undeclared dependency?
      (require-package 'projectile)
      (projectile-global-mode)
      (global-set-key (kbd "C-x f") 'projectile-find-file)

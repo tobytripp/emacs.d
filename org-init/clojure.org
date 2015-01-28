@@ -1,0 +1,50 @@
+* Clojure Customizations
+
+** Cider
+
+   This will pull in =clojure-mode= as well.
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'cider)
+
+     (defun toby/save-and-eval-buffer ()
+       "Save open buffers and send the current buffer to the active Cider session."
+       (interactive)
+       (save-some-buffers 't)
+       (cider-eval-buffer))
+
+     (eval-after-load 'cider
+       '(progn
+          (define-key cider-mode-map (kbd "C-x M-e") 'repl/eval-and-print)
+          (define-key cider-mode-map (kbd "<f3>")    'cider-eval-defun-at-point)
+          (define-key cider-mode-map (kbd "<f5>")    'toby/save-and-eval-buffer)
+          (define-key cider-mode-map (kbd "C-c C-e") 'cider-eval-print-last-sexp)))
+
+     (add-hook 'cider-interaction-mode-hook 'cider-turn-on-eldoc-mode)
+
+     (toby/defhook cider-mode-hook (paredit-mode))
+   #+END_SRC
+
+** Clojure
+
+   Paredit is my bestest friend
+   #+BEGIN_SRC emacs-lisp
+     (defun toby/clojure-init ()
+       (paredit-mode 1)
+
+       ;; Compojure Macros:
+       (define-clojure-indent
+         (defroutes 'defun)
+         (GET 2)
+         (POST 2)
+         (PUT 2)
+         (DELETE 2)
+         (HEAD 2)
+         (ANY 2)
+         (context 2)))
+
+     (add-hook 'clojure-mode-hook 'toby/clojure-init)
+   #+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(provide 'clojure) 
+#+END_SRC

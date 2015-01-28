@@ -1,0 +1,41 @@
+* Finding Files
+
+** Projectile
+   One important note about =projectile= and =flx=: their matching is
+   aggressive.  This is a nice feature most of the time, except when
+   you want to open a new file.  They'll eagerly find you some
+   file–any file–that matches the name you're trying to enter.  So, to
+   turn this off temporarily press: =C-f=.
+
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'projectile)
+     (projectile-global-mode)
+     (global-set-key (kbd "C-x f") 'projectile-find-file)
+     (global-unset-key (kbd "<f4>"))
+     (global-set-key (kbd "<f4>") 'projectile-find-file)
+   #+END_SRC
+
+** Fuzzy Matching of File and Command Names
+
+   Fuzzy matching is brought in with the =flx= package.
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'flx-ido)
+     (require 'flx-ido)
+
+     (ido-mode 1)
+     (ido-everywhere 1)
+     (flx-ido-mode 1)
+   #+END_SRC
+
+** Open Recent Files
+
+   Enable “Open Recent” and give it a keybinding:
+   #+BEGIN_SRC emacs-lisp
+     (recentf-mode 1)
+     (global-set-key (kbd "C-c f") 'recentf-open-files)
+   #+END_SRC
+
+
+#+BEGIN_SRC emacs-lisp
+  (provide 'find-file)
+#+END_SRC

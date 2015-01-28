@@ -14,7 +14,7 @@ history
 /.recentf
 /.org-id-locations
 web-vcs-log.org
-/el-get/*
 projectile-bookmarks.eld
 /projectile.cache
-/toby.el
+/org-init/*.el
+/org-init/*.elc

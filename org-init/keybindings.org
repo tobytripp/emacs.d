@@ -1,0 +1,149 @@
+#+TITLE: Toby's Emacs Keybindings
+#+AUTHOR: Toby Tripp
+
+* Keybindings
+
+** TODO Start with an overview of commands I haven't changed
+
+** Keyboard and Mouse Set-up
+   Bind Mac modifier keys:
+   #+BEGIN_SRC emacs-lisp
+     (setq
+      ns-command-modifier   'meta        ; Apple/Command key is Meta
+      ns-alternate-modifier 'super       ; Option is the Mac Option key
+      ns-function-modifier  'hyper       ; 'super or 'hyper
+      ns-pop-up-frames       nil
+      )
+   #+END_SRC
+
+   Make `super` + x the same as Meta-x:
+   #+BEGIN_SRC emacs-lisp
+     (global-set-key (kbd "s-x") 'smex)
+   #+END_SRC
+
+   Mouse scrolling needs to calm down:
+   #+BEGIN_SRC emacs-lisp
+     (setq mouse-wheel-scroll-amount '(1))
+     (setq mouse-wheel-progressive-speed nil)
+   #+END_SRC
+
+   Adjust the echo threshold for key-chords:
+   #+BEGIN_SRC emacs-lisp
+     (setq echo-keystrokes 0.02)
+   #+END_SRC
+
+** Terminal Mode Affordances
+   Attempt to accomodate modifiers to arrow keys in the terminal:
+   #+BEGIN_SRC emacs-lisp
+     (define-key input-decode-map "\e[1;5A" [C-up])
+     (define-key input-decode-map "\e[1;5B" [C-down])
+     (define-key input-decode-map "\e[1;5C" [C-right])
+     (define-key input-decode-map "\e[1;5D" [C-left])
+
+     (define-key function-key-map "\M-[ a"  [C-up])
+     (define-key function-key-map "\M-[ b"  [C-down])
+     (define-key function-key-map "\M-[ c"  [C-right])
+     (define-key function-key-map "\M-[ d"  [C-left])
+   #+END_SRC
+
+** Searching/Replacing
+
+   #+BEGIN_SRC emacs-lisp
+     (global-set-key (kbd "C-s")   'isearch-forward-regexp)
+     (global-set-key (kbd "C-r")   'isearch-backward-regexp)
+     (global-set-key (kbd "C-M-s") 'isearch-forward)
+     (global-set-key (kbd "C-M-r") 'isearch-backward)
+     (global-set-key (kbd "M-%")   'query-replace-regexp)
+
+     (global-set-key [(meta shift a)]       'ack)
+     (global-set-key [(meta super shift a)] 'ack-same)
+   #+END_SRC
+
+   Activate occur easily inside isearch:
+   #+BEGIN_SRC emacs-lisp
+     (define-key isearch-mode-map (kbd "C-o")
+       (lambda () (interactive)
+         (let ((case-fold-search isearch-case-fold-search))
+           (occur (if isearch-regexp isearch-string (regexp-quote isearch-string))))))
+   #+END_SRC
+
+** Navigation
+
+   #+BEGIN_SRC emacs-lisp
+     (global-set-key (kbd "M-g") 'goto-line)
+     (global-set-key (kbd "M-z") 'zap-to-char)
+     (global-unset-key (kbd "M-SPC"))
+     (global-set-key   (kbd "M-SPC") 'ace-jump-mode)
+   #+END_SRC
+
+** Frame/Window Properties
+   #+BEGIN_SRC emacs-lisp
+     (define-key global-map (kbd "C-+") 'text-scale-increase)
+     (define-key global-map (kbd "C--") 'text-scale-decrease)
+     (global-set-key (kbd "C-s-f")     'ns-toggle-fullscreen)
+   #+END_SRC
+
+** File and Buffer Switching
+
+   Commands to switch buffers:
+   #+BEGIN_SRC emacs-lisp
+     (global-set-key (kbd "C-x C-i") 'ido-imenu)
+
+     (global-set-key (kbd "C-x M-f")   'ido-find-file-other-window)
+     (global-set-key (kbd "C-c y")     'bury-buffer)
+     (global-set-key (kbd "C-c r")     'revert-buffer)
+     (global-set-key (kbd "M-`")       'file-cache-minibuffer-complete)
+     (global-set-key (kbd "C-x C-b")   'ibuffer)
+   #+END_SRC
+
+   Commands to switch windows:
+   #+BEGIN_SRC emacs-lisp
+     (windmove-default-keybindings) ;; Shift+direction
+     (global-set-key (kbd "C-x O")   (lambda () (interactive) (other-window -1))) ;; back one
+     (global-set-key (kbd "C-x C-o") (lambda () (interactive) (other-window  2))) ;; forward two
+   #+END_SRC
+
+   The =switch-window= package will display numbers in the various
+   open windows, if there are more than two.  This can make things a
+   bit easier to navigate when you have your screen split up into a
+   bunch of different panes.
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'switch-window)
+     (global-set-key (kbd "C-x o")   'switch-window)
+   #+END_SRC
+
+   For those occassions when you want the old window switching behavior:
+   #+BEGIN_SRC emacs-lisp
+     (global-unset-key (kbd "<f3>"))
+     (global-set-key (kbd "<f3>") 'other-window)
+   #+END_SRC
+
+   On keyboards that have extra function keys, some handy short-cuts:
+   #+BEGIN_SRC emacs-lisp
+     (global-set-key (kbd "<f14>")   'other-window)
+   #+END_SRC
+
+   On larger screens, I like to divide me frame into thirds:
+   #+BEGIN_SRC emacs-lisp
+     (defun split-in-thirds ()
+       "Split the window vertically into three segments."
+       (interactive)
+       (split-window-horizontally)
+       (split-window-horizontally)
+       (balance-windows)
+       )
+
+     (global-set-key (kbd "C-x 6") 'split-in-thirds)
+   #+END_SRC
+
+** Getting Help
+
+   Prefer full =apropos= search over the default =apropos-command=:
+   #+BEGIN_SRC emacs-lisp
+   (global-set-key (kbd "C-h a") 'apropos)
+   #+END_SRC
+
+
+#+BEGIN_SRC emacs-lisp
+(provide 'keybindings)
+#+END_SRC

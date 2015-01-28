@@ -82,3 +82,5 @@ region or the entire buffer."
     (let ((start (car bounds))
 	    (end   (cdr bounds)))
       (underscore-region start end))))
+
+(provide 'code-processors)

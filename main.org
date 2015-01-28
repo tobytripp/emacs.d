@@ -88,10 +88,7 @@ Export it to HTML with:
  Add some directories to the load path so we can require files in them later.
 
  #+BEGIN_SRC emacs-lisp
-   (defvar dotfiles-dir
-     (file-name-directory
-      (or (buffer-file-name) load-file-name)))
-   (add-to-list 'load-path dotfiles-dir)
+   (defvar dotfiles-dir user-emacs-directory)
  #+END_SRC
 
  Make a path to add libraries installed from source.
@@ -104,11 +101,13 @@ Export it to HTML with:
  #+BEGIN_SRC emacs-lisp
    (defvar lib-dir (concat dotfiles-dir "elisp/"))
    (add-to-list 'load-path lib-dir)
+   (defvar org-lib-dir (concat dotfiles-dir "org-init/"))
+   (add-to-list 'load-path org-lib-dir)
  #+END_SRC
 
 ** Change the Destination of Customization Settings
 
-These are the settings saved from the customize menus within Emacs.
+These are the settings saved from the customize menus and prompts within Emacs.
 
 #+BEGIN_SRC emacs-lisp
   (setq custom-file "~/.emacs.d/custom.el")
@@ -126,7 +125,7 @@ I keep these in a separate file to make it easy to find them.
 ** Install and Load Packages
 
 #+BEGIN_SRC emacs-lisp
-  (require 'packages)
+  (require 'init-packages)
 #+END_SRC
 
 *** TODO Missing Packages?
@@ -169,7 +168,7 @@ I keep these in a separate file to make it easy to find them.
      (defun toby/babel-load-file (relative-path)
        "Load the given file using org-babel-load-file.  Path should be
      relative to lib-dir"
-       (org-babel-load-file (expand-file-name relative-path lib-dir) t))
+       (org-babel-load-file (expand-file-name relative-path org-lib-dir)))
    #+END_SRC
 
    Consider =byte-compile-directory=
@@ -200,22 +199,23 @@ I keep these in a separate file to make it easy to find them.
    warnings so that a problem in a particular extension doesn't bring
    start-up to a halt.
    #+BEGIN_SRC emacs-lisp
+     ;; (with-demoted-errors
+     ;;   (mapc #'load
+     ;;         (mapcar 'file-name-sans-extension
+     ;;                 (directory-files lib-dir nil ".*el$")))
+     ;;   (message "Lib files loaded!"))
+
+     (require 'emacs-hooks)
+     (require 'defuns)
+
      (with-demoted-errors
-       (mapc #'load
-             (mapcar 'file-name-sans-extension
-                     (directory-files lib-dir nil ".*el$")))
-       (message "Lib files loaded!"))
+       (mapc #'toby/babel-load-file
+             (directory-files org-lib-dir nil ".*org$")))
    #+END_SRC
 
    Errors encountered while loading these libraries will show up in
    the Messages buffer after start-up.
 
-** Custom Keybindings
-
-   Load my keybindings.
-   #+BEGIN_SRC emacs-lisp
-   (require 'keybindings)
-   #+END_SRC
 
 *** TODO Create a Keybinding Help Page from Map Source
 
@@ -232,8 +232,13 @@ I keep these in a separate file to make it easy to find them.
 
 ** If Something Goes Wrong
 
-   Sometimes it helps to launch the debugger when an error occurs:
+   Sometimes it helps to launch the debugger when an error occurs.  By
+   default, I've turned that off:
    #+BEGIN_SRC emacs-lisp
      (setq debug-on-error       nil)
-     (setq debug-ignored-errors nil)
+   #+END_SRC
+
+   to turn it on:
+   #+BEGIN_SRC emacs-lisp :tangle no
+     (setq debug-on-error       t)
    #+END_SRC

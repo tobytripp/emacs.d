@@ -1,0 +1,70 @@
+* EShell
+  EShell is a shell written in elisp.  This makes it both less
+  capable than other terminal emulators and also gives it some
+  interesting features.
+
+** COMMENT Opening EShells
+   First, a short-cut to quickly open a shell.  Repeated invocations
+   will bring back the same shell so we don't end up with a bunch of
+   them runningn about.
+   #+BEGIN_SRC emacs-lisp
+     (global-set-key (kbd "C-x m") 'eshell)
+   #+END_SRC
+
+   It's nice to have an easy short-cut to launch into a shell in the
+   current buffer's directory.  We'll start with a function to lauch it:
+   #+BEGIN_SRC emacs-lisp
+     (defun toby/eshell-in-buffer-dir ()
+       "Open eshell in the current buffer's directory"
+       (interactive)
+       (let ((dir default-directory))
+         (let ((b (get-buffer eshell-buffer-name)))
+           (unless b (eshell))
+           )
+         (display-buffer eshell-buffer-name t)
+         (switch-to-buffer-other-window eshell-buffer-name)
+         (end-of-buffer)
+         (unless (equalp dir default-directory)
+           (cd dir)
+           (eshell-send-input)
+           (end-of-buffer))))
+   #+END_SRC
+
+   and a binding to launch it:
+   #+BEGIN_SRC emacs-lisp
+     (global-set-key (kbd "C-x C-m") 'toby/eshell-in-buffer-dir)
+   #+END_SRC
+
+   Sometimes what you want /is/ another shell instance:
+   #+BEGIN_SRC emacs-lisp
+    ;; Start a new eshell even if one is active.
+     (global-set-key (kbd "C-x M") (lambda () (interactive) (eshell t)))
+   #+END_SRC
+
+   One great feature of Eshell is its ability to call Emacs functions
+   as though they were shell commands.  Here we'll define an alias
+   =ff= that will open a file from the Eshell command line into an
+   Emacs buffer:
+   #+BEGIN_SRC emacs-lisp
+     (add-hook 'eshell-mode-hook
+               (lambda ()
+                 (defalias 'ff 'find-file)
+                 ))
+   #+END_SRC
+
+   Adjust some =comint= parameters (the mode that handles terminal buffers).
+   #+BEGIN_SRC emacs-lisp
+     (setq comint-buffer-maximum-size 10240)
+     (add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
+     (add-hook 'comint-output-filter-functions 'comint-watch-for-password-prompt)
+   #+END_SRC
+
+   Multi-term is an extension for running multiple native shells within Emacs:
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'multi-term)
+     (setq multi-term-program "/bin/bash -l")
+   #+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (provide 'eshell-hooks)
+#+END_SRC

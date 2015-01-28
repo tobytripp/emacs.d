@@ -1,0 +1,55 @@
+* Git Source Control
+
+** Git Executable Path
+
+   #+BEGIN_SRC emacs-lisp
+     (setenv  "PATH" (concat (getenv "PATH") ":" "/usr/local/bin" ":" "/usr/local/git/bin/"))
+     (setq exec-path (append exec-path '("/usr/local/bin")))
+     (setq exec-path (append exec-path '("/usr/local/git/bin")))
+   #+END_SRC
+
+** Magit
+
+   Probably the very best git front-end out there.
+
+   I like it to open full-screen and then restore my windows where
+   they were when it is done:
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'magit)
+     (eval-after-load "magit"
+       '(progn
+          (defadvice magit-status (around magit-fullscreen activate)
+            (window-configuration-to-register :magit-fullscreen)
+            ad-do-it
+            (delete-other-windows))
+
+          (defun magit-quit-session ()
+            "Restores the previous window configuration and kills the magit buffer"
+            (interactive)
+            (kill-buffer)
+            (jump-to-register :magit-fullscreen))
+
+          (define-key magit-status-mode-map (kbd "q") 'magit-quit-session)))
+   #+END_SRC
+
+   Quick one-button git status:
+   #+BEGIN_SRC emacs-lisp
+     (global-set-key (kbd "<f2>") 'magit-status)
+   #+END_SRC
+
+** vc-annotate
+
+   Built-in to Emacs and really useful.  It allows you to not only
+   view source control annotations, but also to move back and forward
+   in time within the file.  Very nice.
+
+   It's nicer, I think, when it ignores white-space:
+   #+BEGIN_SRC emacs-lisp
+     (defun vc-git-annotate-command (file buf &optional rev)
+       (let ((name (file-relative-name file)))
+         (vc-git-command buf 0 name "blame" "-w" rev)))
+   #+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(provide 'git-init)
+#+END_SRC

@@ -26,9 +26,9 @@
      autopair                                markdown-mode
      browse-kill-ring                        mmm-mode
      centered-cursor-mode                    multi-term
-     change-inner                            org-mode
+     change-inner
      clojure-mode
-     cider                                   org-reveal
+     cider                                   ;; org-reveal
      coffee-mode                             outline-magic
      column-marker                           paredit
      company-mode                            parenface
@@ -37,9 +37,10 @@
      emmet-mode                              rainbow-delimiters
      epresent                                rbenv
      expand-region                           rhtml-mode
-                                             rspec-mode
+     f                                       rspec-mode
      fill-column-indicator                   ruby-end
      flx                                     ruby-mode
+     flx-ido
      flycheck                                smart-mode-line
      full-ack                                smex
                                              solarized-theme

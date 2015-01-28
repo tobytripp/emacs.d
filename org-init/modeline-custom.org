@@ -1,0 +1,35 @@
+* Modeline
+
+  By default, the modeline in Emacs will show you information about
+  everything.  Unfortunately, by trying to show you everything, it
+  ends up showing you little of actual use.
+
+** Smart Mode Line
+   This package gives you some control of what shows up in the mode-line.
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'smart-mode-line)
+     (if (require 'smart-mode-line nil 'noerror)
+         (progn
+           (setq sml/mode-width 25) ; https://github.com/Bruce-Connor/smart-mode-line/issues/12
+           (setq sml/shorten-modes t)
+           (setq sml/hidden-modes '("GitGutter" "MRev" "company" "mate" "Projectile"))
+           (if after-init-time (sml/setup)
+             (add-hook 'after-init-hook 'sml/setup))
+
+           (add-to-list 'sml/replacer-regexp-list '("^~/Dropbox/" ":DB:"))
+           (add-to-list 'sml/replacer-regexp-list '("^~/Code/investor-bridge" ":IB:"))
+           (add-to-list 'sml/replacer-regexp-list '("^~/.*/lib/ruby/gems" ":GEMS" ))
+           ))
+   #+END_SRC
+
+** Showing the Time
+
+   24-hour time, of course:
+   #+BEGIN_SRC emacs-lisp
+     (setq display-time-24hr-format t)
+     (display-time-mode 1)
+   #+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(provide 'modeline-custom) 
+#+END_SRC

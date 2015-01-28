@@ -1,0 +1,120 @@
+#+TITLE:  Customizations That Serve No Other Purpose Than to Make Me Happy
+#+AUTHOR: Toby Tripp
+
+* Senseless Eye-Candy
+
+** Frame Opacity
+   I'm not entirely sure why, but I like to be able to see /through/
+   my editor window.  Sometimes I can read documentation through
+   there, but I have no real excuse other than I think it looks cool.
+
+   First, a function that adjusts the frame opacity:
+   #+BEGIN_SRC emacs-lisp
+      (defun opacity-modify (&optional dec)
+        "Modify the transparency of the emacs frame; if DEC is t,
+       decrease the transparency, otherwise increase it in 5%-steps"
+        (let* ((alpha-or-nil (frame-parameter nil 'alpha)) ; nil before setting
+               (oldalpha (if alpha-or-nil alpha-or-nil 100))
+               (newalpha (if dec (- oldalpha 5) (+ oldalpha 5))))
+          (when (and (>= newalpha frame-alpha-lower-limit) (<= newalpha 100))
+            (modify-frame-parameters nil (list (cons 'alpha newalpha))))))
+   #+END_SRC
+
+   Then, some interactive functions to call it:
+   #+BEGIN_SRC emacs-lisp
+     (defun toby/increase-frame-opacity ()
+       (interactive)
+       (opacity-modify))
+     (defun toby/decrease-frame-opacity ()
+       (interactive)
+       (opacity-modify t))
+
+     (defun toby/reset-frame-opacity ()
+       (interactive)
+       (modify-frame-parameters nil `((alpha . 100))))
+   #+END_SRC
+
+   Finally, some keybindings to invoke it all:
+     - C-c C-8 will increase opacity (== decrease transparency)
+     - C-c C-9 will decrease opacity (== increase transparency
+     - C-c C-0 will returns the state to normal
+   #+BEGIN_SRC emacs-lisp
+     (global-set-key (kbd "C-c C-8") 'toby/increase-frame-opacity)
+     (global-set-key (kbd "C-c C-9") 'toby/decrease-frame-opacity)
+     (global-set-key (kbd "C-c C-0") 'toby/reset-frame-opacity)
+   #+END_SRC
+
+** WHITESPACE!
+   Show me those pesky white-space errors so I might crush them!
+   #+BEGIN_SRC emacs-lisp
+     (setq whitespace-display-mappings
+           '((space-mark 32   [183]  [46])   ; normal space, ·
+             (space-mark 160  [164]  [95])
+             (space-mark 2208 [2212] [95])
+             (space-mark 2336 [2340] [95])
+             (space-mark 3616 [3620] [95])
+             (space-mark 3872 [3876] [95])
+             (newline-mark 10 [182 10])      ; newlne, ¶
+             (tab-mark 9 [9655 9] [92 9])    ; tab, ▷
+             ))
+     (setq whitespace-line-column 78)
+     (setq whitespace-style  '(face lines-tail))
+   #+END_SRC
+
+   Here are a couple functions that can help line up stubborn bits of code:
+   #+BEGIN_SRC emacs-lisp
+     (autoload 'highlight-indentation-current-column-mode "highlight-indentation")
+     (autoload 'highlight-indentation-mode "highlight-indentation")
+   #+END_SRC
+
+** Word-Wrapping
+
+   Via: http://ergoemacs.org/emacs/emacs23_features.html
+
+   Visual line mode causes lines to be wrapped at word boundaries
+   instead of in the midst of things.
+   #+BEGIN_SRC emacs-lisp
+     (global-visual-line-mode 1)
+   #+END_SRC
+
+** I like λ
+
+   #+BEGIN_SRC emacs-lisp
+     (defun pretty-lambdas ()
+       (font-lock-add-keywords
+        nil `(("(?\\(lambda\\>\\)"
+               (0 (progn (compose-region (match-beginning 1) (match-end 1)
+                                         ,(make-char 'greek-iso8859-7 107))
+                         nil))))))
+   #+END_SRC
+
+** Theme
+   I have one.
+   #+BEGIN_SRC emacs-lisp
+     (load-theme 'toby)
+     ;; Make sure terminals pick up the theme settings:
+     (setq term-default-fg-color (face-foreground 'default))
+     (setq term-default-bg-color (face-background 'default))
+   #+END_SRC
+
+* Twitter
+  Talk about senseless…
+
+  #+BEGIN_SRC emacs-lisp
+    (require-package 'twittering-mode)
+
+    (autoload 'twittering-mode "twittering-mode" "Twitter stream in Emacs")
+    (setq twittering-username "tobytripp")
+    (setq twittering-icon-mode t)
+    (global-set-key (kbd "C-c t") 'twittering-update-status-interactive)
+  #+END_SRC
+
+  Make its window sticky:
+  #+BEGIN_SRC emacs-lisp
+  (toby/defhook twittering-mode-hook
+    (set-window-dedicated-p (selected-window) 1))
+  #+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(provide 'senseless-eye-candy)
+#+END_SRC

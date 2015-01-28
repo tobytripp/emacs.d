@@ -1,5 +1,0 @@
-(:name change-inner
-       :description "change-inner gives you vim's ci command"
-       :type github
-       :pkgname "magnars/change-inner.el"
-       )

@@ -1,3 +1,0 @@
-(:name solarized-theme
-       :description "Solarized theme for emacs"
-       :type elpa)

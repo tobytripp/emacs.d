@@ -195,7 +195,7 @@
  '(ido-first-match ((((class color) (min-colors 89)) (:foreground "#b58900" :weight bold))))
  '(ido-only-match ((((class color) (min-colors 89)) (:foreground "#cb4b16" :weight bold))))
  '(ido-subdir ((((class color) (min-colors 89)) (:foreground "#b58900"))))
- '(linum ((((class color) (min-colors 89)) (:foreground "#839496" :background "#002b36"))))
+ '(linum ((((class color) (min-colors 89)) (:foreground "#839496" :background "black"))))
  '(magit-section-title ((((class color) (min-colors 89)) (:foreground "#b58900" :weight bold))))
  '(magit-branch ((((class color) (min-colors 89)) (:foreground "#cb4b16" :weight bold))))
  '(message-cited-text ((((class color) (min-colors 89)) (:inherit font-lock-comment))))

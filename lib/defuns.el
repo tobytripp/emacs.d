@@ -63,10 +63,16 @@
       (replace-match replace))
     ))
 
-(defun git-grep (regexp)
+(defun git-grep-rb (regexp)
   "Run git-grep on ruby files in the current project"
   (interactive "sSearch for (regexp): ")
   (vc-git-grep regexp "'*.rb'" (textmate-project-root))
+  )
+
+(defun git-grep (regexp)
+  "Run git-grep on files in the current project"
+  (interactive "sSearch for (regexp): ")
+  (vc-git-grep regexp "'*.rb' '*.clj'" (textmate-project-root))
   )
 
 (defun insert-rocket ()

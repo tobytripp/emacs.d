@@ -1,0 +1,3 @@
+(:name emacs-pry
+       :type github
+       :pkgname "jacott/emacs-pry")

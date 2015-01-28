@@ -16,12 +16,17 @@ brighter; it simply makes everything else vanish.
 
 Testing out a Literate emacs configuration.
 
-Edit code snippets with <C-c '>
+** Notes on using this file:
 
-Load this configuration file using the function: =org-babel-load-file=
+   Edit code snippets with <C-c '>
 
-Export it to HTML with:
-  C-c C-e h h     (org-html-export-to-html)
+   Load this configuration file using the function: =org-babel-load-file=
+
+   Export it to HTML with:
+     =C-c C-e h h     (org-html-export-to-html)=
+
+     | Key         | Command                   |
+     | C-c C-e h h | (org-html-export-to-html) |
 
 *** TODO Move init.org into lib-dir and load with stub init.el
 *** TODO Take dotfiles-dir off the load-path and only load from lib-dir

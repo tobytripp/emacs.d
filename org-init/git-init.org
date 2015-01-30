@@ -37,6 +37,19 @@
      (global-set-key (kbd "<f2>") 'magit-status)
    #+END_SRC
 
+** git-grep
+   #+BEGIN_SRC emacs-lisp
+     (defun git-grep-rb (regexp)
+       "Run git-grep on ruby files in the current project"
+       (interactive "sSearch for (regexp): ")
+       (vc-git-grep regexp "'*.rb'" (textmate-project-root)))
+
+     (defun git-grep (regexp)
+       "Run git-grep on files in the current project"
+       (interactive "sSearch for (regexp): ")
+       (vc-git-grep regexp "'*.rb' '*.clj'" (textmate-project-root)))
+   #+END_SRC
+
 ** vc-annotate
 
    Built-in to Emacs and really useful.  It allows you to not only

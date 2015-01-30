@@ -1,0 +1,269 @@
+* HTML Editing
+
+** Emmet Mode
+
+   From the Emmet Docs at https://github.com/smihica/emmet-mode
+
+   #+BEGIN_SRC markdown
+     ## Usage
+
+     Place point in a emmet snippet and press C-j to expand it (or alternatively,
+     alias your preferred keystroke to M-x emmet-expand-line) and
+     you'll transform your snippet into the appropriate tag structure.
+
+     ## HTML abbreviations
+
+     #### Basic tags
+
+         a                        <a href=""></a>
+         a.x                      <a class="x" href=""></a>
+         a#q.x                    <a id="q" class="x" href=""></a>
+         a#q.x.y.z                <a id="q" class="x y z" href=""></a>
+         #q                       <div id="q">
+                                  </div>
+         .x                       <div class="x">
+                                  </div>
+         #q.x                     <div id="q" class="x">
+                                  </div>
+         #q.x.y.z                 <div id="q" class="x y z">
+                                  </div>
+
+     #### Empty tags
+
+         a/                       <a href=""/>
+         a/.x                     <a class="x" href=""/>
+         a/#q.x                   <a id="q" class="x" href=""/>
+         a/#q.x.y.z               <a id="q" class="x y z" href=""/>
+
+     #### Self-closing tags
+
+         input[type=text]         <input type="text" name="" value=""/>
+         img                      <img src="" alt=""/>
+         img>metadata/*2          <img src="" alt="">
+                                      <metadata/>
+                                      <metadata/>
+                                  </img>
+
+     #### Siblings
+
+         a+b                      <a href=""></a>
+                                  <b></b>
+         a+b+c                    <a href=""></a>
+                                  <b></b>
+                                  <c></c>
+         a.x+b                    <a class="x" href=""></a>
+                                  <b></b>
+         a#q.x+b                  <a id="q" class="x" href=""></a>
+                                  <b></b>
+         a#q.x.y.z+b              <a id="q" class="x y z" href=""></a>
+                                  <b></b>
+         a#q.x.y.z+b#p.l.m.n      <a id="q" class="x y z" href=""></a>
+                                  <b id="p" class="l m n"></b>
+
+     #### Tag expansion
+
+         table+                   <table>
+                                      <tr>
+                                          <td>
+                                          </td>
+                                      </tr>
+                                  </table>
+         dl+                      <dl>
+                                      <dt></dt>
+                                      <dd></dd>
+                                  </dl>
+         ul+                      <ul>
+                                      <li></li>
+                                  </ul>
+         ul++ol+                  <ul>
+                                      <li></li>
+                                  </ul>
+                                  <ol>
+                                      <li></li>
+                                  </ol>
+         ul#q.x.y[m=l]            <ul id="q" class="x y" m="l">
+                                      <li></li>
+                                  </ul>
+
+     #### Parent > child
+
+         a>b                      <a href=""><b></b></a>
+         a>b>c                    <a href=""><b><c></c></b></a>
+         a.x>b                    <a class="x" href=""><b></b></a>
+         a#q.x>b                  <a id="q" class="x" href=""><b></b></a>
+         a#q.x.y.z>b              <a id="q" class="x y z" href=""><b></b></a>
+         a#q.x.y.z>b#p.l.m.n      <a id="q" class="x y z" href=""><b id="p" class="l m n"></b></a>
+         #q>.x                    <div id="q">
+                                      <div class="x">
+                                      </div>
+                                  </div>
+         a>b+c                    <a href="">
+                                      <b></b>
+                                      <c></c>
+                                  </a>
+         a>b+c>d                  <a href="">
+                                      <b></b>
+                                      <c><d></d></c>
+                                  </a>
+
+     #### Climb-up
+
+         a>b^c                    <a href=""><b></b></a><c></c>
+         a>b>c^d                  <a href="">
+                                      <b><c></c></b>
+                                      <d></d>
+                                  </a>
+         a>b>c^^d                 <a href=""><b><c></c></b></a>
+                                  <d></d>
+
+
+     #### Properties
+
+         b[x]                     <b x=""></b>
+         b[x=]                    <b x=""></b>
+         b[x=""]                  <b x=""></b>
+         b[x=y]                   <b x="y"></b>
+         b[x="y"]                 <b x="y"></b>
+         b[x="()"]                <b x="()"></b>
+         b[x m]                   <b x="" m=""></b>
+         b[x= m=""]               <b x="" m=""></b>
+         b[x=y m=l]               <b x="y" m="l"></b>
+         b/[x=y m=l]              <b x="y" m="l"/>
+         b#foo[x=y m=l]           <b id="foo" x="y" m="l"></b>
+         b.foo[x=y m=l]           <b class="foo" x="y" m="l"></b>
+         b#foo.bar.mu[x=y m=l]    <b id="foo" class="bar mu" x="y" m="l"></b>
+         b/#foo.bar.mu[x=y m=l]   <b id="foo" class="bar mu" x="y" m="l"/>
+         b[x=y]+b                 <b x="y"></b>
+                                  <b></b>
+         b[x=y]+b[x=y]            <b x="y"></b>
+                                  <b x="y"></b>
+         b[x=y]>b                 <b x="y"><b></b></b>
+         b[x=y]>b[x=y]            <b x="y"><b x="y"></b></b>
+         b[x=y]>b[x=y]+c[x=y]     <b x="y">
+                                      <b x="y"></b>
+                                      <c x="y"></c>
+                                  </b>
+
+     #### Parentheses
+
+         (a)                      <a href=""></a>
+         (a)+(b)                  <a href=""></a>
+                                  <b></b>
+         a>(b)                    <a href=""><b></b></a>
+         (a>b)>c                  <a href=""><b></b></a>
+         (a>b)+c                  <a href=""><b></b></a>
+                                  <c></c>
+         z+(a>b)+c+k              <z></z>
+                                  <a href=""><b></b></a>
+                                  <c></c>
+                                  <k></k>
+         (x)*2                    <x></x>
+                                  <x></x>
+         ((x)*2)                  <x></x>
+                                  <x></x>
+         ((x))*2                  <x></x>
+                                  <x></x>
+         (x>b)*2                  <x><b></b></x>
+                                  <x><b></b></x>
+         (x+b)*2                  <x></x>
+                                  <b></b>
+                                  <x></x>
+                                  <b></b>
+
+     #### Text
+
+         a{Click me}              <a href="">Click me</a>
+         a>{Click me}*2           <a href="">
+                                      Click me
+                                      Click me
+                                  </a>
+         x{click}+b{here}         <x>click</x>
+                                  <b>here</b>
+         span>{click}+b{here}     <span>
+                                      click
+                                      <b>here</b>
+                                  </span>
+         p>{Click}+span{here}+{ to continue}
+                                  <p>
+                                      Click
+                                      <span>here</span>
+                                       to continue
+                                  </p>
+         p{Click}+span{here}+{ to continue}
+                                  <p>
+                                      Click
+                                  </p>
+                                  <span>here</span>
+                                   to continue
+
+     #### Lorem-Ipsum generator
+
+         lorem                    Diam, vulputate ut pharetra sit amet, aliquam id! Egestas sed tempus, urna et pharetra pharetra, massa massa ultricies mi, quis hendrerit dolor magna eget est lorem ipsum dolor sit amet!
+         lorem5                   Hendrerit gravida rutrum quisque non?
+         ipsum3                   Viverra ipsum nunc.
+         p*3>lorem3               <p>Pellentesque elit eget?</p>
+                                  <p>Sed odio morbi?</p>
+                                  <p>Eget arcu dictum!</p>
+         ul.list>ipsum3*3         <ul class=\"list\">
+                                      Nam libero justo.
+                                      Pellentesque habitant morbi?
+                                      Enim blandit volutpat.
+                                  </ul>
+         ul.list>ipsum3.itm*3     <ul class=\"list\">
+                                      <div class=\"itm\">Urna condimentum mattis.</div> <!-- emmet-mode doesn't support implicit tag name resolver -->
+                                      <div class=\"itm\">Sed turpis tincidunt.</div>
+                                      <div class=\"itm\">Faucibus turpis in?</div>
+                                  </ul>
+         ul.list>(li.itm>lorem3)*3
+                                  <ul class=\"list\">
+                                      <li class=\"itm\">Est pellentesque elit.</li>
+                                      <li class=\"itm\">In nulla posuere.</li>
+                                      <li class=\"itm\">Felis eget nunc.</li>
+                                  </ul>
+
+     #### Filter: escape
+
+         script[src=&quot;]|e     &lt;script src="&amp;quot;"&gt;
+                                  &lt;/script&gt;
+
+     #### Aliases
+
+         html:5                   <!doctype html>
+                                  <html lang="en">
+                                    <head>
+                                      <meta charset="UTF-8"/>
+                                      <title>Document</title>
+                                    </head>
+                                    <body>
+                                    </body>
+                                  </html>
+
+         html:xt                  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+                                  <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+                                    <head>
+                                      <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+                                      <title>Document</title>
+                                    </head>
+                                  </html>
+
+         meta:vp                  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+
+   #+END_SRC
+
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'emmet-mode)
+     (autoload 'emmet-mode "emmet-mode")
+
+     (add-hook 'sgml-mode-hook 'emmet-mode)
+     (add-hook 'css-mode-hook  'emmet-mode)
+     (add-hook 'sass-mode-hook 'emmet-mode)
+   #+END_SRC
+
+** Sass Mode
+
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'sass-mode)
+     (autoload 'sass-mode "sass-mode")
+
+     (add-to-list 'auto-mode-alist '("\.scss$" . sass-mode))
+   #+END_SRC

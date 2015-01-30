@@ -32,7 +32,7 @@
    #+BEGIN_SRC emacs-lisp
      (add-hook 'org-mode-hook
                (lambda ()
-                 (load-library "ox-reveal")
+                 ;; (load-library "ox-reveal")
                  (local-set-key (kbd "s-r") 'org-babel-tangle)))
 
      (defadvice org-html-src-block

@@ -5,46 +5,34 @@
 
 ** TODO Start with an overview of commands I haven't changed
 
-** Keyboard and Mouse Set-up
-   Bind Mac modifier keys:
-   #+BEGIN_SRC emacs-lisp
-     (setq
-      ns-command-modifier   'meta        ; Apple/Command key is Meta
-      ns-alternate-modifier 'super       ; Option is the Mac Option key
-      ns-function-modifier  'hyper       ; 'super or 'hyper
-      ns-pop-up-frames       nil
-      )
-   #+END_SRC
+** Dired
 
-   Make `super` + x the same as Meta-x:
-   #+BEGIN_SRC emacs-lisp
-     (global-set-key (kbd "s-x") 'smex)
-   #+END_SRC
+   | Keystroke     | Command                               |
+   | C-x d         | Open Dired                            |
+   | C-x d <REGEX> | Open Dired filterd by REGEX           |
+   | m             | Mark an entry                         |
+   | t             | Swap marks                            |
+   | Q             | Query Replace in marked entries       |
+   | c             | Copy marked files                     |
+   | D             | Delete marked files                   |
+   | R             | Rename                                |
+   | s             | Symlink marked files                  |
+   | T             | Touch marked files                    |
+   | Z             | Compress marked files                 |
+   | :e            | Encrypt                               |
+   | :d            | Decrypt                               |
+   | L             | Load elisp files                      |
+   | B             | Byte-compile elisp files              |
+   | A             | Search marked file                    |
+   | u             | Unmark file                           |
+   | i             | Insert subdirectory into this listing |
+   | g             | Read all dirs aGain                   |
+   | ^             | Go up a directory                     |
+   | X             | Shell Command on files                |
 
-   Mouse scrolling needs to calm down:
-   #+BEGIN_SRC emacs-lisp
-     (setq mouse-wheel-scroll-amount '(1))
-     (setq mouse-wheel-progressive-speed nil)
-   #+END_SRC
-
-   Adjust the echo threshold for key-chords:
-   #+BEGIN_SRC emacs-lisp
-     (setq echo-keystrokes 0.02)
-   #+END_SRC
-
-** Terminal Mode Affordances
-   Attempt to accomodate modifiers to arrow keys in the terminal:
-   #+BEGIN_SRC emacs-lisp
-     (define-key input-decode-map "\e[1;5A" [C-up])
-     (define-key input-decode-map "\e[1;5B" [C-down])
-     (define-key input-decode-map "\e[1;5C" [C-right])
-     (define-key input-decode-map "\e[1;5D" [C-left])
-
-     (define-key function-key-map "\M-[ a"  [C-up])
-     (define-key function-key-map "\M-[ b"  [C-down])
-     (define-key function-key-map "\M-[ c"  [C-right])
-     (define-key function-key-map "\M-[ d"  [C-left])
-   #+END_SRC
+   Also great is the =wdired= command, which creates a =dired= listing
+   that can be edited and saved. This makes for easy renames and file
+   mode changes.
 
 ** Searching/Replacing
 
@@ -65,6 +53,11 @@
        (lambda () (interactive)
          (let ((case-fold-search isearch-case-fold-search))
            (occur (if isearch-regexp isearch-string (regexp-quote isearch-string))))))
+   #+END_SRC
+
+** Spelling
+   #+BEGIN_SRC emacs-lisp
+   (global-set-key (kbd "C-c j") 'flyspell-check-previous-highlighted-word)
    #+END_SRC
 
 ** Navigation
@@ -143,6 +136,46 @@
    (global-set-key (kbd "C-h a") 'apropos)
    #+END_SRC
 
+** Keyboard and Mouse Set-up
+   Bind Mac modifier keys:
+   #+BEGIN_SRC emacs-lisp
+     (setq
+      ns-command-modifier   'meta        ; Apple/Command key is Meta
+      ns-alternate-modifier 'super       ; Option is the Mac Option key
+      ns-function-modifier  'hyper       ; 'super or 'hyper
+      ns-pop-up-frames       nil
+      )
+   #+END_SRC
+
+   Make `super` + x the same as Meta-x:
+   #+BEGIN_SRC emacs-lisp
+     (global-set-key (kbd "s-x") 'smex)
+   #+END_SRC
+
+   Mouse scrolling needs to calm down:
+   #+BEGIN_SRC emacs-lisp
+     (setq mouse-wheel-scroll-amount '(1))
+     (setq mouse-wheel-progressive-speed nil)
+   #+END_SRC
+
+   Adjust the echo threshold for key-chords:
+   #+BEGIN_SRC emacs-lisp
+     (setq echo-keystrokes 0.02)
+   #+END_SRC
+
+** Terminal Mode Affordances
+   Attempt to accomodate modifiers to arrow keys in the terminal:
+   #+BEGIN_SRC emacs-lisp
+     (define-key input-decode-map "\e[1;5A" [C-up])
+     (define-key input-decode-map "\e[1;5B" [C-down])
+     (define-key input-decode-map "\e[1;5C" [C-right])
+     (define-key input-decode-map "\e[1;5D" [C-left])
+
+     (define-key function-key-map "\M-[ a"  [C-up])
+     (define-key function-key-map "\M-[ b"  [C-down])
+     (define-key function-key-map "\M-[ c"  [C-right])
+     (define-key function-key-map "\M-[ d"  [C-left])
+   #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
 (provide 'keybindings)

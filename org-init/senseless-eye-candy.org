@@ -61,12 +61,6 @@
      (setq whitespace-style  '(face lines-tail))
    #+END_SRC
 
-   Here are a couple functions that can help line up stubborn bits of code:
-   #+BEGIN_SRC emacs-lisp
-     (autoload 'highlight-indentation-current-column-mode "highlight-indentation")
-     (autoload 'highlight-indentation-mode "highlight-indentation")
-   #+END_SRC
-
 ** Word-Wrapping
 
    Via: http://ergoemacs.org/emacs/emacs23_features.html
@@ -77,16 +71,6 @@
      (global-visual-line-mode 1)
    #+END_SRC
 
-** I like λ
-
-   #+BEGIN_SRC emacs-lisp
-     (defun pretty-lambdas ()
-       (font-lock-add-keywords
-        nil `(("(?\\(lambda\\>\\)"
-               (0 (progn (compose-region (match-beginning 1) (match-end 1)
-                                         ,(make-char 'greek-iso8859-7 107))
-                         nil))))))
-   #+END_SRC
 
 ** Theme
    I have one.

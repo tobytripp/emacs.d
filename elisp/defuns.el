@@ -7,18 +7,6 @@
          ,@body)
        (add-hook ',hook #',function))))
 
-(defun toby/delete-trailing-whitespace ()
-  "Ignore current line when deleting trailing whitespace"
-  (interactive)
-  (let ((first-part-start (point-min))
-        (first-part-end   (point-at-bol))
-        (second-part-start (point-at-eol))
-        (second-part-end  (point-max))
-        )
-    (delete-trailing-whitespace first-part-start first-part-end)
-    (delete-trailing-whitespace second-part-start second-part-end)
-    ))
-
 (defun sudo-edit (&optional arg)
   (interactive "p")
   (if (or arg (not buffer-file-name))
@@ -63,37 +51,11 @@
       (replace-match replace))
     ))
 
-(defun git-grep-rb (regexp)
-  "Run git-grep on ruby files in the current project"
-  (interactive "sSearch for (regexp): ")
-  (vc-git-grep regexp "'*.rb'" (textmate-project-root))
-  )
-
-(defun git-grep (regexp)
-  "Run git-grep on files in the current project"
-  (interactive "sSearch for (regexp): ")
-  (vc-git-grep regexp "'*.rb' '*.clj'" (textmate-project-root))
-  )
-
 (defun insert-rocket ()
   "Insert => rocket"
   (interactive)
   (delete-horizontal-space)
   (insert " => ")
-  )
-
-(defun insert-arrow ()
-  "Insert a single arrow (Haskell syntax)"
-  (interactive)
-  (delete-horizontal-space)
-  (insert " -> ")
-  )
-
-(defun insert-larrow ()
-  "Insert <- arrow (Haskell monad return)"
-  (interactive)
-  (delete-horizontal-space)
-  (insert " <- ")
   )
 
 (defun insert-ellipses ()

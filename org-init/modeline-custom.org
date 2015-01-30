@@ -5,21 +5,35 @@
   ends up showing you little of actual use.
 
 ** Smart Mode Line
-   This package gives you some control of what shows up in the mode-line.
+   The [[https://github.com/Bruce-Connor/smart-mode-line][smart-mode-line]] package gives you some control of what shows up in the mode-line.
    #+BEGIN_SRC emacs-lisp
      (require-package 'smart-mode-line)
      (if (require 'smart-mode-line nil 'noerror)
          (progn
-           (setq sml/mode-width 25) ; https://github.com/Bruce-Connor/smart-mode-line/issues/12
+           (setq sml/name-width 25)
+           (setq sml/mode-width 'full)
+           ;; https://github.com/Bruce-Connor/smart-mode-line/issues/12
+           ;; (setq sml/mode-width 25)
+           (setq sml/shorten-directory t)
            (setq sml/shorten-modes t)
            (setq sml/hidden-modes '("GitGutter" "MRev" "company" "mate" "Projectile"))
-           (if after-init-time (sml/setup)
+
+           (if after-init-time
+             (sml/setup)
              (add-hook 'after-init-hook 'sml/setup))
 
+           (require-package 'smart-mode-line-powerline-theme)
+           (sml/apply-theme 'powerline)
+           ;; Alternatives:
+           ;; (sml/apply-theme 'dark)
+           ;; (sml/apply-theme 'light)
+           ;; (sml/apply-theme 'respectful)
+           ;; (sml/apply-theme 'automatic)
+
            (add-to-list 'sml/replacer-regexp-list '("^~/Dropbox/" ":DB:"))
-           (add-to-list 'sml/replacer-regexp-list '("^~/Code/investor-bridge" ":IB:"))
-           (add-to-list 'sml/replacer-regexp-list '("^~/.*/lib/ruby/gems" ":GEMS" ))
-           ))
+           (add-to-list 'sml/replacer-regexp-list '("^~/Code/" ":CODE:"))
+           (add-to-list 'sml/replacer-regexp-list '("^:CODE:investor-bridge" ":IB:"))
+           (add-to-list 'sml/replacer-regexp-list '("^~/.*/lib/ruby/gems" ":GEMS" ))))
    #+END_SRC
 
 ** Showing the Time
@@ -31,5 +45,5 @@
    #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(provide 'modeline-custom) 
+(provide 'modeline-custom)
 #+END_SRC

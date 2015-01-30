@@ -1,0 +1,40 @@
+* Haskell Mode
+
+** Hooks
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'haskell-mode)
+     (autoload 'haskell-mode "haskell-mode")
+     (setq haskell-program-name "/usr/bin/ghci")
+     (defun toby/haskell-init ()
+       (turn-on-haskell-doc-mode)
+       (turn-on-haskell-indentation)
+       (paredit-mode 1)
+       (define-key haskell-mode-map (kbd "s-r") 'inferior-haskell-load-and-run)
+       (define-key haskell-mode-map (kbd "C-;") 'insert-arrow)
+       (define-key haskell-mode-map (kbd "C-:") 'insert-rocket)
+       (define-key haskell-mode-map (kbd "C-=") 'insert-larrow)
+
+       (define-key haskell-mode-map (kbd "C-h h") 'hoogle))
+
+     (add-hook 'haskell-mode-hook 'toby/haskell-init)
+   #+END_SRC
+
+** Text Functions
+
+   #+BEGIN_SRC emacs-lisp
+     (defun insert-arrow ()
+       "Insert a single arrow (Haskell syntax)"
+       (interactive)
+       (delete-horizontal-space)
+       (insert " -> "))
+
+     (defun insert-larrow ()
+       "Insert <- arrow (Haskell monad return)"
+       (interactive)
+       (delete-horizontal-space)
+       (insert " <- "))
+   #+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(provide 'haskell-init)
+#+END_SRC

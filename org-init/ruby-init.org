@@ -19,7 +19,6 @@
        (setq outline-regexp " *\\(def \\|describe \\|it \\|class\\|module\\)")
 
        (column-marker-1 80)
-       (pretty-lambdas)
        (whitespace-mode t)
 
        ;; Doesn't work in the terminal, unfortunately…
@@ -118,3 +117,38 @@
 #+BEGIN_SRC emacs-lisp
 (provide 'ruby-init)
 #+END_SRC
+** Cleaning Up Sloppy Code
+
+*** Add Useful White-Space
+   Here's a function to add some helpful white-space:
+   #+BEGIN_SRC emacs-lisp
+     (defun add-pride ()
+       (interactive)
+       (fix-parens)
+       (decompress-hash-rockets))
+   #+END_SRC
+
+*** Break-up Long Hashes
+   Sometimes, people spew massive hashes onto a single line without
+   bothering to break it up for readability.  This function will break
+   the hash up on commas.
+
+   It will detect the bounds of the hash and set a region to its
+   bounds.  Then it moves through the hash injecting line-breaks after
+   the commas.
+   #+BEGIN_SRC emacs-lisp
+     (defun break-ruby-hash ()
+       "Break the ruby hash around point into multiple lines at commas"
+       (interactive)
+       (let ((chars "^{}") p1 p2)
+         (save-excursion
+           (skip-chars-backward chars)
+           (setq p1 (point))
+           (skip-chars-forward chars)
+           (setq p2 (point))
+
+           (goto-char p1) (insert "\n")
+           (goto-char p2) (forward-char 1) (insert "\n")
+           (replace-in ", " ",\n" p1 p2)
+           (indent-region p1 (+ 2 p2)))))
+   #+END_SRC

@@ -205,7 +205,6 @@ I keep these in a separate file to make it easy to find them.
      ;;                 (directory-files lib-dir nil ".*el$")))
      ;;   (message "Lib files loaded!"))
 
-     (require 'emacs-hooks)
      (require 'defuns)
 
      (with-demoted-errors

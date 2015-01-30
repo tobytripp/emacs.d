@@ -1,0 +1,243 @@
+* Toby Mode
+  I made a minor-mode to capture some features and key-bindings that I
+  think might bother another experienced Emacs user.  This way I can
+  turn those bits off should the need arise.
+
+** Setup
+   Make some common-lisp-isms available:
+   #+BEGIN_SRC emacs-lisp
+   (eval-when-compile (require 'cl))
+   #+END_SRC
+
+   I still use a couple functions from the old TextMate package:
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'textmate)
+     (require 'textmate)
+   #+END_SRC
+
+** Commands
+   Use =tramp= to re-open a file with more privileges:
+   #+BEGIN_SRC emacs-lisp
+     (defun sudo-file ()
+       "Re-open the current buffer's file with sudo"
+       (interactive)
+       (let ((p (point)))
+         (find-alternate-file
+          (concat "/sudo::" (buffer-file-name)))
+             (goto-char p)))
+   #+END_SRC
+
+   #+BEGIN_SRC emacs-lisp
+     (defun duplicate-line ()
+       "Duplicate the current line"
+       (interactive)
+       (save-excursion
+         (move-beginning-of-line 1)
+         (kill-line)
+         (yank)
+         (open-line 1)
+         (next-line 1)
+         (yank)))
+   #+END_SRC
+
+   Sometimes, like inside some shells, you might find yourself wanting
+   to swap the Meta and Super modifiers.  This command lets you do that:
+   #+BEGIN_SRC emacs-lisp
+     (defun swap-modifiers ()
+       "Swap meta and super"
+       (interactive)
+       (cond
+        ((equal ns-command-modifier 'super)
+         (setq ns-command-modifier   'meta
+               ns-alternate-modifier 'super)
+         (message "Command is Meta"))
+        (t
+         (setq ns-command-modifier   'super
+               ns-alternate-modifier 'meta)
+         (message "Alt is Meta"))))
+   #+END_SRC
+
+   New-line and indent from anywhere in the current line:
+   #+BEGIN_SRC emacs-lisp
+     (defun toby/open-line ()
+       "Insert a newline after the current line and move down"
+       (interactive)
+       (end-of-visual-line)
+       (newline-and-indent))
+   #+END_SRC
+
+   Save all buffers while updating the modification time of the
+   current buffer's file.  This is handy if you're using something
+   like [[https://github.com/guard/guard][Guard]] to automatically run unit tests.
+   #+BEGIN_SRC emacs-lisp
+     (defun touch ()
+       "update the mtime of the file for the current buffer"
+       (interactive)
+       (save-some-buffers 't)
+       (shell-command (concat "touch "
+                              (shell-quote-argument (buffer-file-name))))
+       (clear-visited-file-modtime)
+       (message "I'm touched"))
+   #+END_SRC
+
+   Increment a number at the point:
+   #+BEGIN_SRC emacs-lisp
+     (defun toby/increment-number-at-point (&optional arg)
+       "Increment the decimal number at point by 'arg'."
+       (interactive "p*")
+       (save-excursion
+         (save-match-data
+           (let ((number (number-at-point))
+                 (inc-by (if arg arg 1)))
+             (when number
+               (progn
+                 (forward-word)
+                 (search-backward (number-to-string number))
+                 (replace-match (number-to-string (+ number inc-by)))))))))
+   #+END_SRC
+
+** Keymap
+   So, =toby-mode= has its own keymap.  This is what allows my overrides to be switched off.
+   #+BEGIN_SRC emacs-lisp
+     (defvar *tobys-mode-map*
+       (let ((map (make-sparse-keymap)))
+         (define-key map (kbd "C-x m")      'eshell)
+         (define-key map (kbd "M-g")        'goto-line)
+         (define-key map (kbd "s-z")        'undo)
+         (define-key map (kbd "M-z")        'zap-to-char)
+         (define-key map (kbd "C-x \\")     'align-regexp)
+         (define-key map (kbd "M-/")        'hippie-expand)
+         (define-key map (kbd "s-/")        'hippie-expand)
+
+         (define-key map (kbd "C-S-d")      'duplicate-line)
+         (define-key map (kbd "C-RET")      'toby/open-line)
+
+         (define-key map (kbd "H-t")        'peepopen-goto-file-gui)
+         ;; Watch out! This can crash an Emacs session with a frame inside
+         ;; a terminal.
+         ;;    (define-key map (kbd "M-O")        'ns-open-file-using-panel)
+
+         (define-key map (kbd "S-s-<up>")   'move-text-up)
+         (define-key map (kbd "S-s-<down>") 'move-text-down)
+         (define-key map [(meta return)]   'textmate-next-line)
+
+         (define-key map [f5] 'touch)
+         (define-key map [f6] 'swap-modifiers)
+         map)
+       "Keymap used for my local customizations.")
+
+     (define-key *tobys-mode-map* (kbd "C-c C-a") 'toby/increment-number-at-point)
+   #+END_SRC
+
+** Overlays
+
+   In some languages, I find code with compressed parenthesis to be
+   more difficult to read.  For example:
+   #+BEGIN_SRC ruby :tangle no
+   def wazzit(even,say,here)
+     function_call(or_is_it, argument?)
+   end
+   #+END_SRC
+
+   I suppose I could play with different fonts to find one that shifts
+   the parenthesis glyph outward, but I like the font I use.
+   Fortunately, Emacs provides.  [[Emacs Overlays]] can change the display
+   of a buffer without changing its representation on disk.
+
+   So, I have an overlay that can /temporarily/ add spaces within
+   parenthesis:
+   #+BEGIN_SRC emacs-lisp
+     (defun toby/set-overlay-properties ()
+       (put 'toby-open-parenthesis 'evaporate t)
+       (put 'toby-open-parenthesis 'after-string " ")
+
+       (put 'toby-close-parenthesis 'evaporate t)
+       (put 'toby-close-parenthesis 'before-string " ")
+
+       (put 'toby-rocket 'evaporate t)
+       (put 'toby-rocket 'after-string " ")
+       (put 'toby-rocket 'before-string " ")
+       )
+
+     (toby/set-overlay-properties)
+
+     (defun toby/make-overlay (beg end &optional category)
+       "Create and return an overlay over the given region. Category
+     defaults to `toby'."
+       (let ((overlay (make-overlay beg end)))
+         (overlay-put overlay 'category (or category 'toby))
+         overlay))
+
+     (defun toby/my-overlay-p (overlay)
+       "Return whether the given overlay is one of mine."
+       (memq (overlay-get overlay 'category)
+             '(toby-open-parenthesis toby-close-parenthesis toby-rocket)))
+
+     (defun toby/make-roomy (beg end)
+       "Add spacing within compressed expressions"
+       (interactive "r")
+       (save-excursion
+         (save-match-data
+           (goto-char beg)
+           (while (re-search-forward
+                   "[({]\\([^[:space:])]\\)"
+                   end t)
+             (toby/make-overlay (match-beginning 0) (match-beginning 1)
+                                'toby-open-parenthesis))
+
+           (goto-char beg)
+           (while (re-search-forward
+                   "\\([^[:space:](]\\)[)}]"
+                   end t)
+             (toby/make-overlay (match-end 1) (match-end 0)
+                                'toby-close-parenthesis))
+
+           (goto-char beg)
+           (while (re-search-forward
+                   "[^[:space:]]\\(=>\\)[^[:space:]]"
+                   end t)
+             (toby/make-overlay (match-beginning 1) (match-end 1)
+                                'toby-rocket)))))
+
+     (defun toby/make-sloppy (beg end)
+       "Return the region to its unfriendly state."
+       (interactive "r")
+       (dolist (o (overlays-in beg end))
+         (when (toby/my-overlay-p o)
+           (delete-overlay o))))
+
+     (defun toby/on-change (beg end)
+       "After change hook to update overlays"
+       (let ((beg-line (save-excursion (goto-char beg) (line-beginning-position)))
+             (end-line (save-excursion (goto-char end) (line-end-position))))
+         (toby/make-sloppy beg-line end-line)
+         (toby/make-roomy beg-line end-line)))
+   #+END_SRC
+
+** The Mode
+
+   Finally, I create the minor-mode to house all of this.
+   #+BEGIN_SRC emacs-lisp
+     (define-minor-mode toby-mode
+       "Customization minor mode for ME"
+       :lighter " π"
+       :global t
+       :keymap *tobys-mode-map*)
+
+     (define-minor-mode global-toby-mode
+       "Toggle Toby Mode globally"
+       :lighter " π"
+       :global t
+       :keymap *tobys-mode-map*
+       (save-excursion
+         (save-restriction
+           (widen)
+           (toby/make-sloppy (point-min) (point-max))
+           (if global-toby-mode
+               (jit-lock-register 'toby/on-change)
+             (jit-lock-unregister 'toby/on-change)))))
+   #+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(provide 'toby-mode)
+#+END_SRC

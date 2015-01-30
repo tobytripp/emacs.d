@@ -1,0 +1,28 @@
+* Emacs Registers
+
+  #+BEGIN_QUOTE
+  Emacs registers are compartments where you can save text,
+  rectangles, positions, and other things for later use. Once you save
+  text or a rectangle in a register, you can copy it into the buffer
+  once, or many times; once you save a position in a register, you can
+  jump back to that position once, or many times.
+
+  Each register has a name that consists of a single character, which
+  we will denote by r; r can be a letter (such as ‘a’) or a number
+  (such as ‘1’); case matters, so register ‘a’ is not the same as
+  register ‘A’.
+
+  A register can store a position, a piece of text, a rectangle, a
+  number, a window configuration, or a file name, but only one thing
+  at any given time. Whatever you store in a register remains there
+  until you store something else in that register. To see what
+  register r contains, use M-x view-register
+  #+END_QUOTE
+  https://www.gnu.org/software/emacs/manual/html_node/emacs/Registers.html
+
+** Set Some Registers
+   Jump to a register with: =C-x r j <register>=
+   #+BEGIN_SRC emacs-lisp
+     (dolist (r `((?i (file . ,(concat dotfiles-dir "init.el")))))
+       (set-register (car r) (cadr r)))
+   #+END_SRC

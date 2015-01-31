@@ -15,8 +15,8 @@
  '(compilation-auto-jump-to-first-error nil)
  '(compilation-scroll-output nil)
  '(css-indent-offset 3)
- '(custom-enabled-themes (quote (tsdh-light)))
- '(custom-safe-themes (quote ("e56f1b1c1daec5dbddc50abd00fcd00f6ce4079f4a7f66052cf16d96412a09a9" "025354235e98db5e7fd9c1a74622ff53ad31b7bde537d290ff68d85665213d85" "bb59851aac88e0319bb855d510c2a63fcbde234b53105149877c2ff34f5c97a6" "756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" "526e738d6d89317f821becd58d3165b5ecf5afe336ff1c96e331fdfca5e8fe03" default)))
+ '(custom-enabled-themes (quote (smart-mode-line-powerline)))
+ '(custom-safe-themes (quote ("2121720a032f6f8927375990c2014c4857234d126df5b1814e80fe06d14b408f" "27d7e5e398459fb11368721d0a82c5054a21709163ba90cbc95553d773f4063a" "c8decbfd16237ac0cbf092fadc8eb0537433d335f32915f46d128fab50ecd130" "e02a43a6a6cceb767e175089b220bb6ea614399fc8b965e861b526df7d02b413" "30392ad7d3ef9511f29b97abb1a8c00c7e03dd04a9d9f97766b5ca86e214841d" "9c1e23722ebbabcb0778ec87b2b5c45828fc07e66a8a37d48a46c0f3456fdcda" "e56f1b1c1daec5dbddc50abd00fcd00f6ce4079f4a7f66052cf16d96412a09a9" "025354235e98db5e7fd9c1a74622ff53ad31b7bde537d290ff68d85665213d85" "bb59851aac88e0319bb855d510c2a63fcbde234b53105149877c2ff34f5c97a6" "756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" "526e738d6d89317f821becd58d3165b5ecf5afe336ff1c96e331fdfca5e8fe03" default)))
  '(default-frame-alist (quote ((vertical-scroll-bars) (cursor-type . box) (internal-border-width . 0) (left-fringe . 1) (right-fringe) (fringe) (background-color . "#211E1E") (background-mode . dark) (background-toolbar-color . "#cf3ccf3ccf3c") (border-color . "Grey") (bottom-toolbar-shadow-color . "#79e77df779e7") (cursor-color . "#FFFFFF") (foreground-color . "#DADADA") (mouse-color . "Grey") (top-toolbar-shadow-color . "#fffffbeeffff") (viper-saved-cursor-color-in-replace-mode . "Red3"))))
  '(dired-auto-revert-buffer (quote dired-directory-changed-p))
  '(ediff-window-setup-function (quote ediff-setup-windows-plain))
@@ -71,8 +71,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(font-lock-comment-delimiter-face ((t (:inherit font-lock-comment-face :foreground "#586e75"))))
  '(highlight ((t (:background "color-18" :foreground "white"))))
  '(hl-line ((t (:background "#002b36"))))
- '(magit-item-highlight ((t (:inherit highlight))))
- '(rainbow-delimiters-depth-1-face ((t (:foreground "wheat"))) t))
+ '(magit-item-highlight ((t (:inherit highlight))) t)
+ '(rainbow-delimiters-depth-1-face ((t (:foreground "wheat")))))

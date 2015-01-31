@@ -16,6 +16,7 @@ history
 web-vcs-log.org
 projectile-bookmarks.eld
 /projectile.cache
+/elisp/*.elc
 /org-init/*.el
 /org-init/*.elc
-/main.el
+/html/*.html

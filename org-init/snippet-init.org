@@ -1,3 +1,4 @@
+#+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
 * Snippets
 
 ** Yasnippet

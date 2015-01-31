@@ -1,6 +1,3 @@
-(set-face-attribute 'default nil
-                    :family "Inconsolata" :height 145 :weight 'normal)
-
 ;; Fallbacks for missing unicode glyphs
 (set-fontset-font "fontset-default"
 		  'unicode

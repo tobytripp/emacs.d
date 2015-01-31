@@ -1,41 +1,31 @@
+#+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
 #+TITLE:  Toby's Emacs Configuration
-#+AUTHOR: Toby Tripp
-#+EMAIL:  toby.tripp@gmail.com
-#+OPTIONS: H:2 num:nil toc:t
-#+HTML_HEAD: <link rel="stylesheet" type="text/css"  href="http://thomasf.github.io/solarized-css/solarized-light.min.css" />
 
 * My Emacs Configuration
 
-#+begin_quote
-Emacs outshines all other editing software in approximately the same
-way that the noonday sun does the stars. It is not just bigger and
-brighter; it simply makes everything else vanish.
+  #+begin_quote
+  Emacs outshines all other editing software in approximately the same
+  way that the noonday sun does the stars. It is not just bigger and
+  brighter; it simply makes everything else vanish.
 
--- Neal Stephenson, "In the Beginning was the Command Line"
-#+end_quote
+  -- Neal Stephenson, "In the Beginning was the Command Line"
+  #+end_quote
 
-Testing out a Literate emacs configuration.
+  Testing out a Literate emacs configuration.
 
-Edit code snippets with <C-c '>
+  This file should catalog my [[file:keybindings.org][keybindings]] as well as my language mode
+  settings, such as for [[file:clojure.org][Clojure]] and [[file:ruby-init.org][Ruby]].
 
-Load this configuration file using the function: =org-babel-load-file=
+  # Edit code snippets with =C-c '=
+  # Load this configuration file using the function: =org-babel-load-file=
+  # Export it to HTML with:
+  #   C-c C-e h h     (org-html-export-to-html)
+  # Export the whole org-init project with:
+  #   C-c C-e P p
 
-Export it to HTML with:
-  C-c C-e h h     (org-html-export-to-html)
-
-*** TODO Move init.org into lib-dir and load with stub init.el
-*** TODO Take dotfiles-dir off the load-path and only load from lib-dir
 *** TODO Keep the tangled elisp in a separate directory that is in .gitignore
 
-** Who am I?
-
- #+BEGIN_SRC emacs-lisp
-   (setq user-full-name "Toby Tripp"
-         user-mail-address "toby.tripp@gmail.com")
- #+END_SRC
-
 ** Decorations
-
    Turn off tool-bars and scroll bars and other features I deem unnecessary.
 
    #+BEGIN_SRC emacs-lisp
@@ -94,7 +84,10 @@ Export it to HTML with:
  Make a path to add libraries installed from source.
  #+BEGIN_SRC emacs-lisp
    (defvar vendor-dir (concat dotfiles-dir "vendor/"))
-   (add-to-list 'load-path vendor-dir)
+
+   (let ((default-directory vendor-dir))
+     (add-to-list 'load-path default-directory)
+     (normal-top-level-add-subdirs-to-load-path))
  #+END_SRC
 
  Also create a place to put my various initialization hooks.
@@ -127,15 +120,6 @@ I keep these in a separate file to make it easy to find them.
 #+BEGIN_SRC emacs-lisp
   (require 'init-packages)
 #+END_SRC
-
-*** TODO Missing Packages?
-    These packages seem to be required to initialize but are missing
-    from the package list.
-    - flx-ido
-    - js-comint
-    - org
-    - yasnippet
-    - dired+
 
 ** Load Third-Party Libraries from =Vendor=
 
@@ -171,24 +155,7 @@ I keep these in a separate file to make it easy to find them.
        (org-babel-load-file (expand-file-name relative-path org-lib-dir)))
    #+END_SRC
 
-   Consider =byte-compile-directory=
-
-   #+BEGIN_SRC emacs-lisp
-     (defun toby/init-compile (&optional prefix-arg)
-       "Tangle init files with org-babel and then compile them.
-
-        Consider conditional compile while using the prefix argument
-        to force compilation."
-       (interactive "P")
-       (mapc (lambda (file)
-               (when (file-exists-p file)
-                 (let ((el-file (concat (file-name-sans-extension file) ".el")))
-                   (org-babel-tangle-file file el-file "emacs-lisp")
-                   (byte-compile-file el-file))))
-             (directory-files lib-dir t "^[^.].*[.]org$")))
-   #+END_SRC
-
-** Load Other Configurations
+** Load Configurations
 
    First, pre-load some custom function definitions that may be used in my extensions.
    #+BEGIN_SRC emacs-lisp
@@ -199,24 +166,19 @@ I keep these in a separate file to make it easy to find them.
    warnings so that a problem in a particular extension doesn't bring
    start-up to a halt.
    #+BEGIN_SRC emacs-lisp
-     ;; (with-demoted-errors
-     ;;   (mapc #'load
-     ;;         (mapcar 'file-name-sans-extension
-     ;;                 (directory-files lib-dir nil ".*el$")))
-     ;;   (message "Lib files loaded!"))
-
-     (require 'defuns)
-
      (with-demoted-errors
+       (mapc #'load
+             (mapcar #'file-name-sans-extension
+                     (directory-files lib-dir nil ".*\.el$")))
        (mapc #'toby/babel-load-file
-             (directory-files org-lib-dir nil ".*org$")))
+             (remove "index.org" (directory-files org-lib-dir nil ".*org$"))))
+
+     (byte-recompile-directory org-lib-dir 0)
+     (byte-recompile-directory lib-dir 0)
    #+END_SRC
 
    Errors encountered while loading these libraries will show up in
    the Messages buffer after start-up.
-
-
-*** TODO Create a Keybinding Help Page from Map Source
 
 *** Toby Mode
 
@@ -224,20 +186,60 @@ I keep these in a separate file to make it easy to find them.
     that, should I ever sit with an experienced Emacs user, we can
     turn them off easily.  This way Emacs can behave in a more
     “standard” way for a while.
+
+    =toby-mode= is defined in [[file:toby-mode.org][toby-mode.org]].
+
     #+BEGIN_SRC emacs-lisp
     (require 'toby-mode)
     (global-toby-mode)
     #+END_SRC
 
-** If Something Goes Wrong
+* Mode-Specific Configurations
+  # Evaluate with C-c C-c
+  #+BEGIN_SRC emacs-lisp :tangle no :exports none
+    (mapconcat (lambda (f)
+                 (concat "- " "[[file:" f "][" (file-name-sans-extension f) "]]"))
+               (sort (directory-files org-lib-dir nil ".*org$")
+                     (lambda (a b)
+                       (string< a b)))
+               "\n")
+  #+END_SRC
 
-   Sometimes it helps to launch the debugger when an error occurs.  By
-   default, I've turned that off:
-   #+BEGIN_SRC emacs-lisp
-     (setq debug-on-error       nil)
-   #+END_SRC
+  Other Configuraion Files:
+  #+RESULTS:
+  - [[file:clojure.org][clojure]]
+  - [[file:coding-init.org][coding-init]]
+  - [[file:completion.org][completion]]
+  - [[file:emacs-init.org][emacs-init]]
+  - [[file:eshell-init.org][eshell-init]]
+  - [[file:finding-files.org][finding-files]]
+  - [[file:git-init.org][git-init]]
+  - [[file:god-init.org][god-init]]
+  - [[file:haskell-init.org][haskell-init]]
+  - [[file:html-init.org][html-init]]
+  - [[file:index.org][index]]
+  - [[file:javascript-init.org][javascript-init]]
+  - [[file:keybindings.org][keybindings]]
+  - [[file:lisp-init.org][lisp-init]]
+  - [[file:main.org][main]]
+  - [[file:modeline-custom.org][modeline-custom]]
+  - [[file:org-mode-init.org][org-mode-init]]
+  - [[file:registers-init.org][registers-init]]
+  - [[file:ruby-init.org][ruby-init]]
+  - [[file:senseless-eye-candy.org][senseless-eye-candy]]
+  - [[file:snippet-init.org][snippet-init]]
+  - [[file:tags.org][tags]]
+  - [[file:toby-mode.org][toby-mode]]
 
-   to turn it on:
-   #+BEGIN_SRC emacs-lisp :tangle no
-     (setq debug-on-error       t)
-   #+END_SRC
+* If Something Goes Wrong
+
+  Sometimes it helps to launch the debugger when an error occurs.  By
+  default, I've turned that off:
+  #+BEGIN_SRC emacs-lisp
+    (setq debug-on-error       nil)
+  #+END_SRC
+
+  to turn it on:
+  #+BEGIN_SRC emacs-lisp :tangle no
+    (setq debug-on-error       t)
+  #+END_SRC

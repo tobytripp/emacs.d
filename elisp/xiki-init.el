@@ -18,5 +18,6 @@
                        "/trogdoro-el4r-1.0.7/data/emacs/site-lisp/"))
 
   (require 'el4r)
-  (el4r-boot)
-  )
+  (el4r-boot))
+
+(provide 'xiki-init)

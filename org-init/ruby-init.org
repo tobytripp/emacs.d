@@ -1,3 +1,4 @@
+#+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
 * Ruby
   Still my favorite language.
 
@@ -10,6 +11,7 @@
      (require-package 'inf-ruby)
      (require-package 'ruby-end)
      (require-package 'rspec-mode)
+     (require-package 'column-marker)
 
      (defun toby/ruby-init ()
        (set (make-local-variable 'indent-tabs-mode) 'nil)

@@ -1,3 +1,4 @@
+#+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
 * Clojure Customizations
 
 ** Cider
@@ -45,6 +46,6 @@
      (add-hook 'clojure-mode-hook 'toby/clojure-init)
    #+END_SRC
 
-#+BEGIN_SRC emacs-lisp
-(provide 'clojure) 
+#+BEGIN_SRC emacs-lisp :exports none
+(provide 'clojure)
 #+END_SRC

@@ -1,3 +1,4 @@
+#+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
 * Toby Mode
   I made a minor-mode to capture some features and key-bindings that I
   think might bother another experienced Emacs user.  This way I can

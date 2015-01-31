@@ -21,3 +21,5 @@
 ;;         ("localhost" "&bitlbee")))
 
 (setq erc-hide-list '("JOIN" "PART" "QUIT"))
+
+(provide 'erc-init)

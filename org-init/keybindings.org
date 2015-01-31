@@ -1,5 +1,5 @@
+#+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
 #+TITLE: Toby's Emacs Keybindings
-#+AUTHOR: Toby Tripp
 
 * Keybindings
 
@@ -10,25 +10,25 @@
    | Keystroke     | Command                               |
    | C-x d         | Open Dired                            |
    | C-x d <REGEX> | Open Dired filterd by REGEX           |
-   | m             | Mark an entry                         |
-   | t             | Swap marks                            |
-   | Q             | Query Replace in marked entries       |
-   | c             | Copy marked files                     |
-   | D             | Delete marked files                   |
-   | R             | Rename                                |
-   | s             | Symlink marked files                  |
-   | T             | Touch marked files                    |
-   | Z             | Compress marked files                 |
-   | :e            | Encrypt                               |
-   | :d            | Decrypt                               |
-   | L             | Load elisp files                      |
-   | B             | Byte-compile elisp files              |
    | A             | Search marked file                    |
-   | u             | Unmark file                           |
-   | i             | Insert subdirectory into this listing |
-   | g             | Read all dirs aGain                   |
-   | ^             | Go up a directory                     |
+   | B             | Byte-compile elisp files              |
+   | D             | Delete marked files                   |
+   | L             | Load elisp files                      |
+   | Q             | Query Replace in marked entries       |
+   | R             | Rename                                |
+   | T             | Touch marked files                    |
    | X             | Shell Command on files                |
+   | Z             | Compress marked files                 |
+   | ^             | Go up a directory                     |
+   | c             | Copy marked files                     |
+   | g             | Read all dirs aGain                   |
+   | i             | Insert subdirectory into this listing |
+   | m             | Mark an entry                         |
+   | s             | Symlink marked files                  |
+   | t             | Toggle marks                          |
+   | u             | Unmark file                           |
+   | : d           | Decrypt                               |
+   | : e           | Encrypt                               |
 
    Also great is the =wdired= command, which creates a =dired= listing
    that can be edited and saved. This makes for easy renames and file
@@ -66,7 +66,12 @@
      (global-set-key (kbd "M-g") 'goto-line)
      (global-set-key (kbd "M-z") 'zap-to-char)
      (global-unset-key (kbd "M-SPC"))
-     (global-set-key   (kbd "M-SPC") 'ace-jump-mode)
+
+     (require-package 'ace-jump-mode)
+     (autoload 'ace-jump-mode "ace-jump-mode")
+     (global-set-key (kbd "M-SPC") 'ace-jump-mode)
+     (global-set-key (kbd "C-c SPC") 'ace-jump-mode)
+
    #+END_SRC
 
 ** Frame/Window Properties

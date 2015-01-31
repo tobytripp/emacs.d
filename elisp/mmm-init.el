@@ -21,3 +21,5 @@
 ;; TODO:
 ;;   <<-HTML
 ;;   <<-RUBY (as Ruby)
+
+(provide 'mmm-init)

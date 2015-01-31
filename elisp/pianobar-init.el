@@ -7,3 +7,5 @@
             (global-set-key [f8] 'pianobar-play-or-pause)
             (global-set-key [f9] 'pianobar-next-song)
             ))
+
+(provide 'pianobar-init)

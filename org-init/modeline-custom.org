@@ -1,3 +1,4 @@
+#+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
 * Modeline
 
   By default, the modeline in Emacs will show you information about

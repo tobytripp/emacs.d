@@ -7,3 +7,5 @@
   )
 
 (add-hook 'scheme-mode-hook 'toby/scheme-init)
+
+(provide 'scheme-hooks)

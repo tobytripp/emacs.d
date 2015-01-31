@@ -1,5 +1,5 @@
+#+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
 #+TITLE:  Customizations That Serve No Other Purpose Than to Make Me Happy
-#+AUTHOR: Toby Tripp
 
 * Senseless Eye-Candy
 

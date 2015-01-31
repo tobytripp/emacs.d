@@ -5,3 +5,5 @@
 
 (setenv  "PATH" (concat (getenv "PATH") ":" "/usr/local/oracle/instantclient_11_2" ":" "/Users/ttripp/.rbenv/shems"))
 (setq exec-path (append exec-path '("/usr/local/oracle/instantclient_11_2") '("/Users/ttripp/.rbenv/shims")))
+
+(provide 'oracle-env)

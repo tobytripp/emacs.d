@@ -1,9 +1,10 @@
+#+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
 * EShell
   EShell is a shell written in elisp.  This makes it both less
   capable than other terminal emulators and also gives it some
   interesting features.
 
-** COMMENT Opening EShells
+** Opening EShells
    First, a short-cut to quickly open a shell.  Repeated invocations
    will bring back the same shell so we don't end up with a bunch of
    them runningn about.
@@ -68,3 +69,31 @@
 #+BEGIN_SRC emacs-lisp
   (provide 'eshell-hooks)
 #+END_SRC
+
+* Comint Mode
+  =comint-mode= is the parent mode of many shell modes.
+
+  Let's add a function to easily clear an active shell buffer:
+  #+BEGIN_SRC emacs-lisp
+    (defun clear-shell ()
+      "Clear the current shell buffer"
+      (interactive)
+      (let ((comint-buffer-maximum-size 0))
+        (comint-truncate-buffer)))
+  #+END_SRC
+
+  Binding =s-k= to =kill-buffer= doesn't make sense to me.
+  #+BEGIN_SRC emacs-lisp
+  (global-unset-key (kbd "s-k"))
+  #+END_SRC
+
+  #+BEGIN_SRC emacs-lisp
+    (defun set-my-shell-bindings ()
+      (interactive)
+      (local-set-key (kbd "<up>")   'comint-previous-input)
+      (local-set-key (kbd "<down>") 'comint-next-input)
+      (local-set-key (kbd "s-k")    'clear-shell))
+    
+    (add-hook 'shell-mode-hook 'set-my-shell-bindings)
+    (add-hook 'eshell-mode-hook 'set-my-shell-bindings)
+  #+END_SRC

@@ -22,3 +22,5 @@
     (deactivate-mark)
     (kill-region (point) (mark t))
     (toby/playback-current-kill)))
+
+(provide 'plaback)

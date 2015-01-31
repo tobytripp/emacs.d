@@ -9,3 +9,5 @@
     the values from the Unicode charts, you should set it to 16."
   (interactive (list (read-quoted-char "Char: ")))
   (ucs-insert char))
+
+(provide 'encodings)

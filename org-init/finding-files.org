@@ -1,3 +1,4 @@
+#+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
 * Finding Files
 
 ** Projectile
@@ -10,14 +11,15 @@
    #+BEGIN_SRC emacs-lisp
      (require-package 'f) ;; undeclared dependency?
      (require-package 'projectile)
+
      (projectile-global-mode)
+
      (global-set-key (kbd "C-x f") 'projectile-find-file)
      (global-unset-key (kbd "<f4>"))
      (global-set-key (kbd "<f4>") 'projectile-find-file)
    #+END_SRC
 
 ** Fuzzy Matching of File and Command Names
-
    Fuzzy matching is brought in with the =flx= package.
    #+BEGIN_SRC emacs-lisp
      (require-package 'flx-ido)
@@ -26,10 +28,28 @@
      (ido-mode 1)
      (ido-everywhere 1)
      (flx-ido-mode 1)
+
+     (setq ido-enable-flex-matching t)
+     (setq ido-use-faces nil)
+   #+END_SRCHk
+
+   [[https://github.com/nonsequitur/smex][SMEX]] shows recently used commands on the =M-x= prompt:
+   #+BEGIN_QUOTE
+   Smex is a M-x enhancement for Emacs. Built on top of Ido, it
+   provides a convenient interface to your recently and most
+   frequently used commands. And to all the other commands, too.
+   #+END_QUOTE
+
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'smex)
+     (smex-initialize)
+
+     (setq smex-save-file (concat user-emacs-directory ".smex-items"))
+     (global-set-key (kbd "M-x") 'smex)
+     (global-set-key (kbd "C-c x") 'smex-major-mode-commands)
    #+END_SRC
 
 ** Open Recent Files
-
    Enable “Open Recent” and give it a keybinding:
    #+BEGIN_SRC emacs-lisp
      (recentf-mode 1)
@@ -37,6 +57,6 @@
    #+END_SRC
 
 
-#+BEGIN_SRC emacs-lisp
-  (provide 'find-file)
+#+BEGIN_SRC emacs-lisp :exports none
+(provide 'find-file)
 #+END_SRC

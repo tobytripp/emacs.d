@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>ruby-init</title>
+<!-- 2015-01-30 Fri 22:57 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Toby Tripp" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/config.css">
+<link rel="stylesheet" href="css/htmlize.css">
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<p><a accesskey="H" href="index.html">HOME</a></p>
+</div>
+<div id="content">
+<h1 class="title">ruby-init</h1>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Ruby</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Still my favorite language.
+</p>
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">Start-up</h3>
+<div class="outline-text-3" id="text-1-1">
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>autoload 'ruby-mode <span style="color: #2aa198;">"ruby-mode"</span> <span style="color: #2aa198; font-style: italic;">"Major mode for Ruby"</span> t<span style="color: #f5deb3;">)</span>
+
+<span style="color: #f5deb3;">(</span>require-package 'ruby-mode<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>require-package 'inf-ruby<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>require-package 'ruby-end<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>require-package 'rspec-mode<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>require-package 'column-marker<span style="color: #f5deb3;">)</span>
+
+<span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/ruby-init</span> <span style="color: #b58900;">()</span>
+  <span style="color: #b58900;">(</span>set <span style="color: #268bd2;">(</span>make-local-variable 'indent-tabs-mode<span style="color: #268bd2;">)</span> 'nil<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>set <span style="color: #268bd2;">(</span>make-local-variable 'tab-width<span style="color: #268bd2;">)</span> 2<span style="color: #b58900;">)</span>
+
+  <span style="color: #b58900;">(</span>outline-minor-mode<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>setq outline-regexp <span style="color: #2aa198;">" *</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">(</span><span style="color: #2aa198;">def </span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">|</span><span style="color: #2aa198;">describe </span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">|</span><span style="color: #2aa198;">it </span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">|</span><span style="color: #2aa198;">class</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">|</span><span style="color: #2aa198;">module</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">)</span><span style="color: #2aa198;">"</span><span style="color: #b58900;">)</span>
+
+  <span style="color: #b58900;">(</span>column-marker-1 80<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>whitespace-mode t<span style="color: #b58900;">)</span>
+
+  <span style="color: #586e75;">;; </span><span style="color: #586e75;">Doesn't work in the terminal, unfortunately&#8230;</span>
+  <span style="color: #b58900;">(</span>define-key ruby-mode-map <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"C-;"</span><span style="color: #268bd2;">)</span> 'insert-rocket<span style="color: #b58900;">)</span>
+
+  <span style="color: #b58900;">(</span>push 'company-robe company-backends<span style="color: #b58900;">)</span>
+
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">ruby-end</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">rspec-mode</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>local-set-key <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"M-r"</span><span style="color: #268bd2;">)</span>            'rspec-verify<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>local-set-key <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"M-S-r"</span><span style="color: #268bd2;">)</span>          'rspec-verify-single<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>local-set-key <span style="color: #268bd2;">[</span>f12<span style="color: #268bd2;">]</span>                  'rspec-verify<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>local-set-key <span style="color: #268bd2;">[</span>f11<span style="color: #268bd2;">]</span>                  'rspec-verify-single<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>local-set-key <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"S-&lt;f12&gt;"</span><span style="color: #268bd2;">)</span>        'rspec-rerun<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>local-set-key <span style="color: #268bd2;">[</span>f10<span style="color: #268bd2;">]</span>                  'next-error<span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+
+<span style="color: #f5deb3;">(</span>add-hook 'ruby-mode-hook 'toby/ruby-init<span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2">Rbenv</h3>
+<div class="outline-text-3" id="text-1-2">
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>require-package 'rbenv<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>setenv <span style="color: #2aa198;">"PATH"</span>
+        <span style="color: #b58900;">(</span>concat <span style="color: #268bd2;">(</span>getenv <span style="color: #2aa198;">"HOME"</span><span style="color: #268bd2;">)</span> <span style="color: #2aa198;">"/.rbenv/shims:"</span>
+                <span style="color: #268bd2;">(</span>getenv <span style="color: #2aa198;">"HOME"</span><span style="color: #268bd2;">)</span> <span style="color: #2aa198;">"/.rbenv/bin:"</span>
+                <span style="color: #268bd2;">(</span>getenv <span style="color: #2aa198;">"PATH"</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+
+<span style="color: #f5deb3;">(</span>setq exec-path
+      <span style="color: #b58900;">(</span>cons <span style="color: #268bd2;">(</span>concat <span style="color: #dc322f;">(</span>getenv <span style="color: #2aa198;">"HOME"</span><span style="color: #dc322f;">)</span> <span style="color: #2aa198;">"/.rbenv/shims"</span><span style="color: #268bd2;">)</span>
+            <span style="color: #268bd2;">(</span>cons <span style="color: #dc322f;">(</span>concat <span style="color: #cb4b16;">(</span>getenv <span style="color: #2aa198;">"HOME"</span><span style="color: #cb4b16;">)</span> <span style="color: #2aa198;">"/.rbenv/bin"</span><span style="color: #dc322f;">)</span>
+                  exec-path<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+
+<span style="color: #f5deb3;">(</span>setq rbenv-installation-dir <span style="color: #b58900;">(</span>concat <span style="color: #268bd2;">(</span>getenv <span style="color: #2aa198;">"HOME"</span><span style="color: #268bd2;">)</span> <span style="color: #2aa198;">"/.rbenv/"</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3">Cucumber</h3>
+<div class="outline-text-3" id="text-1-3">
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>require-package 'feature-mode<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>add-to-list 'auto-mode-alist '<span style="color: #b58900;">(</span><span style="color: #2aa198;">"\.feature$"</span> . feature-mode<span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>add-hook 'feature-mode-hook
+          <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">lambda</span> <span style="color: #268bd2;">()</span>
+            <span style="color: #268bd2;">(</span>local-set-key <span style="color: #dc322f;">(</span>kbd <span style="color: #2aa198;">"M-r"</span><span style="color: #dc322f;">)</span>   'feature-verify-all-scenarios-in-buffer<span style="color: #268bd2;">)</span>
+            <span style="color: #268bd2;">(</span>local-set-key <span style="color: #dc322f;">[</span>f12<span style="color: #dc322f;">]</span>         'feature-verify-all-scenarios-in-buffer<span style="color: #268bd2;">)</span>
+            <span style="color: #268bd2;">(</span>local-set-key <span style="color: #dc322f;">(</span>kbd <span style="color: #2aa198;">"M-S-r"</span><span style="color: #dc322f;">)</span> 'feature-verify-scenario-at-pos<span style="color: #268bd2;">)</span>
+            <span style="color: #268bd2;">(</span>local-set-key <span style="color: #dc322f;">[</span>f11<span style="color: #dc322f;">]</span>         'feature-verify-scenario-at-pos<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4">Rails</h3>
+<div class="outline-text-3" id="text-1-4">
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>add-to-list 'auto-mode-alist '<span style="color: #b58900;">(</span><span style="color: #2aa198;">"\\.rabl$"</span> . ruby-mode<span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>add-to-list 'auto-mode-alist '<span style="color: #b58900;">(</span><span style="color: #2aa198;">"\\.rake$"</span> . ruby-mode<span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+
+<span style="color: #f5deb3;">(</span>require-package 'rhtml-mode<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>autoload 'rhtml-mode <span style="color: #2aa198;">"rhtml-mode"</span> <span style="color: #2aa198; font-style: italic;">"RHTML Mode"</span> t<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>add-to-list 'auto-mode-alist '<span style="color: #b58900;">(</span><span style="color: #2aa198;">"\\.html.erb$"</span> . rhtml-mode<span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5">Lining Up Data Structures</h3>
+<div class="outline-text-3" id="text-1-5">
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">align</span><span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>add-hook 'align-load-hook
+          <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">lambda</span> <span style="color: #268bd2;">()</span>
+            <span style="color: #268bd2;">(</span>add-to-list 'align-rules-list
+                         '<span style="color: #dc322f;">(</span>ruby-comma-delimiter
+                           <span style="color: #cb4b16;">(</span>regexp . <span style="color: #2aa198;">",</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">(</span><span style="color: #2aa198;">\\s-*</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">)</span><span style="color: #2aa198;">[</span><span style="color: #839496;">^</span><span style="color: #2aa198;"># \t\n]"</span><span style="color: #cb4b16;">)</span>
+                           <span style="color: #cb4b16;">(</span>repeat . t<span style="color: #cb4b16;">)</span>
+                           <span style="color: #cb4b16;">(</span>modes  . '<span style="color: #268bd2;">(</span>ruby-mode<span style="color: #268bd2;">)</span><span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
+            <span style="color: #268bd2;">(</span>add-to-list 'align-rules-list
+                         '<span style="color: #dc322f;">(</span>ruby-hash-literal
+                           <span style="color: #cb4b16;">(</span>regexp . <span style="color: #2aa198;">"</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">(</span><span style="color: #2aa198;">\\s-*</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">)</span><span style="color: #2aa198;">=&gt;\\s-*[</span><span style="color: #839496;">^</span><span style="color: #2aa198;"># \t\n]"</span><span style="color: #cb4b16;">)</span>
+                           <span style="color: #cb4b16;">(</span>repeat . t<span style="color: #cb4b16;">)</span>
+                           <span style="color: #cb4b16;">(</span>modes  . '<span style="color: #268bd2;">(</span>ruby-mode<span style="color: #268bd2;">)</span><span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
+            <span style="color: #268bd2;">(</span>add-to-list 'align-rules-list
+                         '<span style="color: #dc322f;">(</span>ruby-assignment-literal
+                           <span style="color: #cb4b16;">(</span>regexp . <span style="color: #2aa198;">"</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">(</span><span style="color: #2aa198;">\\s-*</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">)</span><span style="color: #2aa198;">=\\s-*[</span><span style="color: #839496;">^</span><span style="color: #2aa198;"># \t\n]"</span><span style="color: #cb4b16;">)</span>
+                           <span style="color: #cb4b16;">(</span>repeat . t<span style="color: #cb4b16;">)</span>
+                           <span style="color: #cb4b16;">(</span>modes  . '<span style="color: #268bd2;">(</span>ruby-mode<span style="color: #268bd2;">)</span><span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
+            <span style="color: #268bd2;">(</span>add-to-list 'align-rules-list
+                         '<span style="color: #dc322f;">(</span>ruby-xmpfilter-mark
+                           <span style="color: #cb4b16;">(</span>regexp . <span style="color: #2aa198;">"</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">(</span><span style="color: #2aa198;">\\s-*</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">)</span><span style="color: #2aa198;"># =&gt; [</span><span style="color: #839496;">^</span><span style="color: #2aa198;">#\t\n]"</span><span style="color: #cb4b16;">)</span>
+                           <span style="color: #cb4b16;">(</span>repeat . nil<span style="color: #cb4b16;">)</span>
+                           <span style="color: #cb4b16;">(</span>modes  . '<span style="color: #268bd2;">(</span>ruby-mode<span style="color: #268bd2;">)</span><span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-1-5-1" class="outline-4">
+<h4 id="sec-1-5-1"><span class="todo TODO">TODO</span> Make sure this hack is still necessary:</h4>
+<div class="outline-text-4" id="text-1-5-1">
+<p>
+It used to prevent a strange start-up error on inf-ruby, but I
+should check if it's still needed.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defalias</span> '<span style="color: #268bd2;">inf-ruby-keys</span> 'inf-ruby-setup-keybindings<span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">provide</span> '<span style="color: #268bd2; font-weight: bold;">ruby-init</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-6" class="outline-3">
+<h3 id="sec-1-6">Cleaning Up Sloppy Code</h3>
+<div class="outline-text-3" id="text-1-6">
+</div><div id="outline-container-sec-1-6-1" class="outline-4">
+<h4 id="sec-1-6-1">Add Useful White-Space</h4>
+<div class="outline-text-4" id="text-1-6-1">
+<p>
+Here's a function to add some helpful white-space:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">add-pride</span> <span style="color: #b58900;">()</span>
+  <span style="color: #b58900;">(</span>interactive<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>fix-parens<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>decompress-hash-rockets<span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-6-2" class="outline-4">
+<h4 id="sec-1-6-2">Break-up Long Hashes</h4>
+<div class="outline-text-4" id="text-1-6-2">
+<p>
+Sometimes, people spew massive hashes onto a single line without
+bothering to break it up for readability.  This function will break
+the hash up on commas.
+</p>
+
+<p>
+It will detect the bounds of the hash and set a region to its
+bounds.  Then it moves through the hash injecting line-breaks after
+the commas.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">break-ruby-hash</span> <span style="color: #b58900;">()</span>
+  <span style="color: #2aa198; font-style: italic;">"Break the ruby hash around point into multiple lines at commas"</span>
+  <span style="color: #b58900;">(</span>interactive<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #268bd2;">(</span><span style="color: #dc322f;">(</span>chars <span style="color: #2aa198;">"^{}"</span><span style="color: #dc322f;">)</span> p1 p2<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">save-excursion</span>
+      <span style="color: #dc322f;">(</span>skip-chars-backward chars<span style="color: #dc322f;">)</span>
+      <span style="color: #dc322f;">(</span>setq p1 <span style="color: #cb4b16;">(</span>point<span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span>
+      <span style="color: #dc322f;">(</span>skip-chars-forward chars<span style="color: #dc322f;">)</span>
+      <span style="color: #dc322f;">(</span>setq p2 <span style="color: #cb4b16;">(</span>point<span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span>
+
+      <span style="color: #dc322f;">(</span>goto-char p1<span style="color: #dc322f;">)</span> <span style="color: #dc322f;">(</span>insert <span style="color: #2aa198;">"\n"</span><span style="color: #dc322f;">)</span>
+      <span style="color: #dc322f;">(</span>goto-char p2<span style="color: #dc322f;">)</span> <span style="color: #dc322f;">(</span>forward-char 1<span style="color: #dc322f;">)</span> <span style="color: #dc322f;">(</span>insert <span style="color: #2aa198;">"\n"</span><span style="color: #dc322f;">)</span>
+      <span style="color: #dc322f;">(</span>replace-in <span style="color: #2aa198;">", "</span> <span style="color: #2aa198;">",\n"</span> p1 p2<span style="color: #dc322f;">)</span>
+      <span style="color: #dc322f;">(</span>indent-region p1 <span style="color: #cb4b16;">(</span>+ 2 p2<span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Toby Tripp</p>
+<p class="date">Created: 2015-01-30 Fri 22:57</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

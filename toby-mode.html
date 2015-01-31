@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>toby-mode</title>
+<!-- 2015-01-30 Fri 22:57 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Toby Tripp" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/config.css">
+<link rel="stylesheet" href="css/htmlize.css">
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<p><a accesskey="H" href="index.html">HOME</a></p>
+</div>
+<div id="content">
+<h1 class="title">toby-mode</h1>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Toby Mode</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+I made a minor-mode to capture some features and key-bindings that I
+think might bother another experienced Emacs user.  This way I can
+turn those bits off should the need arise.
+</p>
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">Setup</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Make some common-lisp-isms available:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">eval-when-compile</span> <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">cl</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<p>
+I still use a couple functions from the old TextMate package:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>require-package 'textmate<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">textmate</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2">Commands</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Use <code>tramp</code> to re-open a file with more privileges:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">sudo-file</span> <span style="color: #b58900;">()</span>
+  <span style="color: #2aa198; font-style: italic;">"Re-open the current buffer's file with sudo"</span>
+  <span style="color: #b58900;">(</span>interactive<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #268bd2;">(</span><span style="color: #dc322f;">(</span>p <span style="color: #cb4b16;">(</span>point<span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>find-alternate-file
+     <span style="color: #dc322f;">(</span>concat <span style="color: #2aa198;">"/sudo::"</span> <span style="color: #cb4b16;">(</span>buffer-file-name<span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
+        <span style="color: #268bd2;">(</span>goto-char p<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">duplicate-line</span> <span style="color: #b58900;">()</span>
+  <span style="color: #2aa198; font-style: italic;">"Duplicate the current line"</span>
+  <span style="color: #b58900;">(</span>interactive<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">save-excursion</span>
+    <span style="color: #268bd2;">(</span>move-beginning-of-line 1<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>kill-line<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>yank<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>open-line 1<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>next-line 1<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>yank<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<p>
+Sometimes, like inside some shells, you might find yourself wanting
+to swap the Meta and Super modifiers.  This command lets you do that:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">swap-modifiers</span> <span style="color: #b58900;">()</span>
+  <span style="color: #2aa198; font-style: italic;">"Swap meta and super"</span>
+  <span style="color: #b58900;">(</span>interactive<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">cond</span>
+   <span style="color: #268bd2;">(</span><span style="color: #dc322f;">(</span>equal ns-command-modifier 'super<span style="color: #dc322f;">)</span>
+    <span style="color: #dc322f;">(</span>setq ns-command-modifier   'meta
+          ns-alternate-modifier 'super<span style="color: #dc322f;">)</span>
+    <span style="color: #dc322f;">(</span>message <span style="color: #2aa198;">"Command is Meta"</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
+   <span style="color: #268bd2;">(</span>t
+    <span style="color: #dc322f;">(</span>setq ns-command-modifier   'super
+          ns-alternate-modifier 'meta<span style="color: #dc322f;">)</span>
+    <span style="color: #dc322f;">(</span>message <span style="color: #2aa198;">"Alt is Meta"</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<p>
+New-line and indent from anywhere in the current line:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/open-line</span> <span style="color: #b58900;">()</span>
+  <span style="color: #2aa198; font-style: italic;">"Insert a newline after the current line and move down"</span>
+  <span style="color: #b58900;">(</span>interactive<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>end-of-visual-line<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>newline-and-indent<span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<p>
+Save all buffers while updating the modification time of the
+current buffer's file.  This is handy if you're using something
+like <a href="https://github.com/guard/guard">Guard</a> to automatically run unit tests.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">touch</span> <span style="color: #b58900;">()</span>
+  <span style="color: #2aa198; font-style: italic;">"update the mtime of the file for the current buffer"</span>
+  <span style="color: #b58900;">(</span>interactive<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>save-some-buffers 't<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>shell-command <span style="color: #268bd2;">(</span>concat <span style="color: #2aa198;">"touch "</span>
+                         <span style="color: #dc322f;">(</span>shell-quote-argument <span style="color: #cb4b16;">(</span>buffer-file-name<span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>clear-visited-file-modtime<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>message <span style="color: #2aa198;">"I'm touched"</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<p>
+Increment a number at the point:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/increment-number-at-point</span> <span style="color: #b58900;">(</span><span style="color: #b58900;">&amp;optional</span> arg<span style="color: #b58900;">)</span>
+  <span style="color: #2aa198; font-style: italic;">"Increment the decimal number at point by 'arg'."</span>
+  <span style="color: #b58900;">(</span>interactive <span style="color: #2aa198;">"p*"</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">save-excursion</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">save-match-data</span>
+      <span style="color: #dc322f;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #cb4b16;">(</span><span style="color: #268bd2;">(</span>number <span style="color: #859900;">(</span>number-at-point<span style="color: #859900;">)</span><span style="color: #268bd2;">)</span>
+            <span style="color: #268bd2;">(</span>inc-by <span style="color: #859900;">(</span><span style="color: #859900; font-weight: bold;">if</span> arg arg 1<span style="color: #859900;">)</span><span style="color: #268bd2;">)</span><span style="color: #cb4b16;">)</span>
+        <span style="color: #cb4b16;">(</span><span style="color: #859900; font-weight: bold;">when</span> number
+          <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">progn</span>
+            <span style="color: #859900;">(</span>forward-word<span style="color: #859900;">)</span>
+            <span style="color: #859900;">(</span>search-backward <span style="color: #dc322f;">(</span>number-to-string number<span style="color: #dc322f;">)</span><span style="color: #859900;">)</span>
+            <span style="color: #859900;">(</span>replace-match <span style="color: #dc322f;">(</span>number-to-string <span style="color: #b58900;">(</span>+ number inc-by<span style="color: #b58900;">)</span><span style="color: #dc322f;">)</span><span style="color: #859900;">)</span><span style="color: #268bd2;">)</span><span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3">Keymap</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+So, <code>toby-mode</code> has its own keymap.  This is what allows my overrides to be switched off.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defvar</span> <span style="color: #268bd2;">*tobys-mode-map*</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #268bd2;">(</span><span style="color: #dc322f;">(</span>map <span style="color: #cb4b16;">(</span>make-sparse-keymap<span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>define-key map <span style="color: #dc322f;">(</span>kbd <span style="color: #2aa198;">"C-x m"</span><span style="color: #dc322f;">)</span>      'eshell<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>define-key map <span style="color: #dc322f;">(</span>kbd <span style="color: #2aa198;">"M-g"</span><span style="color: #dc322f;">)</span>        'goto-line<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>define-key map <span style="color: #dc322f;">(</span>kbd <span style="color: #2aa198;">"s-z"</span><span style="color: #dc322f;">)</span>        'undo<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>define-key map <span style="color: #dc322f;">(</span>kbd <span style="color: #2aa198;">"M-z"</span><span style="color: #dc322f;">)</span>        'zap-to-char<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>define-key map <span style="color: #dc322f;">(</span>kbd <span style="color: #2aa198;">"C-x \\"</span><span style="color: #dc322f;">)</span>     'align-regexp<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>define-key map <span style="color: #dc322f;">(</span>kbd <span style="color: #2aa198;">"M-/"</span><span style="color: #dc322f;">)</span>        'hippie-expand<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>define-key map <span style="color: #dc322f;">(</span>kbd <span style="color: #2aa198;">"s-/"</span><span style="color: #dc322f;">)</span>        'hippie-expand<span style="color: #268bd2;">)</span>
+
+    <span style="color: #268bd2;">(</span>define-key map <span style="color: #dc322f;">(</span>kbd <span style="color: #2aa198;">"C-S-d"</span><span style="color: #dc322f;">)</span>      'duplicate-line<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>define-key map <span style="color: #dc322f;">(</span>kbd <span style="color: #2aa198;">"C-RET"</span><span style="color: #dc322f;">)</span>      'toby/open-line<span style="color: #268bd2;">)</span>
+
+    <span style="color: #268bd2;">(</span>define-key map <span style="color: #dc322f;">(</span>kbd <span style="color: #2aa198;">"H-t"</span><span style="color: #dc322f;">)</span>        'peepopen-goto-file-gui<span style="color: #268bd2;">)</span>
+    <span style="color: #586e75;">;; </span><span style="color: #586e75;">Watch out! This can crash an Emacs session with a frame inside</span>
+    <span style="color: #586e75;">;; </span><span style="color: #586e75;">a terminal.</span>
+    <span style="color: #586e75;">;;    </span><span style="color: #586e75;">(define-key map (kbd "M-O")        'ns-open-file-using-panel)</span>
+
+    <span style="color: #268bd2;">(</span>define-key map <span style="color: #dc322f;">(</span>kbd <span style="color: #2aa198;">"S-s-&lt;up&gt;"</span><span style="color: #dc322f;">)</span>   'move-text-up<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>define-key map <span style="color: #dc322f;">(</span>kbd <span style="color: #2aa198;">"S-s-&lt;down&gt;"</span><span style="color: #dc322f;">)</span> 'move-text-down<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>define-key map <span style="color: #dc322f;">[</span><span style="color: #cb4b16;">(</span>meta return<span style="color: #cb4b16;">)</span><span style="color: #dc322f;">]</span>   'textmate-next-line<span style="color: #268bd2;">)</span>
+
+    <span style="color: #268bd2;">(</span>define-key map <span style="color: #dc322f;">[</span>f5<span style="color: #dc322f;">]</span> 'touch<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>define-key map <span style="color: #dc322f;">[</span>f6<span style="color: #dc322f;">]</span> 'swap-modifiers<span style="color: #268bd2;">)</span>
+    map<span style="color: #b58900;">)</span>
+  <span style="color: #2aa198; font-style: italic;">"Keymap used for my local customizations."</span><span style="color: #f5deb3;">)</span>
+
+<span style="color: #f5deb3;">(</span>define-key *tobys-mode-map* <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-c C-a"</span><span style="color: #b58900;">)</span> 'toby/increment-number-at-point<span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4">Overlays</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+In some languages, I find code with compressed parenthesis to be
+more difficult to read.  For example:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby"><span style="color: #859900; font-weight: bold;">def</span> <span style="color: #268bd2;">wazzit</span><span style="color: #f5deb3;">(</span>even,say,here<span style="color: #f5deb3;">)</span>
+  function_call<span style="color: #f5deb3;">(</span>or_is_it, argument?<span style="color: #f5deb3;">)</span>
+<span style="color: #859900; font-weight: bold;">end</span>
+</pre>
+</div>
+
+<p>
+I suppose I could play with different fonts to find one that shifts
+the parenthesis glyph outward, but I like the font I use.
+Fortunately, Emacs provides.  <i>Emacs Overlays</i> can change the display
+of a buffer without changing its representation on disk.
+</p>
+
+<p>
+So, I have an overlay that can <i>temporarily</i> add spaces within
+parenthesis:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/set-overlay-properties</span> <span style="color: #b58900;">()</span>
+  <span style="color: #b58900;">(</span>put 'toby-open-parenthesis 'evaporate t<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>put 'toby-open-parenthesis 'after-string <span style="color: #2aa198;">" "</span><span style="color: #b58900;">)</span>
+
+  <span style="color: #b58900;">(</span>put 'toby-close-parenthesis 'evaporate t<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>put 'toby-close-parenthesis 'before-string <span style="color: #2aa198;">" "</span><span style="color: #b58900;">)</span>
+
+  <span style="color: #b58900;">(</span>put 'toby-rocket 'evaporate t<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>put 'toby-rocket 'after-string <span style="color: #2aa198;">" "</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>put 'toby-rocket 'before-string <span style="color: #2aa198;">" "</span><span style="color: #b58900;">)</span>
+  <span style="color: #f5deb3;">)</span>
+
+<span style="color: #f5deb3;">(</span>toby/set-overlay-properties<span style="color: #f5deb3;">)</span>
+
+<span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/make-overlay</span> <span style="color: #b58900;">(</span>beg end <span style="color: #b58900;">&amp;optional</span> category<span style="color: #b58900;">)</span>
+  <span style="color: #2aa198; font-style: italic;">"Create and return an overlay over the given region. Category</span>
+<span style="color: #2aa198; font-style: italic;">defaults to `</span><span style="color: #268bd2; font-weight: bold; font-style: italic;">toby</span><span style="color: #2aa198; font-style: italic;">'."</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #268bd2;">(</span><span style="color: #dc322f;">(</span>overlay <span style="color: #cb4b16;">(</span>make-overlay beg end<span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>overlay-put overlay 'category <span style="color: #dc322f;">(</span>or category 'toby<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
+    overlay<span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+
+<span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/my-overlay-p</span> <span style="color: #b58900;">(</span>overlay<span style="color: #b58900;">)</span>
+  <span style="color: #2aa198; font-style: italic;">"Return whether the given overlay is one of mine."</span>
+  <span style="color: #b58900;">(</span>memq <span style="color: #268bd2;">(</span>overlay-get overlay 'category<span style="color: #268bd2;">)</span>
+        '<span style="color: #268bd2;">(</span>toby-open-parenthesis toby-close-parenthesis toby-rocket<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+
+<span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/make-roomy</span> <span style="color: #b58900;">(</span>beg end<span style="color: #b58900;">)</span>
+  <span style="color: #2aa198; font-style: italic;">"Add spacing within compressed expressions"</span>
+  <span style="color: #b58900;">(</span>interactive <span style="color: #2aa198;">"r"</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">save-excursion</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">save-match-data</span>
+      <span style="color: #dc322f;">(</span>goto-char beg<span style="color: #dc322f;">)</span>
+      <span style="color: #dc322f;">(</span><span style="color: #859900; font-weight: bold;">while</span> <span style="color: #cb4b16;">(</span>re-search-forward
+              <span style="color: #2aa198;">"[({]</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">(</span><span style="color: #2aa198;">[</span><span style="color: #839496;">^</span><span style="color: #2aa198;">[:space:])]</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">)</span><span style="color: #2aa198;">"</span>
+              end t<span style="color: #cb4b16;">)</span>
+        <span style="color: #cb4b16;">(</span>toby/make-overlay <span style="color: #268bd2;">(</span>match-beginning 0<span style="color: #268bd2;">)</span> <span style="color: #268bd2;">(</span>match-beginning 1<span style="color: #268bd2;">)</span>
+                           'toby-open-parenthesis<span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span>
+
+      <span style="color: #dc322f;">(</span>goto-char beg<span style="color: #dc322f;">)</span>
+      <span style="color: #dc322f;">(</span><span style="color: #859900; font-weight: bold;">while</span> <span style="color: #cb4b16;">(</span>re-search-forward
+              <span style="color: #2aa198;">"</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">(</span><span style="color: #2aa198;">[</span><span style="color: #839496;">^</span><span style="color: #2aa198;">[:space:](]</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">)</span><span style="color: #2aa198;">[)}]"</span>
+              end t<span style="color: #cb4b16;">)</span>
+        <span style="color: #cb4b16;">(</span>toby/make-overlay <span style="color: #268bd2;">(</span>match-end 1<span style="color: #268bd2;">)</span> <span style="color: #268bd2;">(</span>match-end 0<span style="color: #268bd2;">)</span>
+                           'toby-close-parenthesis<span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span>
+
+      <span style="color: #dc322f;">(</span>goto-char beg<span style="color: #dc322f;">)</span>
+      <span style="color: #dc322f;">(</span><span style="color: #859900; font-weight: bold;">while</span> <span style="color: #cb4b16;">(</span>re-search-forward
+              <span style="color: #2aa198;">"[</span><span style="color: #839496;">^</span><span style="color: #2aa198;">[:space:]]</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">(</span><span style="color: #2aa198;">=&gt;</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">)</span><span style="color: #2aa198;">[</span><span style="color: #839496;">^</span><span style="color: #2aa198;">[:space:]]"</span>
+              end t<span style="color: #cb4b16;">)</span>
+        <span style="color: #cb4b16;">(</span>toby/make-overlay <span style="color: #268bd2;">(</span>match-beginning 1<span style="color: #268bd2;">)</span> <span style="color: #268bd2;">(</span>match-end 1<span style="color: #268bd2;">)</span>
+                           'toby-rocket<span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+
+<span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/make-sloppy</span> <span style="color: #b58900;">(</span>beg end<span style="color: #b58900;">)</span>
+  <span style="color: #2aa198; font-style: italic;">"Return the region to its unfriendly state."</span>
+  <span style="color: #b58900;">(</span>interactive <span style="color: #2aa198;">"r"</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">dolist</span> <span style="color: #268bd2;">(</span>o <span style="color: #dc322f;">(</span>overlays-in beg end<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">when</span> <span style="color: #dc322f;">(</span>toby/my-overlay-p o<span style="color: #dc322f;">)</span>
+      <span style="color: #dc322f;">(</span>delete-overlay o<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+
+<span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/on-change</span> <span style="color: #b58900;">(</span>beg end<span style="color: #b58900;">)</span>
+  <span style="color: #2aa198; font-style: italic;">"After change hook to update overlays"</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #268bd2;">(</span><span style="color: #dc322f;">(</span>beg-line <span style="color: #cb4b16;">(</span><span style="color: #859900; font-weight: bold;">save-excursion</span> <span style="color: #268bd2;">(</span>goto-char beg<span style="color: #268bd2;">)</span> <span style="color: #268bd2;">(</span>line-beginning-position<span style="color: #268bd2;">)</span><span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span>
+        <span style="color: #dc322f;">(</span>end-line <span style="color: #cb4b16;">(</span><span style="color: #859900; font-weight: bold;">save-excursion</span> <span style="color: #268bd2;">(</span>goto-char end<span style="color: #268bd2;">)</span> <span style="color: #268bd2;">(</span>line-end-position<span style="color: #268bd2;">)</span><span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>toby/make-sloppy beg-line end-line<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>toby/make-roomy beg-line end-line<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5">The Mode</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+Finally, I create the minor-mode to house all of this.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">define-minor-mode</span> <span style="color: #268bd2;">toby-mode</span>
+  <span style="color: #2aa198; font-style: italic;">"Customization minor mode for ME"</span>
+  <span style="color: #268bd2; font-style: italic;">:lighter</span> <span style="color: #2aa198;">" &#960;"</span>
+  <span style="color: #268bd2; font-style: italic;">:global</span> t
+  <span style="color: #268bd2; font-style: italic;">:keymap</span> *tobys-mode-map*<span style="color: #f5deb3;">)</span>
+
+<span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">define-minor-mode</span> <span style="color: #268bd2;">global-toby-mode</span>
+  <span style="color: #2aa198; font-style: italic;">"Toggle Toby Mode globally"</span>
+  <span style="color: #268bd2; font-style: italic;">:lighter</span> <span style="color: #2aa198;">" &#960;"</span>
+  <span style="color: #268bd2; font-style: italic;">:global</span> t
+  <span style="color: #268bd2; font-style: italic;">:keymap</span> *tobys-mode-map*
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">save-excursion</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">save-restriction</span>
+      <span style="color: #dc322f;">(</span>widen<span style="color: #dc322f;">)</span>
+      <span style="color: #dc322f;">(</span>toby/make-sloppy <span style="color: #cb4b16;">(</span>point-min<span style="color: #cb4b16;">)</span> <span style="color: #cb4b16;">(</span>point-max<span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span>
+      <span style="color: #dc322f;">(</span><span style="color: #859900; font-weight: bold;">if</span> global-toby-mode
+          <span style="color: #cb4b16;">(</span>jit-lock-register 'toby/on-change<span style="color: #cb4b16;">)</span>
+        <span style="color: #cb4b16;">(</span>jit-lock-unregister 'toby/on-change<span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">provide</span> '<span style="color: #268bd2; font-weight: bold;">toby-mode</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Toby Tripp</p>
+<p class="date">Created: 2015-01-30 Fri 22:57</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

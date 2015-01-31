@@ -1,0 +1,54 @@
+body {
+   background: grey;
+}
+
+pre {
+   width:      92%;
+   max-witdh:  60em;
+   margin:     0 auto 1em 2em;
+   color:      #DADADA;
+   background: #211E1E;
+}
+
+#content {
+   width:      92%;
+   max-width:  1000px;
+   margin:     auto;
+   background: white;
+   padding:    3em;
+
+   box-shadow: 0 0 6px rgba( 32, 32, 32, 0.8 );
+}
+
+a { color: blue; }
+
+p {
+   margin: 0.5em 0;
+}
+
+#preamble {
+   height:     3em;
+   background: black;
+   position:   fixed;
+   top:   0;
+   width: 100%;
+   text-align: right;
+
+   /* box-shadow: 0 4px 6px rgba( 32, 32, 32, 0.8 ); */
+}
+
+#preamble p {
+   margin: 1em 2em;
+}
+
+#preamble p a {
+   color: white;
+}
+
+#postamble {
+   width:      92%;
+   max-width:  1000px;
+   margin:     auto;
+   font-size:  40%;
+   padding:    3em;
+}

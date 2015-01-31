@@ -1,1 +1,546 @@
-My Page
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Toby's Emacs Configuration</title>
+<!-- 2015-01-30 Fri 22:59 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Toby Tripp" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/config.css">
+<link rel="stylesheet" href="css/htmlize.css">
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<p><a accesskey="H" href="index.html">HOME</a></p>
+</div>
+<div id="content">
+<h1 class="title">Toby's Emacs Configuration</h1>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">My Emacs Configuration</h2>
+<div class="outline-text-2" id="text-1">
+<blockquote>
+<p>
+Emacs outshines all other editing software in approximately the same
+way that the noonday sun does the stars. It is not just bigger and
+brighter; it simply makes everything else vanish.
+</p>
+
+<p>
+&#x2013; Neal Stephenson, "In the Beginning was the Command Line"
+</p>
+</blockquote>
+
+<p>
+Testing out a Literate emacs configuration.
+</p>
+
+<p>
+This file should catalog my <a href="keybindings.html">keybindings</a> as well as my language mode
+settings, such as for <a href="clojure.html">Clojure</a> and <a href="ruby-init.html">Ruby</a>.
+</p>
+</div>
+
+<div id="outline-container-sec-1-0-1" class="outline-4">
+<h4 id="sec-1-0-1"><span class="todo TODO">TODO</span> Keep the tangled elisp in a separate directory that is in .gitignore</h4>
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">Decorations</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Turn off tool-bars and scroll bars and other features I deem unnecessary.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900;">(</span>fboundp 'tool-bar-mode<span style="color: #b58900;">)</span>   <span style="color: #b58900;">(</span>tool-bar-mode -1<span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900;">(</span>fboundp 'scroll-bar-mode<span style="color: #b58900;">)</span> <span style="color: #b58900;">(</span>scroll-bar-mode -1<span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>setq inhibit-splash-screen t<span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<p>
+Instead of a splash screen, let's start with the Bookmark List:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">bookmark</span><span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>bookmark-bmenu-list<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>switch-to-buffer <span style="color: #2aa198;">"*Bookmark List*"</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<p>
+Disable backup files.  That's what source-conrol is for.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>setq make-backup-files nil<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>setq auto-save-default nil<span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<p>
+Hide the fringe.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>set-fringe-style 0<span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<p>
+Highlight the current line in the buffer.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>global-hl-line-mode 1<span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<p>
+Over-write selection to make things slightly less uncomfortable to
+others.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>delete-selection-mode t<span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<p>
+Enable some features that the Emacs developers have deemed scary.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>put 'ido-exit-minibuffer 'disabled nil<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>put 'upcase-region       'disabled nil<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>put 'narrow-to-region    'disabled nil<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>put 'scroll-left         'disabled nil<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>put 'set-goal-column 'disabled nil<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>put 'downcase-region 'disabled nil<span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2">Initialize Load Paths</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Add some directories to the load path so we can require files in them later.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defvar</span> <span style="color: #268bd2;">dotfiles-dir</span> user-emacs-directory<span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<p>
+Make a path to add libraries installed from source.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defvar</span> <span style="color: #268bd2;">vendor-dir</span> <span style="color: #b58900;">(</span>concat dotfiles-dir <span style="color: #2aa198;">"vendor/"</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+
+<span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">(</span>default-directory vendor-dir<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>add-to-list 'load-path default-directory<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>normal-top-level-add-subdirs-to-load-path<span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<p>
+Also create a place to put my various initialization hooks.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defvar</span> <span style="color: #268bd2;">lib-dir</span> <span style="color: #b58900;">(</span>concat dotfiles-dir <span style="color: #2aa198;">"elisp/"</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>add-to-list 'load-path lib-dir<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defvar</span> <span style="color: #268bd2;">org-lib-dir</span> <span style="color: #b58900;">(</span>concat dotfiles-dir <span style="color: #2aa198;">"org-init/"</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>add-to-list 'load-path org-lib-dir<span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3">Change the Destination of Customization Settings</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+These are the settings saved from the customize menus and prompts within Emacs.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>setq custom-file <span style="color: #2aa198;">"~/.emacs.d/custom.el"</span><span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>load custom-file 'noerror<span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4">Setup Environment Variables and Path</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+I keep these in a separate file to make it easy to find them.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>load <span style="color: #2aa198;">"env.el"</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5">Install and Load Packages</h3>
+<div class="outline-text-3" id="text-1-5">
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">init-packages</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-6" class="outline-3">
+<h3 id="sec-1-6">Load Third-Party Libraries from <code>Vendor</code></h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+First, load some libraries that are likely to be used in every session:
+</p>
+<ul class="org-ul">
+<li><code>uniquify</code> configures how buffer names are disambiguated
+</li>
+<li><code>ansi-color</code> supports translating ANSI color codes into Emacs faces
+</li>
+<li><code>recentf</code> allows for fast switching between recently edited files
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">uniquify</span><span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">ansi-color</span><span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">recentf</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<p>
+Then load anything we find in the <code>vendor</code> directory:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>mapc <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">lambda</span> <span style="color: #268bd2;">(</span>path<span style="color: #268bd2;">)</span>
+     <span style="color: #268bd2;">(</span>add-to-list 'load-path <span style="color: #dc322f;">(</span>concat vendor-dir <span style="color: #2aa198;">"/"</span> path<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+   <span style="color: #b58900;">(</span>directory-files vendor-dir nil <span style="color: #2aa198;">"^[a-z]"</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-7" class="outline-3">
+<h3 id="sec-1-7">Org-Babel</h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+Let's make it easy to tangle, load, and compile other configuration
+files written in org-mode.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">org-install</span><span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">ob-tangle</span><span style="color: #f5deb3;">)</span>
+
+<span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/babel-load-file</span> <span style="color: #b58900;">(</span>relative-path<span style="color: #b58900;">)</span>
+  <span style="color: #2aa198; font-style: italic;">"Load the given file using org-babel-load-file.  Path should be</span>
+<span style="color: #2aa198; font-style: italic;">relative to lib-dir"</span>
+  <span style="color: #b58900;">(</span>org-babel-load-file <span style="color: #268bd2;">(</span>expand-file-name relative-path org-lib-dir<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-8" class="outline-3">
+<h3 id="sec-1-8">Load Configurations</h3>
+<div class="outline-text-3" id="text-1-8">
+<p>
+First, pre-load some custom function definitions that may be used in my extensions.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">defuns</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<p>
+Now, load every elisp file in the <code>lib</code> diectory.  Demote errors to
+warnings so that a problem in a particular extension doesn't bring
+start-up to a halt.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">with-demoted-errors</span>
+  <span style="color: #b58900;">(</span>mapc #'load
+        <span style="color: #268bd2;">(</span>mapcar #'file-name-sans-extension
+                <span style="color: #dc322f;">(</span>directory-files lib-dir nil <span style="color: #2aa198;">".*\.el$"</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>mapc #'toby/babel-load-file
+        <span style="color: #268bd2;">(</span>remove <span style="color: #2aa198;">"index.org"</span> <span style="color: #dc322f;">(</span>directory-files org-lib-dir nil <span style="color: #2aa198;">".*org$"</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+
+<span style="color: #f5deb3;">(</span>byte-recompile-directory org-lib-dir 0<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>byte-recompile-directory lib-dir 0<span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<p>
+Errors encountered while loading these libraries will show up in
+the Messages buffer after start-up.
+</p>
+</div>
+
+<div id="outline-container-sec-1-8-1" class="outline-4">
+<h4 id="sec-1-8-1">Toby Mode</h4>
+<div class="outline-text-4" id="text-1-8-1">
+<p>
+I push some keybindings and behaviors into my own minor mode so
+that, should I ever sit with an experienced Emacs user, we can
+turn them off easily.  This way Emacs can behave in a more
+“standard” way for a while.
+</p>
+
+<p>
+<code>toby-mode</code> is defined in <a href="toby-mode.html">toby-mode.org</a>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">toby-mode</span><span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>global-toby-mode<span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Mode-Specific Configurations</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Other Configuraion Files:
+</p>
+<ul class="org-ul">
+<li><a href="clojure.html">clojure</a>
+</li>
+<li><a href="coding-init.html">coding-init</a>
+</li>
+<li><a href="completion.html">completion</a>
+</li>
+<li><a href="emacs-init.html">emacs-init</a>
+</li>
+<li><a href="eshell-init.html">eshell-init</a>
+</li>
+<li><a href="finding-files.html">finding-files</a>
+</li>
+<li><a href="git-init.html">git-init</a>
+</li>
+<li><a href="god-init.html">god-init</a>
+</li>
+<li><a href="haskell-init.html">haskell-init</a>
+</li>
+<li><a href="html-init.html">html-init</a>
+</li>
+<li><a href="index.html">index</a>
+</li>
+<li><a href="javascript-init.html">javascript-init</a>
+</li>
+<li><a href="keybindings.html">keybindings</a>
+</li>
+<li><a href="lisp-init.html">lisp-init</a>
+</li>
+<li><a href="main.html">main</a>
+</li>
+<li><a href="modeline-custom.html">modeline-custom</a>
+</li>
+<li><a href="org-mode-init.html">org-mode-init</a>
+</li>
+<li><a href="registers-init.html">registers-init</a>
+</li>
+<li><a href="ruby-init.html">ruby-init</a>
+</li>
+<li><a href="senseless-eye-candy.html">senseless-eye-candy</a>
+</li>
+<li><a href="snippet-init.html">snippet-init</a>
+</li>
+<li><a href="tags.html">tags</a>
+</li>
+<li><a href="toby-mode.html">toby-mode</a>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">If Something Goes Wrong</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Sometimes it helps to launch the debugger when an error occurs.  By
+default, I've turned that off:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>setq debug-on-error       nil<span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<p>
+to turn it on:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>setq debug-on-error       t<span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Toby Tripp</p>
+<p class="date">Created: 2015-01-30 Fri 22:59</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

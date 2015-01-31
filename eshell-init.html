@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>eshell-init</title>
+<!-- 2015-01-30 Fri 22:57 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Toby Tripp" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/config.css">
+<link rel="stylesheet" href="css/htmlize.css">
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<p><a accesskey="H" href="index.html">HOME</a></p>
+</div>
+<div id="content">
+<h1 class="title">eshell-init</h1>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">EShell</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+EShell is a shell written in elisp.  This makes it both less
+capable than other terminal emulators and also gives it some
+interesting features.
+</p>
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">Opening EShells</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+First, a short-cut to quickly open a shell.  Repeated invocations
+will bring back the same shell so we don't end up with a bunch of
+them runningn about.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-x m"</span><span style="color: #b58900;">)</span> 'eshell<span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<p>
+It's nice to have an easy short-cut to launch into a shell in the
+current buffer's directory.  We'll start with a function to lauch it:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/eshell-in-buffer-dir</span> <span style="color: #b58900;">()</span>
+  <span style="color: #2aa198; font-style: italic;">"Open eshell in the current buffer's directory"</span>
+  <span style="color: #b58900;">(</span>interactive<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #268bd2;">(</span><span style="color: #dc322f;">(</span>dir default-directory<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #dc322f;">(</span><span style="color: #cb4b16;">(</span>b <span style="color: #268bd2;">(</span>get-buffer eshell-buffer-name<span style="color: #268bd2;">)</span><span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span>
+      <span style="color: #dc322f;">(</span><span style="color: #859900; font-weight: bold;">unless</span> b <span style="color: #cb4b16;">(</span>eshell<span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span>
+      <span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>display-buffer eshell-buffer-name t<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>switch-to-buffer-other-window eshell-buffer-name<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>end-of-buffer<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">unless</span> <span style="color: #dc322f;">(</span>equalp dir default-directory<span style="color: #dc322f;">)</span>
+      <span style="color: #dc322f;">(</span>cd dir<span style="color: #dc322f;">)</span>
+      <span style="color: #dc322f;">(</span>eshell-send-input<span style="color: #dc322f;">)</span>
+      <span style="color: #dc322f;">(</span>end-of-buffer<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<p>
+and a binding to launch it:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-x C-m"</span><span style="color: #b58900;">)</span> 'toby/eshell-in-buffer-dir<span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<p>
+Sometimes what you want <i>is</i> another shell instance:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #586e75;">;; </span><span style="color: #586e75;">Start a new eshell even if one is active.</span>
+ <span style="color: #f5deb3;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-x M"</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">lambda</span> <span style="color: #268bd2;">()</span> <span style="color: #268bd2;">(</span>interactive<span style="color: #268bd2;">)</span> <span style="color: #268bd2;">(</span>eshell t<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<p>
+One great feature of Eshell is its ability to call Emacs functions
+as though they were shell commands.  Here we'll define an alias
+<code>ff</code> that will open a file from the Eshell command line into an
+Emacs buffer:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>add-hook 'eshell-mode-hook
+          <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">lambda</span> <span style="color: #268bd2;">()</span>
+            <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">defalias</span> '<span style="color: #268bd2;">ff</span> 'find-file<span style="color: #268bd2;">)</span>
+            <span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<p>
+Adjust some <code>comint</code> parameters (the mode that handles terminal buffers).
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>setq comint-buffer-maximum-size 10240<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>add-hook 'comint-output-filter-functions 'comint-truncate-buffer<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>add-hook 'comint-output-filter-functions 'comint-watch-for-password-prompt<span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<p>
+Multi-term is an extension for running multiple native shells within Emacs:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>require-package 'multi-term<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>setq multi-term-program <span style="color: #2aa198;">"/bin/bash -l"</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">provide</span> '<span style="color: #268bd2; font-weight: bold;">eshell-hooks</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Comint Mode</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<code>comint-mode</code> is the parent mode of many shell modes.
+</p>
+
+<p>
+Let's add a function to easily clear an active shell buffer:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">clear-shell</span> <span style="color: #b58900;">()</span>
+  <span style="color: #2aa198; font-style: italic;">"Clear the current shell buffer"</span>
+  <span style="color: #b58900;">(</span>interactive<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #268bd2;">(</span><span style="color: #dc322f;">(</span>comint-buffer-maximum-size 0<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>comint-truncate-buffer<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<p>
+Binding <code>s-k</code> to <code>kill-buffer</code> doesn't make sense to me.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>global-unset-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"s-k"</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">set-my-shell-bindings</span> <span style="color: #b58900;">()</span>
+  <span style="color: #b58900;">(</span>interactive<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>local-set-key <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"&lt;up&gt;"</span><span style="color: #268bd2;">)</span>   'comint-previous-input<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>local-set-key <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"&lt;down&gt;"</span><span style="color: #268bd2;">)</span> 'comint-next-input<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>local-set-key <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"s-k"</span><span style="color: #268bd2;">)</span>    'clear-shell<span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+
+<span style="color: #f5deb3;">(</span>add-hook 'shell-mode-hook 'set-my-shell-bindings<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>add-hook 'eshell-mode-hook 'set-my-shell-bindings<span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Toby Tripp</p>
+<p class="date">Created: 2015-01-30 Fri 22:57</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

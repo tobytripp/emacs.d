@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Toby's Emacs Keybindings</title>
+<!-- 2015-01-30 Fri 22:57 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Toby Tripp" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/config.css">
+<link rel="stylesheet" href="css/htmlize.css">
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<p><a accesskey="H" href="index.html">HOME</a></p>
+</div>
+<div id="content">
+<h1 class="title">Toby's Emacs Keybindings</h1>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Keybindings</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="todo TODO">TODO</span> Start with an overview of commands I haven't changed</h3>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2">Dired</h3>
+<div class="outline-text-3" id="text-1-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">Keystroke</td>
+<td class="left">Command</td>
+</tr>
+
+<tr>
+<td class="left">C-x d</td>
+<td class="left">Open Dired</td>
+</tr>
+
+<tr>
+<td class="left">C-x d &lt;REGEX&gt;</td>
+<td class="left">Open Dired filterd by REGEX</td>
+</tr>
+
+<tr>
+<td class="left">A</td>
+<td class="left">Search marked file</td>
+</tr>
+
+<tr>
+<td class="left">B</td>
+<td class="left">Byte-compile elisp files</td>
+</tr>
+
+<tr>
+<td class="left">D</td>
+<td class="left">Delete marked files</td>
+</tr>
+
+<tr>
+<td class="left">L</td>
+<td class="left">Load elisp files</td>
+</tr>
+
+<tr>
+<td class="left">Q</td>
+<td class="left">Query Replace in marked entries</td>
+</tr>
+
+<tr>
+<td class="left">R</td>
+<td class="left">Rename</td>
+</tr>
+
+<tr>
+<td class="left">T</td>
+<td class="left">Touch marked files</td>
+</tr>
+
+<tr>
+<td class="left">X</td>
+<td class="left">Shell Command on files</td>
+</tr>
+
+<tr>
+<td class="left">Z</td>
+<td class="left">Compress marked files</td>
+</tr>
+
+<tr>
+<td class="left">^</td>
+<td class="left">Go up a directory</td>
+</tr>
+
+<tr>
+<td class="left">c</td>
+<td class="left">Copy marked files</td>
+</tr>
+
+<tr>
+<td class="left">g</td>
+<td class="left">Read all dirs aGain</td>
+</tr>
+
+<tr>
+<td class="left">i</td>
+<td class="left">Insert subdirectory into this listing</td>
+</tr>
+
+<tr>
+<td class="left">m</td>
+<td class="left">Mark an entry</td>
+</tr>
+
+<tr>
+<td class="left">s</td>
+<td class="left">Symlink marked files</td>
+</tr>
+
+<tr>
+<td class="left">t</td>
+<td class="left">Toggle marks</td>
+</tr>
+
+<tr>
+<td class="left">u</td>
+<td class="left">Unmark file</td>
+</tr>
+
+<tr>
+<td class="left">: d</td>
+<td class="left">Decrypt</td>
+</tr>
+
+<tr>
+<td class="left">: e</td>
+<td class="left">Encrypt</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Also great is the <code>wdired</code> command, which creates a <code>dired</code> listing
+that can be edited and saved. This makes for easy renames and file
+mode changes.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3">Searching/Replacing</h3>
+<div class="outline-text-3" id="text-1-3">
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-s"</span><span style="color: #b58900;">)</span>   'isearch-forward-regexp<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-r"</span><span style="color: #b58900;">)</span>   'isearch-backward-regexp<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-M-s"</span><span style="color: #b58900;">)</span> 'isearch-forward<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-M-r"</span><span style="color: #b58900;">)</span> 'isearch-backward<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"M-%"</span><span style="color: #b58900;">)</span>   'query-replace-regexp<span style="color: #f5deb3;">)</span>
+
+<span style="color: #f5deb3;">(</span>global-set-key <span style="color: #b58900;">[</span><span style="color: #268bd2;">(</span>meta shift a<span style="color: #268bd2;">)</span><span style="color: #b58900;">]</span>       'ack<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>global-set-key <span style="color: #b58900;">[</span><span style="color: #268bd2;">(</span>meta super shift a<span style="color: #268bd2;">)</span><span style="color: #b58900;">]</span> 'ack-same<span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<p>
+Activate occur easily inside isearch:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>define-key isearch-mode-map <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-o"</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">lambda</span> <span style="color: #268bd2;">()</span> <span style="color: #268bd2;">(</span>interactive<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #dc322f;">(</span><span style="color: #cb4b16;">(</span>case-fold-search isearch-case-fold-search<span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span>
+      <span style="color: #dc322f;">(</span>occur <span style="color: #cb4b16;">(</span><span style="color: #859900; font-weight: bold;">if</span> isearch-regexp isearch-string <span style="color: #268bd2;">(</span>regexp-quote isearch-string<span style="color: #268bd2;">)</span><span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4">Spelling</h3>
+<div class="outline-text-3" id="text-1-4">
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-c j"</span><span style="color: #b58900;">)</span> 'flyspell-check-previous-highlighted-word<span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5">Navigation</h3>
+<div class="outline-text-3" id="text-1-5">
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"M-g"</span><span style="color: #b58900;">)</span> 'goto-line<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"M-z"</span><span style="color: #b58900;">)</span> 'zap-to-char<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>global-unset-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"M-SPC"</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+
+<span style="color: #f5deb3;">(</span>require-package 'ace-jump-mode<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>autoload 'ace-jump-mode <span style="color: #2aa198;">"ace-jump-mode"</span><span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"M-SPC"</span><span style="color: #b58900;">)</span> 'ace-jump-mode<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-c SPC"</span><span style="color: #b58900;">)</span> 'ace-jump-mode<span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-6" class="outline-3">
+<h3 id="sec-1-6">Frame/Window Properties</h3>
+<div class="outline-text-3" id="text-1-6">
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>define-key global-map <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-+"</span><span style="color: #b58900;">)</span> 'text-scale-increase<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>define-key global-map <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C--"</span><span style="color: #b58900;">)</span> 'text-scale-decrease<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-s-f"</span><span style="color: #b58900;">)</span>     'ns-toggle-fullscreen<span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-7" class="outline-3">
+<h3 id="sec-1-7">File and Buffer Switching</h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+Commands to switch buffers:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-x C-i"</span><span style="color: #b58900;">)</span> 'ido-imenu<span style="color: #f5deb3;">)</span>
+
+<span style="color: #f5deb3;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-x M-f"</span><span style="color: #b58900;">)</span>   'ido-find-file-other-window<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-c y"</span><span style="color: #b58900;">)</span>     'bury-buffer<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-c r"</span><span style="color: #b58900;">)</span>     'revert-buffer<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"M-`"</span><span style="color: #b58900;">)</span>       'file-cache-minibuffer-complete<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-x C-b"</span><span style="color: #b58900;">)</span>   'ibuffer<span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<p>
+Commands to switch windows:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>windmove-default-keybindings<span style="color: #f5deb3;">)</span> <span style="color: #586e75;">;; </span><span style="color: #586e75;">Shift+direction</span>
+<span style="color: #f5deb3;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-x O"</span><span style="color: #b58900;">)</span>   <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">lambda</span> <span style="color: #268bd2;">()</span> <span style="color: #268bd2;">(</span>interactive<span style="color: #268bd2;">)</span> <span style="color: #268bd2;">(</span>other-window -1<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span> <span style="color: #586e75;">;; </span><span style="color: #586e75;">back one</span>
+<span style="color: #f5deb3;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-x C-o"</span><span style="color: #b58900;">)</span> <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">lambda</span> <span style="color: #268bd2;">()</span> <span style="color: #268bd2;">(</span>interactive<span style="color: #268bd2;">)</span> <span style="color: #268bd2;">(</span>other-window  2<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span> <span style="color: #586e75;">;; </span><span style="color: #586e75;">forward two</span>
+</pre>
+</div>
+
+<p>
+The <code>switch-window</code> package will display numbers in the various
+open windows, if there are more than two.  This can make things a
+bit easier to navigate when you have your screen split up into a
+bunch of different panes.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>require-package 'switch-window<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-x o"</span><span style="color: #b58900;">)</span>   'switch-window<span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<p>
+For those occassions when you want the old window switching behavior:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>global-unset-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"&lt;f3&gt;"</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"&lt;f3&gt;"</span><span style="color: #b58900;">)</span> 'other-window<span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<p>
+On keyboards that have extra function keys, some handy short-cuts:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"&lt;f14&gt;"</span><span style="color: #b58900;">)</span>   'other-window<span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<p>
+On larger screens, I like to divide me frame into thirds:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">split-in-thirds</span> <span style="color: #b58900;">()</span>
+  <span style="color: #2aa198; font-style: italic;">"Split the window vertically into three segments."</span>
+  <span style="color: #b58900;">(</span>interactive<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>split-window-horizontally<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>split-window-horizontally<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>balance-windows<span style="color: #b58900;">)</span>
+  <span style="color: #f5deb3;">)</span>
+
+<span style="color: #f5deb3;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-x 6"</span><span style="color: #b58900;">)</span> 'split-in-thirds<span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-8" class="outline-3">
+<h3 id="sec-1-8">Getting Help</h3>
+<div class="outline-text-3" id="text-1-8">
+<p>
+Prefer full <code>apropos</code> search over the default <code>apropos-command</code>:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-h a"</span><span style="color: #b58900;">)</span> 'apropos<span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-9" class="outline-3">
+<h3 id="sec-1-9">Keyboard and Mouse Set-up</h3>
+<div class="outline-text-3" id="text-1-9">
+<p>
+Bind Mac modifier keys:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>setq
+ ns-command-modifier   'meta        <span style="color: #586e75;">; </span><span style="color: #586e75;">Apple/Command key is Meta</span>
+ ns-alternate-modifier 'super       <span style="color: #586e75;">; </span><span style="color: #586e75;">Option is the Mac Option key</span>
+ ns-function-modifier  'hyper       <span style="color: #586e75;">; </span><span style="color: #586e75;">'super or 'hyper</span>
+ ns-pop-up-frames       nil
+ <span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<p>
+Make `super` + x the same as Meta-x:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"s-x"</span><span style="color: #b58900;">)</span> 'smex<span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<p>
+Mouse scrolling needs to calm down:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>setq mouse-wheel-scroll-amount '<span style="color: #b58900;">(</span>1<span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>setq mouse-wheel-progressive-speed nil<span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<p>
+Adjust the echo threshold for key-chords:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>setq echo-keystrokes 0.02<span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-10" class="outline-3">
+<h3 id="sec-1-10">Terminal Mode Affordances</h3>
+<div class="outline-text-3" id="text-1-10">
+<p>
+Attempt to accomodate modifiers to arrow keys in the terminal:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>define-key input-decode-map <span style="color: #2aa198;">"\e[1;5A"</span> <span style="color: #b58900;">[</span>C-up<span style="color: #b58900;">]</span><span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>define-key input-decode-map <span style="color: #2aa198;">"\e[1;5B"</span> <span style="color: #b58900;">[</span>C-down<span style="color: #b58900;">]</span><span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>define-key input-decode-map <span style="color: #2aa198;">"\e[1;5C"</span> <span style="color: #b58900;">[</span>C-right<span style="color: #b58900;">]</span><span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>define-key input-decode-map <span style="color: #2aa198;">"\e[1;5D"</span> <span style="color: #b58900;">[</span>C-left<span style="color: #b58900;">]</span><span style="color: #f5deb3;">)</span>
+
+<span style="color: #f5deb3;">(</span>define-key function-key-map <span style="color: #2aa198;">"\M-[ a"</span>  <span style="color: #b58900;">[</span>C-up<span style="color: #b58900;">]</span><span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>define-key function-key-map <span style="color: #2aa198;">"\M-[ b"</span>  <span style="color: #b58900;">[</span>C-down<span style="color: #b58900;">]</span><span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>define-key function-key-map <span style="color: #2aa198;">"\M-[ c"</span>  <span style="color: #b58900;">[</span>C-right<span style="color: #b58900;">]</span><span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>define-key function-key-map <span style="color: #2aa198;">"\M-[ d"</span>  <span style="color: #b58900;">[</span>C-left<span style="color: #b58900;">]</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">provide</span> '<span style="color: #268bd2; font-weight: bold;">keybindings</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Toby Tripp</p>
+<p class="date">Created: 2015-01-30 Fri 22:57</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

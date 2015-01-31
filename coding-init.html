@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>coding-init</title>
+<!-- 2015-01-30 Fri 22:57 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Toby Tripp" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/config.css">
+<link rel="stylesheet" href="css/htmlize.css">
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<p><a accesskey="H" href="index.html">HOME</a></p>
+</div>
+<div id="content">
+<h1 class="title">coding-init</h1>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Coding Init</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">I like λ</h3>
+<div class="outline-text-3" id="text-1-1">
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">pretty-lambdas</span> <span style="color: #b58900;">()</span>
+  <span style="color: #b58900;">(</span>font-lock-add-keywords
+   nil `<span style="color: #268bd2;">(</span><span style="color: #dc322f;">(</span><span style="color: #2aa198;">"(?</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">(</span><span style="color: #2aa198;">lambda\\&gt;</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">)</span><span style="color: #2aa198;">"</span>
+          <span style="color: #cb4b16;">(</span>0 <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">progn</span> <span style="color: #859900;">(</span>compose-region <span style="color: #dc322f;">(</span>match-beginning 1<span style="color: #dc322f;">)</span> <span style="color: #dc322f;">(</span>match-end 1<span style="color: #dc322f;">)</span>
+                                    ,<span style="color: #dc322f;">(</span>make-char 'greek-iso8859-7 107<span style="color: #dc322f;">)</span><span style="color: #859900;">)</span>
+                    nil<span style="color: #268bd2;">)</span><span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2">Hooks Useful in All Programming Environments</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Here are a couple functions that can help line up stubborn bits of code:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>require-package 'highlight-indentation<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>autoload 'highlight-indentation-current-column-mode <span style="color: #2aa198;">"highlight-indentation"</span><span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>autoload 'highlight-indentation-mode <span style="color: #2aa198;">"highlight-indentation"</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>require-package 'paredit<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>require-package 'rainbow-delimiters<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>autoload 'rainbow-delimiters-mode <span style="color: #2aa198;">"rainbow-delimiters"</span><span style="color: #f5deb3;">)</span>
+
+<span style="color: #f5deb3;">(</span>require-package 'idle-highlight-mode<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>autoload 'idle-highlight-mode <span style="color: #2aa198;">"idle-highlight-mode"</span><span style="color: #f5deb3;">)</span>
+
+<span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/coding-hooks</span> <span style="color: #b58900;">()</span>
+  <span style="color: #b58900;">(</span>make-local-variable 'column-number-mode<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>column-number-mode t<span style="color: #b58900;">)</span>
+
+  <span style="color: #b58900;">(</span>set <span style="color: #268bd2;">(</span>make-local-variable 'comment-auto-fill-only-comments<span style="color: #268bd2;">)</span> t<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>auto-fill-mode t<span style="color: #b58900;">)</span>
+
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">when</span> <span style="color: #268bd2;">(</span>&gt; <span style="color: #dc322f;">(</span>display-color-cells<span style="color: #dc322f;">)</span> 8<span style="color: #268bd2;">)</span> <span style="color: #268bd2;">(</span>hl-line-mode t<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+
+  <span style="color: #b58900;">(</span>setq save-place t<span style="color: #b58900;">)</span>
+
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">paredit</span> nil 'noerror<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>paredit-mode t<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+
+  <span style="color: #b58900;">(</span>tool-bar-mode -1<span style="color: #b58900;">)</span>
+
+  <span style="color: #b58900;">(</span>font-lock-add-keywords
+   nil '<span style="color: #268bd2;">(</span><span style="color: #dc322f;">(</span><span style="color: #2aa198;">"\\&lt;</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">(</span><span style="color: #2aa198;">FIX</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">|</span><span style="color: #2aa198;">TODO</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">|</span><span style="color: #2aa198;">FIXME</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">|</span><span style="color: #2aa198;">HACK</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">|</span><span style="color: #2aa198;">REFACTOR</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">)</span><span style="color: #2aa198;">:"</span>
+          1 font-lock-warning-face t<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+
+  <span style="color: #b58900;">(</span>pretty-lambdas<span style="color: #b58900;">)</span>
+
+  <span style="color: #b58900;">(</span>idle-highlight-mode t<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>highlight-indentation-current-column-mode<span style="color: #b58900;">)</span>
+
+  <span style="color: #b58900;">(</span>rainbow-delimiters-mode<span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+
+<span style="color: #f5deb3;">(</span>add-hook 'prog-mode-hook 'toby/coding-hooks<span style="color: #f5deb3;">)</span>
+
+<span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">run-coding-hook</span> <span style="color: #b58900;">()</span>
+  <span style="color: #2aa198; font-style: italic;">"Enable things that are convenient across all coding buffers.</span>
+
+<span style="color: #2aa198; font-style: italic;">   Not every programming mode yet inherits from prog-mode (new to</span>
+<span style="color: #2aa198; font-style: italic;">   Emacs 24), so this function provides a short-cut for including</span>
+<span style="color: #2aa198; font-style: italic;">   those hooks in another mode."</span>
+  <span style="color: #b58900;">(</span>run-hooks 'prog-mode-hook<span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3">Commands</h3>
+<div class="outline-text-3" id="text-1-3">
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">untabify-buffer</span> <span style="color: #b58900;">()</span>
+  <span style="color: #b58900;">(</span>interactive<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>untabify <span style="color: #268bd2;">(</span>point-min<span style="color: #268bd2;">)</span> <span style="color: #268bd2;">(</span>point-max<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+
+<span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">indent-buffer</span> <span style="color: #b58900;">()</span>
+  <span style="color: #b58900;">(</span>interactive<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>indent-region <span style="color: #268bd2;">(</span>point-min<span style="color: #268bd2;">)</span> <span style="color: #268bd2;">(</span>point-max<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+
+<span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">cleanup-buffer</span> <span style="color: #b58900;">()</span>
+  <span style="color: #2aa198; font-style: italic;">"Perform a bunch of operations on the whitespace content of a buffer."</span>
+  <span style="color: #b58900;">(</span>interactive<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>indent-buffer<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>untabify-buffer<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>delete-trailing-whitespace<span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<p>
+First, a function that allows another function to act on either a
+region or the buffer, based on whether a region is curently active.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">act-on-region-or-buffer</span> <span style="color: #b58900;">(</span>fn<span style="color: #b58900;">)</span>
+  <span style="color: #2aa198; font-style: italic;">"Given a function that operates between to points, pass it the</span>
+<span style="color: #2aa198; font-style: italic;">active region or the entire buffer."</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #268bd2;">(</span>p1 p2 bounds<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #dc322f;">(</span>use-region-p<span style="color: #dc322f;">)</span>
+        <span style="color: #dc322f;">(</span>setq p1 <span style="color: #cb4b16;">(</span>region-beginning<span style="color: #cb4b16;">)</span> p2 <span style="color: #cb4b16;">(</span>region-end<span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span>
+      <span style="color: #dc322f;">(</span>setq p1 <span style="color: #cb4b16;">(</span>point-min<span style="color: #cb4b16;">)</span> p2 <span style="color: #cb4b16;">(</span>point-max<span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>funcall fn p1 p2<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<p>
+Next, a function that applies a Regular Expression replacement to a region.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">replace-in</span> <span style="color: #b58900;">(</span>exp replace p1 p2<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">save-restriction</span>
+    <span style="color: #268bd2;">(</span>narrow-to-region p1 p2<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>goto-char <span style="color: #dc322f;">(</span>point-min<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">while</span> <span style="color: #dc322f;">(</span>re-search-forward exp nil t<span style="color: #dc322f;">)</span>
+      <span style="color: #dc322f;">(</span>replace-match replace<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<p>
+Pad out parens: turn <code>(x)</code> into <code>( x )</code>
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">fix-parens</span> <span style="color: #b58900;">()</span>
+  <span style="color: #2aa198; font-style: italic;">"Fix misplaced parens in code buffers."</span>
+  <span style="color: #b58900;">(</span>interactive<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>act-on-region-or-buffer
+   <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">lambda</span> <span style="color: #dc322f;">(</span>p1 p2<span style="color: #dc322f;">)</span>
+     <span style="color: #dc322f;">(</span>replace-in <span style="color: #2aa198;">"(</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">(</span><span style="color: #2aa198;">[</span><span style="color: #839496;">^</span><span style="color: #2aa198;">[:space:])]</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">)</span><span style="color: #2aa198;">"</span> <span style="color: #2aa198;">"( \\1"</span> p1 p2<span style="color: #dc322f;">)</span>
+     <span style="color: #dc322f;">(</span>replace-in <span style="color: #2aa198;">"</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">(</span><span style="color: #2aa198;">[</span><span style="color: #839496;">^</span><span style="color: #2aa198;">[:space:](]</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">)</span><span style="color: #2aa198;">)"</span> <span style="color: #2aa198;">"\\1 )"</span> p1 p2<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<p>
+Do the same for hash-rockets: =&gt;
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">decompress-hash-rockets</span> <span style="color: #b58900;">()</span>
+  <span style="color: #2aa198; font-style: italic;">"Fix compressed hash rockets"</span>
+  <span style="color: #b58900;">(</span>interactive<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>act-on-region-or-buffer
+   <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">lambda</span> <span style="color: #dc322f;">(</span>p1 p2<span style="color: #dc322f;">)</span>
+     <span style="color: #dc322f;">(</span>replace-in
+      <span style="color: #2aa198;">"</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">(</span><span style="color: #2aa198;">[</span><span style="color: #839496;">^</span><span style="color: #2aa198;">[:space:]]</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">)</span><span style="color: #2aa198;">=&gt;</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">(</span><span style="color: #2aa198;">[</span><span style="color: #839496;">^</span><span style="color: #2aa198;">[:space:]]</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">)</span><span style="color: #2aa198;">"</span>
+      <span style="color: #2aa198;">"\\1 =&gt; \\2"</span>
+      p1 p2<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<p>
+This function converts camel-case to under<sub>scores</sub>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">underscore-region</span> <span style="color: #b58900;">(</span>start end<span style="color: #b58900;">)</span>
+  <span style="color: #2aa198; font-style: italic;">"Convert camelCase to under_scores in the active region."</span>
+  <span style="color: #b58900;">(</span>interactive <span style="color: #2aa198;">"r"</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #268bd2;">(</span><span style="color: #dc322f;">(</span>case-fold-search nil<span style="color: #dc322f;">)</span>
+        <span style="color: #dc322f;">(</span>exp <span style="color: #2aa198;">"</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">(</span><span style="color: #2aa198;">\\b</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">|</span><span style="color: #2aa198;">[[:lower:]]</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">)</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">(</span><span style="color: #2aa198;">[[:upper:]]+</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">)</span><span style="color: #2aa198;">"</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">save-restriction</span>
+      <span style="color: #dc322f;">(</span>narrow-to-region start end<span style="color: #dc322f;">)</span>
+      <span style="color: #dc322f;">(</span>goto-char <span style="color: #cb4b16;">(</span>point-min<span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span>
+      <span style="color: #dc322f;">(</span><span style="color: #859900; font-weight: bold;">while</span> <span style="color: #cb4b16;">(</span>re-search-forward exp nil t<span style="color: #cb4b16;">)</span>
+        <span style="color: #cb4b16;">(</span>replace-match
+          <span style="color: #268bd2;">(</span>concat <span style="color: #859900;">(</span>match-string 1<span style="color: #859900;">)</span> <span style="color: #2aa198;">"_"</span> <span style="color: #859900;">(</span>downcase <span style="color: #dc322f;">(</span>match-string 2<span style="color: #dc322f;">)</span><span style="color: #859900;">)</span><span style="color: #268bd2;">)</span><span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+
+<span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">underscore-word</span> <span style="color: #b58900;">()</span>
+  <span style="color: #2aa198; font-style: italic;">"Convert camelCase to under_score at the current word."</span>
+  <span style="color: #b58900;">(</span>interactive<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #268bd2;">(</span><span style="color: #dc322f;">(</span>bounds <span style="color: #cb4b16;">(</span>bounds-of-thing-at-point 'word<span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #dc322f;">(</span><span style="color: #cb4b16;">(</span>start <span style="color: #268bd2;">(</span>car bounds<span style="color: #268bd2;">)</span><span style="color: #cb4b16;">)</span>
+            <span style="color: #cb4b16;">(</span>end   <span style="color: #268bd2;">(</span>cdr bounds<span style="color: #268bd2;">)</span><span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span>
+      <span style="color: #dc322f;">(</span>underscore-region start end<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">provide</span> '<span style="color: #268bd2; font-weight: bold;">coding-init</span><span style="color: #f5deb3;">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Toby Tripp</p>
+<p class="date">Created: 2015-01-30 Fri 22:57</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

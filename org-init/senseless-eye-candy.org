@@ -86,10 +86,11 @@
 
   #+BEGIN_SRC emacs-lisp
     (require-package 'twittering-mode)
+    (autoload 'twit "twittering-mode" "Twitter stream in Emacs")
 
-    (autoload 'twittering-mode "twittering-mode" "Twitter stream in Emacs")
     (setq twittering-username "tobytripp")
     (setq twittering-icon-mode t)
+
     (global-set-key (kbd "C-c t") 'twittering-update-status-interactive)
   #+END_SRC
 
@@ -99,6 +100,6 @@
     (set-window-dedicated-p (selected-window) 1))
   #+END_SRC
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :exports none
 (provide 'senseless-eye-candy)
 #+END_SRC

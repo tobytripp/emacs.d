@@ -1,4 +1,5 @@
 #+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
+#+TITLE: Shell Settings
 * EShell
   EShell is a shell written in elisp.  This makes it both less
   capable than other terminal emulators and also gives it some
@@ -13,15 +14,14 @@
    #+END_SRC
 
    It's nice to have an easy short-cut to launch into a shell in the
-   current buffer's directory.  We'll start with a function to lauch it:
+   current buffer's directory.  We'll start with a function to launch it:
    #+BEGIN_SRC emacs-lisp
      (defun toby/eshell-in-buffer-dir ()
        "Open eshell in the current buffer's directory"
        (interactive)
        (let ((dir default-directory))
          (let ((b (get-buffer eshell-buffer-name)))
-           (unless b (eshell))
-           )
+           (unless b (eshell)))
          (display-buffer eshell-buffer-name t)
          (switch-to-buffer-other-window eshell-buffer-name)
          (end-of-buffer)
@@ -49,16 +49,10 @@
    #+BEGIN_SRC emacs-lisp
      (add-hook 'eshell-mode-hook
                (lambda ()
-                 (defalias 'ff 'find-file)
-                 ))
+                 (defalias 'ff 'find-file)))
    #+END_SRC
 
    Adjust some =comint= parameters (the mode that handles terminal buffers).
-   #+BEGIN_SRC emacs-lisp
-     (setq comint-buffer-maximum-size 10240)
-     (add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
-     (add-hook 'comint-output-filter-functions 'comint-watch-for-password-prompt)
-   #+END_SRC
 
    Multi-term is an extension for running multiple native shells within Emacs:
    #+BEGIN_SRC emacs-lisp
@@ -66,12 +60,14 @@
      (setq multi-term-program "/bin/bash -l")
    #+END_SRC
 
-#+BEGIN_SRC emacs-lisp
-  (provide 'eshell-hooks)
-#+END_SRC
-
 * Comint Mode
   =comint-mode= is the parent mode of many shell modes.
+
+  #+BEGIN_SRC emacs-lisp
+    (setq comint-buffer-maximum-size 10240)
+    (add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
+    (add-hook 'comint-output-filter-functions 'comint-watch-for-password-prompt)
+  #+END_SRC
 
   Let's add a function to easily clear an active shell buffer:
   #+BEGIN_SRC emacs-lisp
@@ -93,7 +89,12 @@
       (local-set-key (kbd "<up>")   'comint-previous-input)
       (local-set-key (kbd "<down>") 'comint-next-input)
       (local-set-key (kbd "s-k")    'clear-shell))
-    
+
     (add-hook 'shell-mode-hook 'set-my-shell-bindings)
     (add-hook 'eshell-mode-hook 'set-my-shell-bindings)
   #+END_SRC
+
+#+BEGIN_SRC emacs-lisp :exports none
+  (provide 'eshell-hooks)
+#+END_SRC
+

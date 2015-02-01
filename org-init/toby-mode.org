@@ -123,7 +123,6 @@
          (define-key map [(meta return)]   'textmate-next-line)
 
          (define-key map [f5] 'touch)
-         (define-key map [f6] 'swap-modifiers)
          map)
        "Keymap used for my local customizations.")
 

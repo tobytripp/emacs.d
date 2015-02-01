@@ -76,6 +76,7 @@
          (switch-to-haskell))))
 
      (add-hook 'org-babel-post-tangle-hook 'toby/tangle-and-run)
+     (define-key org-mode-map (kbd "<f6>") 'org-babel-tangle)
    #+END_SRC
 
 ** Org-Mode Presentations

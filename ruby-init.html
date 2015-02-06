@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>ruby-init</title>
-<!-- 2015-01-30 Fri 22:57 -->
+<!-- 2015-02-04 Wed 10:55 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Toby Tripp" />
@@ -89,8 +89,8 @@
   /*]]>*/-->
 </style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/config.css">
 <link rel="stylesheet" href="css/htmlize.css">
+<link rel="stylesheet" href="css/config.css">
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -153,8 +153,39 @@ Still my favorite language.
 </div>
 
 <div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1">Start-up</h3>
+<h3 id="sec-1-1">Ruby Mode Keybindings</h3>
 <div class="outline-text-3" id="text-1-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">Key-Chord</td>
+<td class="left">Command</td>
+</tr>
+
+<tr>
+<td class="left">C-c C-z</td>
+<td class="left">Switch to IRB REPL</td>
+</tr>
+
+<tr>
+<td class="left">C-c C-l</td>
+<td class="left">Load current buffer into the REPL</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2">Start-up</h3>
+<div class="outline-text-3" id="text-1-2">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>autoload 'ruby-mode <span style="color: #2aa198;">"ruby-mode"</span> <span style="color: #2aa198; font-style: italic;">"Major mode for Ruby"</span> t<span style="color: #f5deb3;">)</span>
@@ -195,9 +226,9 @@ Still my favorite language.
 </div>
 </div>
 
-<div id="outline-container-sec-1-2" class="outline-3">
-<h3 id="sec-1-2">Rbenv</h3>
-<div class="outline-text-3" id="text-1-2">
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3">Rbenv</h3>
+<div class="outline-text-3" id="text-1-3">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>require-package 'rbenv<span style="color: #f5deb3;">)</span>
@@ -217,9 +248,9 @@ Still my favorite language.
 </div>
 </div>
 
-<div id="outline-container-sec-1-3" class="outline-3">
-<h3 id="sec-1-3">Cucumber</h3>
-<div class="outline-text-3" id="text-1-3">
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4">Cucumber</h3>
+<div class="outline-text-3" id="text-1-4">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>require-package 'feature-mode<span style="color: #f5deb3;">)</span>
@@ -235,9 +266,9 @@ Still my favorite language.
 </div>
 </div>
 
-<div id="outline-container-sec-1-4" class="outline-3">
-<h3 id="sec-1-4">Rails</h3>
-<div class="outline-text-3" id="text-1-4">
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5">Rails</h3>
+<div class="outline-text-3" id="text-1-5">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>add-to-list 'auto-mode-alist '<span style="color: #b58900;">(</span><span style="color: #2aa198;">"\\.rabl$"</span> . ruby-mode<span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
@@ -251,9 +282,9 @@ Still my favorite language.
 </div>
 </div>
 
-<div id="outline-container-sec-1-5" class="outline-3">
-<h3 id="sec-1-5">Lining Up Data Structures</h3>
-<div class="outline-text-3" id="text-1-5">
+<div id="outline-container-sec-1-6" class="outline-3">
+<h3 id="sec-1-6">Lining Up Data Structures</h3>
+<div class="outline-text-3" id="text-1-6">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">align</span><span style="color: #f5deb3;">)</span>
@@ -283,9 +314,9 @@ Still my favorite language.
 </div>
 </div>
 
-<div id="outline-container-sec-1-5-1" class="outline-4">
-<h4 id="sec-1-5-1"><span class="todo TODO">TODO</span> Make sure this hack is still necessary:</h4>
-<div class="outline-text-4" id="text-1-5-1">
+<div id="outline-container-sec-1-6-1" class="outline-4">
+<h4 id="sec-1-6-1"><span class="todo TODO">TODO</span> Make sure this hack is still necessary:</h4>
+<div class="outline-text-4" id="text-1-6-1">
 <p>
 It used to prevent a strange start-up error on inf-ruby, but I
 should check if it's still needed.
@@ -304,12 +335,12 @@ should check if it's still needed.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-1-6" class="outline-3">
-<h3 id="sec-1-6">Cleaning Up Sloppy Code</h3>
-<div class="outline-text-3" id="text-1-6">
-</div><div id="outline-container-sec-1-6-1" class="outline-4">
-<h4 id="sec-1-6-1">Add Useful White-Space</h4>
-<div class="outline-text-4" id="text-1-6-1">
+<div id="outline-container-sec-1-7" class="outline-3">
+<h3 id="sec-1-7">Cleaning Up Sloppy Code</h3>
+<div class="outline-text-3" id="text-1-7">
+</div><div id="outline-container-sec-1-7-1" class="outline-4">
+<h4 id="sec-1-7-1">Add Useful White-Space</h4>
+<div class="outline-text-4" id="text-1-7-1">
 <p>
 Here's a function to add some helpful white-space:
 </p>
@@ -324,9 +355,9 @@ Here's a function to add some helpful white-space:
 </div>
 </div>
 
-<div id="outline-container-sec-1-6-2" class="outline-4">
-<h4 id="sec-1-6-2">Break-up Long Hashes</h4>
-<div class="outline-text-4" id="text-1-6-2">
+<div id="outline-container-sec-1-7-2" class="outline-4">
+<h4 id="sec-1-7-2">Break-up Long Hashes</h4>
+<div class="outline-text-4" id="text-1-7-2">
 <p>
 Sometimes, people spew massive hashes onto a single line without
 bothering to break it up for readability.  This function will break
@@ -363,7 +394,7 @@ the commas.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Toby Tripp</p>
-<p class="date">Created: 2015-01-30 Fri 22:57</p>
+<p class="date">Created: 2015-02-04 Wed 10:55</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

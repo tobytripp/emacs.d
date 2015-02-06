@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Toby's Emacs Keybindings</title>
-<!-- 2015-01-30 Fri 22:57 -->
+<!-- 2015-02-04 Wed 10:55 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Toby Tripp" />
@@ -89,8 +89,8 @@
   /*]]>*/-->
 </style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/config.css">
 <link rel="stylesheet" href="css/htmlize.css">
+<link rel="stylesheet" href="css/config.css">
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -149,7 +149,89 @@ for the JavaScript code in this tag.
 <h2 id="sec-1">Keybindings</h2>
 <div class="outline-text-2" id="text-1">
 </div><div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1"><span class="todo TODO">TODO</span> Start with an overview of commands I haven't changed</h3>
+<h3 id="sec-1-1">Emacs Commands</h3>
+<div class="outline-text-3" id="text-1-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">Key-Chord</td>
+<td class="left">Command</td>
+</tr>
+
+<tr>
+<td class="left">C-x b</td>
+<td class="left">Switch to another buffer</td>
+</tr>
+
+<tr>
+<td class="left">C-x C-f</td>
+<td class="left">Open a new file</td>
+</tr>
+
+<tr>
+<td class="left">C-x f</td>
+<td class="left">Search project for file</td>
+</tr>
+
+<tr>
+<td class="left">C-v</td>
+<td class="left">Page down</td>
+</tr>
+
+<tr>
+<td class="left">M-v</td>
+<td class="left">Page up</td>
+</tr>
+
+<tr>
+<td class="left">TAB</td>
+<td class="left">Indent current line</td>
+</tr>
+
+<tr>
+<td class="left">C-k</td>
+<td class="left">“Kill” from point to EOL</td>
+</tr>
+
+<tr>
+<td class="left">C-y</td>
+<td class="left">“Yank” (paste) last Kill</td>
+</tr>
+
+<tr>
+<td class="left">C-w</td>
+<td class="left">Kill current Region</td>
+</tr>
+
+<tr>
+<td class="left">C-SPC</td>
+<td class="left">Set the “Mark” (One end of a Region)</td>
+</tr>
+
+<tr>
+<td class="left">F5</td>
+<td class="left">Save open buffers</td>
+</tr>
+
+<tr>
+<td class="left">C-g</td>
+<td class="left">Abort command</td>
+</tr>
+
+<tr>
+<td class="left">M-x</td>
+<td class="left">Search commands by name</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 
 <div id="outline-container-sec-1-2" class="outline-3">
@@ -230,6 +312,16 @@ for the JavaScript code in this tag.
 </tr>
 
 <tr>
+<td class="left">&lt;</td>
+<td class="left">Previous Dir (in this buffer)</td>
+</tr>
+
+<tr>
+<td class="left">&gt;</td>
+<td class="left">Next Dir</td>
+</tr>
+
+<tr>
 <td class="left">c</td>
 <td class="left">Copy marked files</td>
 </tr>
@@ -242,6 +334,11 @@ for the JavaScript code in this tag.
 <tr>
 <td class="left">i</td>
 <td class="left">Insert subdirectory into this listing</td>
+</tr>
+
+<tr>
+<td class="left">C-u u</td>
+<td class="left">Un-insert</td>
 </tr>
 
 <tr>
@@ -265,6 +362,11 @@ for the JavaScript code in this tag.
 </tr>
 
 <tr>
+<td class="left">U</td>
+<td class="left">Unmark all files</td>
+</tr>
+
+<tr>
 <td class="left">: d</td>
 <td class="left">Decrypt</td>
 </tr>
@@ -285,8 +387,39 @@ mode changes.
 </div>
 
 <div id="outline-container-sec-1-3" class="outline-3">
-<h3 id="sec-1-3">Searching/Replacing</h3>
+<h3 id="sec-1-3">Registers</h3>
 <div class="outline-text-3" id="text-1-3">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">Key-Chord</td>
+<td class="left">Command</td>
+</tr>
+
+<tr>
+<td class="left">C-x r w</td>
+<td class="left">Save current window lay-out to a register</td>
+</tr>
+
+<tr>
+<td class="left">C-x r j</td>
+<td class="left">Restore windows from register</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4">Searching/Replacing</h3>
+<div class="outline-text-3" id="text-1-4">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-s"</span><span style="color: #b58900;">)</span>   'isearch-forward-regexp<span style="color: #f5deb3;">)</span>
@@ -314,9 +447,9 @@ Activate occur easily inside isearch:
 </div>
 </div>
 
-<div id="outline-container-sec-1-4" class="outline-3">
-<h3 id="sec-1-4">Spelling</h3>
-<div class="outline-text-3" id="text-1-4">
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5">Spelling</h3>
+<div class="outline-text-3" id="text-1-5">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-c j"</span><span style="color: #b58900;">)</span> 'flyspell-check-previous-highlighted-word<span style="color: #f5deb3;">)</span>
@@ -325,9 +458,9 @@ Activate occur easily inside isearch:
 </div>
 </div>
 
-<div id="outline-container-sec-1-5" class="outline-3">
-<h3 id="sec-1-5">Navigation</h3>
-<div class="outline-text-3" id="text-1-5">
+<div id="outline-container-sec-1-6" class="outline-3">
+<h3 id="sec-1-6">Navigation</h3>
+<div class="outline-text-3" id="text-1-6">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"M-g"</span><span style="color: #b58900;">)</span> 'goto-line<span style="color: #f5deb3;">)</span>
@@ -343,9 +476,9 @@ Activate occur easily inside isearch:
 </div>
 </div>
 
-<div id="outline-container-sec-1-6" class="outline-3">
-<h3 id="sec-1-6">Frame/Window Properties</h3>
-<div class="outline-text-3" id="text-1-6">
+<div id="outline-container-sec-1-7" class="outline-3">
+<h3 id="sec-1-7">Frame/Window Properties</h3>
+<div class="outline-text-3" id="text-1-7">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>define-key global-map <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-+"</span><span style="color: #b58900;">)</span> 'text-scale-increase<span style="color: #f5deb3;">)</span>
@@ -356,9 +489,9 @@ Activate occur easily inside isearch:
 </div>
 </div>
 
-<div id="outline-container-sec-1-7" class="outline-3">
-<h3 id="sec-1-7">File and Buffer Switching</h3>
-<div class="outline-text-3" id="text-1-7">
+<div id="outline-container-sec-1-8" class="outline-3">
+<h3 id="sec-1-8">File and Buffer Switching</h3>
+<div class="outline-text-3" id="text-1-8">
 <p>
 Commands to switch buffers:
 </p>
@@ -436,9 +569,9 @@ On larger screens, I like to divide me frame into thirds:
 </div>
 </div>
 
-<div id="outline-container-sec-1-8" class="outline-3">
-<h3 id="sec-1-8">Getting Help</h3>
-<div class="outline-text-3" id="text-1-8">
+<div id="outline-container-sec-1-9" class="outline-3">
+<h3 id="sec-1-9">Getting Help</h3>
+<div class="outline-text-3" id="text-1-9">
 <p>
 Prefer full <code>apropos</code> search over the default <code>apropos-command</code>:
 </p>
@@ -450,9 +583,9 @@ Prefer full <code>apropos</code> search over the default <code>apropos-command</
 </div>
 </div>
 
-<div id="outline-container-sec-1-9" class="outline-3">
-<h3 id="sec-1-9">Keyboard and Mouse Set-up</h3>
-<div class="outline-text-3" id="text-1-9">
+<div id="outline-container-sec-1-10" class="outline-3">
+<h3 id="sec-1-10">Keyboard and Mouse Set-up</h3>
+<div class="outline-text-3" id="text-1-10">
 <p>
 Bind Mac modifier keys:
 </p>
@@ -497,9 +630,9 @@ Adjust the echo threshold for key-chords:
 </div>
 </div>
 
-<div id="outline-container-sec-1-10" class="outline-3">
-<h3 id="sec-1-10">Terminal Mode Affordances</h3>
-<div class="outline-text-3" id="text-1-10">
+<div id="outline-container-sec-1-11" class="outline-3">
+<h3 id="sec-1-11">Terminal Mode Affordances</h3>
+<div class="outline-text-3" id="text-1-11">
 <p>
 Attempt to accomodate modifiers to arrow keys in the terminal:
 </p>
@@ -528,7 +661,7 @@ Attempt to accomodate modifiers to arrow keys in the terminal:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Toby Tripp</p>
-<p class="date">Created: 2015-01-30 Fri 22:57</p>
+<p class="date">Created: 2015-02-04 Wed 10:55</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

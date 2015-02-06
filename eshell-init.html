@@ -3,8 +3,8 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>eshell-init</title>
-<!-- 2015-01-30 Fri 22:57 -->
+<title>Shell Settings</title>
+<!-- 2015-02-04 Wed 10:41 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Toby Tripp" />
@@ -89,8 +89,8 @@
   /*]]>*/-->
 </style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/config.css">
 <link rel="stylesheet" href="css/htmlize.css">
+<link rel="stylesheet" href="css/config.css">
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -143,7 +143,7 @@ for the JavaScript code in this tag.
 <p><a accesskey="H" href="index.html">HOME</a></p>
 </div>
 <div id="content">
-<h1 class="title">eshell-init</h1>
+<h1 class="title">Shell Settings</h1>
 <div id="outline-container-sec-1" class="outline-2">
 <h2 id="sec-1">EShell</h2>
 <div class="outline-text-2" id="text-1">
@@ -170,7 +170,7 @@ them runningn about.
 
 <p>
 It's nice to have an easy short-cut to launch into a shell in the
-current buffer's directory.  We'll start with a function to lauch it:
+current buffer's directory.  We'll start with a function to launch it:
 </p>
 <div class="org-src-container">
 
@@ -179,8 +179,7 @@ current buffer's directory.  We'll start with a function to lauch it:
   <span style="color: #b58900;">(</span>interactive<span style="color: #b58900;">)</span>
   <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #268bd2;">(</span><span style="color: #dc322f;">(</span>dir default-directory<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
     <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #dc322f;">(</span><span style="color: #cb4b16;">(</span>b <span style="color: #268bd2;">(</span>get-buffer eshell-buffer-name<span style="color: #268bd2;">)</span><span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span>
-      <span style="color: #dc322f;">(</span><span style="color: #859900; font-weight: bold;">unless</span> b <span style="color: #cb4b16;">(</span>eshell<span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span>
-      <span style="color: #268bd2;">)</span>
+      <span style="color: #dc322f;">(</span><span style="color: #859900; font-weight: bold;">unless</span> b <span style="color: #cb4b16;">(</span>eshell<span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
     <span style="color: #268bd2;">(</span>display-buffer eshell-buffer-name t<span style="color: #268bd2;">)</span>
     <span style="color: #268bd2;">(</span>switch-to-buffer-other-window eshell-buffer-name<span style="color: #268bd2;">)</span>
     <span style="color: #268bd2;">(</span>end-of-buffer<span style="color: #268bd2;">)</span>
@@ -220,21 +219,13 @@ Emacs buffer:
 
 <pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>add-hook 'eshell-mode-hook
           <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">lambda</span> <span style="color: #268bd2;">()</span>
-            <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">defalias</span> '<span style="color: #268bd2;">ff</span> 'find-file<span style="color: #268bd2;">)</span>
-            <span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+            <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">defalias</span> '<span style="color: #268bd2;">ff</span> 'find-file<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
 </pre>
 </div>
 
 <p>
 Adjust some <code>comint</code> parameters (the mode that handles terminal buffers).
 </p>
-<div class="org-src-container">
-
-<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>setq comint-buffer-maximum-size 10240<span style="color: #f5deb3;">)</span>
-<span style="color: #f5deb3;">(</span>add-hook 'comint-output-filter-functions 'comint-truncate-buffer<span style="color: #f5deb3;">)</span>
-<span style="color: #f5deb3;">(</span>add-hook 'comint-output-filter-functions 'comint-watch-for-password-prompt<span style="color: #f5deb3;">)</span>
-</pre>
-</div>
 
 <p>
 Multi-term is an extension for running multiple native shells within Emacs:
@@ -243,12 +234,6 @@ Multi-term is an extension for running multiple native shells within Emacs:
 
 <pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>require-package 'multi-term<span style="color: #f5deb3;">)</span>
 <span style="color: #f5deb3;">(</span>setq multi-term-program <span style="color: #2aa198;">"/bin/bash -l"</span><span style="color: #f5deb3;">)</span>
-</pre>
-</div>
-
-<div class="org-src-container">
-
-<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">provide</span> '<span style="color: #268bd2; font-weight: bold;">eshell-hooks</span><span style="color: #f5deb3;">)</span>
 </pre>
 </div>
 </div>
@@ -261,6 +246,14 @@ Multi-term is an extension for running multiple native shells within Emacs:
 <p>
 <code>comint-mode</code> is the parent mode of many shell modes.
 </p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>setq comint-buffer-maximum-size 10240<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>add-hook 'comint-output-filter-functions 'comint-truncate-buffer<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>add-hook 'comint-output-filter-functions 'comint-watch-for-password-prompt<span style="color: #f5deb3;">)</span>
+</pre>
+</div>
 
 <p>
 Let's add a function to easily clear an active shell buffer:
@@ -301,7 +294,7 @@ Binding <code>s-k</code> to <code>kill-buffer</code> doesn't make sense to me.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Toby Tripp</p>
-<p class="date">Created: 2015-01-30 Fri 22:57</p>
+<p class="date">Created: 2015-02-04 Wed 10:41</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

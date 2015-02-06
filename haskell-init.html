@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>haskell-init</title>
-<!-- 2015-01-30 Fri 22:57 -->
+<!-- 2015-02-04 Wed 10:41 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Toby Tripp" />
@@ -89,8 +89,8 @@
   /*]]>*/-->
 </style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/config.css">
 <link rel="stylesheet" href="css/htmlize.css">
+<link rel="stylesheet" href="css/config.css">
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -158,15 +158,34 @@ for the JavaScript code in this tag.
 <span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/haskell-init</span> <span style="color: #b58900;">()</span>
   <span style="color: #b58900;">(</span>turn-on-haskell-doc-mode<span style="color: #b58900;">)</span>
   <span style="color: #b58900;">(</span>turn-on-haskell-indentation<span style="color: #b58900;">)</span>
+
   <span style="color: #b58900;">(</span>paredit-mode 1<span style="color: #b58900;">)</span>
+
   <span style="color: #b58900;">(</span>define-key haskell-mode-map <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"s-r"</span><span style="color: #268bd2;">)</span> 'inferior-haskell-load-and-run<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>define-key haskell-mode-map <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"C-c l"</span><span style="color: #268bd2;">)</span> 'inferior-haskell-load-and-run<span style="color: #b58900;">)</span>
   <span style="color: #b58900;">(</span>define-key haskell-mode-map <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"C-;"</span><span style="color: #268bd2;">)</span> 'insert-arrow<span style="color: #b58900;">)</span>
   <span style="color: #b58900;">(</span>define-key haskell-mode-map <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"C-:"</span><span style="color: #268bd2;">)</span> 'insert-rocket<span style="color: #b58900;">)</span>
   <span style="color: #b58900;">(</span>define-key haskell-mode-map <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"C-="</span><span style="color: #268bd2;">)</span> 'insert-larrow<span style="color: #b58900;">)</span>
 
-  <span style="color: #b58900;">(</span>define-key haskell-mode-map <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"C-h h"</span><span style="color: #268bd2;">)</span> 'hoogle<span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+  <span style="color: #b58900;">(</span>define-key haskell-mode-map <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"C-,"</span><span style="color: #268bd2;">)</span> 'haskell-move-nested-left<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>define-key haskell-mode-map <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"C-."</span><span style="color: #268bd2;">)</span> 'haskell-move-nested-right<span style="color: #b58900;">)</span>
+
+  <span style="color: #b58900;">(</span>define-key haskell-mode-map <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"C-c C-c"</span><span style="color: #268bd2;">)</span> 'haskell-compile<span style="color: #b58900;">)</span>
+
+  <span style="color: #b58900;">(</span>define-key haskell-mode-map <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"C-h h"</span><span style="color: #268bd2;">)</span> 'hoogle<span style="color: #b58900;">)</span>
+
+  <span style="color: #b58900;">(</span>define-key haskell-mode-map <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"C-x C-d"</span><span style="color: #268bd2;">)</span> nil<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>define-key haskell-mode-map <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"C-c C-z"</span><span style="color: #268bd2;">)</span> 'haskell-interactive-switch<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>define-key haskell-mode-map <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"C-c C-l"</span><span style="color: #268bd2;">)</span> 'haskell-process-load-file<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>define-key haskell-mode-map <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"C-c C-b"</span><span style="color: #268bd2;">)</span> 'haskell-interactive-switch<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>define-key haskell-mode-map <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"C-c C-t"</span><span style="color: #268bd2;">)</span> 'haskell-process-do-type<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>define-key haskell-mode-map <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"C-c C-i"</span><span style="color: #268bd2;">)</span> 'haskell-process-do-info<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>define-key haskell-mode-map <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"C-c M-."</span><span style="color: #268bd2;">)</span> nil<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>define-key haskell-mode-map <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"C-c C-d"</span><span style="color: #268bd2;">)</span> nil<span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
 
 <span style="color: #f5deb3;">(</span>add-hook 'haskell-mode-hook 'toby/haskell-init<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">eval-after-load</span> <span style="color: #2aa198;">"haskell-cabal"</span>
+    '<span style="color: #b58900;">(</span>define-key haskell-cabal-mode-map <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"C-c C-c"</span><span style="color: #268bd2;">)</span> 'haskell-compile<span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
 </pre>
 </div>
 </div>
@@ -202,7 +221,7 @@ for the JavaScript code in this tag.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Toby Tripp</p>
-<p class="date">Created: 2015-01-30 Fri 22:57</p>
+<p class="date">Created: 2015-02-04 Wed 10:41</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

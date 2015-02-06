@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>org-mode-init</title>
-<!-- 2015-01-30 Fri 22:57 -->
+<!-- 2015-02-04 Wed 10:41 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Toby Tripp" />
@@ -89,8 +89,8 @@
   /*]]>*/-->
 </style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/config.css">
 <link rel="stylesheet" href="css/htmlize.css">
+<link rel="stylesheet" href="css/config.css">
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -164,6 +164,7 @@ Fontify code blocks in an Org file:
 <span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">ob</span><span style="color: #f5deb3;">)</span>
 
 <span style="color: #f5deb3;">(</span>add-to-list 'org-babel-tangle-lang-exts '<span style="color: #b58900;">(</span><span style="color: #2aa198;">"clojure"</span> . <span style="color: #2aa198;">"clj"</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>add-to-list 'org-babel-tangle-lang-exts '<span style="color: #b58900;">(</span><span style="color: #2aa198;">"haskell"</span> . <span style="color: #2aa198;">"hs"</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
 
 <span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/babel-hook</span> <span style="color: #b58900;">()</span>
             <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">condition-case</span> nil
@@ -176,6 +177,8 @@ Fontify code blocks in an Org file:
 
 <span style="color: #f5deb3;">(</span>add-to-list 'org-structure-template-alist
              '<span style="color: #b58900;">(</span><span style="color: #2aa198;">"el"</span>  <span style="color: #2aa198;">"#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC"</span> <span style="color: #2aa198;">"&lt;src lang=\"?\"&gt;\n\n&lt;/src&gt;"</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>add-to-list 'org-structure-template-alist
+             '<span style="color: #b58900;">(</span><span style="color: #2aa198;">"hs"</span>  <span style="color: #2aa198;">"#+BEGIN_SRC haskell\n?\n#+END_SRC"</span> <span style="color: #2aa198;">"&lt;src lang=\"?\"&gt;\n\n&lt;/src&gt;"</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
 </pre>
 </div>
 
@@ -190,7 +193,7 @@ This adds syntax highlighting to org-babel html exports.
 </div>
 
 <p>
-To regenerate syntax highlighting CSS:
+To regenerate syntax highlighting CSS (for the active theme):
 </p>
 <div class="org-src-container">
 
@@ -210,7 +213,14 @@ To regenerate syntax highlighting CSS:
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>setq org-publish-project-alist
-      `<span style="color: #b58900;">(</span><span style="color: #268bd2;">(</span><span style="color: #2aa198;">"emacs-config"</span>
+      `<span style="color: #b58900;">(</span><span style="color: #268bd2;">(</span><span style="color: #2aa198;">"Github Site"</span>
+         <span style="color: #268bd2; font-style: italic;">:base-directory</span>       ,<span style="color: #dc322f;">(</span>expand-file-name <span style="color: #2aa198;">"~/Code/tobytripp.github.com/org"</span><span style="color: #dc322f;">)</span>
+         <span style="color: #268bd2; font-style: italic;">:base-extension</span>       <span style="color: #2aa198;">"org"</span>
+         <span style="color: #268bd2; font-style: italic;">:recursive</span>            t
+         <span style="color: #268bd2; font-style: italic;">:publishing-function</span>  org-html-publish-to-html
+         <span style="color: #268bd2; font-style: italic;">:html-preamble</span> ,<span style="color: #dc322f;">(</span>concat <span style="color: #2aa198;">"&lt;p&gt;&lt;a accesskey=\"H\" href=\"index.html\"&gt;HOME&lt;/a&gt;&lt;/p&gt;"</span><span style="color: #dc322f;">)</span>
+         <span style="color: #268bd2; font-style: italic;">:publishing-directory</span> ,<span style="color: #dc322f;">(</span>expand-file-name <span style="color: #2aa198;">"~/Code/tobytripp.github.com/"</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
+        <span style="color: #268bd2;">(</span><span style="color: #2aa198;">"emacs-config"</span>
          <span style="color: #268bd2; font-style: italic;">:base-directory</span>       ,org-lib-dir
          <span style="color: #268bd2; font-style: italic;">:base-extension</span>       <span style="color: #2aa198;">"org"</span>
          <span style="color: #268bd2; font-style: italic;">:recursive</span>            t
@@ -230,6 +240,11 @@ To regenerate syntax highlighting CSS:
 Automatically load and run Haskell code after it's been “tangeled”
 (had the source code parsed out into source files).
 </p>
+
+<p>
+Tangle with:
+  C-c C-v t  (org-babel-tangle)
+</p>
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/tangle-and-run</span> <span style="color: #b58900;">()</span>
@@ -240,6 +255,7 @@ Automatically load and run Haskell code after it's been “tangeled”
     <span style="color: #dc322f;">(</span>switch-to-haskell<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
 
 <span style="color: #f5deb3;">(</span>add-hook 'org-babel-post-tangle-hook 'toby/tangle-and-run<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>define-key org-mode-map <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"&lt;f6&gt;"</span><span style="color: #b58900;">)</span> 'org-babel-tangle<span style="color: #f5deb3;">)</span>
 </pre>
 </div>
 </div>
@@ -291,7 +307,7 @@ presentations with <code>reveal.js</code>.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Toby Tripp</p>
-<p class="date">Created: 2015-01-30 Fri 22:57</p>
+<p class="date">Created: 2015-02-04 Wed 10:41</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

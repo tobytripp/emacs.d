@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>modeline-custom</title>
-<!-- 2015-01-30 Fri 22:57 -->
+<!-- 2015-02-04 Wed 10:41 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Toby Tripp" />
@@ -89,8 +89,8 @@
   /*]]>*/-->
 </style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/config.css">
 <link rel="stylesheet" href="css/htmlize.css">
+<link rel="stylesheet" href="css/config.css">
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -165,13 +165,13 @@ The <a href="https://github.com/Bruce-Connor/smart-mode-line">smart-mode-line</a
 <pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>require-package 'smart-mode-line<span style="color: #f5deb3;">)</span>
 <span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">smart-mode-line</span> nil 'noerror<span style="color: #b58900;">)</span>
     <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">progn</span>
-      <span style="color: #268bd2;">(</span>setq sml/name-width 25<span style="color: #268bd2;">)</span>
+      <span style="color: #268bd2;">(</span>setq sml/name-width 20<span style="color: #268bd2;">)</span>
       <span style="color: #268bd2;">(</span>setq sml/mode-width 'full<span style="color: #268bd2;">)</span>
-      <span style="color: #586e75;">;; </span><span style="color: #586e75;">https://github.com/Bruce-Connor/smart-mode-line/issues/12</span>
-      <span style="color: #586e75;">;; </span><span style="color: #586e75;">(setq sml/mode-width 25)</span>
       <span style="color: #268bd2;">(</span>setq sml/shorten-directory t<span style="color: #268bd2;">)</span>
       <span style="color: #268bd2;">(</span>setq sml/shorten-modes t<span style="color: #268bd2;">)</span>
-      <span style="color: #268bd2;">(</span>setq sml/hidden-modes '<span style="color: #dc322f;">(</span><span style="color: #2aa198;">"GitGutter"</span> <span style="color: #2aa198;">"MRev"</span> <span style="color: #2aa198;">"company"</span> <span style="color: #2aa198;">"mate"</span> <span style="color: #2aa198;">"Projectile"</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
+
+      <span style="color: #268bd2;">(</span>rich-minority-mode 1<span style="color: #268bd2;">)</span>
+      <span style="color: #268bd2;">(</span>setq rm-blacklist '<span style="color: #dc322f;">(</span><span style="color: #2aa198;">" GitGutter"</span> <span style="color: #2aa198;">" MRev"</span> <span style="color: #2aa198;">" company"</span> <span style="color: #2aa198;">" mate"</span> <span style="color: #2aa198;">" Projectile"</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
 
       <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">if</span> after-init-time
         <span style="color: #dc322f;">(</span>sml/setup<span style="color: #dc322f;">)</span>
@@ -180,6 +180,7 @@ The <a href="https://github.com/Bruce-Connor/smart-mode-line">smart-mode-line</a
       <span style="color: #268bd2;">(</span>require-package 'smart-mode-line-powerline-theme<span style="color: #268bd2;">)</span>
       <span style="color: #268bd2;">(</span>sml/apply-theme 'powerline<span style="color: #268bd2;">)</span>
       <span style="color: #586e75;">;; </span><span style="color: #586e75;">Alternatives:</span>
+      <span style="color: #586e75;">;; </span><span style="color: #586e75;">(sml/apply-theme 'powerline)</span>
       <span style="color: #586e75;">;; </span><span style="color: #586e75;">(sml/apply-theme 'dark)</span>
       <span style="color: #586e75;">;; </span><span style="color: #586e75;">(sml/apply-theme 'light)</span>
       <span style="color: #586e75;">;; </span><span style="color: #586e75;">(sml/apply-theme 'respectful)</span>
@@ -218,7 +219,7 @@ The <a href="https://github.com/Bruce-Connor/smart-mode-line">smart-mode-line</a
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Toby Tripp</p>
-<p class="date">Created: 2015-01-30 Fri 22:57</p>
+<p class="date">Created: 2015-02-04 Wed 10:41</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

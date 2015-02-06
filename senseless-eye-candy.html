@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Customizations That Serve No Other Purpose Than to Make Me Happy</title>
-<!-- 2015-01-30 Fri 22:57 -->
+<!-- 2015-02-04 Wed 10:40 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Toby Tripp" />
@@ -89,8 +89,8 @@
   /*]]>*/-->
 </style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/config.css">
 <link rel="stylesheet" href="css/htmlize.css">
+<link rel="stylesheet" href="css/config.css">
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -285,10 +285,11 @@ Talk about senseless…
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>require-package 'twittering-mode<span style="color: #f5deb3;">)</span>
+<span style="color: #f5deb3;">(</span>autoload 'twit <span style="color: #2aa198;">"twittering-mode"</span> <span style="color: #2aa198; font-style: italic;">"Twitter stream in Emacs"</span><span style="color: #f5deb3;">)</span>
 
-<span style="color: #f5deb3;">(</span>autoload 'twittering-mode <span style="color: #2aa198;">"twittering-mode"</span> <span style="color: #2aa198; font-style: italic;">"Twitter stream in Emacs"</span><span style="color: #f5deb3;">)</span>
 <span style="color: #f5deb3;">(</span>setq twittering-username <span style="color: #2aa198;">"tobytripp"</span><span style="color: #f5deb3;">)</span>
 <span style="color: #f5deb3;">(</span>setq twittering-icon-mode t<span style="color: #f5deb3;">)</span>
+
 <span style="color: #f5deb3;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-c t"</span><span style="color: #b58900;">)</span> 'twittering-update-status-interactive<span style="color: #f5deb3;">)</span>
 </pre>
 </div>
@@ -302,18 +303,12 @@ Make its window sticky:
   <span style="color: #b58900;">(</span>set-window-dedicated-p <span style="color: #268bd2;">(</span>selected-window<span style="color: #268bd2;">)</span> 1<span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
 </pre>
 </div>
-
-<div class="org-src-container">
-
-<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">provide</span> '<span style="color: #268bd2; font-weight: bold;">senseless-eye-candy</span><span style="color: #f5deb3;">)</span>
-</pre>
-</div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Toby Tripp</p>
-<p class="date">Created: 2015-01-30 Fri 22:57</p>
+<p class="date">Created: 2015-02-04 Wed 10:40</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

@@ -1,5 +1,6 @@
 #+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
 #+TITLE:  Toby's Emacs Configuration
+#+PROPERTY: tangle yes
 
 * My Emacs Configuration
 

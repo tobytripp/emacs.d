@@ -3,7 +3,22 @@
 
 * Keybindings
 
-** TODO Start with an overview of commands I haven't changed
+** Emacs Commands
+
+   | Key-Chord | Command                              |
+   | C-x b     | Switch to another buffer             |
+   | C-x C-f   | Open a new file                      |
+   | C-x f     | Search project for file              |
+   | C-v       | Page down                            |
+   | M-v       | Page up                              |
+   | TAB       | Indent current line                  |
+   | C-k       | “Kill” from point to EOL             |
+   | C-y       | “Yank” (paste) last Kill             |
+   | C-w       | Kill current Region                  |
+   | C-SPC     | Set the “Mark” (One end of a Region) |
+   | F5        | Save open buffers                    |
+   | C-g       | Abort command                        |
+   | M-x       | Search commands by name              |
 
 ** Dired
 
@@ -20,19 +35,29 @@
    | X             | Shell Command on files                |
    | Z             | Compress marked files                 |
    | ^             | Go up a directory                     |
+   | <             | Previous Dir (in this buffer)         |
+   | >             | Next Dir                              |
    | c             | Copy marked files                     |
    | g             | Read all dirs aGain                   |
    | i             | Insert subdirectory into this listing |
+   | C-u u         | Un-insert                             |
    | m             | Mark an entry                         |
    | s             | Symlink marked files                  |
    | t             | Toggle marks                          |
    | u             | Unmark file                           |
+   | U             | Unmark all files                      |
    | : d           | Decrypt                               |
    | : e           | Encrypt                               |
 
    Also great is the =wdired= command, which creates a =dired= listing
    that can be edited and saved. This makes for easy renames and file
    mode changes.
+
+** Registers
+
+   | Key-Chord | Command                                   |
+   | C-x r w   | Save current window lay-out to a register |
+   | C-x r j   | Restore windows from register             |
 
 ** Searching/Replacing
 

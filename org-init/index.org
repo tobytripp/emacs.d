@@ -1,10 +1,11 @@
 #+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
 #+TITLE:  Toby's Emacs Configuration
+#+PROPERTY: tangle yes
 
 * My Emacs Configuration
 
   #+begin_quote
-  Emacs outshines all other editing software in approximately the same
+  Emacs out-shines all other editing software in approximately the same
   way that the noonday sun does the stars. It is not just bigger and
   brighter; it simply makes everything else vanish.
 
@@ -13,7 +14,7 @@
 
   Testing out a Literate emacs configuration.
 
-  This file should catalog my [[file:keybindings.org][keybindings]] as well as my language mode
+  This file should catalog my [[file:keybindings.org][key-bindings]] as well as my language mode
   settings, such as for [[file:clojure.org][Clojure]] and [[file:ruby-init.org][Ruby]].
 
   # Edit code snippets with =C-c '=
@@ -34,31 +35,36 @@
      (setq inhibit-splash-screen t)
    #+END_SRC
 
-   Instead of a splash screen, let's start with the Bookmark List:
+   Instead of a splash screen, let's start with the Book-mark List:
+
    #+BEGIN_SRC emacs-lisp
      (require 'bookmark)
      (bookmark-bmenu-list)
      (switch-to-buffer "*Bookmark List*")
    #+END_SRC
 
-   Disable backup files.  That's what source-conrol is for.
+   Disable backup files.  That's what source-control is for.
+
    #+BEGIN_SRC emacs-lisp
      (setq make-backup-files nil)
      (setq auto-save-default nil)
    #+END_SRC
 
    Hide the fringe.
+
    #+BEGIN_SRC emacs-lisp
      (set-fringe-style 0)
    #+END_SRC
 
    Highlight the current line in the buffer.
+
    #+BEGIN_SRC emacs-lisp
      (global-hl-line-mode 1)
    #+END_SRC
 
    Over-write selection to make things slightly less uncomfortable to
    others.
+
    #+BEGIN_SRC emacs-lisp
      (delete-selection-mode t)
    #+END_SRC
@@ -148,43 +154,40 @@ I keep these in a separate file to make it easy to find them.
    Let's make it easy to tangle, load, and compile other configuration
    files written in org-mode.
    #+BEGIN_SRC emacs-lisp
-     (require 'org-install)
-     (require 'ob-tangle)
-
      (defun toby/babel-load-file (relative-path)
        "Load the given file using org-babel-load-file.  Path should be
      relative to lib-dir"
        (org-babel-load-file (expand-file-name relative-path org-lib-dir)))
    #+END_SRC
 
-** Load Configurations
+* Load Configurations
 
-   First, pre-load some custom function definitions that may be used in my extensions.
-   #+BEGIN_SRC emacs-lisp
-   (require 'defuns)
-   #+END_SRC
+  First, pre-load some custom function definitions that may be used in my extensions.
+  #+BEGIN_SRC emacs-lisp
+  (require 'defuns)
+  #+END_SRC
 
-   Now, load every elisp file in the =lib= diectory.  Demote errors to
-   warnings so that a problem in a particular extension doesn't bring
-   start-up to a halt.
-   #+BEGIN_SRC emacs-lisp
-     (with-demoted-errors
-       (mapc #'load
-             (mapcar #'file-name-sans-extension
-                     (directory-files lib-dir nil ".*\.el$")))
-       (mapc #'toby/babel-load-file
-             (remove "index.org" (directory-files org-lib-dir nil ".*org$"))))
+  Now, load every elisp file in the =lib= directory.  Demote errors to
+  warnings so that a problem in a particular extension doesn't bring
+  start-up to a halt.
+  #+BEGIN_SRC emacs-lisp
+    (with-demoted-errors
+      (mapc #'load
+            (mapcar #'file-name-sans-extension
+                    (directory-files lib-dir nil ".*\.el$")))
+      (mapc #'toby/babel-load-file
+            (remove "index.org" (directory-files org-lib-dir nil ".*org$"))))
 
-     (byte-recompile-directory org-lib-dir 0)
-     (byte-recompile-directory lib-dir 0)
-   #+END_SRC
+    (byte-recompile-directory org-lib-dir 0)
+    (byte-recompile-directory lib-dir 0)
+  #+END_SRC
 
-   Errors encountered while loading these libraries will show up in
-   the Messages buffer after start-up.
+  Errors encountered while loading these libraries will show up in
+  the Messages buffer after start-up.
 
 *** Toby Mode
 
-    I push some keybindings and behaviors into my own minor mode so
+    I push some key-bindings and behaviors into my own minor mode so
     that, should I ever sit with an experienced Emacs user, we can
     turn them off easily.  This way Emacs can behave in a more
     “standard” way for a while.

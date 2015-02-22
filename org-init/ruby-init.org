@@ -2,6 +2,12 @@
 * Ruby
   Still my favorite language.
 
+** Ruby Mode Keybindings
+
+   | Key-Chord | Command                           |
+   | C-c C-z   | Switch to IRB REPL                |
+   | C-c C-l   | Load current buffer into the REPL |
+
 ** Start-up
 
    #+BEGIN_SRC emacs-lisp

@@ -1,19 +1,21 @@
 #+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
 * Clojure Customizations
 
+** Clojure + Cider Keybindings of Interest
+
+   | Key-Chord | Command                           |
+   | C-c C-x   | Reload the current namespace      |
+   | C-c ,     | Run the current namespace's tests |
+   | C-c M-,   | Run one test                      |
+   | C-c C-,   | Re-run last test                  |
+   | C-c C-e   | Eval and print last s-exp         |
+
 ** Cider
 
-   This will pull in =clojure-mode= as well.
-
+   Set-up some local key-bindings.  This will pull in =clojure-mode= as well.
    #+BEGIN_SRC emacs-lisp
      (require-package 'clojure-mode)
      (require-package 'cider)
-
-     (defun toby/save-and-eval-buffer ()
-       "Save open buffers and send the current buffer to the active Cider session."
-       (interactive)
-       (save-some-buffers 't)
-       (cider-eval-buffer))
 
      (eval-after-load 'cider
        '(progn
@@ -25,6 +27,13 @@
           (setq cider-mode-line '(:eval "🍺"))))
 
      (add-hook 'cider-interaction-mode-hook 'cider-turn-on-eldoc-mode)
+     (toby/defhook cider-mode-hook (paredit-mode))
+
+     (defun toby/save-and-eval-buffer ()
+       "Save open buffers and send the current buffer to the active Cider session."
+       (interactive)
+       (save-some-buffers 't)
+       (cider-eval-buffer))
    #+END_SRC
 
 ** Clojure

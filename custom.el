@@ -34,9 +34,9 @@
  '(glasses-separator " ")
  '(glasses-uncapitalize-p nil)
  '(global-auto-revert-mode t)
- '(global-linum-mode nil)
+ '(global-linum-mode t)
  '(global-toby-mode t)
- '(haskell-font-lock-symbols (quote unicode) t)
+ '(haskell-font-lock-symbols (quote unicode))
  '(js-expr-indent-offset 2)
  '(js-indent-level 2)
  '(js2-basic-offset 2)
@@ -79,5 +79,6 @@
  ;; If there is more than one, they won't work right.
  '(highlight ((t (:background "color-18" :foreground "white"))))
  '(hl-line ((t (:background "#002b36"))))
+ '(idle-highlight ((t (:inherit region :foreground "khaki"))))
  '(magit-item-highlight ((t (:inherit highlight))))
  '(rainbow-delimiters-depth-1-face ((t (:foreground "wheat")))))

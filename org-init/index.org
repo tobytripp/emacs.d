@@ -130,6 +130,8 @@ I keep these in a separate file to make it easy to find them.
 
    #+BEGIN_SRC emacs-lisp
      (require 'uniquify)
+     (setq uniquify-buffer-name-style 'forward)
+
      (require 'ansi-color)
      (require 'recentf)
    #+END_SRC

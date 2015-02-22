@@ -4,7 +4,9 @@
 ** Cider
 
    This will pull in =clojure-mode= as well.
+
    #+BEGIN_SRC emacs-lisp
+     (require-package 'clojure-mode)
      (require-package 'cider)
 
      (defun toby/save-and-eval-buffer ()
@@ -18,19 +20,20 @@
           (define-key cider-mode-map (kbd "C-x M-e") 'repl/eval-and-print)
           (define-key cider-mode-map (kbd "<f3>")    'cider-eval-defun-at-point)
           (define-key cider-mode-map (kbd "<f5>")    'toby/save-and-eval-buffer)
-          (define-key cider-mode-map (kbd "C-c C-e") 'cider-eval-print-last-sexp)))
+          (define-key cider-mode-map (kbd "<f12>")   'cider-test-run-tests)
+          (define-key cider-mode-map (kbd "C-c C-e") 'cider-eval-print-last-sexp)
+          (setq cider-mode-line '(:eval "🍺"))))
 
      (add-hook 'cider-interaction-mode-hook 'cider-turn-on-eldoc-mode)
-
-     (toby/defhook cider-mode-hook (paredit-mode))
    #+END_SRC
 
 ** Clojure
 
-   Paredit is my bestest friend
+   Paredit is my best-est friend
    #+BEGIN_SRC emacs-lisp
      (defun toby/clojure-init ()
        (paredit-mode 1)
+       (show-paren-mode 1)
 
        ;; Compojure Macros:
        (define-clojure-indent
@@ -44,6 +47,7 @@
          (context 2)))
 
      (add-hook 'clojure-mode-hook 'toby/clojure-init)
+     (toby/defhook cider-mode-hook (paredit-mode))
    #+END_SRC
 
 #+BEGIN_SRC emacs-lisp :exports none

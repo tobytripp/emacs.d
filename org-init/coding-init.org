@@ -39,8 +39,8 @@
 
        (setq save-place t)
 
-       (if (require 'paredit nil 'noerror)
-         (paredit-mode t))
+       ;; (if (require 'paredit nil 'noerror)
+       ;;  (paredit-mode t))
 
        (tool-bar-mode -1)
 

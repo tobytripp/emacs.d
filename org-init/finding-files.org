@@ -3,7 +3,7 @@
 
 ** Projectile
    One important note about =projectile= and =flx=: their matching is
-   aggressive.  This is a nice feature most of the time, except when
+   /aggressive/.  This is a nice feature most of the time, except when
    you want to open a new file.  They'll eagerly find you some
    file–any file–that matches the name you're trying to enter.  So, to
    turn this off temporarily press: =C-f=.
@@ -15,8 +15,22 @@
      (projectile-global-mode)
 
      (global-set-key (kbd "C-x f") 'projectile-find-file)
+
      (global-unset-key (kbd "<f4>"))
      (global-set-key (kbd "<f4>") 'projectile-find-file)
+   #+END_SRC
+
+   The default mode-line “lighter” for Projectile Mode is:
+
+   #+BEGIN_SRC elisp :tangle no
+   (:eval
+     (format " Projectile[%s]" (projectile-project-name)))
+   #+END_SRC
+
+   That's a bit much for me; I like things minimal. So, I reset it to be blank:
+
+   #+BEGIN_SRC elisp
+     (setq projectile-mode-line nil)
    #+END_SRC
 
 ** Fuzzy Matching of File and Command Names
@@ -30,10 +44,13 @@
      (flx-ido-mode 1)
 
      (setq ido-enable-flex-matching t)
-     (setq ido-use-faces nil)
-   #+END_SRCHk
+     ;; (setq ido-use-faces nil)
+     (setq ido-use-faces t)
+   #+END_SRC
 
-   [[https://github.com/nonsequitur/smex][SMEX]] shows recently used commands on the =M-x= prompt:
+   [[https://github.com/nonsequitur/smex][SMEX]] shows recently used
+   commands on the =M-x= prompt:
+
    #+BEGIN_QUOTE
    Smex is a M-x enhancement for Emacs. Built on top of Ido, it
    provides a convenient interface to your recently and most

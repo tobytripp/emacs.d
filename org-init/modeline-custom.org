@@ -8,34 +8,36 @@
 ** Smart Mode Line
    The [[https://github.com/Bruce-Connor/smart-mode-line][smart-mode-line]] package gives you some control of what shows up in the mode-line.
    #+BEGIN_SRC emacs-lisp
-     (require-package 'smart-mode-line)
-     (if (require 'smart-mode-line nil 'noerror)
-         (progn
-           (setq sml/name-width 20)
-           (setq sml/mode-width 'full)
-           (setq sml/shorten-directory t)
-           (setq sml/shorten-modes t)
+         (require-package 'smart-mode-line)
+         (if (require 'smart-mode-line nil 'noerror)
+             (progn
+               (setq sml/name-width 20)
+               (setq sml/mode-width 'full)
+               (setq sml/shorten-directory t)
+               (setq sml/shorten-modes t)
 
-           (rich-minority-mode 1)
-           (setq rm-blacklist '(" GitGutter" " MRev" " company" " mate" " Projectile"))
+               (rich-minority-mode 1)
+               (setq rm-blacklist '(" GitGutter" " MRev" " company" " mate"
+                                    " Projectile"))
 
-           (if after-init-time
-             (sml/setup)
-             (add-hook 'after-init-hook 'sml/setup))
+               (if after-init-time
+                 (sml/setup)
+                 (add-hook 'after-init-hook 'sml/setup))
 
-           (require-package 'smart-mode-line-powerline-theme)
-           (sml/apply-theme 'powerline)
-           ;; Alternatives:
-           ;; (sml/apply-theme 'powerline)
-           ;; (sml/apply-theme 'dark)
-           ;; (sml/apply-theme 'light)
-           ;; (sml/apply-theme 'respectful)
-           ;; (sml/apply-theme 'automatic)
+               (require-package 'smart-mode-line-powerline-theme)
+               (sml/apply-theme 'powerline)
+               ;; Alternatives:
+               ;; (sml/apply-theme 'powerline)
+               ;; (sml/apply-theme 'dark)
+               ;; (sml/apply-theme 'light)
+               ;; (sml/apply-theme 'respectful)
+               ;; (sml/apply-theme 'automatic)
 
-           (add-to-list 'sml/replacer-regexp-list '("^~/Dropbox/" ":DB:"))
-           (add-to-list 'sml/replacer-regexp-list '("^~/Code/" ":CODE:"))
-           (add-to-list 'sml/replacer-regexp-list '("^:CODE:investor-bridge" ":IB:"))
-           (add-to-list 'sml/replacer-regexp-list '("^~/.*/lib/ruby/gems" ":GEMS" ))))
+               (add-to-list 'sml/replacer-regexp-list '("^~/Dropbox/" ":DB:"))
+               (add-to-list 'sml/replacer-regexp-list '("^~/Code/" ":CODE:"))
+               (add-to-list 'sml/replacer-regexp-list '("^:CODE:ib/investor-bridge" ":IB:"))
+               (add-to-list 'sml/replacer-regexp-list '("^:CODE:ib/visibility" ":VIS:"))
+               (add-to-list 'sml/replacer-regexp-list '("^~/.*/lib/ruby/gems" ":GEMS" ))))
    #+END_SRC
 
 ** Showing the Time
@@ -46,6 +48,7 @@
      (display-time-mode 1)
    #+END_SRC
 
-#+BEGIN_SRC emacs-lisp
+
+#+BEGIN_SRC emacs-lisp :exports none
 (provide 'modeline-custom)
 #+END_SRC

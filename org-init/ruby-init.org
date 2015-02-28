@@ -1,0 +1,162 @@
+#+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
+* Ruby
+  Still my favorite language.
+
+** Ruby Mode Keybindings
+
+   | Key-Chord | Command                           |
+   | C-c C-z   | Switch to IRB REPL                |
+   | C-c C-l   | Load current buffer into the REPL |
+
+** Start-up
+
+   #+BEGIN_SRC emacs-lisp
+     (autoload 'ruby-mode "ruby-mode" "Major mode for Ruby" t)
+
+     (require-package 'ruby-mode)
+     (require-package 'inf-ruby)
+     (require-package 'ruby-end)
+     (require-package 'rspec-mode)
+     (require-package 'column-marker)
+
+     (defun toby/ruby-init ()
+       (set (make-local-variable 'indent-tabs-mode) 'nil)
+       (set (make-local-variable 'tab-width) 2)
+
+       (outline-minor-mode)
+       (setq outline-regexp " *\\(def \\|describe \\|it \\|class\\|module\\)")
+
+       (column-marker-1 80)
+       (whitespace-mode t)
+
+       ;; Doesn't work in the terminal, unfortunately…
+       (define-key ruby-mode-map (kbd "C-;") 'insert-rocket)
+
+       (push 'company-robe company-backends)
+
+       (require 'ruby-end)
+       (require 'rspec-mode)
+       (local-set-key (kbd "M-r")            'rspec-verify)
+       (local-set-key (kbd "M-S-r")          'rspec-verify-single)
+       (local-set-key [f12]                  'rspec-verify)
+       (local-set-key [f11]                  'rspec-verify-single)
+       (local-set-key (kbd "S-<f12>")        'rspec-rerun)
+       (local-set-key [f10]                  'next-error))
+
+     (add-hook 'ruby-mode-hook 'toby/ruby-init)
+   #+END_SRC
+
+** Rbenv
+
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'rbenv)
+     (setenv "PATH"
+             (concat (getenv "HOME") "/.rbenv/shims:"
+                     (getenv "HOME") "/.rbenv/bin:"
+                     (getenv "PATH")))
+
+     (setq exec-path
+           (cons (concat (getenv "HOME") "/.rbenv/shims")
+                 (cons (concat (getenv "HOME") "/.rbenv/bin")
+                       exec-path)))
+
+     (setq rbenv-installation-dir (concat (getenv "HOME") "/.rbenv/"))
+   #+END_SRC
+
+** Cucumber
+
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'feature-mode)
+     (add-to-list 'auto-mode-alist '("\.feature$" . feature-mode))
+     (add-hook 'feature-mode-hook
+               (lambda ()
+                 (local-set-key (kbd "M-r")   'feature-verify-all-scenarios-in-buffer)
+                 (local-set-key [f12]         'feature-verify-all-scenarios-in-buffer)
+                 (local-set-key (kbd "M-S-r") 'feature-verify-scenario-at-pos)
+                 (local-set-key [f11]         'feature-verify-scenario-at-pos)))
+   #+END_SRC
+
+** Rails
+
+   #+BEGIN_SRC emacs-lisp
+     (add-to-list 'auto-mode-alist '("\\.rabl$" . ruby-mode))
+     (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
+
+     (require-package 'rhtml-mode)
+     (autoload 'rhtml-mode "rhtml-mode" "RHTML Mode" t)
+     (add-to-list 'auto-mode-alist '("\\.html.erb$" . rhtml-mode))
+   #+END_SRC
+
+** Lining Up Data Structures
+
+   #+BEGIN_SRC emacs-lisp
+     (require 'align)
+     (add-hook 'align-load-hook
+               (lambda ()
+                 (add-to-list 'align-rules-list
+                              '(ruby-comma-delimiter
+                                (regexp . ",\\(\\s-*\\)[^# \t\n]")
+                                (repeat . t)
+                                (modes  . '(ruby-mode))))
+                 (add-to-list 'align-rules-list
+                              '(ruby-hash-literal
+                                (regexp . "\\(\\s-*\\)=>\\s-*[^# \t\n]")
+                                (repeat . t)
+                                (modes  . '(ruby-mode))))
+                 (add-to-list 'align-rules-list
+                              '(ruby-assignment-literal
+                                (regexp . "\\(\\s-*\\)=\\s-*[^# \t\n]")
+                                (repeat . t)
+                                (modes  . '(ruby-mode))))
+                 (add-to-list 'align-rules-list
+                              '(ruby-xmpfilter-mark
+                                (regexp . "\\(\\s-*\\)# => [^#\t\n]")
+                                (repeat . nil)
+                                (modes  . '(ruby-mode))))))
+   #+END_SRC
+
+*** TODO Make sure this hack is still necessary:
+    It used to prevent a strange start-up error on inf-ruby, but I
+    should check if it's still needed.
+    #+BEGIN_SRC emacs-lisp
+    (defalias 'inf-ruby-keys 'inf-ruby-setup-keybindings)
+    #+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(provide 'ruby-init)
+#+END_SRC
+** Cleaning Up Sloppy Code
+
+*** Add Useful White-Space
+   Here's a function to add some helpful white-space:
+   #+BEGIN_SRC emacs-lisp
+     (defun add-pride ()
+       (interactive)
+       (fix-parens)
+       (decompress-hash-rockets))
+   #+END_SRC
+
+*** Break-up Long Hashes
+   Sometimes, people spew massive hashes onto a single line without
+   bothering to break it up for readability.  This function will break
+   the hash up on commas.
+
+   It will detect the bounds of the hash and set a region to its
+   bounds.  Then it moves through the hash injecting line-breaks after
+   the commas.
+   #+BEGIN_SRC emacs-lisp
+     (defun break-ruby-hash ()
+       "Break the ruby hash around point into multiple lines at commas"
+       (interactive)
+       (let ((chars "^{}") p1 p2)
+         (save-excursion
+           (skip-chars-backward chars)
+           (setq p1 (point))
+           (skip-chars-forward chars)
+           (setq p2 (point))
+
+           (goto-char p1) (insert "\n")
+           (goto-char p2) (forward-char 1) (insert "\n")
+           (replace-in ", " ",\n" p1 p2)
+           (indent-region p1 (+ 2 p2)))))
+   #+END_SRC

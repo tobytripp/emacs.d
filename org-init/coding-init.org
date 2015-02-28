@@ -1,0 +1,160 @@
+#+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
+* Coding Init
+
+** I like λ
+   #+BEGIN_SRC emacs-lisp
+     (defun pretty-lambdas ()
+       (font-lock-add-keywords
+        nil `(("(?\\(lambda\\>\\)"
+               (0 (progn (compose-region (match-beginning 1) (match-end 1)
+                                         ,(make-char 'greek-iso8859-7 107))
+                         nil))))))
+   #+END_SRC
+
+** Hooks Useful in All Programming Environments
+
+   Here are a couple functions that can help line up stubborn bits of code:
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'highlight-indentation)
+     (autoload 'highlight-indentation-current-column-mode "highlight-indentation")
+     (autoload 'highlight-indentation-mode "highlight-indentation")
+   #+END_SRC
+
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'paredit)
+     (require-package 'rainbow-delimiters)
+     (autoload 'rainbow-delimiters-mode "rainbow-delimiters")
+
+     (require-package 'idle-highlight-mode)
+     (autoload 'idle-highlight-mode "idle-highlight-mode")
+
+     (defun toby/coding-hooks ()
+       (make-local-variable 'column-number-mode)
+       (column-number-mode t)
+
+       (set (make-local-variable 'comment-auto-fill-only-comments) t)
+       (auto-fill-mode t)
+
+       (when (> (display-color-cells) 8) (hl-line-mode t))
+
+       (setq save-place t)
+
+       ;; (if (require 'paredit nil 'noerror)
+       ;;  (paredit-mode t))
+
+       (tool-bar-mode -1)
+
+       (font-lock-add-keywords
+        nil '(("\\<\\(FIX\\|TODO\\|FIXME\\|HACK\\|REFACTOR\\):"
+               1 font-lock-warning-face t)))
+
+       (pretty-lambdas)
+
+       (idle-highlight-mode t)
+       (highlight-indentation-current-column-mode)
+
+       (rainbow-delimiters-mode))
+
+     (add-hook 'prog-mode-hook 'toby/coding-hooks)
+
+     (defun run-coding-hook ()
+       "Enable things that are convenient across all coding buffers.
+
+        Not every programming mode yet inherits from prog-mode (new to
+        Emacs 24), so this function provides a short-cut for including
+        those hooks in another mode."
+       (run-hooks 'prog-mode-hook))
+   #+END_SRC
+
+** Commands
+
+   #+BEGIN_SRC emacs-lisp
+     (defun untabify-buffer ()
+       (interactive)
+       (untabify (point-min) (point-max)))
+
+     (defun indent-buffer ()
+       (interactive)
+       (indent-region (point-min) (point-max)))
+
+     (defun cleanup-buffer ()
+       "Perform a bunch of operations on the whitespace content of a buffer."
+       (interactive)
+       (indent-buffer)
+       (untabify-buffer)
+       (delete-trailing-whitespace))
+   #+END_SRC
+
+   First, a function that allows another function to act on either a
+   region or the buffer, based on whether a region is curently active.
+   #+BEGIN_SRC emacs-lisp
+     (defun act-on-region-or-buffer (fn)
+       "Given a function that operates between to points, pass it the
+     active region or the entire buffer."
+       (let (p1 p2 bounds)
+         (if (use-region-p)
+             (setq p1 (region-beginning) p2 (region-end))
+           (setq p1 (point-min) p2 (point-max)))
+         (funcall fn p1 p2)))
+   #+END_SRC
+
+   Next, a function that applies a Regular Expression replacement to a region.
+   #+BEGIN_SRC emacs-lisp
+     (defun replace-in (exp replace p1 p2)
+       (save-restriction
+         (narrow-to-region p1 p2)
+         (goto-char (point-min))
+         (while (re-search-forward exp nil t)
+           (replace-match replace))))
+   #+END_SRC
+
+   Pad out parens: turn =(x)= into =( x )=
+   #+BEGIN_SRC emacs-lisp
+     (defun fix-parens ()
+       "Fix misplaced parens in code buffers."
+       (interactive)
+       (act-on-region-or-buffer
+        (lambda (p1 p2)
+          (replace-in "(\\([^[:space:])]\\)" "( \\1" p1 p2)
+          (replace-in "\\([^[:space:](]\\))" "\\1 )" p1 p2))))
+   #+END_SRC
+
+   Do the same for hash-rockets: =>
+   #+BEGIN_SRC emacs-lisp
+     (defun decompress-hash-rockets ()
+       "Fix compressed hash rockets"
+       (interactive)
+       (act-on-region-or-buffer
+        (lambda (p1 p2)
+          (replace-in
+           "\\([^[:space:]]\\)=>\\([^[:space:]]\\)"
+           "\\1 => \\2"
+           p1 p2))))
+   #+END_SRC
+
+   This function converts camel-case to under_scores.
+   #+BEGIN_SRC emacs-lisp
+     (defun underscore-region (start end)
+       "Convert camelCase to under_scores in the active region."
+       (interactive "r")
+       (let ((case-fold-search nil)
+             (exp "\\(\\b\\|[[:lower:]]\\)\\([[:upper:]]+\\)"))
+         (save-restriction
+           (narrow-to-region start end)
+           (goto-char (point-min))
+           (while (re-search-forward exp nil t)
+             (replace-match
+               (concat (match-string 1) "_" (downcase (match-string 2))))))))
+
+     (defun underscore-word ()
+       "Convert camelCase to under_score at the current word."
+       (interactive)
+       (let ((bounds (bounds-of-thing-at-point 'word)))
+         (let ((start (car bounds))
+                 (end   (cdr bounds)))
+           (underscore-region start end))))
+   #+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(provide 'coding-init)
+#+END_SRC

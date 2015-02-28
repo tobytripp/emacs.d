@@ -1,0 +1,60 @@
+#+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
+* Haskell Mode
+
+** Hooks
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'haskell-mode)
+     (autoload 'haskell-mode "haskell-mode")
+     (setq haskell-program-name "/usr/bin/ghci")
+     (defun toby/haskell-init ()
+       (turn-on-haskell-doc-mode)
+       (turn-on-haskell-indentation)
+
+       (paredit-mode 1)
+
+       (define-key haskell-mode-map (kbd "s-r") 'inferior-haskell-load-and-run)
+       (define-key haskell-mode-map (kbd "C-c l") 'inferior-haskell-load-and-run)
+       (define-key haskell-mode-map (kbd "C-;") 'insert-arrow)
+       (define-key haskell-mode-map (kbd "C-:") 'insert-rocket)
+       (define-key haskell-mode-map (kbd "C-=") 'insert-larrow)
+
+       (define-key haskell-mode-map (kbd "C-,") 'haskell-move-nested-left)
+       (define-key haskell-mode-map (kbd "C-.") 'haskell-move-nested-right)
+
+       (define-key haskell-mode-map (kbd "C-c C-c") 'haskell-compile)
+
+       (define-key haskell-mode-map (kbd "C-h h") 'hoogle)
+
+       (define-key haskell-mode-map (kbd "C-x C-d") nil)
+       (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
+       (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-file)
+       (define-key haskell-mode-map (kbd "C-c C-b") 'haskell-interactive-switch)
+       (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
+       (define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
+       (define-key haskell-mode-map (kbd "C-c M-.") nil)
+       (define-key haskell-mode-map (kbd "C-c C-d") nil))
+
+     (add-hook 'haskell-mode-hook 'toby/haskell-init)
+     (eval-after-load "haskell-cabal"
+         '(define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-compile))
+   #+END_SRC
+
+** Text Functions
+
+   #+BEGIN_SRC emacs-lisp
+     (defun insert-arrow ()
+       "Insert a single arrow (Haskell syntax)"
+       (interactive)
+       (delete-horizontal-space)
+       (insert " -> "))
+
+     (defun insert-larrow ()
+       "Insert <- arrow (Haskell monad return)"
+       (interactive)
+       (delete-horizontal-space)
+       (insert " <- "))
+   #+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(provide 'haskell-init)
+#+END_SRC

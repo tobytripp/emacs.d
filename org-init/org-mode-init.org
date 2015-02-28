@@ -1,0 +1,125 @@
+#+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
+* Org
+  You're looking at it.
+
+** Org-Babel
+
+   Fontify code blocks in an Org file:
+   #+BEGIN_SRC emacs-lisp
+     (setq org-src-fontify-natively t)
+     (require 'ob)
+
+     (add-to-list 'org-babel-tangle-lang-exts '("clojure" . "clj"))
+     (add-to-list 'org-babel-tangle-lang-exts '("haskell" . "hs"))
+
+     (defun toby/babel-hook ()
+                 (condition-case nil
+                     (org-display-inline-images)
+                   (error nil)))
+
+     (add-hook 'org-babel-after-execute-hook
+               'toby/babel-hook
+               'append)
+
+     (add-to-list 'org-structure-template-alist
+                  '("el"  "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC" "<src lang=\"?\">\n\n</src>"))
+     (add-to-list 'org-structure-template-alist
+                  '("hs"  "#+BEGIN_SRC haskell\n?\n#+END_SRC" "<src lang=\"?\">\n\n</src>"))
+   #+END_SRC
+
+   This adds syntax highlighting to org-babel html exports.
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'htmlize)
+     (setq org-export-htmlize-output-type 'css)
+   #+END_SRC
+
+   To regenerate syntax highlighting CSS (for the active theme):
+   #+BEGIN_SRC emacs-lisp :tangle no
+   (org-export-htmlize-generate-css)
+   #+END_SRC
+
+** Org Publish
+   [[http://orgmode.org/worg/org-tutorials/org-publish-html-tutorial.html][Org Publish]]
+
+   #+BEGIN_SRC emacs-lisp
+     (setq org-publish-project-alist
+           `(("Github Site"
+              :base-directory       ,(expand-file-name "~/Code/tobytripp.github.com/org")
+              :base-extension       "org"
+              :recursive            t
+              :publishing-function  org-html-publish-to-html
+              :html-preamble ,(concat "<p><a accesskey=\"H\" href=\"index.html\">HOME</a></p>")
+              :publishing-directory ,(expand-file-name "~/Code/tobytripp.github.com/"))
+             ("notes"
+              :base-directory       ,(expand-file-name "~/Code/Notes/")
+              :base-extension       "org"
+              :recursive            t
+              :publishing-function  org-html-publish-to-html
+              :publishing-directory ,(expand-file-name "~/Code/Notes/"))
+             ("emacs-config"
+              :base-directory       ,org-lib-dir
+              :base-extension       "org"
+              :recursive            t
+              :publishing-function  org-html-publish-to-html
+              :htmlized-source      t
+              :html-preamble ,(concat "<p><a accesskey=\"H\" href=\"index.html\">HOME</a></p>")
+              :publishing-directory ,(concat dotfiles-dir "html"))))
+   #+END_SRC
+
+** Literate Haskell
+
+   Automatically load and run Haskell code after it's been “tangeled”
+   (had the source code parsed out into source files).
+
+   Tangle with:
+     C-c C-v t  (org-babel-tangle)
+   #+BEGIN_SRC emacs-lisp
+     (defun toby/tangle-and-run ()
+       (cond
+        ((eq 'haskell-mode major-mode)
+         (message "Loading tangled buffer in haskell mode!")
+         (inferior-haskell-load-file)
+         (switch-to-haskell))))
+
+     (add-hook 'org-babel-post-tangle-hook 'toby/tangle-and-run)
+     (define-key org-mode-map (kbd "<f6>") 'org-babel-tangle)
+   #+END_SRC
+
+** Org-Mode Presentations
+   [[https://github.com/yjwen/org-reveal][Org-Reveal]] is an =org-mode= export extension for creating
+   presentations with =reveal.js=.
+
+   #+BEGIN_SRC emacs-lisp
+     (require 'ox-reveal)
+     (setq org-reveal-root
+           (concat "file://" (expand-file-name dotfiles-dir)
+                   "html/js/reveal.js-3.0.0/js/reveal.js"))
+
+     (add-hook 'org-mode-hook
+               (lambda ()
+                 ;; (load-library "ox-reveal")
+                 (local-set-key (kbd "s-r") 'org-babel-tangle)))
+
+     (defadvice org-html-src-block
+       (after toby/wrap-org-html-src-in-code-tag activate)
+       (setq ad-return-value (replace-regexp-in-string
+                              "\\(<pre[^>]+src-\\([^\"]+\\)\">\\)\\([^<]+\\)</pre>"
+                              "\\1<code class=\"\\2\">\\3</code></pre>"
+                              ad-return-value)))
+
+     (setq reveal-highlight-theme "zenburn")
+
+     (defadvice org-reveal-stylesheets
+       (after toby/add-highlight-styles (info) activate)
+       "Add stylesheet declaration for highlight.js formatting"
+       (let* ((root-path (plist-get info :reveal-root))
+              (css-path (concat root-path "/plugin/highlight/styles")))
+         (setq ad-return-value
+               (concat ad-return-value
+                       (format "<link rel=\"stylesheet\" href=\"%s\">\n"
+                               (concat css-path "/" reveal-highlight-theme ".css"))))))
+   #+END_SRC
+
+#+BEGIN_SRC emacs-lisp :exports none
+(provide 'org-mode-init)
+#+END_SRC

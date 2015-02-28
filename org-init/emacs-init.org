@@ -1,0 +1,80 @@
+#+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
+* General Emacs Configurations
+
+** Emacs Server
+   This sets it up such that, when =C-x k= is pressed, an active
+   emacsclient session will be closed.  First, it clones any active
+   local keymaps if they exist.
+
+   #+BEGIN_SRC emacs-lisp
+     (add-hook 'server-switch-hook
+               (lambda ()
+                 (when (current-local-map)
+                   (use-local-map (copy-keymap (current-local-map))))
+                 (when server-buffer-clients
+                   (local-set-key (kbd "C-x k") 'server-edit))))
+   #+END_SRC
+
+   Start the emacs server, if it isn't running already.
+   #+BEGIN_SRC emacs-lisp
+     (if (and (fboundp 'server-running-p)
+	 (not (server-running-p)))
+       (server-start))
+   #+END_SRC
+
+** Change "yes or no" to "y or n"
+
+   #+BEGIN_SRC emacs-lisp
+     (fset 'yes-or-no-p 'y-or-n-p)
+   #+END_SRC
+
+** UTF-8
+
+   #+BEGIN_SRC emacs-lisp
+     (prefer-coding-system 'utf-8)
+     (when (display-graphic-p)
+       (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING)))
+   #+END_SRC
+
+** Save Hooks
+   I don't like it when =delete-trailing-whitespace= moves my cursor
+   around when it finds I'm sitting on some white-space.  It just ends
+   up kicking back my indentation for something I was just about to
+   start typing.
+   #+BEGIN_SRC emacs-lisp
+     (defun toby/delete-trailing-whitespace ()
+       "Ignore current line when deleting trailing whitespace"
+       (interactive)
+       (let ((first-part-start (point-min))
+             (first-part-end   (point-at-bol))
+             (second-part-start (point-at-eol))
+             (second-part-end  (point-max))
+             )
+         (delete-trailing-whitespace first-part-start first-part-end)
+         (delete-trailing-whitespace second-part-start second-part-end)))
+   #+END_SRC
+
+   Clean-up trailing white-space on save.
+   #+BEGIN_SRC emacs-lisp
+     (add-hook 'before-save-hook 'toby/delete-trailing-whitespace)
+   #+END_SRC
+
+** Dired Mode
+   Set =ls= flags and load some dired extensions.
+   #+BEGIN_SRC emacs-lisp
+     (setq dired-listing-switches "-alh")
+     (require 'dired-x)
+
+     (require-package 'dired+)
+     (require 'dired+)
+   #+END_SRC
+
+** Kill-Ring
+   #+BEGIN_SRC emacs-lisp
+   (require-package 'browse-kill-ring)
+   (browse-kill-ring-default-keybindings)
+   #+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(provide 'emacs-init)
+#+END_SRC

@@ -1,0 +1,250 @@
+#+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
+#+TITLE:  Toby's Emacs Configuration
+#+PROPERTY: tangle yes
+
+* My Emacs Configuration
+
+  #+begin_quote
+  Emacs out-shines all other editing software in approximately the same
+  way that the noonday sun does the stars. It is not just bigger and
+  brighter; it simply makes everything else vanish.
+
+  -- Neal Stephenson, "In the Beginning was the Command Line"
+  #+end_quote
+
+  Testing out a Literate emacs configuration.
+
+  This file should catalog my [[file:keybindings.org][key-bindings]] as well as my language mode
+  settings, such as for [[file:clojure.org][Clojure]] and [[file:ruby-init.org][Ruby]].
+
+  # Edit code snippets with =C-c '=
+  # Load this configuration file using the function: =org-babel-load-file=
+  # Export it to HTML with:
+  #   C-c C-e h h     (org-html-export-to-html)
+  # Export the whole org-init project with:
+  #   C-c C-e P p
+
+*** TODO Keep the tangled elisp in a separate directory that is in .gitignore
+
+** Decorations
+   Turn off tool-bars and scroll bars and other features I deem unnecessary.
+
+   #+BEGIN_SRC emacs-lisp
+     (if (fboundp 'tool-bar-mode)   (tool-bar-mode -1))
+     (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+     (setq inhibit-splash-screen t)
+   #+END_SRC
+
+   Instead of a splash screen, let's start with the Book-mark List:
+
+   #+BEGIN_SRC emacs-lisp
+     (require 'bookmark)
+     (bookmark-bmenu-list)
+     (switch-to-buffer "*Bookmark List*")
+   #+END_SRC
+
+   Disable backup files.  That's what source-control is for.
+
+   #+BEGIN_SRC emacs-lisp
+     (setq make-backup-files nil)
+     (setq auto-save-default nil)
+   #+END_SRC
+
+   Hide the fringe.
+
+   #+BEGIN_SRC emacs-lisp
+     (set-fringe-style 0)
+   #+END_SRC
+
+   Highlight the current line in the buffer.
+
+   #+BEGIN_SRC emacs-lisp
+     (global-hl-line-mode 1)
+   #+END_SRC
+
+   Over-write selection to make things slightly less uncomfortable to
+   others.
+
+   #+BEGIN_SRC emacs-lisp
+     (delete-selection-mode t)
+   #+END_SRC
+
+   Enable some features that the Emacs developers have deemed scary.
+   #+BEGIN_SRC emacs-lisp
+     (put 'ido-exit-minibuffer 'disabled nil)
+     (put 'upcase-region       'disabled nil)
+     (put 'narrow-to-region    'disabled nil)
+     (put 'scroll-left         'disabled nil)
+     (put 'set-goal-column 'disabled nil)
+     (put 'downcase-region 'disabled nil)
+   #+END_SRC
+
+** Initialize Load Paths
+
+ Add some directories to the load path so we can require files in them later.
+
+ #+BEGIN_SRC emacs-lisp
+   (defvar dotfiles-dir user-emacs-directory)
+ #+END_SRC
+
+ Make a path to add libraries installed from source.
+ #+BEGIN_SRC emacs-lisp
+   (defvar vendor-dir (concat dotfiles-dir "vendor/"))
+
+   (let ((default-directory vendor-dir))
+     (add-to-list 'load-path default-directory)
+     (normal-top-level-add-subdirs-to-load-path))
+ #+END_SRC
+
+ Also create a place to put my various initialization hooks.
+ #+BEGIN_SRC emacs-lisp
+   (defvar lib-dir (concat dotfiles-dir "elisp/"))
+   (add-to-list 'load-path lib-dir)
+   (defvar org-lib-dir (concat dotfiles-dir "org-init/"))
+   (add-to-list 'load-path org-lib-dir)
+ #+END_SRC
+
+** Change the Destination of Customization Settings
+
+These are the settings saved from the customize menus and prompts within Emacs.
+
+#+BEGIN_SRC emacs-lisp
+  (setq custom-file "~/.emacs.d/custom.el")
+  (load custom-file 'noerror)
+#+END_SRC
+
+** Setup Environment Variables and Path
+
+I keep these in a separate file to make it easy to find them.
+
+#+BEGIN_SRC emacs-lisp
+  (load "env.el")
+#+END_SRC
+
+** Install and Load Packages
+
+#+BEGIN_SRC emacs-lisp
+  (require 'init-packages)
+#+END_SRC
+
+** Load Third-Party Libraries from =Vendor=
+
+   First, load some libraries that are likely to be used in every session:
+   - =uniquify= configures how buffer names are disambiguated
+   - =ansi-color= supports translating ANSI color codes into Emacs faces
+   - =recentf= allows for fast switching between recently edited files
+
+   #+BEGIN_SRC emacs-lisp
+     (require 'uniquify)
+     (setq uniquify-buffer-name-style 'forward)
+
+     (require 'ansi-color)
+     (require 'recentf)
+   #+END_SRC
+
+   Then load anything we find in the =vendor= directory:
+   #+BEGIN_SRC emacs-lisp
+     (mapc (lambda (path)
+          (add-to-list 'load-path (concat vendor-dir "/" path)))
+        (directory-files vendor-dir nil "^[a-z]"))
+   #+END_SRC
+
+** Org-Babel
+
+   Let's make it easy to tangle, load, and compile other configuration
+   files written in org-mode.
+   #+BEGIN_SRC emacs-lisp
+     (defun toby/babel-load-file (relative-path)
+       "Load the given file using org-babel-load-file.  Path should be
+     relative to lib-dir"
+       (org-babel-load-file (expand-file-name relative-path org-lib-dir)))
+   #+END_SRC
+
+* Load Configurations
+
+  First, pre-load some custom function definitions that may be used in my extensions.
+  #+BEGIN_SRC emacs-lisp
+  (require 'defuns)
+  #+END_SRC
+
+  Now, load every elisp file in the =lib= directory.  Demote errors to
+  warnings so that a problem in a particular extension doesn't bring
+  start-up to a halt.
+  #+BEGIN_SRC emacs-lisp
+    (with-demoted-errors
+      (mapc #'load
+            (mapcar #'file-name-sans-extension
+                    (directory-files lib-dir nil ".*\.el$")))
+      (mapc #'toby/babel-load-file
+            (remove "index.org" (directory-files org-lib-dir nil ".*org$"))))
+
+    (byte-recompile-directory org-lib-dir 0)
+    (byte-recompile-directory lib-dir 0)
+  #+END_SRC
+
+  Errors encountered while loading these libraries will show up in
+  the Messages buffer after start-up.
+
+*** Toby Mode
+
+    I push some key-bindings and behaviors into my own minor mode so
+    that, should I ever sit with an experienced Emacs user, we can
+    turn them off easily.  This way Emacs can behave in a more
+    “standard” way for a while.
+
+    =toby-mode= is defined in [[file:toby-mode.org][toby-mode.org]].
+
+    #+BEGIN_SRC emacs-lisp
+    (require 'toby-mode)
+    (global-toby-mode)
+    #+END_SRC
+
+* Mode-Specific Configurations
+  # Evaluate with C-c C-c
+  #+BEGIN_SRC emacs-lisp :tangle no :exports none
+    (mapconcat (lambda (f)
+                 (concat "- " "[[file:" f "][" (file-name-sans-extension f) "]]"))
+               (sort (directory-files org-lib-dir nil ".*org$")
+                     (lambda (a b)
+                       (string< a b)))
+               "\n")
+  #+END_SRC
+
+  Other Configuraion Files:
+  #+RESULTS:
+  - [[file:clojure.org][clojure]]
+  - [[file:coding-init.org][coding-init]]
+  - [[file:completion.org][completion]]
+  - [[file:emacs-init.org][emacs-init]]
+  - [[file:eshell-init.org][eshell-init]]
+  - [[file:finding-files.org][finding-files]]
+  - [[file:git-init.org][git-init]]
+  - [[file:god-init.org][god-init]]
+  - [[file:haskell-init.org][haskell-init]]
+  - [[file:html-init.org][html-init]]
+  - [[file:index.org][index]]
+  - [[file:javascript-init.org][javascript-init]]
+  - [[file:keybindings.org][keybindings]]
+  - [[file:lisp-init.org][lisp-init]]
+  - [[file:main.org][main]]
+  - [[file:modeline-custom.org][modeline-custom]]
+  - [[file:org-mode-init.org][org-mode-init]]
+  - [[file:registers-init.org][registers-init]]
+  - [[file:ruby-init.org][ruby-init]]
+  - [[file:senseless-eye-candy.org][senseless-eye-candy]]
+  - [[file:snippet-init.org][snippet-init]]
+  - [[file:tags.org][tags]]
+  - [[file:toby-mode.org][toby-mode]]
+
+* If Something Goes Wrong
+
+  Sometimes it helps to launch the debugger when an error occurs.  By
+  default, I've turned that off:
+  #+BEGIN_SRC emacs-lisp
+    (setq debug-on-error       nil)
+  #+END_SRC
+
+  to turn it on:
+  #+BEGIN_SRC emacs-lisp :tangle no
+    (setq debug-on-error       t)
+  #+END_SRC

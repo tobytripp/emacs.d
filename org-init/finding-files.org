@@ -1,0 +1,78 @@
+#+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
+* Finding Files
+
+** Projectile
+   One important note about =projectile= and =flx=: their matching is
+   /aggressive/.  This is a nice feature most of the time, except when
+   you want to open a new file.  They'll eagerly find you some
+   file–any file–that matches the name you're trying to enter.  So, to
+   turn this off temporarily press: =C-f=.
+
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'f) ;; undeclared dependency?
+     (require-package 'projectile)
+
+     (projectile-global-mode)
+
+     (global-set-key (kbd "C-x f") 'projectile-find-file)
+
+     (global-unset-key (kbd "<f4>"))
+     (global-set-key (kbd "<f4>") 'projectile-find-file)
+   #+END_SRC
+
+   The default mode-line “lighter” for Projectile Mode is:
+
+   #+BEGIN_SRC elisp :tangle no
+   (:eval
+     (format " Projectile[%s]" (projectile-project-name)))
+   #+END_SRC
+
+   That's a bit much for me; I like things minimal. So, I reset it to be blank:
+
+   #+BEGIN_SRC elisp
+     (setq projectile-mode-line nil)
+   #+END_SRC
+
+** Fuzzy Matching of File and Command Names
+   Fuzzy matching is brought in with the =flx= package.
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'flx-ido)
+     (require 'flx-ido)
+
+     (ido-mode 1)
+     (ido-everywhere 1)
+     (flx-ido-mode 1)
+
+     (setq ido-enable-flex-matching t)
+     (setq ido-use-faces t)
+   #+END_SRC
+
+   [[https://github.com/nonsequitur/smex][SMEX]] shows recently used
+   commands on the =M-x= prompt:
+
+   #+BEGIN_QUOTE
+   Smex is a M-x enhancement for Emacs. Built on top of Ido, it
+   provides a convenient interface to your recently and most
+   frequently used commands. And to all the other commands, too.
+   #+END_QUOTE
+
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'smex)
+     (smex-initialize)
+
+     (setq smex-save-file (concat user-emacs-directory ".smex-items"))
+     (global-set-key (kbd "M-x") 'smex)
+     (global-set-key (kbd "C-c x") 'smex-major-mode-commands)
+   #+END_SRC
+
+** Open Recent Files
+   Enable “Open Recent” and give it a keybinding:
+   #+BEGIN_SRC emacs-lisp
+     (recentf-mode 1)
+     (global-set-key (kbd "C-c f") 'recentf-open-files)
+   #+END_SRC
+
+
+#+BEGIN_SRC emacs-lisp :exports none
+(provide 'find-file)
+#+END_SRC

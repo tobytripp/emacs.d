@@ -1,0 +1,9 @@
+# -*- mode: org -*-
+#+AUTHOR: Toby Tripp
+#+EMAIL: toby.tripp+emacs@gmail.com
+#+OPTIONS: H:3 num:nil toc:nil
+#+OPTIONS: html-scripts:t html-style:t
+#+HTML_HEAD_EXTRA: <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+#+HTML_HEAD_EXTRA: <link rel="stylesheet" href="css/htmlize.css">
+#+HTML_HEAD_EXTRA: <link rel="stylesheet" href="css/config.css">
+#+HTML_CONTAINER: div

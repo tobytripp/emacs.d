@@ -1,0 +1,61 @@
+#+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
+* Modeline
+
+  By default, the modeline in Emacs will show you information about
+  everything.  Unfortunately, by trying to show you everything, it
+  ends up showing you little of actual use.
+
+** Smart Mode Line
+   The [[https://github.com/Bruce-Connor/smart-mode-line][smart-mode-line]] package gives you some control of what shows up in the mode-line.
+   #+BEGIN_SRC emacs-lisp
+              (require-package 'smart-mode-line)
+              (if (require 'smart-mode-line nil 'noerror)
+                  (progn
+                    (setq sml/name-width 20)
+                    (setq sml/mode-width 'full)
+                    (setq sml/shorten-directory t)
+                    (setq sml/shorten-modes t)
+
+                    (rich-minority-mode 1)
+                    (setq rm-blacklist '(" GitGutter" " MRev" " company" " mate"
+                                         " Paredit" " Wrap" " Fill"))
+
+                    (if after-init-time
+                      (sml/setup)
+                      (add-hook 'after-init-hook 'sml/setup))
+
+                    (setq rm-text-properties
+                          '((" Paredit" 'display "()"
+                             'face 'sml/minor-modes)))
+
+                    (require-package 'smart-mode-line-powerline-theme)
+                    (sml/apply-theme 'powerline)
+                    ;; Alternatives:
+                    ;; (sml/apply-theme 'powerline)
+                    ;; (sml/apply-theme 'dark)
+                    ;; (sml/apply-theme 'light)
+                    ;; (sml/apply-theme 'respectful)
+                    ;; (sml/apply-theme 'automatic)
+
+                    (add-to-list 'sml/replacer-regexp-list '("^~/Dropbox/" ":DB:"))
+                    (add-to-list 'sml/replacer-regexp-list '("^~/Code/" ":CODE:"))
+                    (add-to-list 'sml/replacer-regexp-list
+                      '("^:CODE:ib/investor-bridge" ":IB:"))
+                    (add-to-list 'sml/replacer-regexp-list
+                      '("^:CODE:ib/visibility" ":VIS:"))
+                    (add-to-list 'sml/replacer-regexp-list
+                      '("^~/.*/lib/ruby/gems" ":GEMS" ))))
+   #+END_SRC
+
+** Showing the Time
+
+   24-hour time, of course:
+   #+BEGIN_SRC emacs-lisp
+     (setq display-time-24hr-format t)
+     (display-time-mode 1)
+   #+END_SRC
+
+
+#+BEGIN_SRC emacs-lisp :exports none
+(provide 'modeline-custom)
+#+END_SRC

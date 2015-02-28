@@ -1,0 +1,23 @@
+#+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
+* Auto-Completion
+
+** Company Mode
+
+   =Company= is an auto-completion library for Emacs.  It has a wide
+   variety of back-ends.  See http://company-mode.github.io
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'company)
+   #+END_SRC
+
+   This =company-quickhelp= package may end up annoying me greatly,
+   but I'm giving it a try.  It shows help documentation alongside
+   completion entries for those that support it (like elisp).
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'company-quickhelp)
+
+     (if (require 'company nil 'noerror)
+         (progn
+           (add-hook 'after-init-hook 'global-company-mode)
+           (company-quickhelp-mode 1)
+           (setq company-begin-commands '(self-insert-command))))
+   #+END_SRC

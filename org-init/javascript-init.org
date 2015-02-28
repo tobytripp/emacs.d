@@ -1,0 +1,33 @@
+#+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
+* Javascript
+
+** Node.js Set-up
+
+   For REPLs and such, because actually writing server-side code in
+   Javascript is insane.
+   #+BEGIN_SRC emacs-lisp
+   (setenv "NODE_PATH" "~/node_modules")
+   (setq inferior-js-program-command "env NODE_NO_READLINE=1 node")
+   #+END_SRC
+
+** Js-Mode
+
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'js-comint)
+
+     (eval-after-load "js-mode"
+       '(progn
+          (add-hook 'js-mode-hook
+                    (lambda ()
+                      (glasses-mode t)
+                      (setq mode-name "Js")))
+          (require 'js-comint)))
+
+     (defun jslint-thisfile ()
+       (interactive)
+       (compile (format "jsl -process %s" (buffer-file-name))))
+   #+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(provide 'javascript-init)
+#+END_SRC

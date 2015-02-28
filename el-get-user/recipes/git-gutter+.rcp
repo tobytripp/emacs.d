@@ -1,3 +1,0 @@
-(:name git-gutter+
-       :description "Enhanced git-gutter mode"
-       :type elpa)

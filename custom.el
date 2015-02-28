@@ -80,5 +80,5 @@
  '(highlight ((t (:background "color-18" :foreground "white"))))
  '(hl-line ((t (:background "#002b36"))))
  '(idle-highlight ((t (:foreground "khaki"))))
- '(magit-item-highlight ((t (:inherit highlight))))
+ '(magit-item-highlight ((t (:inherit highlight))) t)
  '(rainbow-delimiters-depth-1-face ((t (:foreground "wheat")))))

@@ -50,6 +50,12 @@
               :publishing-function  org-html-publish-to-html
               :html-preamble ,(concat "<p><a accesskey=\"H\" href=\"index.html\">HOME</a></p>")
               :publishing-directory ,(expand-file-name "~/Code/tobytripp.github.com/"))
+             ("notes"
+              :base-directory       ,(expand-file-name "~/Code/Notes/")
+              :base-extension       "org"
+              :recursive            t
+              :publishing-function  org-html-publish-to-html
+              :publishing-directory ,(expand-file-name "~/Code/Notes/"))
              ("emacs-config"
               :base-directory       ,org-lib-dir
               :base-extension       "org"

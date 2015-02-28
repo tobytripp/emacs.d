@@ -280,7 +280,7 @@
  '(which-func ((((class color) (min-colors 89)) (:foreground "#859900"))))
  '(yascroll:thumb-text-area ((((class color) (min-colors 89)) (:foreground "#586e75" :background "#586e75"))))
  '(yascroll:thumb-fringe ((((class color) (min-colors 89)) (:foreground "#586e75" :background "#586e75"))))
- '(idle-highlight ((t (:inherit region :foreground "black"))))
+ '(idle-highlight ((t (:foreground "khaki"))))
  '(yas/field-highlight-face ((t (:background "#073642" :foreground "#DADADA"))))
  '(org-block-background ((t nil)))
  '(org-block-end-line ((t (:inherit (org-meta-line)))))

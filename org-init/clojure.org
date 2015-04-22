@@ -16,6 +16,8 @@
    #+BEGIN_SRC emacs-lisp
      (require-package 'clojure-mode)
      (require-package 'cider)
+     (require-package 'cider-eval-sexp-fu)
+     (require 'cider-eval-sexp-fu)
 
      (eval-after-load 'cider
        '(progn

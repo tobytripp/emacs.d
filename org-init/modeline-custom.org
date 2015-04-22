@@ -38,13 +38,14 @@
                     ;; (sml/apply-theme 'automatic)
 
                     (add-to-list 'sml/replacer-regexp-list '("^~/Dropbox/" ":DB:"))
-                    (add-to-list 'sml/replacer-regexp-list '("^~/Code/" ":CODE:"))
                     (add-to-list 'sml/replacer-regexp-list
-                      '("^:CODE:ib/investor-bridge" ":IB:"))
+                      '("^~/Code/ib/investor-bridge" ":IB:"))
                     (add-to-list 'sml/replacer-regexp-list
-                      '("^:CODE:ib/visibility" ":VIS:"))
+                      '("^~/Code/ib/visibility" ":VIS:"))
                     (add-to-list 'sml/replacer-regexp-list
                       '("^~/.*/lib/ruby/gems" ":GEMS" ))))
+                    (add-to-list 'sml/replacer-regexp-list
+                      '("^~/Code/" ":CODE:")) 
    #+END_SRC
 
 ** Showing the Time

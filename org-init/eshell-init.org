@@ -94,7 +94,19 @@
     (add-hook 'eshell-mode-hook 'set-my-shell-bindings)
   #+END_SRC
 
+* Other Shells
+
+  #+BEGIN_SRC emacs-lisp
+    (require-package 'multi-term)
+    (setq multi-term-program "/bin/zsh")
+
+    (defun toby/term-hook ()
+                (setq show-trailing-whitespace nil)
+                (yas-minor-mode -1))
+
+    (add-hook 'term-mode-hook 'toby/term-hook)
+  #+END_SRC
+
 #+BEGIN_SRC emacs-lisp :exports none
   (provide 'eshell-hooks)
 #+END_SRC
-

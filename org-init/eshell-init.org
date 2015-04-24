@@ -8,7 +8,7 @@
 ** Opening EShells
    First, a short-cut to quickly open a shell.  Repeated invocations
    will bring back the same shell so we don't end up with a bunch of
-   them runningn about.
+   them running about.
    #+BEGIN_SRC emacs-lisp
      (global-set-key (kbd "C-x m") 'eshell)
    #+END_SRC
@@ -36,10 +36,9 @@
      (global-set-key (kbd "C-x C-m") 'toby/eshell-in-buffer-dir)
    #+END_SRC
 
-   Sometimes what you want /is/ another shell instance:
+   Sometimes what you want is a real terminal:
    #+BEGIN_SRC emacs-lisp
-    ;; Start a new eshell even if one is active.
-     (global-set-key (kbd "C-x M") (lambda () (interactive) (eshell t)))
+     (global-set-key (kbd "C-x M") 'multi-term)
    #+END_SRC
 
    One great feature of Eshell is its ability to call Emacs functions
@@ -52,15 +51,10 @@
                  (defalias 'ff 'find-file)))
    #+END_SRC
 
-   Adjust some =comint= parameters (the mode that handles terminal buffers).
-
-   Multi-term is an extension for running multiple native shells within Emacs:
-   #+BEGIN_SRC emacs-lisp
-     (require-package 'multi-term)
-     (setq multi-term-program "/bin/bash -l")
-   #+END_SRC
 
 * Comint Mode
+
+  Adjust some =comint= parameters (the mode that handles terminal buffers).
   =comint-mode= is the parent mode of many shell modes.
 
   #+BEGIN_SRC emacs-lisp
@@ -96,13 +90,24 @@
 
 * Other Shells
 
+  Sometimes, to get proper shell colors in emacs, updating terminfo
+  can be required:
+
+  #+BEGIN_SRC sh
+  tic -o ~/.terminfo /usr/local/Cellar/emacs/current/share/emacs/24.3/etc/e/eterm-color.ti
+  #+END_SRC
+
+  Set up the =multi-term= package and term mode hooks:
+
   #+BEGIN_SRC emacs-lisp
     (require-package 'multi-term)
     (setq multi-term-program "/bin/zsh")
 
     (defun toby/term-hook ()
-                (setq show-trailing-whitespace nil)
-                (yas-minor-mode -1))
+      (linum-mode -1)
+      (setq show-trailing-whitespace nil)
+      ;; yas mode can break the TAB character in terminals
+      (yas-minor-mode -1))
 
     (add-hook 'term-mode-hook 'toby/term-hook)
   #+END_SRC

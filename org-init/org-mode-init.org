@@ -74,15 +74,19 @@
    Tangle with:
      C-c C-v t  (org-babel-tangle)
    #+BEGIN_SRC emacs-lisp
-     (defun toby/tangle-and-run ()
-       (cond
-        ((eq 'haskell-mode major-mode)
-         (message "Loading tangled buffer in haskell mode!")
-         (inferior-haskell-load-file)
-         (switch-to-haskell))))
+          (defun toby/tangle-and-run ()
+            (cond
+             ((eq 'haskell-mode major-mode)
+              (message "Loading tangled buffer in haskell mode!")
+              (inferior-haskell-load-file)
+              (switch-to-haskell))
+             ((eq 'clojure-mode major-mode)
+              (message "Loading tangled buffer in cider mode!")
+              (cider-load-buffer)
+              (cider-switch-to-relevant-repl-buffer))))
 
-     (add-hook 'org-babel-post-tangle-hook 'toby/tangle-and-run)
-     (define-key org-mode-map (kbd "<f6>") 'org-babel-tangle)
+          (add-hook 'org-babel-post-tangle-hook 'toby/tangle-and-run)
+          (define-key org-mode-map (kbd "<f6>") 'org-babel-tangle)
    #+END_SRC
 
 ** Org-Mode Presentations

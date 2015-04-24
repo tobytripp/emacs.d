@@ -17,11 +17,10 @@
      (require-package 'clojure-mode)
      (require-package 'cider)
      (require-package 'cider-eval-sexp-fu)
-     (require 'cider-eval-sexp-fu)
 
      (eval-after-load 'cider
        '(progn
-          (define-key cider-mode-map (kbd "C-x M-e") 'repl/eval-and-print)
+          (require 'cider-eval-sexp-fu)
           (define-key cider-mode-map (kbd "<f3>")    'cider-eval-defun-at-point)
           (define-key cider-mode-map (kbd "<f5>")    'toby/save-and-eval-buffer)
           (define-key cider-mode-map (kbd "<f12>")   'cider-test-run-tests)

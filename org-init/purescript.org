@@ -1,0 +1,28 @@
+#+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
+* PureScript
+
+  A Haskell-like language that compiles to Javascript.
+
+** Bindings
+
+   | Keys    | Command                        |
+   | C-c C-. | purescript-mode-format-imports |
+   |         |                                |
+
+** Setup
+
+  Purescript-mode, annoyingly, starts with the indentaition command
+  bound to a help page.  They force you to pick one of three modes and
+  will annoy you continuously until you choose.
+
+  #+BEGIN_SRC emacs-lisp
+    (require-package 'purescript-mode)
+    (require-package 'psci)
+
+    (autoload 'purescript-mode "purescript-mode" "PureScript" t)
+
+    (defun toby/purescript-init ()
+      (turn-on-purescript-indentation))
+
+    (add-hook 'purescript-mode-hook 'toby/purescript-init)
+  #+END_SRC

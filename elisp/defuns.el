@@ -29,10 +29,9 @@
   "Insert a train wreck"
   (interactive)
   (insert
-   "      💭___.-==-,🔥______  _______  _______  _______  _..._\n"
-   "   🔥{     L🙈 I|[ 🙀  ' ]['🔥' '']['' '💀'][''   😲 ][LI LI]\n"
-   "🏃 💥 💥OO====OO`'OO---OO''OO---OO''OO---OO''OO---OO`'OO-OO'   🚒\n"
-   ))
+   "      💭___.-==-,🔥____  _______  _______  _______  _..._\n"
+   "   🔥{    L🙈 I|[ 🙀 ' ]['🔥' '']['' '💀'][''  😲 ][LI LI]\n"
+   "🏃💥💥OO====OO`'OO---OO''OO---OO''OO---OO''OO---OO`'OO-OO'   🚒\n"))
 
 (defun insert-date ()
   "Insert a time-stamp according to locale's date and time format."

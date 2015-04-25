@@ -25,6 +25,8 @@
      (require-package 'rainbow-delimiters)
      (autoload 'rainbow-delimiters-mode "rainbow-delimiters")
 
+     (require-package 'dash-at-point)
+
      (require-package 'idle-highlight-mode)
      (autoload 'idle-highlight-mode "idle-highlight-mode")
 
@@ -36,6 +38,8 @@
        (auto-fill-mode t)
 
        (when (> (display-color-cells) 8) (hl-line-mode t))
+
+       (setq compilation-scroll-output 'first-error)
 
        (setq save-place t)
 

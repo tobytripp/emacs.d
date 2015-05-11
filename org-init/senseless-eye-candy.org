@@ -86,7 +86,7 @@
 
   #+BEGIN_SRC emacs-lisp
     (require-package 'twittering-mode)
-    (autoload 'twittering-mode "twittering-mode" "Twitter stream in Emacs")
+    (autoload 'twittering-mode "twittering-mode" "Twitter stream in Emacs" t)
 
     (setq twittering-username "tobytripp")
     (setq twittering-icon-mode t)

@@ -20,7 +20,7 @@
  '(custom-enabled-themes (quote (smart-mode-line-powerline)))
  '(custom-safe-themes
    (quote
-    ("e56f1b1c1daec5dbddc50abd00fcd00f6ce4079f4a7f66052cf16d96412a09a9" "ee2aa6bcaabf4b9f7446dc56bc6ce1f1292885cfaf578de00e309b520a45cdaa" default)))
+    ("26614652a4b3515b4bbbb9828d71e206cc249b67c9142c06239ed3418eff95e2" "ee2aa6bcaabf4b9f7446dc56bc6ce1f1292885cfaf578de00e309b520a45cdaa" default)))
  '(default-frame-alist
     (quote
      ((vertical-scroll-bars)
@@ -108,12 +108,6 @@
      (whitespace-line-column . 80)
      (lexical-binding . t))))
  '(scss-compile-at-save nil)
- '(sml/mode-width
-   (if
-       (eq powerline-default-separator
-	   (quote arrow))
-       (quote right)
-     (quote full)))
  '(sml/pos-id-separator
    (quote
     (""

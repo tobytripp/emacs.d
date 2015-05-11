@@ -94,6 +94,7 @@
    presentations with =reveal.js=.
 
    #+BEGIN_SRC emacs-lisp
+     (require-package 'ox-reveal)
      (require 'ox-reveal)
      (setq org-reveal-root
            (concat "file://" (expand-file-name dotfiles-dir)

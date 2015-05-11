@@ -20,3 +20,4 @@ projectile-bookmarks.eld
 /org-init/*.el
 /org-init/*.elc
 /html/*.html
+/var/

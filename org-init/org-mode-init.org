@@ -6,25 +6,33 @@
 
    Fontify code blocks in an Org file:
    #+BEGIN_SRC emacs-lisp
-     (setq org-src-fontify-natively t)
-     (require 'ob)
+         (setq org-src-fontify-natively t)
+         (require 'ob)
 
-     (add-to-list 'org-babel-tangle-lang-exts '("clojure" . "clj"))
-     (add-to-list 'org-babel-tangle-lang-exts '("haskell" . "hs"))
+         (add-to-list 'org-babel-tangle-lang-exts '("clojure" . "clj"))
+         (add-to-list 'org-babel-tangle-lang-exts '("haskell" . "hs"))
 
-     (defun toby/babel-hook ()
-                 (condition-case nil
-                     (org-display-inline-images)
-                   (error nil)))
+         (defun toby/babel-hook ()
+                     (condition-case nil
+                         (org-display-inline-images)
+                       (error nil)))
 
-     (add-hook 'org-babel-after-execute-hook
-               'toby/babel-hook
-               'append)
+         (add-hook 'org-babel-after-execute-hook
+                   'toby/babel-hook
+                   'append)
 
-     (add-to-list 'org-structure-template-alist
-                  '("el"  "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC" "<src lang=\"?\">\n\n</src>"))
-     (add-to-list 'org-structure-template-alist
-                  '("hs"  "#+BEGIN_SRC haskell\n?\n#+END_SRC" "<src lang=\"?\">\n\n</src>"))
+         (org-babel-do-load-languages
+          'org-babel-load-languages
+          '((sh . t)
+            (ruby . t)
+            (dot . t)
+            (sqlite . t)
+            (perl . t)))
+
+         (add-to-list 'org-structure-template-alist
+                      '("el"  "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC" "<src lang=\"?\">\n\n</src>"))
+         (add-to-list 'org-structure-template-alist
+                      '("hs"  "#+BEGIN_SRC haskell\n?\n#+END_SRC" "<src lang=\"?\">\n\n</src>"))
    #+END_SRC
 
    This adds syntax highlighting to org-babel html exports.

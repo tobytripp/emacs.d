@@ -248,3 +248,13 @@ I keep these in a separate file to make it easy to find them.
   #+BEGIN_SRC emacs-lisp :tangle no
     (setq debug-on-error       t)
   #+END_SRC
+
+  There is also an elisp package that looks as though it would be
+  helpful for this: =elisp-bug-hunter=.
+
+  #+BEGIN_SRC emacs-lisp
+    (require-package 'bug-hunter)
+
+    (autoload 'bug-hunter-init-file "bug-hunter"
+      "Debug issues with emacs start-up")
+  #+END_SRC

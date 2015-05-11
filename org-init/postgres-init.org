@@ -1,0 +1,24 @@
+* Interacting with PostgreSQL
+
+** Keys
+
+   | Key     | Command         |
+   | C-c C-b | sql-send-buffer |
+
+** Hooks and Configuration
+
+  #+BEGIN_SRC emacs-lisp
+    (setq sql-postgres-login-params
+          '((user           :default "development")
+            (database       :default "development")
+            (server         :default "localhost")
+            (port           :default 5432)))
+
+    (defun toby/sql-init ()
+      (toggle-truncate-lines t)
+
+      (local-set-key (kbd "C-c C-b") 'sql-send-buffer))
+
+    (add-hook 'sql-interactive-mode-hook 'toby/sql-init)
+  #+END_SRC
+

@@ -167,7 +167,7 @@
  '(sml/pre-modes-separator (propertize " " (quote face) (quote sml/modes)))
  '(visual-line-mode nil t)
  '(warning-minimum-level :error)
- '(whitespace-style (quote (trailing tab-mark)) t))
+ '(whitespace-style (quote (trailing tab-mark))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -176,5 +176,5 @@
  '(highlight ((t (:background "color-18" :foreground "white"))))
  '(hl-line ((t (:background "#002b36"))))
  '(idle-highlight ((t (:foreground "khaki"))))
- '(magit-item-highlight ((t (:inherit highlight))) t)
+ '(magit-item-highlight ((t (:inherit highlight))))
  '(rainbow-delimiters-depth-1-face ((t (:foreground "wheat")))))

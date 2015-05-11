@@ -15,11 +15,15 @@
    Set-up some local key-bindings.  This will pull in =clojure-mode= as well.
    #+BEGIN_SRC emacs-lisp
      (require-package 'clojure-mode)
-     (require-package 'cider)
-     (require-package 'cider-eval-sexp-fu)
+     (autoload 'clojure-mode "clojure-mode" "Major mode for clojure")
+
+     (eval-after-load 'clojure-mode
+       '(progn
+          (require-package 'cider)))
 
      (eval-after-load 'cider
        '(progn
+          (require-package 'cider-eval-sexp-fu)
           (require 'cider-eval-sexp-fu)
           (define-key cider-mode-map (kbd "<f3>")    'cider-eval-defun-at-point)
           (define-key cider-mode-map (kbd "<f5>")    'toby/save-and-eval-buffer)

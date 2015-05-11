@@ -7,24 +7,31 @@
    | Key-Chord | Command                           |
    | C-c C-z   | Switch to IRB REPL                |
    | C-c C-l   | Load current buffer into the REPL |
+   | C-'       | Convert Symbol->String            |
+   | C-:       | Convert String->Symbol            |
 
 ** Start-up
 
    #+BEGIN_SRC emacs-lisp
+     (require-package 'ruby-mode)
      (autoload 'ruby-mode "ruby-mode" "Major mode for Ruby" t)
 
-     (require-package 'ruby-mode)
-     (require-package 'inf-ruby)
-     (require-package 'ruby-end)
-     (require-package 'rspec-mode)
-     (require-package 'column-marker)
+     (eval-after-load 'ruby-mode
+       '(progn
+          (require-package 'inf-ruby)
+          (require-package 'ruby-end)
+          (require-package 'rspec-mode)
+          (require-package 'column-marker)
+          (require-package 'ruby-tools)))
+
+     (add-to-list 'hs-special-modes-alist
+                  '(ruby-mode
+                    "\\(class\\|def\\|do\\|if\\)" "\\(end\\)" "#"
+                    (lambda (arg) (ruby-end-of-block)) nil))
 
      (defun toby/ruby-init ()
        (set (make-local-variable 'indent-tabs-mode) 'nil)
        (set (make-local-variable 'tab-width) 2)
-
-       (outline-minor-mode)
-       (setq outline-regexp " *\\(def \\|describe \\|it \\|class\\|module\\)")
 
        (column-marker-1 80)
        (whitespace-mode t)
@@ -33,6 +40,10 @@
        (define-key ruby-mode-map (kbd "C-;") 'insert-rocket)
 
        (push 'company-robe company-backends)
+
+       (hs-minor-mode 1) ;; Code folding
+
+       (eldoc-mode)
 
        (require 'ruby-end)
        (require 'rspec-mode)
@@ -82,9 +93,9 @@
      (add-to-list 'auto-mode-alist '("\\.rabl$" . ruby-mode))
      (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
 
-     (require-package 'rhtml-mode)
-     (autoload 'rhtml-mode "rhtml-mode" "RHTML Mode" t)
-     (add-to-list 'auto-mode-alist '("\\.html.erb$" . rhtml-mode))
+     (require-package 'web-mode)
+     (autoload 'web-mode "web-mode" "Web Mode" t)
+     (add-to-list 'auto-mode-alist '("\\.html.erb$" . web-mode))
    #+END_SRC
 
 ** Lining Up Data Structures
@@ -122,9 +133,6 @@
     (defalias 'inf-ruby-keys 'inf-ruby-setup-keybindings)
     #+END_SRC
 
-#+BEGIN_SRC emacs-lisp
-(provide 'ruby-init)
-#+END_SRC
 ** Cleaning Up Sloppy Code
 
 *** Add Useful White-Space
@@ -160,3 +168,7 @@
            (replace-in ", " ",\n" p1 p2)
            (indent-region p1 (+ 2 p2)))))
    #+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(provide 'ruby-init)
+#+END_SRC

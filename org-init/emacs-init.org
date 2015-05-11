@@ -48,8 +48,7 @@
        (let ((first-part-start (point-min))
              (first-part-end   (point-at-bol))
              (second-part-start (point-at-eol))
-             (second-part-end  (point-max))
-             )
+             (second-part-end  (point-max)))
          (delete-trailing-whitespace first-part-start first-part-end)
          (delete-trailing-whitespace second-part-start second-part-end)))
    #+END_SRC

@@ -1,0 +1,50 @@
+#+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
+* Elixir
+
+  #+BEGIN_SRC emacs-lisp
+    (require-package 'alchemist)
+    (require-package 'elixir-mode)
+    (autoload 'alchemist-mode "alchemist" "Mode for elixir code" t)
+    (autoload 'elixir-mode "elixir" "Mode for elixir code" t)
+
+    (add-to-list 'auto-mode-alist '("\\.exs?$" . elixir-mode))
+
+    (defun toby/elixir-init ()
+      )
+
+    (add-hook 'alchemist-mode-hook 'toby/elixir-init)
+  #+END_SRC
+
+** Alchemist Mode Commands
+
+*** IEx interaction:
+
+    | Key       | Command                                |                         |
+    | C-c a i i | alchemist-iex-run                      | Start the Elixir REPL   |
+    | C-c a i p | alchemist-iex-project-run              | Start IEx from Mix      |
+    | C-c a i l | alchemist-iex-send-current-line        |                         |
+    | C-C a i c | alchemist-iex-send-current-line-and-go | Send and jump to buffer |
+    | C-c a i r | alchemist-iex-send-region              |                         |
+    | C-c a i m | alchemist-iex-send-region-and-go       |                         |
+    | C-c a i b | alchemist-iex-compile-this-bufferL     |                         |
+
+*** Code evaluation
+
+    | Key       | Command                     |   |
+    | C-c a v w | alchemist-eval-print-buffer |   |
+
+
+** Company Integration
+
+   #+BEGIN_QUOTE
+   When Alchemist finds company-mode it enables completion inside in
+   IEx process buffer.
+
+   Documention lookup inside an IEx process buffer will also be
+   activated.
+
+   When the keybinding C-d is used on one of the selected completion
+   candidates, a documentation lookup for the candidate will be made
+   and displayed in another window.
+   #+END_QUOTE
+

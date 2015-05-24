@@ -7,45 +7,63 @@
 
 ** Smart Mode Line
    The [[https://github.com/Bruce-Connor/smart-mode-line][smart-mode-line]] package gives you some control of what shows up in the mode-line.
+   #+BEGIN_SRC emacs-lisp :tangle no
+     (require-package 'smart-mode-line)
+     (if (require 'smart-mode-line nil 'noerror)
+         (progn
+           (setq sml/name-width 20)
+           (setq sml/mode-width 'full)
+           (setq sml/shorten-directory t)
+           (setq sml/shorten-modes t)
+
+           (rich-minority-mode 1)
+           (setq rm-blacklist '(" GitGutter" " MRev" " company" " mate"
+                                " Paredit" " Wrap" " Fill"))
+
+           (if after-init-time
+             (sml/setup)
+             (add-hook 'after-init-hook 'sml/setup))
+
+           (setq rm-text-properties
+                 '((" Paredit" 'display "()"
+                    'face 'sml/minor-modes)))
+
+           (require-package 'smart-mode-line-powerline-theme)
+           (sml/apply-theme 'powerline)
+           ;; Alternatives:
+           ;; (sml/apply-theme 'powerline)
+           ;; (sml/apply-theme 'dark)
+           ;; (sml/apply-theme 'light)
+           ;; (sml/apply-theme 'respectful)
+           ;; (sml/apply-theme 'automatic)
+
+           (add-to-list 'sml/replacer-regexp-list '("^~/Dropbox/" ":DB:"))
+           (add-to-list 'sml/replacer-regexp-list
+             '("^~/Code/ib/investor-bridge" ":IB:"))
+           (add-to-list 'sml/replacer-regexp-list
+             '("^~/Code/ib/visibility" ":VIS:"))
+           (add-to-list 'sml/replacer-regexp-list
+             '("^~/.*/lib/ruby/gems" ":GEMS" ))))
+           (add-to-list 'sml/replacer-regexp-list
+             '("^~/Code/" ":CODE:"))
+   #+END_SRC
+
+
+** SVG Modeline
+
+   [[https://github.com/sabof/svg-mode-line-themes][svg-mode-line-themes]]
+   [[https://github.com/ocodo/ocodo-svg-modelines][ocodo-svg-modelines]]
+
    #+BEGIN_SRC emacs-lisp
-              (require-package 'smart-mode-line)
-              (if (require 'smart-mode-line nil 'noerror)
-                  (progn
-                    (setq sml/name-width 20)
-                    (setq sml/mode-width 'full)
-                    (setq sml/shorten-directory t)
-                    (setq sml/shorten-modes t)
-
-                    (rich-minority-mode 1)
-                    (setq rm-blacklist '(" GitGutter" " MRev" " company" " mate"
-                                         " Paredit" " Wrap" " Fill"))
-
-                    (if after-init-time
-                      (sml/setup)
-                      (add-hook 'after-init-hook 'sml/setup))
-
-                    (setq rm-text-properties
-                          '((" Paredit" 'display "()"
-                             'face 'sml/minor-modes)))
-
-                    (require-package 'smart-mode-line-powerline-theme)
-                    (sml/apply-theme 'powerline)
-                    ;; Alternatives:
-                    ;; (sml/apply-theme 'powerline)
-                    ;; (sml/apply-theme 'dark)
-                    ;; (sml/apply-theme 'light)
-                    ;; (sml/apply-theme 'respectful)
-                    ;; (sml/apply-theme 'automatic)
-
-                    (add-to-list 'sml/replacer-regexp-list '("^~/Dropbox/" ":DB:"))
-                    (add-to-list 'sml/replacer-regexp-list
-                      '("^~/Code/ib/investor-bridge" ":IB:"))
-                    (add-to-list 'sml/replacer-regexp-list
-                      '("^~/Code/ib/visibility" ":VIS:"))
-                    (add-to-list 'sml/replacer-regexp-list
-                      '("^~/.*/lib/ruby/gems" ":GEMS" ))))
-                    (add-to-list 'sml/replacer-regexp-list
-                      '("^~/Code/" ":CODE:")) 
+     (require-package 'svg-mode-line-themes)
+     (if (require 'svg-mode-line-themes nil 'noerror)
+         (progn
+           (smt/enable)
+           (require-package 'ocodo-svg-modelines)
+           (ocodo-svg-modelines-init)
+           (smt/set-theme 'ocodo-minimal-dark-smt)
+           (set-face-attribute 'mode-line nil :box nil)
+           (set-face-attribute 'mode-line-inactive nil :box nil)))
    #+END_SRC
 
 ** Showing the Time

@@ -24,6 +24,7 @@
           (require-package 'column-marker)
           (require-package 'ruby-tools)))
 
+     ;; Hide-show settings
      (add-to-list 'hs-special-modes-alist
                   '(ruby-mode
                     "\\(class\\|def\\|do\\|if\\)" "\\(end\\)" "#"

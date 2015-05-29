@@ -62,17 +62,20 @@
 
    #+BEGIN_SRC emacs-lisp
      (require-package 'rbenv)
-     (setenv "PATH"
-             (concat (getenv "HOME") "/.rbenv/shims:"
-                     (getenv "HOME") "/.rbenv/bin:"
-                     (getenv "PATH")))
 
-     (setq exec-path
-           (cons (concat (getenv "HOME") "/.rbenv/shims")
-                 (cons (concat (getenv "HOME") "/.rbenv/bin")
+     (let ((rbenv-home
+            (replace-regexp-in-string "[^[:word:]]*$" ""
+                                      (shell-command-to-string "brew --prefix rbenv"))))
+       (setenv "PATH"
+               (concat rbenv-home "/shims:"
+                       rbenv-home "/bin:"
+                       (getenv "PATH")))
+       (setq exec-path
+           (cons (concat rbenv-home "/shims")
+                 (cons (concat rbenv-home "/bin")
                        exec-path)))
 
-     (setq rbenv-installation-dir (concat (getenv "HOME") "/.rbenv/"))
+       (setq rbenv-installation-dir rbenv-home))
    #+END_SRC
 
 ** Cucumber

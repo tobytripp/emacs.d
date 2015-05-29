@@ -87,16 +87,16 @@
 
 ** Navigation
 
+   https://github.com/abo-abo/avy
+
    #+BEGIN_SRC emacs-lisp
      (global-set-key (kbd "M-g") 'goto-line)
      (global-set-key (kbd "M-z") 'zap-to-char)
      (global-unset-key (kbd "M-SPC"))
 
-     (require-package 'ace-jump-mode)
-     (autoload 'ace-jump-mode "ace-jump-mode")
-     (global-set-key (kbd "M-SPC") 'ace-jump-mode)
-     (global-set-key (kbd "C-c SPC") 'ace-jump-mode)
-
+     (require-package 'avy)
+     (global-set-key (kbd "M-SPC")   'avy-goto-word-1)
+     (global-set-key (kbd "C-c SPC") 'avy-goto-word-1)
    #+END_SRC
 
 ** Frame/Window Properties
@@ -124,16 +124,21 @@
      (windmove-default-keybindings) ;; Shift+direction
      (global-set-key (kbd "C-x O")   (lambda () (interactive) (other-window -1))) ;; back one
      (global-set-key (kbd "C-x C-o") (lambda () (interactive) (other-window  2))) ;; forward two
-     (global-set-key (kbd "<f17>") 'other-window)
    #+END_SRC
 
-   The =switch-window= package will display numbers in the various
+   The =ace-window= package will display numbers in the various
    open windows, if there are more than two.  This can make things a
    bit easier to navigate when you have your screen split up into a
    bunch of different panes.
+
+   https://github.com/abo-abo/ace-window
+
    #+BEGIN_SRC emacs-lisp
-     (require-package 'switch-window)
-     (global-set-key (kbd "C-x o")   'switch-window)
+     (require-package 'avy)
+     (require-package 'ace-window)
+     (global-set-key (kbd "C-x o")   'ace-window)
+
+     (setq aw-keys '(?a ?o ?e ?u ?i  ?d ?h ?t ?n ?s))
    #+END_SRC
 
    For those occassions when you want the old window switching behavior:
@@ -144,7 +149,8 @@
 
    On keyboards that have extra function keys, some handy short-cuts:
    #+BEGIN_SRC emacs-lisp
-     (global-set-key (kbd "<f14>")   'other-window)
+     (global-set-key (kbd "<f14>") 'ace-window)
+     (global-set-key (kbd "<f17>") 'ace-window)
    #+END_SRC
 
    On larger screens, I like to divide me frame into thirds:
@@ -154,8 +160,7 @@
        (interactive)
        (split-window-horizontally)
        (split-window-horizontally)
-       (balance-windows)
-       )
+       (balance-windows))
 
      (global-set-key (kbd "C-x 6") 'split-in-thirds)
    #+END_SRC

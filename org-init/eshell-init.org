@@ -39,6 +39,7 @@
    Sometimes what you want is a real terminal:
    #+BEGIN_SRC emacs-lisp
      (global-set-key (kbd "C-x M") 'multi-term)
+     (global-set-key (kbd "C-c n") 'multi-term-next)
    #+END_SRC
 
    One great feature of Eshell is its ability to call Emacs functions

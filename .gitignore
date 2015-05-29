@@ -21,3 +21,6 @@ projectile-bookmarks.eld
 /org-init/*.elc
 /html/*.html
 /var/
+/ido.last
+/recentf
+/eshell/

@@ -70,6 +70,35 @@
        (run-hooks 'prog-mode-hook))
    #+END_SRC
 
+** Embedded Modes
+
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'mmm-mode)
+     (require 'mmm-auto)
+     (setq mmm-global-mode 'maybe)
+
+     (defun toby/heredoc-get-mode (string)
+       (message string)
+       (string-match "<<-?\\([a-zA-Z0-9_-]+\\)$" string)
+       (let ((modename (downcase (match-string 1 string))))
+         (message modename)
+         (intern (concat modename "-mode"))))
+
+     (eval-after-load 'mmm-mode
+       '(progn
+          (mmm-add-classes
+           '((toby/heredoc
+              :match-submode toby/heredoc-get-mode
+              :front "<<-?\\([a-zA-Z0-9_-]+\\)"
+              :front-offset (end-of-line 1)
+              :save-matches 1
+              :back "^[ \t]*~1$"
+              :delimeter-made nil)))
+          (mmm-add-mode-ext-class 'ruby-mode "\\.rb\\'" 'toby/heredoc)))
+
+     (add-to-list 'mmm-set-file-name-for-modes 'ruby-mode)
+   #+END_SRC
+
 ** Commands
 
    #+BEGIN_SRC emacs-lisp

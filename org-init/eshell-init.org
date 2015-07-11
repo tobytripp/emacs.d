@@ -107,6 +107,7 @@
     (defun toby/term-hook ()
       (linum-mode -1)
       (setq show-trailing-whitespace nil)
+      ;(set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix)
       ;; yas mode can break the TAB character in terminals
       (yas-minor-mode -1))
 

@@ -1,6 +1,22 @@
 #+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
 * HTML Editing
 
+** web-mode
+
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'web-mode)
+     (autoload 'web-mode "web-mode" "Web Mode" t)
+     (add-to-list 'auto-mode-alist '("\\.html$" . web-mode))
+
+     (defun toby/web-mode-hook ()
+       "Hooks for web-mode"
+       (setq web-mode-markup-indent-offset 2)
+       (setq web-mode-html-offset 2)
+       (setq web-mode-enable-css-colorization t)
+       (setq js-indent-level 2))
+     (add-hook 'web-mode-hook 'toby/web-mode-hook)
+   #+END_SRC
+
 ** Emmet Mode
 
    From the Emmet Docs at https://github.com/smihica/emmet-mode

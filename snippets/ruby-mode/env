@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: ENV.fetch( "VAR" ) { ... }
+# key: env
+# --
+ENV.fetch( "${1:variable}" ) { ${2:default} }$0

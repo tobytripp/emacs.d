@@ -18,8 +18,9 @@
 
      (eval-after-load 'ruby-mode
        '(progn
+          (require-package 'smartparens)
           (require-package 'inf-ruby)
-          (require-package 'ruby-end)
+          (require-package 'robe)
           (require-package 'rspec-mode)
           (require-package 'column-marker)
           (require-package 'ruby-tools)))
@@ -40,13 +41,17 @@
        ;; Doesn't work in the terminal, unfortunately…
        (define-key ruby-mode-map (kbd "C-;") 'insert-rocket)
 
+       (robe-mode)
        (push 'company-robe company-backends)
 
        (hs-minor-mode 1) ;; Code folding
 
        (eldoc-mode)
 
-       (require 'ruby-end)
+       (require 'smartparens-config)
+       (smartparens-strict-mode)
+       (show-smartparens-mode t)
+
        (require 'rspec-mode)
        (local-set-key (kbd "M-r")            'rspec-verify)
        (local-set-key (kbd "M-S-r")          'rspec-verify-single)
@@ -55,7 +60,16 @@
        (local-set-key (kbd "S-<f12>")        'rspec-rerun)
        (local-set-key [f10]                  'next-error))
 
-     (add-hook 'ruby-mode-hook 'toby/ruby-init)
+     (autoload 'enh-ruby-mode "enh-ruby-mode" "Major mode for ruby files" t)
+     (add-to-list 'auto-mode-alist '("\\.rb$" . enh-ruby-mode))
+     (add-to-list 'interpreter-mode-alist '("ruby" . enh-ruby-mode))
+
+     (add-hook 'ruby-mode-hook     'toby/ruby-init)
+     (add-hook 'enh-ruby-mode-hook 'toby/ruby-init)
+
+     (eval-after-load 'inf-ruby
+       '(define-key inf-ruby-minor-mode-map
+          (kbd "C-c C-s") 'inf-ruby-console-auto))
    #+END_SRC
 
 ** Rbenv
@@ -94,8 +108,8 @@
 ** Rails
 
    #+BEGIN_SRC emacs-lisp
-     (add-to-list 'auto-mode-alist '("\\.rabl$" . ruby-mode))
-     (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
+     (add-to-list 'auto-mode-alist '("\\.rabl$" . enh-ruby-mode))
+     (add-to-list 'auto-mode-alist '("\\.rake$" . enh-ruby-mode))
 
      (require-package 'web-mode)
      (autoload 'web-mode "web-mode" "Web Mode" t)

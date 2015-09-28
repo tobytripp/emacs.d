@@ -28,6 +28,13 @@
      (fset 'yes-or-no-p 'y-or-n-p)
    #+END_SRC
 
+** UI
+   Set native vs non-native fullscreen on the Mac:
+   #+BEGIN_SRC emacs-lisp
+   ;; (setq ns-use-native-fullscreen nil)
+   (setq ns-use-native-fullscreen t)
+   #+END_SRC
+
 ** UTF-8
 
    #+BEGIN_SRC emacs-lisp
@@ -73,6 +80,7 @@
    (require-package 'browse-kill-ring)
    (browse-kill-ring-default-keybindings)
    #+END_SRC
+
 ** iSearch
    #+BEGIN_SRC emacs-lisp
      (require-package 'ag)
@@ -80,6 +88,24 @@
      (require-package 'isearch+)
      (eval-after-load "isearch" '(require 'isearch+))
    #+END_SRC
+
+** Multiple Cursors
+
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'multiple-cursors)
+     (autoload 'mc/edit-lines "multiple-cursors" "Multiple Cursors" t)
+
+     (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+
+     (autoload 'mc/mark-next-like-this "multiple-cursors" "Multiple Cursors" t)
+     (autoload 'mc/mark-previous-like-this "multiple-cursors" "Multiple Cursors" t)
+     (autoload 'mc/mark-all-like-this "multiple-cursors" "Multiple Cursors" t)
+
+     (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+     (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+     (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+   #+END_SRC
+
 
 #+BEGIN_SRC emacs-lisp
 (provide 'emacs-init)

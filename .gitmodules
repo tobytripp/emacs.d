@@ -1,3 +1,6 @@
 [submodule "vendor/org-reveal"]
 	path = vendor/org-reveal
 	url = https://github.com/yjwen/org-reveal.git
+[submodule "vendor/tern"]
+	path = vendor/tern
+	url = git@github.com:marijnh/tern.git

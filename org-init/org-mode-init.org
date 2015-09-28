@@ -25,6 +25,7 @@
           'org-babel-load-languages
           '((sh . t)
             (ruby . t)
+            (ditaa . t)
             (dot . t)
             (sqlite . t)
             (perl . t)))
@@ -101,7 +102,7 @@
    [[https://github.com/yjwen/org-reveal][Org-Reveal]] is an =org-mode= export extension for creating
    presentations with =reveal.js=.
 
-   #+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp :tangle no
      (require-package 'ox-reveal)
      (require 'ox-reveal)
      (setq org-reveal-root

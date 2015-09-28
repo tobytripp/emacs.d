@@ -14,9 +14,14 @@
 ** Js-Mode
 
    #+BEGIN_SRC emacs-lisp
+     (add-to-list 'load-path (concat vendor-dir "tern/emacs"))
+     (autoload 'tern-mode "tern.el" nil t)
+
+     (require-package 'company-tern)
      (require-package 'js-comint)
      (defun toby/js-init ()
        (glasses-mode t)
+       (tern-mode t)
        (setq mode-name "Js"))
 
      (eval-after-load "js-mode"
@@ -27,6 +32,9 @@
      (defun jslint-thisfile ()
        (interactive)
        (compile (format "jsl -process %s" (buffer-file-name))))
+
+     ;; Ember handlebar templates
+     (add-to-list 'auto-mode-alist '("\\.hbs$" . web-mode))
    #+END_SRC
 
 #+BEGIN_SRC emacs-lisp

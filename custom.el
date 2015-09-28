@@ -11,7 +11,6 @@
  '(cider-auto-select-error-buffer nil)
  '(coffee-args-compile (quote ("-c" "-o js")))
  '(coffee-tab-width 2)
- '(column-number-mode t)
  '(compilation-always-kill t)
  '(compilation-ask-about-save nil)
  '(compilation-auto-jump-to-first-error nil)
@@ -20,7 +19,7 @@
  '(custom-enabled-themes (quote (smart-mode-line-powerline)))
  '(custom-safe-themes
    (quote
-    ("781d343ce450117044d94745f59bd7e73fbfc41a977284aeb2e5a4158db8aeba" "26614652a4b3515b4bbbb9828d71e206cc249b67c9142c06239ed3418eff95e2" "ee2aa6bcaabf4b9f7446dc56bc6ce1f1292885cfaf578de00e309b520a45cdaa" default)))
+    ("730c625dbb2390df143f0ae74f27ddff6f18c00d15185c35f5c14aedbcf3dc37" "64b6d6eec0935f6150b0748b91dd52e7d47cd7d733352176443651f8e60f67f7" "25dab113b04c1d1152bb1cac0027c47c2cb9c3b860516781feffaf7f3ef95610" "9330df8772bfe8025d061f7d108780f1e10bec8ab63b69f65688fef4b732b641" "26614652a4b3515b4bbbb9828d71e206cc249b67c9142c06239ed3418eff95e2" default)))
  '(default-frame-alist
     (quote
      ((vertical-scroll-bars)
@@ -41,12 +40,16 @@
       (viper-saved-cursor-color-in-replace-mode . "Red3"))))
  '(dired-auto-revert-buffer (quote dired-directory-changed-p))
  '(ediff-window-setup-function (quote ediff-setup-windows-plain))
- '(electric-pair-mode t)
+ '(enh-ruby-deep-indent-paren nil)
+ '(enh-ruby-use-ruby-mode-show-parens-config t)
  '(erc-modules
    (quote
-    (autojoin button completion fill irccontrols list match menu move-to-prompt netsplit networks noncommands readonly ring scrolltobottom smiley stamp spelling track)))
- '(erc-server "irc.freenode.net")
+    (autojoin button completion fill irccontrols list match menu move-to-prompt netsplit spelling)))
+ '(erc-nick "toby")
+ '(erc-server "localhost")
+ '(erc-user-full-name "Toby Tripp")
  '(ergoemacs-mode nil)
+ '(eval-sexp-fu-flash-mode nil)
  '(fci-rule-color "#073642")
  '(feature-cucumber-command
    "bundle exec cucumber -p guard CUCUMBER_OPTS=\"{options}\" {feature}")
@@ -71,12 +74,9 @@
  '(glasses-separate-parentheses-p nil)
  '(glasses-separator " ")
  '(glasses-uncapitalize-p nil)
- '(global-auto-revert-mode t)
- '(global-linum-mode t)
- '(global-toby-mode t)
+ '(global-color-identifiers-mode t)
  '(haskell-cabal-list-comma-position (quote after))
  '(haskell-font-lock-symbols (quote unicode))
- '(js-expr-indent-offset 2)
  '(js-indent-level 2)
  '(js2-basic-offset 2)
  '(js2-bounce-indent-p t)
@@ -84,98 +84,23 @@
  '(js2-mirror-mode t)
  '(js2-mode-show-parse-errors nil)
  '(js2-mode-show-strict-warnings nil)
- '(magit-process-popup-time 20)
  '(menu-bar-mode nil)
- '(ns-tool-bar-display-mode nil t)
- '(ns-tool-bar-size-mode nil t)
- '(org-agenda-files
+ '(org-src-window-setup (quote other-window))
+ '(package-selected-packages
    (quote
-    ("~/Dropbox/org/ib-tasks.org" "~/Dropbox/org/my-tasks.org")))
- '(revert-without-query (quote (".*")))
+    (cl-lib org yasnippet yaml-mode web-mode web-completion-data twittering-mode tt-mode textmate switch-window smex smart-mode-line-powerline-theme sass-mode ruby-tools ruby-end rspec-mode rhtml-mode rbenv rainbow-delimiters psci projectile perl6-mode paredit ox-reveal ocodo-svg-modelines multi-term mmm-mode magit js-comint isearch+ inf-ruby idle-highlight-mode htmlize highlight-indentation haskell-mode fullframe flx-ido feature-mode enh-ruby-mode emmet-mode elixir-mode dockerfile-mode dired+ dash-at-point company-quickhelp column-marker color-identifiers-mode cider-eval-sexp-fu cider bug-hunter browse-kill-ring apache-mode alchemist ag ace-window ace-jump-mode)))
  '(rspec-compilation-buffer-name "*specs*")
- '(rspec-rake-command "bundle exec rake")
- '(rspec-spec-command " rspec ")
- '(rspec-use-bundler-when-possible nil)
+ '(rspec-use-bundler-when-possible t)
  '(rspec-use-rake-flag nil)
- '(rspec-use-rake-when-possible nil)
- '(rspec-use-rvm nil)
  '(ruby-deep-arglist nil)
- '(ruby-deep-indent-paren nil)
- '(ruby-use-encoding-map t)
- '(safe-local-variable-values
-   (quote
-    ((encoding . utf-8)
-     (whitespace-line-column . 80)
-     (lexical-binding . t))))
  '(scss-compile-at-save nil)
- '(sml/pos-id-separator
-   (quote
-    (""
-     (:propertize " " face powerline-active1)
-     (:eval
-      (propertize " "
-		  (quote display)
-		  (funcall
-		   (intern
-		    (format "powerline-%s-%s" powerline-default-separator
-			    (car powerline-default-separator-dir)))
-		   (quote powerline-active1)
-		   (quote powerline-active2))))
-     (:propertize " " face powerline-active2))))
- '(sml/pos-minor-modes-separator
-   (quote
-    (""
-     (:propertize " " face powerline-active1)
-     (:eval
-      (propertize " "
-		  (quote display)
-		  (funcall
-		   (intern
-		    (format "powerline-%s-%s" powerline-default-separator
-			    (cdr powerline-default-separator-dir)))
-		   (quote powerline-active1)
-		   nil)))
-     (:propertize " " face sml/global))))
- '(sml/pre-id-separator
-   (quote
-    (""
-     (:propertize " " face sml/global)
-     (:eval
-      (propertize " "
-		  (quote display)
-		  (funcall
-		   (intern
-		    (format "powerline-%s-%s" powerline-default-separator
-			    (car powerline-default-separator-dir)))
-		   nil
-		   (quote powerline-active1))))
-     (:propertize " " face powerline-active1))))
- '(sml/pre-minor-modes-separator
-   (quote
-    (""
-     (:propertize " " face powerline-active2)
-     (:eval
-      (propertize " "
-		  (quote display)
-		  (funcall
-		   (intern
-		    (format "powerline-%s-%s" powerline-default-separator
-			    (cdr powerline-default-separator-dir)))
-		   (quote powerline-active2)
-		   (quote powerline-active1))))
-     (:propertize " " face powerline-active1))))
- '(sml/pre-modes-separator (propertize " " (quote face) (quote sml/modes)))
- '(visual-line-mode nil t)
- '(warning-minimum-level :error)
- '(whitespace-style (quote (trailing tab-mark)) t))
+ '(show-paren-mode t)
+ '(web-mode-code-indent-offset 2)
+ '(web-mode-enable-whitespace-fontification nil)
+ '(web-mode-markup-indent-offset 2))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(highlight ((t (:background "color-18" :foreground "white"))))
- '(hl-line ((t (:background "#002b36"))))
- '(idle-highlight ((t (:foreground "khaki"))))
- '(magit-item-highlight ((t (:inherit highlight))))
- '(rainbow-delimiters-depth-1-face ((t (:foreground "wheat"))))
- '(term-color-blue ((t (:background "blue2" :foreground "deep sky blue")))))
+ )

@@ -11,6 +11,21 @@
                          nil))))))
    #+END_SRC
 
+** 80 Columns is Law
+
+   #+BEGIN_SRC emacs-lisp
+     (defun set-window-width (n)
+       "Set the current window to width N"
+       (adjust-window-trailing-edge (selected-window) (- n (window-width)) t))
+
+     (defun set-window-columns ()
+       "Set the selected window to 80(ish) columns."
+       (interactive)
+       (set-window-width 80))
+
+     (global-set-key "\C-x7" 'set-window-columns)
+   #+END_SRC
+
 ** Hooks Useful in All Programming Environments
 
    Here are a couple functions that can help line up stubborn bits of code:
@@ -21,7 +36,10 @@
    #+END_SRC
 
    #+BEGIN_SRC emacs-lisp
+     ;; Haven't decided between the two yet…
      (require-package 'paredit)
+     (require-package 'smartparens)
+
      (require-package 'rainbow-delimiters)
      (autoload 'rainbow-delimiters-mode "rainbow-delimiters")
 
@@ -102,6 +120,7 @@
 ** Commands
 
    #+BEGIN_SRC emacs-lisp
+     (setq-default indent-tabs-mode nil)
      (defun untabify-buffer ()
        (interactive)
        (untabify (point-min) (point-max)))

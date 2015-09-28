@@ -11,6 +11,12 @@
    (setq inferior-js-program-command "env NODE_NO_READLINE=1 node")
    #+END_SRC
 
+   Mustache/handlebarl js support:
+
+   #+BEGIN_SRC emacs-lisp
+   (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+   (add-to-list 'auto-mode-alist '("\\.hbs\\'" . web-mode))
+   #+END_SRC
 ** Js-Mode
 
    #+BEGIN_SRC emacs-lisp

@@ -120,7 +120,6 @@
 
          (define-key map (kbd "S-s-<up>")   'move-text-up)
          (define-key map (kbd "S-s-<down>") 'move-text-down)
-         (define-key map [(meta return)]   'textmate-next-line)
 
          (define-key map [f5] 'touch)
          map)

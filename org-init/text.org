@@ -1,0 +1,22 @@
+#+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
+* Settings for Text Modes
+
+** Spell-check
+
+   | Key | Command                   |
+   | C-; | Correct most recent error |
+
+   #+BEGIN_SRC emacs-lisp
+     (add-hook 'text-mode-hook  'flyspell-mode)
+     (add-hook 'org-mode-hook   'flyspell-mode)
+     (add-hook 'latex-mode-hook 'flyspell-mode)
+   #+END_SRC
+
+** Using LaTeX to Enter Characters
+
+   #+BEGIN_SRC emacs-lisp
+   (setq default-input-method 'TeX)
+   #+END_SRC
+
+   Then press =C-\= to enter \lambda → λ, for example.  You should
+   only have to enter =C-\= once to set the input mode.

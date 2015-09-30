@@ -22,9 +22,12 @@
 
 ** Dired
 
+   |---------------+---------------------------------------|
    | Keystroke     | Command                               |
+   |---------------+---------------------------------------|
    | C-x d         | Open Dired                            |
    | C-x d <REGEX> | Open Dired filterd by REGEX           |
+   | (             | Toggle details                        |
    | A             | Search marked file                    |
    | B             | Byte-compile elisp files              |
    | D             | Delete marked files                   |

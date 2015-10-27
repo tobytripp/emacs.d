@@ -40,6 +40,7 @@
 
        ;; Doesn't work in the terminal, unfortunately…
        (define-key ruby-mode-map (kbd "C-;") 'insert-rocket)
+       (define-key enh-ruby-mode-map (kbd "C-;") 'insert-rocket)
 
        (robe-mode)
        (add-to-list 'company-backends 'company-robe)

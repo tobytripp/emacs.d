@@ -19,31 +19,44 @@
    #+END_SRC
 
 ** Js-Mode
+*** Tern
+    [[http://ternjs.net/doc/manual.html#emacs][Tern js plugin]]
 
-   #+BEGIN_SRC emacs-lisp
-     (add-to-list 'load-path (concat vendor-dir "tern/emacs"))
-     (autoload 'tern-mode "tern.el" nil t)
+    | key     | command            |
+    |---------+--------------------|
+    | M-.     | jump to def        |
+    | M-,     | return from jump   |
+    | C-c C-r | Rename variable    |
+    | C-c C-c | Find type          |
+    | C-c C-d | Find documentation |
 
-     (require-package 'company-tern)
-     (add-to-list 'company-backends 'company-tern)
-     (require-package 'js-comint)
+    #+BEGIN_SRC emacs-lisp
+      (add-to-list 'load-path (concat vendor-dir "tern/emacs"))
+      (autoload 'tern-mode "tern.el" nil t)
 
-     (defun toby/js-init ()
-       (glasses-mode t)
-       (tern-mode t)
-       (setq mode-name "Js"))
+      (require-package 'company-tern)
+      (add-to-list 'company-backends 'company-tern)
+    #+END_SRC
 
-     (eval-after-load "js-mode"
-       '(progn
-          (add-hook 'js-mode-hook 'toby/js-init)
-          (require 'js-comint)))
+    #+BEGIN_SRC emacs-lisp
+      (require-package 'js-comint)
 
-     (defun jslint-thisfile ()
-       (interactive)
-       (compile (format "jsl -process %s" (buffer-file-name))))
+      (defun toby/js-init ()
+        (glasses-mode t)
+        (tern-mode t)
+        (setq mode-name "Js"))
 
-     ;; Ember handlebar templates
-     (add-to-list 'auto-mode-alist '("\\.hbs$" . web-mode))
+      (eval-after-load "js-mode"
+        '(progn
+           (add-hook 'js-mode-hook 'toby/js-init)
+           (require 'js-comint)))
+
+      (defun jslint-thisfile ()
+        (interactive)
+        (compile (format "jsl -process %s" (buffer-file-name))))
+
+      ;; Ember handlebar templates
+      (add-to-list 'auto-mode-alist '("\\.hbs$" . web-mode))
    #+END_SRC
 
 #+BEGIN_SRC emacs-lisp

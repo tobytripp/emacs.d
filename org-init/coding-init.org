@@ -39,6 +39,7 @@
      ;; Haven't decided between the two yet…
      (require-package 'paredit)
      (require-package 'smartparens)
+     (require 'smartparens-config)
 
      (require-package 'rainbow-delimiters)
      (autoload 'rainbow-delimiters-mode "rainbow-delimiters")

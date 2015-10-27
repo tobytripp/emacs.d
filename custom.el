@@ -11,6 +11,11 @@
  '(cider-auto-select-error-buffer nil)
  '(coffee-args-compile (quote ("-c" "-o js")))
  '(coffee-tab-width 2)
+ '(company-backends
+   (quote
+    (company-tern company-robe company-bbdb company-nxml company-css company-eclim company-semantic company-clang company-xcode company-cmake company-capf
+                  (company-dabbrev-code company-gtags company-etags company-keywords)
+                  company-oddmuse company-files company-dabbrev)))
  '(compilation-always-kill t)
  '(compilation-ask-about-save nil)
  '(compilation-auto-jump-to-first-error nil)
@@ -19,7 +24,7 @@
  '(custom-enabled-themes (quote (smart-mode-line-powerline)))
  '(custom-safe-themes
    (quote
-    ("730c625dbb2390df143f0ae74f27ddff6f18c00d15185c35f5c14aedbcf3dc37" "64b6d6eec0935f6150b0748b91dd52e7d47cd7d733352176443651f8e60f67f7" "25dab113b04c1d1152bb1cac0027c47c2cb9c3b860516781feffaf7f3ef95610" "9330df8772bfe8025d061f7d108780f1e10bec8ab63b69f65688fef4b732b641" "26614652a4b3515b4bbbb9828d71e206cc249b67c9142c06239ed3418eff95e2" default)))
+    ("137705bce54ded838e45224f0aaa92db6ba6a2128ef7f8d45d5486dfead8e933" "730c625dbb2390df143f0ae74f27ddff6f18c00d15185c35f5c14aedbcf3dc37" "64b6d6eec0935f6150b0748b91dd52e7d47cd7d733352176443651f8e60f67f7" "25dab113b04c1d1152bb1cac0027c47c2cb9c3b860516781feffaf7f3ef95610" "9330df8772bfe8025d061f7d108780f1e10bec8ab63b69f65688fef4b732b641" "26614652a4b3515b4bbbb9828d71e206cc249b67c9142c06239ed3418eff95e2" default)))
  '(default-frame-alist
     (quote
      ((vertical-scroll-bars)
@@ -44,9 +49,10 @@
  '(enh-ruby-use-ruby-mode-show-parens-config t)
  '(erc-modules
    (quote
-    (autojoin button completion fill irccontrols list match menu move-to-prompt netsplit spelling)))
+    (autojoin button completion fill irccontrols list match menu move-to-prompt netsplit smiley stamp spelling)))
  '(erc-nick "toby")
  '(erc-server "localhost")
+ '(erc-server-reconnect-attempts 3)
  '(erc-user-full-name "Toby Tripp")
  '(ergoemacs-mode nil)
  '(eval-sexp-fu-flash-mode nil)
@@ -94,6 +100,7 @@
  '(rspec-use-rake-flag nil)
  '(ruby-deep-arglist nil)
  '(scss-compile-at-save nil)
+ '(show-paren-mode t)
  '(sml/pos-id-separator
    (quote
     (""
@@ -153,12 +160,10 @@
  '(sml/pre-modes-separator (propertize " " (quote face) (quote sml/modes)))
  '(visual-line-mode nil t)
  '(warning-minimum-level :error)
- '(web-mode-markup-indent-offset 2)
- '(whitespace-style (quote (trailing tab-mark)))
- '(show-paren-mode t)
  '(web-mode-code-indent-offset 2)
  '(web-mode-enable-whitespace-fontification nil)
- '(web-mode-markup-indent-offset 2))
+ '(web-mode-markup-indent-offset 2)
+ '(whitespace-style (quote (trailing tab-mark))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

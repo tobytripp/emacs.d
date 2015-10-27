@@ -22,6 +22,10 @@
        (server-start))
    #+END_SRC
 
+** Tabs?!
+   #+BEGIN_SRC emacs-lisp
+   (setq default-tab-width 2)
+   #+END_SRC
 ** Change "yes or no" to "y or n"
 
    #+BEGIN_SRC emacs-lisp

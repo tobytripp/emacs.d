@@ -42,7 +42,7 @@
        (define-key ruby-mode-map (kbd "C-;") 'insert-rocket)
 
        (robe-mode)
-       (push 'company-robe company-backends)
+       (add-to-list 'company-backends 'company-robe)
 
        (hs-minor-mode 1) ;; Code folding
 

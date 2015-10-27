@@ -77,7 +77,7 @@
  '(mode-line-buffer-id ((((class color) (min-colors 89)) (:foreground "#93a1a1" :weight bold))))
  '(mode-line-emphasis ((t (:weight bold))))
  '(mode-line-highlight ((((class color) (min-colors 88)) (:box (:line-width 2 :color "grey40" :style released-button))) (t (:inherit (highlight)))))
- '(mode-line-inactive ((((class color) (min-colors 89)) (:foreground "#839496" :background "#7f7f7f" :box (:line-width -1 :style released-button)))))
+ '(mode-line-inactive ((((class color) (min-colors 89)) (:foreground "#839496" :background "gray27" :box (:line-width -1 :style released-button)))))
  '(isearch ((((class color) (min-colors 89)) (:foreground "#b58900" :background "#073642"))))
  '(isearch-fail ((((class color) (min-colors 89)) (:foreground "#839496" :background "#dc322f"))))
  '(lazy-highlight ((((class color) (min-colors 89)) (:foreground "#b58900" :background "#073642"))))

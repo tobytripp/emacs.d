@@ -25,7 +25,9 @@
      (autoload 'tern-mode "tern.el" nil t)
 
      (require-package 'company-tern)
+     (add-to-list 'company-backends 'company-tern)
      (require-package 'js-comint)
+
      (defun toby/js-init ()
        (glasses-mode t)
        (tern-mode t)

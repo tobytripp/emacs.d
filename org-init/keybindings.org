@@ -125,8 +125,13 @@
    Commands to switch windows:
    #+BEGIN_SRC emacs-lisp
      (windmove-default-keybindings) ;; Shift+direction
-     (global-set-key (kbd "C-x O")   (lambda () (interactive) (other-window -1))) ;; back one
-     (global-set-key (kbd "C-x C-o") (lambda () (interactive) (other-window  2))) ;; forward two
+     (global-set-key (kbd "C-x O")
+                     (lambda () (interactive) (other-window -1))) ;; back one
+     (global-set-key (kbd "C-x C-o")
+                     (lambda () (interactive) (other-window  2))) ;; forward two
+
+     (global-set-key (kbd "M-s-<left>")  'windmove-left)
+     (global-set-key (kbd "M-s-<right>") 'windmove-right)
    #+END_SRC
 
    The =ace-window= package will display numbers in the various

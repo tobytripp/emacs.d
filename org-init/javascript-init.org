@@ -1,5 +1,5 @@
 #+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
-* Javascript
+* JavaScript
 
 ** Formatting
 
@@ -62,11 +62,18 @@
       (add-hook 'js-mode-hook 'js2-minor-mode)
 
       (setq js2-highlight-level 3)
+      (push '("function"   . ?𝒇) prettify-symbols-alist)
+      (push '("QUnit.test" . ?∀) prettify-symbols-alist)
+      (push '("assert"     . ?∃) prettify-symbols-alist)
+      (push '("==="        . ?≣) prettify-symbols-alist)
+      (push '("=="         . ?≈) prettify-symbols-alist)
 
       (defun toby/js-init ()
         (glasses-mode t)
         (tern-mode t)
         (flycheck-mode t)
+        (smartparens-strict-mode)
+        (prettify-symbols-mode)
         (setq mode-name "Js"))
 
       (eval-after-load "js-mode"

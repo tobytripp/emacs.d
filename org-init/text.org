@@ -20,3 +20,21 @@
 
    Then press =C-\= to enter \lambda → λ, for example.  You should
    only have to enter =C-\= once to set the input mode.
+
+** Alignment
+
+   #+BEGIN_SRC emacs-lisp
+     (defun bjm/align-whitespace (start end)
+       "Align columns by whitespace.
+
+        source: http://pragmaticemacs.com/emacs/aligning-text/"
+       (interactive "r")
+       (align-regexp start end
+                     "\\(\\s-*\\)\\s-" 1 0 t))
+
+     (defun bjm/align-& (start end)
+       "Align columns by ampersand"
+       (interactive "r")
+       (align-regexp start end
+                     "\\(\\s-*\\)&" 1 1 t))
+   #+END_SRC

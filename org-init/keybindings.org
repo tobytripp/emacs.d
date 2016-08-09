@@ -86,6 +86,7 @@
 ** Spelling
    #+BEGIN_SRC emacs-lisp
    (global-set-key (kbd "C-c j") 'flyspell-check-previous-highlighted-word)
+   (global-set-key (kbd "s-s") 'ispell-word)
    #+END_SRC
 
 ** Navigation
@@ -152,7 +153,7 @@
    For those occassions when you want the old window switching behavior:
    #+BEGIN_SRC emacs-lisp
      (global-unset-key (kbd "<f3>"))
-     (global-set-key (kbd "<f3>") 'other-window)
+     (global-set-key (kbd "<f3>") 'kmacro-start-macro-or-insert-counter)
    #+END_SRC
 
    On keyboards that have extra function keys, some handy short-cuts:

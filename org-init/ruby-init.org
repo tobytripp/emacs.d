@@ -20,7 +20,6 @@
        '(progn
           (require-package 'smartparens)
           (require-package 'inf-ruby)
-          (require-package 'robe)
           (require-package 'rspec-mode)
           (require-package 'column-marker)
           (require-package 'ruby-tools)))
@@ -31,6 +30,11 @@
                     "\\(class\\|def\\|do\\|if\\)" "\\(end\\)" "#"
                     (lambda (arg) (ruby-end-of-block)) nil))
 
+     (add-to-list 'hs-special-modes-alist
+                  '(enh-ruby-mode
+                    "\\(class\\|def\\|do\\|if\\)" "\\(end\\)" "#"
+                    (lambda (arg) (enh-ruby-end-of-block)) nil))
+
      (defun toby/ruby-init ()
        (set (make-local-variable 'indent-tabs-mode) 'nil)
        (set (make-local-variable 'tab-width) 2)
@@ -40,20 +44,21 @@
 
        ;; Doesn't work in the terminal, unfortunately…
        (define-key ruby-mode-map (kbd "C-;") 'insert-rocket)
-       (define-key enh-ruby-mode-map (kbd "C-;") 'insert-rocket)
-
-       (robe-mode)
-       (add-to-list 'company-backends 'company-robe)
 
        (hs-minor-mode 1) ;; Code folding
 
        (eldoc-mode)
+
+       (setq enh-ruby-program "/usr/local/opt/rbenv/shims/ruby")
+
+       (require 'ruby-tools)
 
        (require 'smartparens-config)
        (smartparens-strict-mode)
        (show-smartparens-mode t)
 
        (require 'rspec-mode)
+       (rspec-mode t)
        (local-set-key (kbd "M-r")            'rspec-verify)
        (local-set-key (kbd "M-S-r")          'rspec-verify-single)
        (local-set-key [f12]                  'rspec-verify)
@@ -62,11 +67,12 @@
        (local-set-key [f10]                  'next-error))
 
      (autoload 'enh-ruby-mode "enh-ruby-mode" "Major mode for ruby files" t)
-     (add-to-list 'auto-mode-alist '("\\.rb$" . enh-ruby-mode))
+     (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
      (add-to-list 'interpreter-mode-alist '("ruby" . enh-ruby-mode))
 
      (add-hook 'ruby-mode-hook     'toby/ruby-init)
      (add-hook 'enh-ruby-mode-hook 'toby/ruby-init)
+     (add-hook 'enh-ruby-mode-hook (lambda () (electric-pair-mode 0)))
 
      (eval-after-load 'inf-ruby
        '(define-key inf-ruby-minor-mode-map

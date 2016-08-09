@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: test
+# --
+QUnit.test( "${1:name}", function (assert) {
+  $0
+});

@@ -12,6 +12,7 @@
    This =company-quickhelp= package may end up annoying me greatly,
    but I'm giving it a try.  It shows help documentation alongside
    completion entries for those that support it (like elisp).
+
    #+BEGIN_SRC emacs-lisp
      (require-package 'company-quickhelp)
 

@@ -40,6 +40,7 @@
      (require-package 'paredit)
      (require-package 'smartparens)
      (require 'smartparens-config)
+     (define-key smartparens-mode-map (kbd "C-k") 'sp-kill-sexp)
 
      (require-package 'rainbow-delimiters)
      (autoload 'rainbow-delimiters-mode "rainbow-delimiters")
@@ -96,6 +97,7 @@
      (require-package 'mmm-mode)
      (require 'mmm-auto)
      (setq mmm-global-mode 'maybe)
+     (setq mmm-submode-decoration-level 1)
 
      (defun toby/heredoc-get-mode (string)
        (message string)
@@ -111,9 +113,10 @@
               :match-submode toby/heredoc-get-mode
               :front "<<-?\\([a-zA-Z0-9_-]+\\)"
               :front-offset (end-of-line 1)
+              :face mm-code-submode-face
               :save-matches 1
               :back "^[ \t]*~1$"
-              :delimeter-made nil)))
+              :delimeter-mode nil)))
           (mmm-add-mode-ext-class 'ruby-mode "\\.rb\\'" 'toby/heredoc)))
 
      (add-to-list 'mmm-set-file-name-for-modes 'ruby-mode)

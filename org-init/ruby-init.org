@@ -13,16 +13,26 @@
 ** Start-up
 
    #+BEGIN_SRC emacs-lisp
+     (setq rbenv-installation-dir "/usr/local/opt/rbenv")
      (require-package 'ruby-mode)
      (autoload 'ruby-mode "ruby-mode" "Major mode for Ruby" t)
+
+     (require-package 'enh-ruby-mode)
+     (autoload 'enh-ruby-mode "enh-ruby-mode" "Major mode for ruby files" t)
+     (setq enh-ruby-program (concat rbenv-installation-dir "/shims/ruby"))
 
      (eval-after-load 'ruby-mode
        '(progn
           (require-package 'smartparens)
           (require-package 'inf-ruby)
+          (require-package 'rbenv)
           (require-package 'rspec-mode)
           (require-package 'column-marker)
+          (require-package 'flyspell)
           (require-package 'ruby-tools)))
+
+     (eval-after-load 'company
+       '(push 'company-robe company-backends))
 
      ;; Hide-show settings
      (add-to-list 'hs-special-modes-alist
@@ -47,15 +57,20 @@
 
        (hs-minor-mode 1) ;; Code folding
 
+       (flyspell-prog-mode)
        (eldoc-mode)
 
-       (setq enh-ruby-program "/usr/local/opt/rbenv/shims/ruby")
-
        (require 'ruby-tools)
+
+       (robe-mode)
+       ;; (yard-mode)
 
        (require 'smartparens-config)
        (smartparens-strict-mode)
        (show-smartparens-mode t)
+
+       (global-rbenv-mode)
+       (rbenv-use-corresponding)
 
        (require 'rspec-mode)
        (rspec-mode t)

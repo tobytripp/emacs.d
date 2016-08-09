@@ -14,7 +14,7 @@
  '(coffee-tab-width 2)
  '(company-backends
    (quote
-    (company-tern company-robe company-bbdb company-nxml company-css company-eclim company-semantic company-clang company-xcode company-cmake company-capf
+    (company-robe company-tern company-bbdb company-nxml company-css company-eclim company-semantic company-clang company-xcode company-cmake company-capf
                   (company-dabbrev-code company-gtags company-etags company-keywords)
                   company-oddmuse company-files company-dabbrev)))
  '(compilation-always-kill t)

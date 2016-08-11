@@ -31,8 +31,10 @@
           (define-key cider-mode-map (kbd "C-c C-e") 'cider-eval-print-last-sexp)
           (setq cider-mode-line '(:eval "🍺"))))
 
-     (add-hook 'cider-interaction-mode-hook 'cider-turn-on-eldoc-mode)
-     (toby/defhook cider-mode-hook (paredit-mode))
+     (add-hook 'cider-mode-hook #'eldoc-mode)
+     (add-hook 'cider-mode-hook #'paredit-mode)
+     (add-hook 'cider-repl-mode-hook #'paredit-mode)
+     (add-hook 'cider-repl-mode-hook #'subword-mode)
 
      (defun toby/save-and-eval-buffer ()
        "Save open buffers and send the current buffer to the active Cider session."
@@ -45,13 +47,22 @@
 
    Paredit is my best-est friend
    #+BEGIN_SRC emacs-lisp
+     (require-package 'clj-refactor)
+     (autoload 'clj-refactor "clj-refactor-mode")
+
      (defun toby/clojure-init ()
        (paredit-mode 1)
        (show-paren-mode 1)
 
+       (clj-refactor-mode 1)
+       (yas-minor-mode 1)
+
+       (cljr-add-keybindings-with-prefix "C-c c")
+
        ;; Compojure Macros:
        (define-clojure-indent
          (defroutes 'defun)
+         (defspec 'defun)
          (GET 2)
          (POST 2)
          (PUT 2)

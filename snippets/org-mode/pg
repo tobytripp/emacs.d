@@ -1,0 +1,11 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Postgres Block
+# key: pg
+# --
+#+BEGIN_SRC sql :engine postgresql
+  ${1:SET search_path TO ${2:schema, "C-d for none"},public;}
+  \timing on
+  \x
+  $0
+  ;
+#+END_SRC

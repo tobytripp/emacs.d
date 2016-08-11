@@ -22,6 +22,10 @@
        (server-start))
    #+END_SRC
 
+** Tabs?!
+   #+BEGIN_SRC emacs-lisp
+   (setq default-tab-width 2)
+   #+END_SRC
 ** Change "yes or no" to "y or n"
 
    #+BEGIN_SRC emacs-lisp
@@ -106,6 +110,12 @@
      (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
    #+END_SRC
 
+** Which-Key Mode
+
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'which-key)
+     (which-key-mode)
+   #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
 (provide 'emacs-init)

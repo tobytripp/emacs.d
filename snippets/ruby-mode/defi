@@ -1,0 +1,19 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: defi
+# --
+${2:$(if yas-modified-p
+         (concat "attr_reader "
+                 (mapconcat (lambda (n) (concat ":" n))
+                            (split-string yas-text)
+                            " ")))}
+
+def initialize(${2:arglist})
+  ${2:$(if yas-modified-p
+           (concat
+              (mapconcat (lambda (n) (concat "@" n))
+                         (split-string yas-text)
+                         " ")
+              " = "
+              yas-text))}
+  `yas-selected-text`$0
+end

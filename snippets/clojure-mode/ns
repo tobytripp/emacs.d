@@ -4,5 +4,4 @@
 # --
 (ns ${namespace}
   (:require [${dependency}])
-  $0
-  )
+            $0)

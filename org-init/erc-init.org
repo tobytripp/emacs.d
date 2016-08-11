@@ -1,0 +1,9 @@
+#+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
+
+* ERC Chat Set-up
+
+  #+BEGIN_SRC emacs-lisp
+    (setq auth-sources '("~/.authinfo.gpg" "~/.authinfo"))
+    (setq whitespace-global-modes '(not erc-mode))
+    (setq erc-prompt-for-password nil)
+  #+END_SRC

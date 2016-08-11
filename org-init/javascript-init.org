@@ -1,5 +1,19 @@
 #+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
-* Javascript
+* JavaScript
+
+** Formatting
+
+   #+BEGIN_SRC emacs-lisp
+     (defun format-json ()
+       (interactive)
+       (save-excursion
+         (shell-command-on-region
+          (point-min) (point-max)
+          "python -m json.tool"
+          t                                  ; output buffer (current)
+          t                                  ; replace region?
+          )))
+   #+END_SRC
 
 ** Node.js Set-up
 
@@ -19,30 +33,85 @@
    #+END_SRC
 
 ** Js-Mode
+*** Tern
+    [[http://ternjs.net/doc/manual.html#emacs][Tern js plugin]]
 
-   #+BEGIN_SRC emacs-lisp
-     (add-to-list 'load-path (concat vendor-dir "tern/emacs"))
-     (autoload 'tern-mode "tern.el" nil t)
+    | key     | command            |
+    |---------+--------------------|
+    | M-.     | jump to def        |
+    | M-,     | return from jump   |
+    | C-c C-r | Rename variable    |
+    | C-c C-c | Find type          |
+    | C-c C-d | Find documentation |
 
-     (require-package 'company-tern)
-     (require-package 'js-comint)
-     (defun toby/js-init ()
-       (glasses-mode t)
-       (tern-mode t)
-       (setq mode-name "Js"))
+    #+BEGIN_SRC emacs-lisp
+      (add-to-list 'load-path (concat vendor-dir "tern/emacs"))
+      (autoload 'tern-mode "tern.el" nil t)
 
-     (eval-after-load "js-mode"
-       '(progn
-          (add-hook 'js-mode-hook 'toby/js-init)
-          (require 'js-comint)))
+      (require-package 'company-tern)
+      (add-to-list 'company-backends 'company-tern)
+    #+END_SRC
 
-     (defun jslint-thisfile ()
-       (interactive)
-       (compile (format "jsl -process %s" (buffer-file-name))))
+*** Javascript editing modes
 
-     ;; Ember handlebar templates
-     (add-to-list 'auto-mode-alist '("\\.hbs$" . web-mode))
+    #+BEGIN_SRC emacs-lisp
+      (require-package 'js-comint)
+      (require-package 'js2-mode)
+
+      (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+      (add-hook 'js-mode-hook 'js2-minor-mode)
+
+      (setq js2-highlight-level 3)
+      (push '("function"   . ?𝒇) prettify-symbols-alist)
+      (push '("QUnit.test" . ?∀) prettify-symbols-alist)
+      (push '("assert"     . ?∃) prettify-symbols-alist)
+      (push '("==="        . ?≣) prettify-symbols-alist)
+      (push '("=="         . ?≈) prettify-symbols-alist)
+
+      (defun toby/js-init ()
+        (glasses-mode t)
+        (tern-mode t)
+        (flycheck-mode t)
+        (smartparens-strict-mode)
+        (prettify-symbols-mode)
+        (setq mode-name "Js"))
+
+      (eval-after-load "js-mode"
+        '(progn
+           (add-hook 'js-mode-hook 'toby/js-init)
+           (require 'js-comint)))
+
+      (eval-after-load "js2-mode"
+        '(progn
+           (add-hook 'js2-mode-hook 'toby/js-init)
+           (require 'js-comint)))
+
+      (defun jslint-thisfile ()
+        (interactive)
+        (compile (format "jsl -process %s" (buffer-file-name))))
+
+      ;; Ember handlebar templates
+      (add-to-list 'auto-mode-alist '("\\.hbs$" . web-mode))
    #+END_SRC
+
+*** Js-beautify
+
+    #+BEGIN_SRC sh
+      npm install -g js-beautify
+    #+END_SRC
+
+    #+BEGIN_SRC emacs-lisp
+      (require-package 'web-beautify)
+
+      (eval-after-load 'js2-mode
+        '(define-key js2-mode-map (kbd "C-c b") 'web-beautify-js))
+
+      (eval-after-load 'js
+        '(define-key js-mode-map (kbd "C-c b") 'web-beautify-js))
+
+      (eval-after-load 'json-mode
+        '(define-key json-mode-map (kbd "C-c b") 'web-beautify-js))
+    #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
 (provide 'javascript-init)

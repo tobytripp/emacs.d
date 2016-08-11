@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: ase
+# description: assert.equal( ... )
+# --
+assert.equal( ${1:actual}, ${2:expected} );
+$0

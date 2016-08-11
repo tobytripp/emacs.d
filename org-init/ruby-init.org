@@ -13,23 +13,37 @@
 ** Start-up
 
    #+BEGIN_SRC emacs-lisp
+     (setq rbenv-installation-dir "/usr/local/opt/rbenv")
      (require-package 'ruby-mode)
      (autoload 'ruby-mode "ruby-mode" "Major mode for Ruby" t)
+
+     (require-package 'enh-ruby-mode)
+     (autoload 'enh-ruby-mode "enh-ruby-mode" "Major mode for ruby files" t)
+     (setq enh-ruby-program (concat rbenv-installation-dir "/shims/ruby"))
 
      (eval-after-load 'ruby-mode
        '(progn
           (require-package 'smartparens)
           (require-package 'inf-ruby)
-          (require-package 'robe)
+          (require-package 'rbenv)
           (require-package 'rspec-mode)
           (require-package 'column-marker)
+          (require-package 'flyspell)
           (require-package 'ruby-tools)))
+
+     (eval-after-load 'company
+       '(push 'company-robe company-backends))
 
      ;; Hide-show settings
      (add-to-list 'hs-special-modes-alist
                   '(ruby-mode
                     "\\(class\\|def\\|do\\|if\\)" "\\(end\\)" "#"
                     (lambda (arg) (ruby-end-of-block)) nil))
+
+     (add-to-list 'hs-special-modes-alist
+                  '(enh-ruby-mode
+                    "\\(class\\|def\\|do\\|if\\)" "\\(end\\)" "#"
+                    (lambda (arg) (enh-ruby-end-of-block)) nil))
 
      (defun toby/ruby-init ()
        (set (make-local-variable 'indent-tabs-mode) 'nil)
@@ -41,18 +55,25 @@
        ;; Doesn't work in the terminal, unfortunately…
        (define-key ruby-mode-map (kbd "C-;") 'insert-rocket)
 
-       (robe-mode)
-       (push 'company-robe company-backends)
-
        (hs-minor-mode 1) ;; Code folding
 
+       (flyspell-prog-mode)
        (eldoc-mode)
+
+       (require 'ruby-tools)
+
+       (robe-mode)
+       ;; (yard-mode)
 
        (require 'smartparens-config)
        (smartparens-strict-mode)
        (show-smartparens-mode t)
 
+       (global-rbenv-mode)
+       (rbenv-use-corresponding)
+
        (require 'rspec-mode)
+       (rspec-mode t)
        (local-set-key (kbd "M-r")            'rspec-verify)
        (local-set-key (kbd "M-S-r")          'rspec-verify-single)
        (local-set-key [f12]                  'rspec-verify)
@@ -61,11 +82,12 @@
        (local-set-key [f10]                  'next-error))
 
      (autoload 'enh-ruby-mode "enh-ruby-mode" "Major mode for ruby files" t)
-     (add-to-list 'auto-mode-alist '("\\.rb$" . enh-ruby-mode))
+     (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
      (add-to-list 'interpreter-mode-alist '("ruby" . enh-ruby-mode))
 
      (add-hook 'ruby-mode-hook     'toby/ruby-init)
      (add-hook 'enh-ruby-mode-hook 'toby/ruby-init)
+     (add-hook 'enh-ruby-mode-hook (lambda () (electric-pair-mode 0)))
 
      (eval-after-load 'inf-ruby
        '(define-key inf-ruby-minor-mode-map

@@ -1,6 +1,7 @@
 (setenv "PATH"
 	(concat
 	 "/usr/local/bin" ":"
+   "/usr/local/opt/rbenv/shims" ":"
 	 (getenv "PATH") ":"
 	 "/usr/local/git/bin/" ":"
 	 (expand-file-name "~/.cabal/bin")))

@@ -28,10 +28,13 @@
             (ditaa . t)
             (dot . t)
             (sqlite . t)
+            (sql . t)
             (perl . t)))
 
          (add-to-list 'org-structure-template-alist
                       '("el"  "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC" "<src lang=\"?\">\n\n</src>"))
+         (add-to-list 'org-structure-template-alist
+                      '("pg"  "#+BEGIN_SRC sql :engine postgresql\n?\n#+END_SRC" "<src lang=\"?\">\n\n</src>"))
          (add-to-list 'org-structure-template-alist
                       '("hs"  "#+BEGIN_SRC haskell\n?\n#+END_SRC" "<src lang=\"?\">\n\n</src>"))
    #+END_SRC

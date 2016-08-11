@@ -1,0 +1,13 @@
+#+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
+
+* Elm Language Support
+
+  [[http://elm-lang.org][elm-lang.org]]
+
+** Load Package
+
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'elm-mode)
+     (autoload 'elm-mode "elm-mode" "Major mode for Elm" t)
+     (add-to-list 'auto-mode-alist '("\\.elm$" . elm-mode))
+   #+END_SRC

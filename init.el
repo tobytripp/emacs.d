@@ -1,4 +1,8 @@
-(package-initialize)
+(defvar dotfiles-dir user-emacs-directory)
+(defvar lib-dir (concat dotfiles-dir "elisp/"))
+(add-to-list 'load-path lib-dir)
+
+(require 'init-packages)
 
 (unless package-archive-contents    ;; Refresh the packages descriptions
   (package-refresh-contents))
@@ -13,7 +17,7 @@
 (require 'org-install)
 (require 'ob-tangle)
 
-(setq debug-on-error       t)
+(setq debug-on-error t)
 
 (org-babel-load-file
  (expand-file-name "index.org"

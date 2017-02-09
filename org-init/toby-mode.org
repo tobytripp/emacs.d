@@ -98,7 +98,10 @@
    #+END_SRC
 
 ** Keymap
-   So, =toby-mode= has its own keymap.  This is what allows my overrides to be switched off.
+
+   So, =toby-mode= has its own keymap.  This is what allows my
+   overrides to be switched off.
+
    #+BEGIN_SRC emacs-lisp
      (defvar *tobys-mode-map*
        (let ((map (make-sparse-keymap)))

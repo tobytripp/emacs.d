@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: expect( double ).to have_received...
+# group: definitions
+# --
+expect( ${1:double} ).to have_received( :${2:method} )$0

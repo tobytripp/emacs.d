@@ -3,7 +3,12 @@
 * ERC Chat Set-up
 
   #+BEGIN_SRC emacs-lisp
-    (setq auth-sources '("~/.authinfo.gpg" "~/.authinfo"))
-    (setq whitespace-global-modes '(not erc-mode))
-    (setq erc-prompt-for-password nil)
+    (setq auth-sources '("~/.authinfo.gpg" "~/.authinfo")
+          whitespace-global-modes '(not erc-mode)
+          erc-prompt-for-password nil
+          erc-server-coding-system '(utf-8 . utf-8)
+          erc-timestamp-only-if-changed-flag nil
+          erc-timestamp-format "[%H:%M] "
+          erc-fill-prefix      "        "
+          erc-insert-timestamp-function 'erc-insert-timestamp-left)
   #+END_SRC

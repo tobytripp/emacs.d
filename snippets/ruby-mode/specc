@@ -1,0 +1,19 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: RSpec.describe
+# group: definitions
+# --
+require "spec_helper"
+require "${2:`(let ((fn (file-name-nondirectory
+                       (file-name-sans-extension
+                        (or (buffer-file-name)
+                            (buffer-name (current-buffer)))))))
+                (replace-regexp-in-string "_\\(spec$\\)?" "" fn t t))`}"
+
+RSpec.describe ${1:`
+               (let ((fn (capitalize (file-name-nondirectory
+                       (file-name-sans-extension
+                        (or (buffer-file-name)
+                            (buffer-name (current-buffer))))))))
+                (replace-regexp-in-string "_\\(spec$\\)?" "" fn t t))`} do
+  $0
+end

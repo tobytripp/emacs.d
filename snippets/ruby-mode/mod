@@ -1,7 +1,6 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-#name : module ... end
-#group : definitions
-# key: mod
+# name : module ... end
+# group : definitions
 # --
 module ${1:`(let ((fn (capitalize (file-name-nondirectory
                                  (file-name-sans-extension

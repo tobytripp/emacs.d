@@ -31,8 +31,9 @@
           (require-package 'flyspell)
           (require-package 'ruby-tools)))
 
-     (eval-after-load 'company
-       '(push 'company-robe company-backends))
+     ;; (require-package 'robe)     
+     ;; (eval-after-load 'company
+     ;;   '(push 'company-robe company-backends))
 
      ;; Hide-show settings
      (add-to-list 'hs-special-modes-alist
@@ -53,7 +54,7 @@
        (whitespace-mode t)
 
        ;; Doesn't work in the terminal, unfortunately…
-       (define-key ruby-mode-map (kbd "C-;") 'insert-rocket)
+       (define-key ruby-mode-map (kbd "C-=") 'insert-rocket)
 
        (hs-minor-mode 1) ;; Code folding
 
@@ -62,15 +63,15 @@
 
        (require 'ruby-tools)
 
-       (robe-mode)
+       (global-rbenv-mode)
+       (rbenv-use-corresponding)
+
+       ;; (robe-mode)
        ;; (yard-mode)
 
        (require 'smartparens-config)
        (smartparens-strict-mode)
        (show-smartparens-mode t)
-
-       (global-rbenv-mode)
-       (rbenv-use-corresponding)
 
        (require 'rspec-mode)
        (rspec-mode t)
@@ -79,6 +80,7 @@
        (local-set-key [f12]                  'rspec-verify)
        (local-set-key [f11]                  'rspec-verify-single)
        (local-set-key (kbd "S-<f12>")        'rspec-rerun)
+       (local-set-key [f13]                  'rspec-rerun)
        (local-set-key [f10]                  'next-error))
 
      (autoload 'enh-ruby-mode "enh-ruby-mode" "Major mode for ruby files" t)

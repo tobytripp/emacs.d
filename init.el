@@ -18,3 +18,4 @@
 (org-babel-load-file
  (expand-file-name "index.org"
 		   (concat user-emacs-directory "org-init")))
+(put 'dired-find-alternate-file 'disabled nil)

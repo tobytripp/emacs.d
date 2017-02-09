@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: def self.method()
+# --
+def self.${1:method}(${2: ${3:arglist, "C-d skips"} })
+  `yas-selected-text`$0
+end

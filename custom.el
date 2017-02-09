@@ -25,7 +25,7 @@
  '(custom-enabled-themes (quote (smart-mode-line-powerline)))
  '(custom-safe-themes
    (quote
-    ("c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "81d4cc8374c164a5ef3d03d2ce95bbc63b63ec9501eb95efcda618ef2be912c7" "288543c0482be3721231ac464e03dea0216f06231ba67b87b19bf8d7c9de8fb9" "bb017d8fde573b632afcc6e6a9bfa97be34b1cedd5302eb25c495e90b91215d4" "25e6c96f73abc907d629bac26145677d283e9d54975f0515adb3c7790b9ed0cd" "633166cd22dfd9661a13b79fa6c93de958fc383546f3d38e2945e064efd89b5d" "01bbac544c1358e1219e453c4f9d46ba7c397292a655977225d17af9f4fe0eaf" "f3b20fa3cb4656c3d683c14e40bdc01a2a65bada81ed7832c39e8875f23a8290" "5ebf86527cdd9a9b5d2e4cfea1da01315a337cf3fecc519b64aada44a4f329d0" "462b3c5f9056d5cddf9b66d96ca5ee5f1f154f155a594fc2fe20d95f6715b627" "58fa5099e00d5ba113a33a2c51e45d5f9b9fe7d1469ed20f947c590a71d0b10a" "46b9c7059d63d2de5f122fc90d5ee303a433ab5d25f482f6dcdebd47de23d2c2" "d2e2792bf4c9e6338663f64165b0948e84a4165465272b7cf814ba7e1b5e6cb2" "137705bce54ded838e45224f0aaa92db6ba6a2128ef7f8d45d5486dfead8e933" "730c625dbb2390df143f0ae74f27ddff6f18c00d15185c35f5c14aedbcf3dc37" "64b6d6eec0935f6150b0748b91dd52e7d47cd7d733352176443651f8e60f67f7" "25dab113b04c1d1152bb1cac0027c47c2cb9c3b860516781feffaf7f3ef95610" "9330df8772bfe8025d061f7d108780f1e10bec8ab63b69f65688fef4b732b641" "26614652a4b3515b4bbbb9828d71e206cc249b67c9142c06239ed3418eff95e2" default)))
+    ("84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" "7086923ce78db059a71e6f428b32a3894c18a3fa586dd182bfade998e66bbc72" "5d01a86960de1eb33cf786e7e4618deff5620796612d3e931549ef4b11301c5b" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "81d4cc8374c164a5ef3d03d2ce95bbc63b63ec9501eb95efcda618ef2be912c7" "288543c0482be3721231ac464e03dea0216f06231ba67b87b19bf8d7c9de8fb9" "bb017d8fde573b632afcc6e6a9bfa97be34b1cedd5302eb25c495e90b91215d4" "25e6c96f73abc907d629bac26145677d283e9d54975f0515adb3c7790b9ed0cd" "633166cd22dfd9661a13b79fa6c93de958fc383546f3d38e2945e064efd89b5d" "01bbac544c1358e1219e453c4f9d46ba7c397292a655977225d17af9f4fe0eaf" "f3b20fa3cb4656c3d683c14e40bdc01a2a65bada81ed7832c39e8875f23a8290" "5ebf86527cdd9a9b5d2e4cfea1da01315a337cf3fecc519b64aada44a4f329d0" "462b3c5f9056d5cddf9b66d96ca5ee5f1f154f155a594fc2fe20d95f6715b627" "58fa5099e00d5ba113a33a2c51e45d5f9b9fe7d1469ed20f947c590a71d0b10a" "46b9c7059d63d2de5f122fc90d5ee303a433ab5d25f482f6dcdebd47de23d2c2" "d2e2792bf4c9e6338663f64165b0948e84a4165465272b7cf814ba7e1b5e6cb2" "137705bce54ded838e45224f0aaa92db6ba6a2128ef7f8d45d5486dfead8e933" "730c625dbb2390df143f0ae74f27ddff6f18c00d15185c35f5c14aedbcf3dc37" "64b6d6eec0935f6150b0748b91dd52e7d47cd7d733352176443651f8e60f67f7" "25dab113b04c1d1152bb1cac0027c47c2cb9c3b860516781feffaf7f3ef95610" "9330df8772bfe8025d061f7d108780f1e10bec8ab63b69f65688fef4b732b641" "26614652a4b3515b4bbbb9828d71e206cc249b67c9142c06239ed3418eff95e2" default)))
  '(default-frame-alist
     (quote
      ((vertical-scroll-bars)
@@ -49,13 +49,22 @@
  '(electric-pair-mode nil)
  '(enh-ruby-deep-indent-paren nil)
  '(enh-ruby-use-ruby-mode-show-parens-config t)
+ '(erc-away-nickname "(toby)")
  '(erc-interpret-mirc-color t)
  '(erc-modules (quote (autojoin button completion fill)))
  '(erc-nick "toby")
+ '(erc-reuse-frames nil)
  '(erc-server "localhost")
  '(erc-server-reconnect-attempts 3)
+ '(erc-show-my-nick nil)
  '(erc-user-full-name "Toby Tripp")
  '(ergoemacs-mode nil)
+ '(eudc-default-return-attributes (quote all))
+ '(eudc-duplicate-attribute-handling-method (quote list))
+ '(eudc-protocol (quote ldap))
+ '(eudc-query-form-attributes (quote (cn name firstname email)))
+ '(eudc-strict-return-matches nil)
+ '(eudc-use-raw-directory-names t)
  '(eval-sexp-fu-flash-mode nil)
  '(fci-rule-color "#073642")
  '(feature-cucumber-command
@@ -92,6 +101,11 @@
  '(js2-mirror-mode t)
  '(js2-mode-show-parse-errors nil)
  '(js2-mode-show-strict-warnings nil)
+ '(ldap-host-parameters-alist
+   (quote
+    (("198.211.113.142:389" base "dc=mmtest" binddn "cn=admin,dc=mmtest" passwd "2funky4u" auth simple scope nil)
+     ("localhost:389" base "dc=ldap,dc=masterymanager,dc=local" binddn "cn=admin,dc=ldap,dc=masterymanager,dc=local" passwd "2funky4u" auth simple))))
+ '(magit-push-arguments nil)
  '(menu-bar-mode t)
  '(minitest-default-command (quote ("ruby" "-Ilib:test:spec:src/ruby:test/ruby")))
  '(mmm-mode-ext-classes-alist
@@ -103,13 +117,17 @@
  '(package-selected-packages
    (quote
     (cl-lib org yasnippet yaml-mode web-mode web-completion-data twittering-mode tt-mode textmate switch-window smex smart-mode-line-powerline-theme sass-mode ruby-tools ruby-end rspec-mode rhtml-mode rbenv rainbow-delimiters psci projectile perl6-mode paredit ox-reveal ocodo-svg-modelines multi-term mmm-mode magit js-comint isearch+ inf-ruby idle-highlight-mode htmlize highlight-indentation haskell-mode fullframe flx-ido feature-mode enh-ruby-mode emmet-mode elixir-mode dockerfile-mode dired+ dash-at-point company-quickhelp column-marker color-identifiers-mode cider-eval-sexp-fu cider bug-hunter browse-kill-ring apache-mode alchemist ag ace-window ace-jump-mode)))
+ '(perltidy-program "~/perl5/bin/perltidy")
+ '(revert-without-query (quote ("rspec.*")))
  '(rspec-compilation-buffer-name "*specs*")
+ '(rspec-primary-source-dirs (quote ("app")))
  '(rspec-rake-command "bundle exec rake")
  '(rspec-spec-command " rspec ")
  '(rspec-use-bundler-when-possible t)
  '(rspec-use-rake-flag nil)
  '(rspec-use-rake-when-possible nil)
  '(rspec-use-rvm nil)
+ '(ruby-align-to-stmt-keywords (quote (def if case unless)))
  '(ruby-deep-arglist nil)
  '(safe-local-variable-values
    (quote
@@ -221,7 +239,22 @@
       (sql-user "reports_staging")
       (sql-database "reports_staging")
       (sql-server "mm2-reports-staging.c7mzhhsy2lsx.us-east-1.rds.amazonaws.com")
-      (sql-port 5432)))))
+      (sql-port 5432))
+     ("docker-db"
+      (sql-product
+       (quote postgres))
+      (sql-user "development")
+      (sql-database "development")
+      (sql-server "localhost")
+      (sql-port 65432))
+     ("rd.db"
+      (sql-product
+       (quote postgres))
+      (sql-user "reception_desk_development")
+      (sql-database "reception_desk_development")
+      (sql-server "localhost")
+      (sql-port 65432)))))
+ '(tags-revert-without-query t)
  '(visual-line-mode nil t)
  '(warning-minimum-level :error)
  '(web-mode-code-indent-offset 2)
@@ -234,4 +267,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(enh-ruby-op-face ((t (:foreground "gray70")))))

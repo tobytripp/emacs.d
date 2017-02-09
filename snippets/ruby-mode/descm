@@ -1,5 +1,7 @@
 # -*- mode: snippet; require-final-newline: nil -*-
-# name: let
+# name: describe "#method" do...
 # group: definitions
 # --
-let( :${1:name} ) { ${0:value} }
+describe "#${1:method-name}" do
+  $0
+end

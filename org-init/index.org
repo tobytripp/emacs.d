@@ -53,7 +53,7 @@
    Hide the fringe.
 
    #+BEGIN_SRC emacs-lisp
-     (set-fringe-style 0)
+     (when (display-graphic-p) (set-fringe-style 0))
    #+END_SRC
 
    Highlight the current line in the buffer.

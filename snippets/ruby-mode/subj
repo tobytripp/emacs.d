@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: subject( :name ) { ... }
+# group: definitions
+# --
+subject( :${1:name} ) { ${2:described_class.new}$0 }

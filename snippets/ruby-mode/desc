@@ -1,5 +1,6 @@
 # -*- mode: snippet; require-final-newline: nil -*-
 # name: desc
+# group: definitions
 # --
 describe "${1:name}" do
   $0

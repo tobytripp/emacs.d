@@ -107,11 +107,14 @@
     (defun toby/term-hook ()
       (linum-mode -1)
       (setq show-trailing-whitespace nil)
-      ;(set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix)
       ;; yas mode can break the TAB character in terminals
       (yas-minor-mode -1))
 
+    (defun toby/term-exec-hook ()
+      (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix))
+
     (add-hook 'term-mode-hook 'toby/term-hook)
+    (add-hook 'term-exec-hook 'toby/term-exec-hook)
   #+END_SRC
 
 #+BEGIN_SRC emacs-lisp :exports none

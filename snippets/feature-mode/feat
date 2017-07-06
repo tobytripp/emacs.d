@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Feature: ...
+# group: definitions
+# --
+Feature: ${terse-description}
+  ${free-text-description}
+
+  sce$0

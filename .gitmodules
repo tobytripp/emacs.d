@@ -3,4 +3,7 @@
 	url = https://github.com/yjwen/org-reveal.git
 [submodule "vendor/tern"]
 	path = vendor/tern
-	url = git@github.com:marijnh/tern.git
+	url = git@github.com:marijnh/tern.git  
+[submodule "vendor/electric-align"]
+	path = vendor/electric-align
+	url = git@github.com:zk-phi/electric-align

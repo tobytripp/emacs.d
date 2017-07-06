@@ -1,5 +1,5 @@
 (deftheme toby
-  "Created 2017-01-04.")
+  "Created 2017-03-07.")
 
 (custom-theme-set-variables
  'toby
@@ -61,7 +61,7 @@
  '(match ((((class color) (min-colors 89)) (:background "#073642" :foreground "#93a1a1" :weight bold))))
  '(next-error ((t (:inherit (region)))))
  '(query-replace ((t (:inherit (isearch)))))
- '(hl-line ((t (:background "#002b36"))))
+ '(hl-line ((t (:background "gray25"))))
  '(idle-highlight ((t (:foreground "khaki"))))
  '(rainbow-delimiters-depth-1-face ((((class color) (min-colors 89)) (:foreground "#2aa198"))))
  '(compilation-info ((((class color) (min-colors 89)) (:foreground "#859900" :underline t))))

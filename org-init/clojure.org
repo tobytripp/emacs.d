@@ -1,7 +1,7 @@
 #+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
 * Clojure Customizations
 
-** Clojure + Cider Keybindings of Interest
+** DONE Clojure + Cider Keybindings of Interest
 
    | Key-Chord | Command                           |
    | C-c C-x   | Reload the current namespace      |

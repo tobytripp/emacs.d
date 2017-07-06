@@ -1,0 +1,28 @@
+#+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
+#+TITLE: LDAP Settings
+
+* EUDC
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'ldap)
+    (require 'eudc)
+
+    (setq eudc-default-return-attributes nil
+          eudc-strict-return-matches nil)
+
+    (setq ldap-ldapsearch-args (quote ("-tt" "-LLL" "-x")))
+
+    (setq ldap-host-parameters-alist
+          (quote (("198.211.113.142:389"
+                    base "dc=mmtest"
+                    binddn "cn=admin,dc=mmtest"
+                    passwd "2funky4u" auth simple)
+                  ("localhost:389"
+                   base "dc=ldap,dc=masterymanager,dc=local"
+                   binddn "cn=admin,dc=ldap,dc=masterymanager,dc=local"
+                   passwd "2funky4u" auth simple))))
+
+    (setq eudc-server-hotlist
+          '(("198.211.113.142:389" . ldap) ("localhost:389" . ldap)))
+    (setq eudc-inline-expansion-servers 'hotlist)
+  #+END_SRC

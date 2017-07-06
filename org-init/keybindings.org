@@ -107,6 +107,7 @@
    #+BEGIN_SRC emacs-lisp
      (define-key global-map (kbd "C-+") 'text-scale-increase)
      (define-key global-map (kbd "C--") 'text-scale-decrease)
+     (define-key global-map (kbd "C-=") 'text-scale-set)
      (global-set-key (kbd "C-s-f")     'ns-toggle-fullscreen)
    #+END_SRC
 
@@ -146,6 +147,7 @@
      (require-package 'avy)
      (require-package 'ace-window)
      (global-set-key (kbd "C-x o")   'ace-window)
+     (global-set-key (kbd "M-p") 'ace-window)
 
      (setq aw-keys '(?a ?o ?e ?u ?i  ?d ?h ?t ?n ?s))
    #+END_SRC

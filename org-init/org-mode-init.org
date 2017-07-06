@@ -6,37 +6,38 @@
 
    Fontify code blocks in an Org file:
    #+BEGIN_SRC emacs-lisp
-         (setq org-src-fontify-natively t)
-         (require 'ob)
+     (setq org-src-fontify-natively t)
+     (require 'ob)
 
-         (add-to-list 'org-babel-tangle-lang-exts '("clojure" . "clj"))
-         (add-to-list 'org-babel-tangle-lang-exts '("haskell" . "hs"))
 
-         (defun toby/babel-hook ()
-                     (condition-case nil
-                         (org-display-inline-images)
-                       (error nil)))
+     (add-to-list 'org-babel-tangle-lang-exts '("clojure" . "clj"))
+     (add-to-list 'org-babel-tangle-lang-exts '("haskell" . "hs"))
 
-         (add-hook 'org-babel-after-execute-hook
-                   'toby/babel-hook
-                   'append)
+     (defun toby/babel-hook ()
+                 (condition-case nil
+                     (org-display-inline-images)
+                   (error nil)))
 
-         (org-babel-do-load-languages
-          'org-babel-load-languages
-          '((sh . t)
-            (ruby . t)
-            (ditaa . t)
-            (dot . t)
-            (sqlite . t)
-            (sql . t)
-            (perl . t)))
+     (add-hook 'org-babel-after-execute-hook
+               'toby/babel-hook
+               'append)
 
-         (add-to-list 'org-structure-template-alist
-                      '("el"  "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC" "<src lang=\"?\">\n\n</src>"))
-         (add-to-list 'org-structure-template-alist
-                      '("pg"  "#+BEGIN_SRC sql :engine postgresql\n?\n#+END_SRC" "<src lang=\"?\">\n\n</src>"))
-         (add-to-list 'org-structure-template-alist
-                      '("hs"  "#+BEGIN_SRC haskell\n?\n#+END_SRC" "<src lang=\"?\">\n\n</src>"))
+     (require 'ob-shell)
+     (require 'ob-ruby)
+     (require 'ob-sql)
+     (require 'ob-clojure)
+     (org-babel-do-load-languages
+      'org-babel-load-languages
+      '((sh . t)
+        (ruby . t)
+        (sql . t)))
+
+     (add-to-list 'org-structure-template-alist
+                  '("el"  "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC" "<src lang=\"?\">\n\n</src>"))
+     (add-to-list 'org-structure-template-alist
+                  '("pg"  "#+BEGIN_SRC sql :engine postgresql\n?\n#+END_SRC" "<src lang=\"?\">\n\n</src>"))
+     (add-to-list 'org-structure-template-alist
+                  '("hs"  "#+BEGIN_SRC haskell\n?\n#+END_SRC" "<src lang=\"?\">\n\n</src>"))
    #+END_SRC
 
    This adds syntax highlighting to org-babel html exports.

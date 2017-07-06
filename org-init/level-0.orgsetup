@@ -7,3 +7,5 @@
 #+HTML_HEAD_EXTRA: <link rel="stylesheet" href="css/htmlize.css">
 #+HTML_HEAD_EXTRA: <link rel="stylesheet" href="css/config.css">
 #+HTML_CONTAINER: div
+#+STARTUP: content
+#+TODO: EXPERIMENTAL(e!) REJECTED(r!) | ADOPTED(a!)

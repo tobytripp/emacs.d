@@ -49,6 +49,17 @@
    (setq ns-use-native-fullscreen t)
    #+END_SRC
 
+   Be less aggressive when vertically splitting my windows: (default 80)
+   #+BEGIN_SRC emacs-lisp
+   (setq split-height-threshold 110)
+   #+END_SRC
+
+   #+BEGIN_QUOTE
+   Minimum height for splitting windows sensibly.
+   If this is an integer, ‘split-window-sensibly’ may split a window
+   vertically only if it has at least this many lines.
+   #+END_QUOTE
+
 ** UTF-8
 
    #+BEGIN_SRC emacs-lisp

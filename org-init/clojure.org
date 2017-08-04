@@ -31,8 +31,8 @@
           (define-key cider-mode-map (kbd "C-c C-e") 'cider-eval-print-last-sexp)
           (setq cider-mode-line '(:eval "🍺"))))
 
-     (add-hook 'cider-mode-hook #'eldoc-mode)
-     (add-hook 'cider-mode-hook #'paredit-mode)
+     (add-hook 'cider-mode-hook      #'eldoc-mode)
+     (add-hook 'cider-mode-hook      #'paredit-mode)
      (add-hook 'cider-repl-mode-hook #'paredit-mode)
      (add-hook 'cider-repl-mode-hook #'subword-mode)
 
@@ -71,9 +71,46 @@
          (ANY 2)
          (context 2)))
 
+     (defun toby/lisp-keys ()
+       (define-key clojure-mode-map (kbd "<C-down>") 'forward-sexp)
+       (define-key clojure-mode-map (kbd "<C-up>")   'backward-sexp))
+
+     (eval-after-load 'clojure-mode '(toby/lisp-keys))
+
      (add-hook 'clojure-mode-hook 'toby/clojure-init)
      (toby/defhook cider-mode-hook (paredit-mode))
    #+END_SRC
+
+*** Clojuredocs
+
+    #+BEGIN_SRC emacs-lisp
+      (defconst clojuredocs-url "http://clojuredocs.org/")
+
+      (defun clojuredocs-url (ns name)
+        "Generate a clojuredocs search"
+        (let ((base-url clojuredocs-url))
+          (when (and name ns)
+            (concat base-url ns "/" name))))
+
+      (defun toby/clojuredocs-lookup (symbol)
+        "Open the clojuredocs.org documentation for SYMBOL"
+        (if-let ((var-info (cider-var-info symbol)))
+            (let ((name (nrepl-dict-get var-info "name"))
+                  (ns (nrepl-dict-get var-info "ns")))
+              (browse-url (clojuredocs-url ns name)))
+          (error "Symbol %s not resolved" symbol)))
+
+      (defun toby/clojuredocs-web (&optional arg)
+        "Open clojuredocs.org in the default web browser.
+
+         Prompts for the symbol to look-up, or uses the symbol at point."
+        (interactive "P")
+        (funcall (cider-prompt-for-symbol-function arg)
+                 "Clojuredoc for"
+                 #'toby/clojuredocs-lookup))
+
+      (define-key clojure-mode-map (kbd "C-c C-d o") 'toby/clojuredocs-web)
+    #+END_SRC
 
 #+BEGIN_SRC emacs-lisp :exports none
 (provide 'clojure)

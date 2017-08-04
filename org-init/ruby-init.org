@@ -46,6 +46,7 @@
                     "\\(class\\|def\\|do\\|if\\)" "\\(end\\)" "#"
                     (lambda (arg) (enh-ruby-end-of-block)) nil))
 
+     (add-hook 'after-init-hook    'inf-ruby-switch-setup)
      (add-hook 'ruby-mode-hook     'toby/add-prettified-symbols)
      (add-hook 'enh-ruby-mode-hook 'toby/add-prettified-symbols)
 
@@ -54,7 +55,7 @@
              '(("lambda" . 955)
                ("->"     . (?→ (Br . Bl) ?λ))
                ("=>"     . 10233)
-               ;;(" = "    . 8789)
+               (" = "    . 8789)
                )))
 
      (defun toby/ruby-init ()
@@ -68,6 +69,8 @@
 
        ;; Doesn't work in the terminal, unfortunately…
        (define-key ruby-mode-map (kbd "C-=") 'insert-rocket)
+
+       (define-key ruby-mode-map (kbd "C-c =") 'insert-rocket)
 
        (hs-minor-mode 1) ;; Code folding
 
@@ -107,10 +110,34 @@
      (add-hook 'enh-ruby-mode-hook 'toby/ruby-init)
      (add-hook 'enh-ruby-mode-hook (lambda () (electric-pair-mode 0)))
 
-     (eval-after-load 'inf-ruby
-       '(define-key inf-ruby-minor-mode-map
-          (kbd "C-c C-s") 'inf-ruby-console-auto))
    #+END_SRC
+
+*** Inf-Ruby
+
+    #+BEGIN_SRC emacs-lisp
+      (eval-after-load 'inf-ruby
+        '(define-key inf-ruby-minor-mode-map
+           (kbd "C-c C-s") 'inf-ruby-console-auto))
+
+      (defun toby/inf-ruby-hooks ()
+        (color-identifiers-mode -1)
+        (linum-mode -1))
+
+      (add-hook 'inf-ruby-mode-hook 'toby/inf-ruby-hooks)
+    #+END_SRC
+
+*** RSpec
+
+    #+BEGIN_SRC emacs-lisp
+      (defun toby/rspec-init ())
+
+      (defun toby/rspec-compile-init ()
+        (linum-mode -1)
+        (local-set-key (kbd "r") 'inf-ruby-switch-from-compilation)
+        )
+
+      (add-hook 'rspec-compilation-mode-hook 'toby/rspec-compile-init)
+    #+END_SRC
 
 ** Rbenv
 

@@ -105,14 +105,19 @@
        (run-hooks 'prog-mode-hook))
    #+END_SRC
 
-*** EXPERIMENTAL electric-align Mode
+*** REJECTED electric-align Mode
+    - State "REJECTED"   from "EXPERIMENTAL" [2017-07-28 Fri 10:15]
     - State "EXPERIMENTAL" from              [2017-06-30 Fri 09:53]
 
-    #+BEGIN_SRC emacs-lisp
-      (add-to-list 'load-path (concat vendor-dir "electric-align"))
-      (autoload 'electric-align-mode "electric-align.el" nil t)
+    Activates when not intended and rarely when actually intended.  Also
+    interferes with abbrev-mode and any other mode that advises SPC.
 
-      (add-hook 'prog-mode-hook 'electric-align-mode)
+    #+BEGIN_SRC emacs-lisp
+      ;; (add-to-list 'load-path (concat vendor-dir "electric-align"))
+      ;; (autoload 'electric-align-mode "electric-align.el" nil t)
+
+      ;; (add-hook 'prog-mode-hook 'electric-align-mode)
+      ;; (remove-hook 'prog-mode-hook 'electric-align-mode)
     #+END_SRC
 
 ** Embedded Modes

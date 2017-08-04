@@ -134,6 +134,8 @@
 
      (global-set-key (kbd "M-s-<left>")  'windmove-left)
      (global-set-key (kbd "M-s-<right>") 'windmove-right)
+     (global-set-key (kbd "s-<left>")  'windmove-left)
+     (global-set-key (kbd "s-<right>") 'windmove-right)
    #+END_SRC
 
    The =ace-window= package will display numbers in the various

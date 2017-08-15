@@ -43,6 +43,17 @@
        (cider-eval-buffer))
    #+END_SRC
 
+** ClojureScript
+
+   Enable CIDER-repl connections via figwheel:
+
+   #+BEGIN_SRC emacs-lisp
+     (setq cider-cljs-lein-repl
+           "(do (require 'figwheel-sidecar.repl-api)
+                (figwheel-sidecar.repl-api/start-figwheel!)
+                (figwheel-sidecar.repl-api/cljs-repl))")
+   #+END_SRC
+
 ** Clojure
 
    Paredit is my best-est friend

@@ -85,7 +85,12 @@
       (local-set-key (kbd "<down>") 'comint-next-input)
       (local-set-key (kbd "s-k")    'clear-shell))
 
-    (add-hook 'shell-mode-hook 'set-my-shell-bindings)
+    (add-hook 'term-exec-hook
+              (function
+               (lambda ()
+                 (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix))))
+
+    (add-hook 'shell-mode-hook  'set-my-shell-bindings)
     (add-hook 'eshell-mode-hook 'set-my-shell-bindings)
   #+END_SRC
 

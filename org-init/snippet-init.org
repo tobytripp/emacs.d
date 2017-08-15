@@ -7,8 +7,8 @@
    #+BEGIN_SRC emacs-lisp
      (require-package 'yasnippet)
      (require 'yasnippet)
-     (yas/global-mode 1)
-     (setq yas/trigger-key (kbd "C-c /"))
+     (yas-reload-all)
+     (add-hook 'prog-mode-hook #'yas-minor-mode) 
    #+END_SRC
 
    Set up my local snippets:

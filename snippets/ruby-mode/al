@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: allow( double ).to ...
+# group: definitions
+# --
+allow( ${1:double} ).to receive( :${2:method} )$0

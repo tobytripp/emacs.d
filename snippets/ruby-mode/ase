@@ -1,0 +1,4 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: expect( expected ).to eq actual
+# --
+expect( ${1:actual} ).to eq ${2:expected}$0

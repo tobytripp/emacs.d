@@ -1,0 +1,14 @@
+#+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
+* For Perl (rarely used, I hope)
+
+** Perl Mode Settings
+
+   #+BEGIN_SRC emacs-lisp
+     (defalias 'perl-mode 'cperl-mode)
+     (defvar cperl-auto-tidy t)
+     ; (cperl-set-style "BSD")
+     (setq cperl-indent-parens-as-block t
+           cperl-close-paren-offset -4)
+
+     (require 'perltidy)
+   #+END_SRC

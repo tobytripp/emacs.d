@@ -1,5 +1,5 @@
 (deftheme toby
-  "Created 2016-06-21.")
+  "Created 2017-03-07.")
 
 (custom-theme-set-variables
  'toby
@@ -50,7 +50,7 @@
  '(fringe ((((class color) (min-colors 89)) (:foreground "#839496" :background "#073642"))))
  '(header-line ((((class color) (min-colors 89)) (:foreground "#b58900" :background "#073642" :box (:line-width -1 :style released-button)))))
  '(tooltip ((((class color) (min-colors 89)) (:background "#7B6000" :foreground "#DEB542" :inherit variable-pitch))))
- '(mode-line ((((class color) (min-colors 89)) (:box (:line-width -1 :style released-button) :background "#008b00" :foreground "#fefef0"))))
+ '(mode-line ((((class color) (min-colors 89)) (:foreground "#fefef0" :background "DarkOliveGreen" :box (:line-width -1 :style released-button)))))
  '(mode-line-buffer-id ((t (:foreground "wheat1" :weight bold))))
  '(mode-line-emphasis ((t (:weight bold))))
  '(mode-line-highlight ((((class color) (min-colors 88)) (:box (:line-width 2 :color "grey40" :style released-button))) (t (:inherit (highlight)))))
@@ -61,7 +61,7 @@
  '(match ((((class color) (min-colors 89)) (:background "#073642" :foreground "#93a1a1" :weight bold))))
  '(next-error ((t (:inherit (region)))))
  '(query-replace ((t (:inherit (isearch)))))
- '(hl-line ((t (:background "#002b36"))))
+ '(hl-line ((t (:background "gray25"))))
  '(idle-highlight ((t (:foreground "khaki"))))
  '(rainbow-delimiters-depth-1-face ((((class color) (min-colors 89)) (:foreground "#2aa198"))))
  '(compilation-info ((((class color) (min-colors 89)) (:foreground "#859900" :underline t))))
@@ -72,15 +72,6 @@
  '(custom-comment-tag ((((class color) (min-colors 89)) (:foreground "#586e75"))))
  '(custom-group-tag ((((class color) (min-colors 89)) (:foreground "#268bd2"))))
  '(custom-state ((((class color) (min-colors 89)) (:foreground "#859900"))))
- '(hi-yellow ((t (:background "#DEB542" :foreground "#7B6000"))))
- '(hi-pink ((((class color) (min-colors 89)) (:foreground "#93115C" :background "#F771AC"))))
- '(hi-green ((((class color) (min-colors 89)) (:foreground "#546E00" :background "#B4C342"))))
- '(hi-blue ((((class color) (min-colors 89)) (:foreground "#00629D" :background "#69B7F0"))))
- '(hi-black-b ((((class color) (min-colors 89)) (:foreground "#93a1a1" :background "#002b36" :weight bold))))
- '(hi-blue-b ((((class color) (min-colors 89)) (:foreground "#00629D" :weight bold))))
- '(hi-green-b ((((class color) (min-colors 89)) (:foreground "#546E00" :weight bold))))
- '(hi-red-b ((((class color) (min-colors 89)) (:foreground "#dc322f" :weight bold))))
- '(hi-black-hb ((((class color) (min-colors 89)) (:foreground "#93a1a1" :background "#002b36" :weight bold))))
  '(ido-first-match ((((class color) (min-colors 89)) (:foreground "#b58900" :weight bold))))
  '(ido-only-match ((((class color) (min-colors 89)) (:foreground "#cb4b16" :weight bold))))
  '(ido-subdir ((((class color) (min-colors 89)) (:foreground "#b58900"))))
@@ -152,9 +143,6 @@
  '(org-block-end-line ((t (:inherit (org-meta-line)))))
  '(comint-highlight-prompt ((t (:inherit minibuffer-prompt))))
  '(column-marker-1 ((t (:background "firebrick"))))
- '(enh-ruby-string-delimiter-face ((t (:foreground "yellow green"))))
- '(enh-ruby-op-face ((t (:foreground "deep sky blue"))))
- '(enh-ruby-regexp-delimiter-face ((t (:foreground "dodger blue"))))
  '(default ((t (:background "#211E1E" :foreground "#DADADA")))))
 
 (provide-theme 'toby)

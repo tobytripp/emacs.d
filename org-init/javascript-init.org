@@ -62,11 +62,16 @@
       (add-hook 'js-mode-hook 'js2-minor-mode)
 
       (setq js2-highlight-level 3)
-      (push '("function"   . ?𝒇) prettify-symbols-alist)
-      (push '("QUnit.test" . ?∀) prettify-symbols-alist)
-      (push '("assert"     . ?∃) prettify-symbols-alist)
-      (push '("==="        . ?≣) prettify-symbols-alist)
-      (push '("=="         . ?≈) prettify-symbols-alist)
+
+      (defvar toby/js-prettify-alist '())
+
+      (add-to-list 'toby/js-prettify-alist '("function"   . ?𝒇))
+      (add-to-list 'toby/js-prettify-alist '("test"       . ?∀))
+      (add-to-list 'toby/js-prettify-alist '("QUnit.test" . ?∀))
+      (add-to-list 'toby/js-prettify-alist '("assert"     . ?∃))
+      (add-to-list 'toby/js-prettify-alist '("==="        . ?≣))
+      (add-to-list 'toby/js-prettify-alist '("=="         . ?≈))
+
 
       (defun toby/js-init ()
         (glasses-mode t)
@@ -79,6 +84,9 @@
       (eval-after-load "js-mode"
         '(progn
            (add-hook 'js-mode-hook 'toby/js-init)
+           (setq js--prettify-symbols-alist
+                 (append toby/js-prettify-alist
+                         js--prettify-symbols-alist))
            (require 'js-comint)))
 
       (eval-after-load "js2-mode"

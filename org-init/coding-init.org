@@ -3,12 +3,18 @@
 
 ** I like λ
    #+BEGIN_SRC emacs-lisp
-     (defun pretty-lambdas ()
-       (font-lock-add-keywords
-        nil `(("(?\\(lambda\\>\\)"
-               (0 (progn (compose-region (match-beginning 1) (match-end 1)
-                                         ,(make-char 'greek-iso8859-7 107))
-                         nil))))))
+     (defun toby/add-prettified-symbols ()
+       (setq prettify-symbols-alist
+             '(
+               ("lambda" . 955)
+               ("->"     . 10230)
+               ("=>"     . 10233)
+               )))
+
+     (add-hook 'clojure-mode-hook  'toby/add-prettified-symbols)
+     (add-hook 'haskell-mode-hook  'toby/add-prettified-symbols)
+
+     (global-prettify-symbols-mode 1)
    #+END_SRC
 
 ** 80 Columns is Law
@@ -35,12 +41,25 @@
      (autoload 'highlight-indentation-mode "highlight-indentation")
    #+END_SRC
 
+*** EXPERIMENTAL Auto sex-p management
+    - State "EXPERIMENTAL" from              [2017-06-30 Fri 09:58]
+
    #+BEGIN_SRC emacs-lisp
      ;; Haven't decided between the two yet…
      (require-package 'paredit)
      (require-package 'smartparens)
      (require 'smartparens-config)
      (define-key smartparens-mode-map (kbd "C-k") 'sp-kill-sexp)
+
+     (if (require 'smartparens nil 'noerror)
+         (smartparens-mode t)
+       (paredit-mode t))
+   #+END_SRC
+
+*** Formatting Hooks/Functions
+
+   #+BEGIN_SRC emacs-lisp
+     (define-key prog-mode-map (kbd "C-<tab>") 'indent-buffer)
 
      (require-package 'rainbow-delimiters)
      (autoload 'rainbow-delimiters-mode "rainbow-delimiters")
@@ -64,16 +83,11 @@
 
        (setq save-place t)
 
-       ;; (if (require 'paredit nil 'noerror)
-       ;;  (paredit-mode t))
-
        (tool-bar-mode -1)
 
        (font-lock-add-keywords
         nil '(("\\<\\(FIX\\|TODO\\|FIXME\\|HACK\\|REFACTOR\\):"
                1 font-lock-warning-face t)))
-
-       (pretty-lambdas)
 
        (idle-highlight-mode t)
        (highlight-indentation-current-column-mode)
@@ -91,6 +105,21 @@
        (run-hooks 'prog-mode-hook))
    #+END_SRC
 
+*** REJECTED electric-align Mode
+    - State "REJECTED"   from "EXPERIMENTAL" [2017-07-28 Fri 10:15]
+    - State "EXPERIMENTAL" from              [2017-06-30 Fri 09:53]
+
+    Activates when not intended and rarely when actually intended.  Also
+    interferes with abbrev-mode and any other mode that advises SPC.
+
+    #+BEGIN_SRC emacs-lisp
+      ;; (add-to-list 'load-path (concat vendor-dir "electric-align"))
+      ;; (autoload 'electric-align-mode "electric-align.el" nil t)
+
+      ;; (add-hook 'prog-mode-hook 'electric-align-mode)
+      ;; (remove-hook 'prog-mode-hook 'electric-align-mode)
+    #+END_SRC
+
 ** Embedded Modes
 
    #+BEGIN_SRC emacs-lisp
@@ -101,7 +130,7 @@
 
      (defun toby/heredoc-get-mode (string)
        (message string)
-       (string-match "<<-?\\([a-zA-Z0-9_-]+\\)$" string)
+       (string-match "<<[-~]?\\([a-zA-Z0-9_-]+\\)$" string)
        (let ((modename (downcase (match-string 1 string))))
          (message modename)
          (intern (concat modename "-mode"))))
@@ -111,7 +140,7 @@
           (mmm-add-classes
            '((toby/heredoc
               :match-submode toby/heredoc-get-mode
-              :front "<<-?\\([a-zA-Z0-9_-]+\\)"
+              :front "<<[-~]?\\([a-zA-Z0-9_-]+\\)"
               :front-offset (end-of-line 1)
               :face mm-code-submode-face
               :save-matches 1
@@ -122,7 +151,7 @@
      (add-to-list 'mmm-set-file-name-for-modes 'ruby-mode)
    #+END_SRC
 
-** Commands
+** [#B] Commands
 
    #+BEGIN_SRC emacs-lisp
      (setq-default indent-tabs-mode nil)

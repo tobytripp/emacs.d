@@ -2,7 +2,8 @@
 ;; (set-fontset-font "fontset-default"
 ;; 		  'unicode
 ;; 		  '("Menlo" . "iso10646-1"))
-; (set-fontset-font t 'symbol (font-spec :family "Apple Color Emoji") nil 'prepend)
-(set-fontset-font t 'unicode "Apple Color Emoji" nil 'prepend)
+(when (display-graphic-p)
+  (let ((emoticons '(#x1F600 . #x1F64F)))
+    (set-fontset-font "fontset-default" emoticons "Apple Color Emoji")))
 
 (provide 'font-sets)

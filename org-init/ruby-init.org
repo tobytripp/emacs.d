@@ -31,8 +31,9 @@
           (require-package 'flyspell)
           (require-package 'ruby-tools)))
 
-     (eval-after-load 'company
-       '(push 'company-robe company-backends))
+     ;; (require-package 'robe)
+     ;; (eval-after-load 'company
+     ;;   '(push 'company-robe company-backends))
 
      ;; Hide-show settings
      (add-to-list 'hs-special-modes-alist
@@ -45,15 +46,31 @@
                     "\\(class\\|def\\|do\\|if\\)" "\\(end\\)" "#"
                     (lambda (arg) (enh-ruby-end-of-block)) nil))
 
+     (add-hook 'after-init-hook    'inf-ruby-switch-setup)
+     (add-hook 'ruby-mode-hook     'toby/add-prettified-symbols)
+     (add-hook 'enh-ruby-mode-hook 'toby/add-prettified-symbols)
+
+     (defun toby/ruby-prettify ()
+       (setq prettify-symbols-alist
+             '(("lambda" . 955)
+               ("->"     . (?→ (Br . Bl) ?λ))
+               ("=>"     . 10233)
+               (" = "    . 8789)
+               )))
+
      (defun toby/ruby-init ()
        (set (make-local-variable 'indent-tabs-mode) 'nil)
        (set (make-local-variable 'tab-width) 2)
+
+       (toby/ruby-prettify)
 
        (column-marker-1 80)
        (whitespace-mode t)
 
        ;; Doesn't work in the terminal, unfortunately…
-       (define-key ruby-mode-map (kbd "C-;") 'insert-rocket)
+       (define-key ruby-mode-map (kbd "C-=") 'insert-rocket)
+
+       (define-key ruby-mode-map (kbd "C-c =") 'insert-rocket)
 
        (hs-minor-mode 1) ;; Code folding
 
@@ -62,15 +79,18 @@
 
        (require 'ruby-tools)
 
-       (robe-mode)
+       (global-rbenv-mode)
+       (rbenv-use-corresponding)
+
+       ;; (robe-mode)
        ;; (yard-mode)
 
        (require 'smartparens-config)
-       (smartparens-strict-mode)
+       ;; (smartparens-strict-mode)
+       (smartparens-mode)
        (show-smartparens-mode t)
 
-       (global-rbenv-mode)
-       (rbenv-use-corresponding)
+       (setq buffer-save-without-query t)
 
        (require 'rspec-mode)
        (rspec-mode t)
@@ -79,6 +99,7 @@
        (local-set-key [f12]                  'rspec-verify)
        (local-set-key [f11]                  'rspec-verify-single)
        (local-set-key (kbd "S-<f12>")        'rspec-rerun)
+       (local-set-key [f13]                  'rspec-rerun)
        (local-set-key [f10]                  'next-error))
 
      (autoload 'enh-ruby-mode "enh-ruby-mode" "Major mode for ruby files" t)
@@ -89,10 +110,34 @@
      (add-hook 'enh-ruby-mode-hook 'toby/ruby-init)
      (add-hook 'enh-ruby-mode-hook (lambda () (electric-pair-mode 0)))
 
-     (eval-after-load 'inf-ruby
-       '(define-key inf-ruby-minor-mode-map
-          (kbd "C-c C-s") 'inf-ruby-console-auto))
    #+END_SRC
+
+*** Inf-Ruby
+
+    #+BEGIN_SRC emacs-lisp
+      (eval-after-load 'inf-ruby
+        '(define-key inf-ruby-minor-mode-map
+           (kbd "C-c C-s") 'inf-ruby-console-auto))
+
+      (defun toby/inf-ruby-hooks ()
+        (color-identifiers-mode -1)
+        (linum-mode -1))
+
+      (add-hook 'inf-ruby-mode-hook 'toby/inf-ruby-hooks)
+    #+END_SRC
+
+*** RSpec
+
+    #+BEGIN_SRC emacs-lisp
+      (defun toby/rspec-init ())
+
+      (defun toby/rspec-compile-init ()
+        (linum-mode -1)
+        (local-set-key (kbd "r") 'inf-ruby-switch-from-compilation)
+        )
+
+      (add-hook 'rspec-compilation-mode-hook 'toby/rspec-compile-init)
+    #+END_SRC
 
 ** Rbenv
 
@@ -119,6 +164,11 @@
    #+BEGIN_SRC emacs-lisp
      (require-package 'feature-mode)
      (add-to-list 'auto-mode-alist '("\.feature$" . feature-mode))
+     (when (and (featurep 'yasnippet)
+                feature-snippet-directory
+                (file-exists-p feature-snippet-directory))
+       (yas/load-directory feature-snippet-directory))
+
      (add-hook 'feature-mode-hook
                (lambda ()
                  (local-set-key (kbd "M-r")   'feature-verify-all-scenarios-in-buffer)
@@ -181,7 +231,9 @@
      (defun add-pride ()
        (interactive)
        (fix-parens)
-       (decompress-hash-rockets))
+       (decompress-hash-rockets)
+       (untabify-buffer)
+       (delete-trailing-whitespace))
    #+END_SRC
 
 *** Break-up Long Hashes

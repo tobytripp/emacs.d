@@ -97,8 +97,18 @@
                  (replace-match (number-to-string (+ number inc-by)))))))))
    #+END_SRC
 
+   #+BEGIN_SRC emacs-lisp
+     (defun toby/align-columns (start end regexp)
+       "Align text in columns according to `regexp'"
+       (interactive "r\nsAlign regexp: ")
+       (align-regexp start end
+                     (concat "\\(\\s-*\\)" regexp) 1 1 t))
+   #+END_SRC
 ** Keymap
-   So, =toby-mode= has its own keymap.  This is what allows my overrides to be switched off.
+
+   So, =toby-mode= has its own keymap.  This is what allows my
+   overrides to be switched off.
+
    #+BEGIN_SRC emacs-lisp
      (defvar *tobys-mode-map*
        (let ((map (make-sparse-keymap)))
@@ -107,6 +117,7 @@
          (define-key map (kbd "s-z")        'undo)
          (define-key map (kbd "M-z")        'zap-to-char)
          (define-key map (kbd "C-x \\")     'align-regexp)
+         (define-key map (kbd "C-x \|")     'toby/align-columns)
          (define-key map (kbd "M-/")        'hippie-expand)
          (define-key map (kbd "s-/")        'hippie-expand)
 

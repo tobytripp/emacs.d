@@ -11,7 +11,6 @@
                ("=>"     . 10233)
                )))
 
-     (add-hook 'clojure-mode-hook  'toby/add-prettified-symbols)
      (add-hook 'haskell-mode-hook  'toby/add-prettified-symbols)
 
      (global-prettify-symbols-mode 1)
@@ -120,8 +119,12 @@
       ;; (remove-hook 'prog-mode-hook 'electric-align-mode)
     #+END_SRC
 
-** Embedded Modes
+** ADOPTED Embedded Modes
 
+   - State "ADOPTED"    from              [2017-09-21 Thu 14:26]
+   - State "EXPERIMENTAL" from "REJECTED"   [2017-09-21 Thu 14:26]
+   - State "REJECTED"   from "ADOPTED"    [2017-09-21 Thu 14:26]
+   - State "ADOPTED"    from              [2017-09-21 Thu 14:26]
    #+BEGIN_SRC emacs-lisp
      (require-package 'mmm-mode)
      (require 'mmm-auto)

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: commit-message
+# --
+${1:short-message} [${2:$$(yas-choose-value '("Finishes " "Fixes " "Delivers " ""))}_STORY_ID_]
+
+${3:Long Description}
+$0

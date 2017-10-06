@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: frozen-string-literal: true
+# group : general
+# --
+#!/usr/bin/ruby -wU
+# -*- frozen-string-literal: true; coding: utf-8 -*-

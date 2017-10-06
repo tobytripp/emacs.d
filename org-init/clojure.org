@@ -10,6 +10,36 @@
    | C-c C-,   | Re-run last test                  |
    | C-c C-e   | Eval and print last s-exp         |
 
+** EXPERIMENTAL Clojure prettify-symbols
+
+   - State "EXPERIMENTAL" from              [2017-08-07 Mon 11:42]
+
+   #+BEGIN_SRC emacs-lisp
+     (defvar toby/clojure-prettify-alist '())
+
+     ;; (setq toby/clojure-prettify-alist '())
+     (add-to-list 'toby/clojure-prettify-alist '("<="  . (?· (Br . Bl) ?≤)))
+     (add-to-list 'toby/clojure-prettify-alist '(">="  . (?· (Br . Bl) ?≥)))
+     (add-to-list 'toby/clojure-prettify-alist '("fn"  . 955))
+     (add-to-list 'toby/clojure-prettify-alist '("->"  . 10230))
+     (add-to-list 'toby/clojure-prettify-alist '("->>" . 10233))
+
+     ;; (add-to-list 'toby/clojure-prettify-alist
+     ;;              '("->>" .  (?\s (Br . Bl) ?\s (Br . Bl) ?\s
+     ;;                              (Bl . Bl) ?- (Bc . Br) ?- (Bc . Bc) ?>
+     ;;                              (Bc . Bl) ?- (Br . Br) ?>)))
+
+     (eval-after-load 'clojure-mode
+       '(setq clojure--prettify-symbols-alist
+              (append toby/clojure-prettify-alist
+                      clojure--prettify-symbols-alist)))
+
+     (eval-after-load 'lisp-mode
+       '(setq lisp--prettify-symbols-alist
+              (append toby/clojure-prettify-alist
+                      lisp--prettify-symbols-alist)))
+   #+END_SRC
+
 ** Cider
 
    Set-up some local key-bindings.  This will pull in =clojure-mode= as well.

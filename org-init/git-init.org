@@ -30,6 +30,31 @@
      (global-set-key (kbd "<f2>") 'magit-status)
    #+END_SRC
 
+   Snippet-ize git commit templates:
+   #+BEGIN_SRC emacs-lisp
+     (defun toby/update-tracker-id (&optional story-file)
+       (interactive)
+
+       (save-excursion
+         (let* ((story-f  (if (consp story-file) story-file "../.story_id"))
+                (story-id (if (file-readable-p story-f)
+                              (with-temp-buffer
+                                (insert-file-contents story-f)
+                                (goto-char (point-min))
+                                (re-search-forward "^\\(#[0-9]+\\)[[:space:]]*" nil)
+                                (replace-match (match-string 1))
+                                (buffer-string))
+                            "")))
+           (goto-char (point-min))
+           (re-search-forward "_STORY_ID_" nil t)
+           (replace-match story-id)))
+
+       (yas-minor-mode-on)
+       (goto-char (point-min))
+       (forward-word 2)
+       (yas-expand))
+   #+END_SRC
+
 ** git-grep
    #+BEGIN_SRC emacs-lisp
      (defun git-grep-rb (regexp)

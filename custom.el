@@ -120,33 +120,90 @@
  '(magit-push-arguments nil)
  '(menu-bar-mode t)
  '(minitest-default-command (quote ("ruby" "-Ilib:test:spec:src/ruby:test/ruby")))
+ '(minitest-keymap-prefix (kbd "C-c m"))
  '(mmm-mode-ext-classes-alist
    (quote
     ((web-mode "\\.mm\\'" mason)
      (html-mode "\\.mm\\'" mason)
      (ruby-mode "\\.rb\\'" toby/heredoc))) nil (mmm-mode))
+ '(org-babel-clojure-backend (quote cider))
  '(org-src-window-setup (quote other-window))
  '(package-selected-packages
    (quote
-    (log4j-mode org-plus-contrib terraform-mode cl-lib org yasnippet yaml-mode web-mode web-completion-data twittering-mode tt-mode textmate switch-window smex smart-mode-line-powerline-theme sass-mode ruby-tools ruby-end rspec-mode rhtml-mode rbenv rainbow-delimiters psci projectile perl6-mode paredit ox-reveal ocodo-svg-modelines multi-term mmm-mode magit js-comint isearch+ inf-ruby idle-highlight-mode htmlize highlight-indentation haskell-mode fullframe flx-ido feature-mode enh-ruby-mode emmet-mode elixir-mode dockerfile-mode dired+ dash-at-point company-quickhelp column-marker color-identifiers-mode cider-eval-sexp-fu bug-hunter browse-kill-ring apache-mode alchemist ag ace-window ace-jump-mode)))
+    (command-log-mode minitest-mode minitest log4j-mode org-plus-contrib terraform-mode cl-lib org yasnippet yaml-mode web-mode web-completion-data twittering-mode tt-mode textmate switch-window smex smart-mode-line-powerline-theme sass-mode ruby-tools ruby-end rspec-mode rhtml-mode rbenv rainbow-delimiters psci projectile perl6-mode paredit ox-reveal ocodo-svg-modelines multi-term mmm-mode magit js-comint isearch+ inf-ruby idle-highlight-mode htmlize highlight-indentation haskell-mode fullframe flx-ido feature-mode enh-ruby-mode emmet-mode elixir-mode dockerfile-mode dired+ dash-at-point company-quickhelp column-marker color-identifiers-mode cider-eval-sexp-fu bug-hunter browse-kill-ring apache-mode alchemist ag ace-window ace-jump-mode)))
  '(perltidy-program "~/perl5/bin/perltidy")
  '(revert-without-query (quote ("rspec.*")))
+ '(rspec-autosave-buffer t)
  '(rspec-compilation-buffer-name "*specs*")
+ '(rspec-docker-cwd "/usr/src/app/")
  '(rspec-primary-source-dirs (quote ("app")))
  '(rspec-rake-command "bundle exec rake")
  '(rspec-spec-command "rspec ")
  '(rspec-use-bundler-when-possible t)
  '(rspec-use-rake-flag nil)
  '(rspec-use-rake-when-possible nil)
- '(rspec-use-rvm nil)
+ '(rspec-use-rvm t)
  '(ruby-align-to-stmt-keywords (quote (def if case unless)))
  '(ruby-deep-arglist nil)
  '(safe-local-variable-values
    (quote
-    ((org-confirm-babel-evaluate)
-     (encoding . utf-8)
-     (whitespace-line-column . 80)
-     (lexical-binding . t))))
+    ((eval local-set-key
+           (kbd "C-c m v")
+           (quote minitest-verify))
+     (eval local-set-key
+           (kbd "C-c m s")
+           (quote minitest-verify-single))
+     (eval local-set-key
+           (kbd "C-c m r")
+           (quote minitest-rerun))
+     (eval minitest-mode t)
+     (eval toby/update-tracker-id)
+     (eval progn \
+           (save-excursion
+           (let
+               ((story-id
+                 (with-temp-buffer
+                   (insert-file-contents "../.story_id")
+                   (beginning-of-buffer)
+                   (re-search-forward "^\\(#[0-9]+\\)[[:space:]]*" nil)
+                   (replace-match
+                    (match-string 1))
+                   (buffer-string))))
+             (beginning-of-buffer)
+             (re-search-forward "_TRACKER_ID_" nil t)
+             (replace-match story-id)))
+     (point-min-marker)
+     (forward-word))
+    (eval save-excursion
+          (let
+              ((story-id
+                (with-temp-buffer
+                  (insert-file-contents "../.story_id")
+                  (beginning-of-buffer)
+                  (re-search-forward "^\\(#[0-9]+\\)[[:space:]]*" nil)
+                  (replace-match
+                   (match-string 1))
+                  (buffer-string))))
+            (beginning-of-buffer)
+            (re-search-forward "_TRACKER_ID_" nil t)
+            (replace-match story-id)))
+    (eval save-excursion
+          (let
+              ((story-id
+                (with-temp-buffer
+                  (insert-file-contents ".story_id")
+                  (beginning-of-buffer)
+                  (re-search-forward "^\\(#[0-9]+\\)[[:space:]]*" nil)
+                  (replace-match
+                   (match-string 1))
+                  (buffer-string))))
+            (beginning-of-buffer)
+            (re-search-forward "_TRACKER_ID_" nil t)
+            (replace-match story-id)))
+    (org-confirm-babel-evaluate)
+    (encoding . utf-8)
+    (whitespace-line-column . 80)
+    (lexical-binding . t))))
  '(scss-compile-at-save nil)
  '(show-paren-mode t)
  '(sml/pos-id-separator
@@ -265,7 +322,14 @@
       (sql-user "reception_desk_development")
       (sql-database "reception_desk_development")
       (sql-server "localhost")
-      (sql-port 65432)))))
+      (sql-port 65432))
+     ("pg_docker"
+      (sql-product
+       (quote postgres))
+      (sql-user "postgres")
+      (sql-database "postgres")
+      (sql-server "localhost")
+      (sql-port 5432)))))
  '(tags-revert-without-query t)
  '(tags-table-list (quote ("/Users/toby/Code/reception-desk/.TAGS")))
  '(visible-bell t)
@@ -292,4 +356,7 @@
  '(ediff-odd-diff-A ((t (:inherit ediff-odd-diff-B))))
  '(ediff-odd-diff-B ((t (:background "gray55"))))
  '(ediff-odd-diff-C ((t (:inherit ediff-odd-diff-B))))
- '(enh-ruby-op-face ((t (:foreground "gray70")))))
+ '(enh-ruby-heredoc-delimiter-face ((t (:foreground "DarkOliveGreen4"))))
+ '(enh-ruby-op-face ((t (:foreground "gray70"))))
+ '(enh-ruby-regexp-delimiter-face ((t (:foreground "khaki3"))))
+ '(enh-ruby-string-delimiter-face ((t (:foreground "OliveDrab4")))))

@@ -186,6 +186,8 @@
    #+END_SRC
 
 ** Keyboard and Mouse Set-up
+   - State "ADOPTED"    from              [2017-09-22 Fri 09:23]
+   - State "EXPERIMENTAL" from              [2017-09-22 Fri 09:14]
    Bind Mac modifier keys:
    #+BEGIN_SRC emacs-lisp
      (setq

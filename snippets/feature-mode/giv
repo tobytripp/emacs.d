@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Given...
+# group: definitions
+# --
+Given ${step-definition}
+$0

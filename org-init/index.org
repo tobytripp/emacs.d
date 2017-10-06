@@ -26,7 +26,8 @@
 
 *** TODO Keep the tangled elisp in a separate directory that is in .gitignore
 
-** Decorations
+** EXPERIMENTAL Decorations
+   - State "EXPERIMENTAL" from              [2017-09-07 Thu 10:00]
    Turn off tool-bars and scroll bars and other features I deem unnecessary.
 
    #+BEGIN_SRC emacs-lisp

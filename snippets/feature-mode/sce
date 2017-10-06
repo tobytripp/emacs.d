@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Scenario
+# group: definitions
+# --
+
+Scenario: ${name}
+  giv$0

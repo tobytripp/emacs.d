@@ -17,8 +17,6 @@
      (require-package 'ruby-mode)
      (autoload 'ruby-mode "ruby-mode" "Major mode for Ruby" t)
 
-     (require-package 'enh-ruby-mode)
-     (autoload 'enh-ruby-mode "enh-ruby-mode" "Major mode for ruby files" t)
      (setq enh-ruby-program (concat rbenv-installation-dir "/shims/ruby"))
 
      (eval-after-load 'ruby-mode
@@ -27,6 +25,11 @@
           (require-package 'inf-ruby)
           (require-package 'rbenv)
           (require-package 'rspec-mode)
+          (autoload 'rspec-mode "rspec-mode" "Minor mode for RSpec specs" t)
+          (require-package 'minitest)
+          (autoload 'minitest-mode "minitest-mode" "Minor mode for Minitest specs" t)
+          (require-package 'enh-ruby-mode)
+          (autoload 'enh-ruby-mode "enh-ruby-mode" "Major mode for ruby files" t)
           (require-package 'column-marker)
           (require-package 'flyspell)
           (require-package 'ruby-tools)))
@@ -55,7 +58,6 @@
              '(("lambda" . 955)
                ("->"     . (?→ (Br . Bl) ?λ))
                ("=>"     . 10233)
-               (" = "    . 8789)
                )))
 
      (defun toby/ruby-init ()
@@ -69,8 +71,11 @@
 
        ;; Doesn't work in the terminal, unfortunately…
        (define-key ruby-mode-map (kbd "C-=") 'insert-rocket)
+       (define-key enh-ruby-mode-map (kbd "C-c =") 'insert-rocket)
 
        (define-key ruby-mode-map (kbd "C-c =") 'insert-rocket)
+       (define-key ruby-mode-map (kbd "C-c c") 'compile)
+       (define-key enh-ruby-mode-map (kbd "C-c c") 'compile)
 
        (hs-minor-mode 1) ;; Code folding
 
@@ -92,8 +97,9 @@
 
        (setq buffer-save-without-query t)
 
-       (require 'rspec-mode)
-       (rspec-mode t)
+       ;; (require 'rspec-mode)
+       ;; (require 'minitest-mode)
+
        (local-set-key (kbd "M-r")            'rspec-verify)
        (local-set-key (kbd "M-S-r")          'rspec-verify-single)
        (local-set-key [f12]                  'rspec-verify)
@@ -102,8 +108,7 @@
        (local-set-key [f13]                  'rspec-rerun)
        (local-set-key [f10]                  'next-error))
 
-     (autoload 'enh-ruby-mode "enh-ruby-mode" "Major mode for ruby files" t)
-     (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
+     (add-to-list 'auto-mode-alist        '("\\.rb$" . ruby-mode))
      (add-to-list 'interpreter-mode-alist '("ruby" . enh-ruby-mode))
 
      (add-hook 'ruby-mode-hook     'toby/ruby-init)
@@ -167,7 +172,7 @@
      (when (and (featurep 'yasnippet)
                 feature-snippet-directory
                 (file-exists-p feature-snippet-directory))
-       (yas/load-directory feature-snippet-directory))
+       (yas-load-directory feature-snippet-directory))
 
      (add-hook 'feature-mode-hook
                (lambda ()

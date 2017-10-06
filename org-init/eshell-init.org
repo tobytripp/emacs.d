@@ -24,6 +24,7 @@
      '(progn
         (require 'em-term)
         (add-to-list 'eshell-visual-commands "bundle")
+        (add-to-list 'eshell-visual-commands "tail")
         (add-to-list 'eshell-visual-commands "rake")
         (add-to-list 'eshell-visual-commands "rspec")))
    #+END_SRC
@@ -133,7 +134,7 @@
 
     (defun toby/term-hook ()
       (linum-mode -1)
-      (setq show-trailing-whitespace nil)
+      (setq-local show-trailing-whitespace nil)
       ;; yas mode can break the TAB character in terminals
       (yas-minor-mode -1))
 
@@ -141,6 +142,7 @@
       (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix))
 
     (add-hook 'term-mode-hook 'toby/term-hook)
+    (add-hook 'eshell-mode-hook 'toby/term-hook)
     (add-hook 'term-exec-hook 'toby/term-exec-hook)
   #+END_SRC
 

@@ -10,6 +10,12 @@
    (eval-when-compile (require 'cl))
    #+END_SRC
 
+   I still use a couple functions from the old TextMate package:
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'textmate)
+     (require 'textmate)
+   #+END_SRC
+
 ** Commands
    Use =tramp= to re-open a file with more privileges:
    #+BEGIN_SRC emacs-lisp
@@ -31,7 +37,7 @@
          (kill-line)
          (yank)
          (open-line 1)
-         (forward-line 1)
+         (next-line 1)
          (yank)))
    #+END_SRC
 

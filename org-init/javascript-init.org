@@ -77,7 +77,7 @@
         (glasses-mode t)
         (tern-mode t)
         (flycheck-mode t)
-        (toby/activate-structured-editing t)
+        (smartparens-strict-mode)
         (prettify-symbols-mode)
         (setq mode-name "Js"))
 

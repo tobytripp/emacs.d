@@ -7,6 +7,9 @@
      (autoload 'haskell-mode "haskell-mode")
      (setq haskell-program-name "/usr/bin/ghci")
 
+     (eval-after-load 'haskell-mode
+       '(require-package 'smartparens))
+
      (eval-after-load "haskell-cabal"
        '(define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-compile))
 
@@ -14,7 +17,9 @@
        (turn-on-haskell-doc-mode)
        (turn-on-haskell-indentation)
 
-       (toby/activate-structured-editing t)
+       (require 'smartparens-config)
+       (smartparens-strict-mode)
+       (show-smartparens-mode t)
 
        (define-key haskell-mode-map (kbd "s-r")   'inferior-haskell-load-and-run)
        (define-key haskell-mode-map (kbd "C-c l") 'inferior-haskell-load-and-run)

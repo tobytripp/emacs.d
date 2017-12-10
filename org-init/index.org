@@ -1,90 +1,33 @@
 #+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
 #+TITLE:  Toby's Emacs Configuration
-#+PROPERTY: tangle org-init-out.el
+#+PROPERTY: tangle yes
 
 * My Emacs Configuration
 
-  #+BEGIN_QUOTE
+  #+begin_quote
   Emacs out-shines all other editing software in approximately the same
   way that the noonday sun does the stars. It is not just bigger and
   brighter; it simply makes everything else vanish.
 
   -- Neal Stephenson, "In the Beginning was the Command Line"
-  #+END_QUOTE
+  #+end_quote
 
-** ADOPTED Testing out a Literate emacs configuration.
+  Testing out a Literate emacs configuration.
 
-   - State "ADOPTED"    from              [2017-12-08 Fri 16:28]
+  This file should catalog my [[file:keybindings.org][key-bindings]] as well as my language mode
+  settings, such as for [[file:clojure.org][Clojure]] and [[file:ruby-init.org][Ruby]].
 
-   #+BEGIN_QUOTE
-   Let us change our traditional attitude to the construction of programs:
-   Instead of imagining that our main task is to instruct a computer what to
-   do, let us concentrate rather on explaining to human beings what we want a
-   computer to do.
-
-   The practitioner of literate programming can be regarded as an essayist,
-   whose main concern is with exposition and excellence of style. Such an
-   author, with thesaurus in hand, chooses the names of variables carefully and
-   explains what each variable means. He or she strives for a program that is
-   comprehensible because its concepts have been introduced in an order that is
-   best for human understanding, using a mixture of formal and informal methods
-   that reinforce each other.
-
-   – Donald Knuth
-   #+END_QUOTE
-
-*** Purpose
-
-    This file should catalog my [[file:keybindings.org][key-bindings]] as well as my language mode
-    settings, such as for [[file:clojure.org][Clojure]] and [[file:ruby-init.org][Ruby]].
-
-    # Edit code snippets with =C-c '=
-    # Load this configuration file using the function: =org-babel-load-file=
-    # Export it to HTML with:
-    #   C-c C-e h h     (org-html-export-to-html)
-    # Export the whole org-init project with:
-    #   C-c C-e P p
+  # Edit code snippets with =C-c '=
+  # Load this configuration file using the function: =org-babel-load-file=
+  # Export it to HTML with:
+  #   C-c C-e h h     (org-html-export-to-html)
+  # Export the whole org-init project with:
+  #   C-c C-e P p
 
 *** TODO Keep the tangled elisp in a separate directory that is in .gitignore
-**** How, exactly?
 
-
-* Configuraion Settings
-** If Something Goes Wrong
-
-   Sometimes it helps to launch the debugger when an error occurs.  By
-   default, I often turned that off:
-
-   #+BEGIN_SRC emacs-lisp :tangle no
-     (setq debug-on-error       nil)
-   #+END_SRC
-
-   to turn it on:
-
-   #+BEGIN_SRC emacs-lisp
-     (setq debug-on-error       t)
-   #+END_SRC
-
-   There is also an elisp package that looks as though it would be helpful for
-   this: =elisp-bug-hunter=.  It does not, currently, work well with
-   =babel-load= configurations, but I'm working on that.
-
-   Actually, the package author offers some advice on this.  See
-   [[https://github.com/Malabarba/elisp-bug-hunter][github/bug-hunter]].
-
-   #+BEGIN_SRC emacs-lisp
-     (require-package 'bug-hunter)
-
-     (autoload 'bug-hunter-init-file "bug-hunter"
-       "Debug issues with emacs start-up")
-
-     ;; M-x bug-hunter-init-file
-   #+END_SRC
-
-** ADOPTED Decorations
-   - State "ADOPTED"    from "REJECTED" [2017-12-08 Fri 16:25]
-   - State "EXPERIMENTAL" from          [2017-09-07 Thu 10:00]
-
+** EXPERIMENTAL Decorations
+   - State "EXPERIMENTAL" from              [2017-09-07 Thu 10:00]
    Turn off tool-bars and scroll bars and other features I deem unnecessary.
 
    #+BEGIN_SRC emacs-lisp
@@ -112,6 +55,12 @@
 
    #+BEGIN_SRC emacs-lisp
      (when (display-graphic-p) (set-fringe-style 0))
+   #+END_SRC
+
+   Highlight the current line in the buffer.
+
+   #+BEGIN_SRC emacs-lisp
+     (global-hl-line-mode 1)
    #+END_SRC
 
    Over-write selection to make things slightly less uncomfortable to
@@ -208,11 +157,8 @@ I keep these in a separate file to make it easy to find them.
    #+BEGIN_SRC emacs-lisp
      (defun toby/babel-load-file (relative-path)
        "Load the given file using org-babel-load-file.  Path should be
-        relative to lib-dir"
-       (message "%s ---> load babel %-24s" "toby/babel-load-file" relative-path)
+     relative to lib-dir"
        (org-babel-load-file (expand-file-name relative-path org-lib-dir)))
-
-     (define-key emacs-lisp-mode-map (kbd "C-c b") 'eval-buffer)
    #+END_SRC
 
 * Load Configurations
@@ -222,88 +168,23 @@ I keep these in a separate file to make it easy to find them.
   (require 'defuns)
   #+END_SRC
 
-  Now, load every elisp file in the =lib= directory.  Errors can be demoted to
-  warnings so that a problem in a particular extension doesn't bring start-up
-  to a halt.
-
-  #+BEGIN_SRC emacs-lisp :tangle no
+  Now, load every elisp file in the =lib= directory.  Demote errors to
+  warnings so that a problem in a particular extension doesn't bring
+  start-up to a halt.
+  #+BEGIN_SRC emacs-lisp
     (with-demoted-errors
-        (mapc #'load
-              (mapcar #'file-name-sans-extension
-                      (directory-files lib-dir nil ".*\.el$")))
+      (mapc #'load
+            (mapcar #'file-name-sans-extension
+                    (directory-files lib-dir nil ".*\.el$")))
       (mapc #'toby/babel-load-file
             (remove "index.org" (directory-files org-lib-dir nil ".*org$"))))
+
+    (byte-recompile-directory org-lib-dir 0)
+    (byte-recompile-directory lib-dir 0)
   #+END_SRC
 
   Errors encountered while loading these libraries will show up in
   the Messages buffer after start-up.
-
-  For the time being, crashing early is more desirable to me:
-
-  #+BEGIN_SRC emacs-lisp
-    ;; (mapc #'load
-    ;;       (mapcar #'file-name-sans-extension
-    ;;               (directory-files lib-dir nil ".*\.el$")))
-    (let ((org-files (remove "index.org"
-                             (directory-files org-lib-dir nil ".*org$"))))
-      (mapc #'toby/babel-load-file org-files)
-      (message "----> Loaded: %s\n\n" org-files))
-  #+END_SRC
-
-
-** REJECTED Use OrgMode's #include directive instead
-
-   - State "REJECTED"     from "EXPERIMENTAL" [2017-12-10 Sun 10:44]
-     This may deserve additional investigation, the problem is that the
-     org-exported file does not tangle or include the necessary elisp when I
-     run it.
-   - State "EXPERIMENTAL" from "TODO"         [2017-12-10 Sun 10:23]
-   - State "TODO"         from                [2017-12-10 Sun 10:23]
-
-   # Evaluate with C-c C-c
-   #+BEGIN_SRC emacs-lisp :tangle no :exports none
-     (mapconcat
-      (lambda (f)
-        (message f)
-        (format "#+INCLUDE: %-24s :minlevel 1" f))
-      (remove "index.org"
-              (sort (directory-files org-lib-dir nil ".*org$")
-                    (lambda (a b) (string< a b))))
-      "\n")
-  #+END_SRC
-
-   #+RESULTS:
-   #+INCLUDE: clojure.org              :minlevel 1
-   #+INCLUDE: coding-init.org          :minlevel 1
-   #+INCLUDE: completion.org           :minlevel 1
-   #+INCLUDE: elixir.org               :minlevel 1
-   #+INCLUDE: elm-init.org             :minlevel 1
-   #+INCLUDE: emacs-init.org           :minlevel 1
-   #+INCLUDE: email-init.org           :minlevel 1
-   #+INCLUDE: erc-init.org             :minlevel 1
-   #+INCLUDE: eshell-init.org          :minlevel 1
-   #+INCLUDE: finding-files.org        :minlevel 1
-   #+INCLUDE: git-init.org             :minlevel 1
-   #+INCLUDE: god-init.org             :minlevel 1
-   #+INCLUDE: haskell-init.org         :minlevel 1
-   #+INCLUDE: html-init.org            :minlevel 1
-   #+INCLUDE: javascript-init.org      :minlevel 1
-   #+INCLUDE: keybindings.org          :minlevel 1
-   #+INCLUDE: ldap-init.org            :minlevel 1
-   #+INCLUDE: lisp-init.org            :minlevel 1
-   #+INCLUDE: modeline-custom.org      :minlevel 1
-   #+INCLUDE: org-mode-init.org        :minlevel 1
-   #+INCLUDE: perl-init.org            :minlevel 1
-   #+INCLUDE: postgres-init.org        :minlevel 1
-   #+INCLUDE: purescript.org           :minlevel 1
-   #+INCLUDE: registers-init.org       :minlevel 1
-   #+INCLUDE: ruby-init.org            :minlevel 1
-   #+INCLUDE: senseless-eye-candy.org  :minlevel 1
-   #+INCLUDE: snippet-init.org         :minlevel 1
-   #+INCLUDE: sql-init.org             :minlevel 1
-   #+INCLUDE: tags.org                 :minlevel 1
-   #+INCLUDE: text.org                 :minlevel 1
-   #+INCLUDE: toby-mode.org            :minlevel 1
 
 *** Toby Mode
 
@@ -319,48 +200,62 @@ I keep these in a separate file to make it easy to find them.
     (global-toby-mode)
     #+END_SRC
 
-** Mode-Specific Configurations
-   # Evaluate with C-c C-c
-   #+BEGIN_SRC emacs-lisp :tangle no :exports none
-     (mapconcat (lambda (f)
-                  (concat "- " "[[file:" f "][" (file-name-sans-extension f) "]]"))
-                (sort (directory-files org-lib-dir nil ".*org$")
-                      (lambda (a b)
-                        (string< a b)))
-                "\n")
-   #+END_SRC
+* Mode-Specific Configurations
+  # Evaluate with C-c C-c
+  #+BEGIN_SRC emacs-lisp :tangle no :exports none
+    (mapconcat (lambda (f)
+                 (concat "- " "[[file:" f "][" (file-name-sans-extension f) "]]"))
+               (sort (directory-files org-lib-dir nil ".*org$")
+                     (lambda (a b)
+                       (string< a b)))
+               "\n")
+  #+END_SRC
 
-   Other Configuraion Files:
-   #+RESULTS:
-   - [[file:clojure.org][clojure]]
-   - [[file:coding-init.org][coding-init]]
-   - [[file:completion.org][completion]]
-   - [[file:emacs-init.org][emacs-init]]
-   - [[file:eshell-init.org][eshell-init]]
-   - [[file:finding-files.org][finding-files]]
-   - [[file:git-init.org][git-init]]
-   - [[file:god-init.org][god-init]]
-   - [[file:haskell-init.org][haskell-init]]
-   - [[file:html-init.org][html-init]]
-   - [[file:index.org][index]]
-   - [[file:javascript-init.org][javascript-init]]
-   - [[file:keybindings.org][keybindings]]
-   - [[file:lisp-init.org][lisp-init]]
-   - [[file:main.org][main]]
-   - [[file:modeline-custom.org][modeline-custom]]
-   - [[file:org-mode-init.org][org-mode-init]]
-   - [[file:registers-init.org][registers-init]]
-   - [[file:ruby-init.org][ruby-init]]
-   - [[file:senseless-eye-candy.org][senseless-eye-candy]]
-   - [[file:snippet-init.org][snippet-init]]
-   - [[file:tags.org][tags]]
-   - [[file:toby-mode.org][toby-mode]]
+  Other Configuraion Files:
+  #+RESULTS:
+  - [[file:clojure.org][clojure]]
+  - [[file:coding-init.org][coding-init]]
+  - [[file:completion.org][completion]]
+  - [[file:emacs-init.org][emacs-init]]
+  - [[file:eshell-init.org][eshell-init]]
+  - [[file:finding-files.org][finding-files]]
+  - [[file:git-init.org][git-init]]
+  - [[file:god-init.org][god-init]]
+  - [[file:haskell-init.org][haskell-init]]
+  - [[file:html-init.org][html-init]]
+  - [[file:index.org][index]]
+  - [[file:javascript-init.org][javascript-init]]
+  - [[file:keybindings.org][keybindings]]
+  - [[file:lisp-init.org][lisp-init]]
+  - [[file:main.org][main]]
+  - [[file:modeline-custom.org][modeline-custom]]
+  - [[file:org-mode-init.org][org-mode-init]]
+  - [[file:registers-init.org][registers-init]]
+  - [[file:ruby-init.org][ruby-init]]
+  - [[file:senseless-eye-candy.org][senseless-eye-candy]]
+  - [[file:snippet-init.org][snippet-init]]
+  - [[file:tags.org][tags]]
+  - [[file:toby-mode.org][toby-mode]]
 
-** TODO Byte-compile
+* If Something Goes Wrong
 
-   - State "TODO"       from              [2017-12-10 Sun 11:22]
+  Sometimes it helps to launch the debugger when an error occurs.  By
+  default, I've turned that off:
+  #+BEGIN_SRC emacs-lisp
+    (setq debug-on-error       nil)
+  #+END_SRC
 
-   #+BEGIN_SRC emacs-lisp :tangle no
-    (byte-recompile-directory org-lib-dir 0)
-    (byte-recompile-directory lib-dir 0)
-   #+END_SRC
+  to turn it on:
+  #+BEGIN_SRC emacs-lisp :tangle no
+    (setq debug-on-error       t)
+  #+END_SRC
+
+  There is also an elisp package that looks as though it would be
+  helpful for this: =elisp-bug-hunter=.
+
+  #+BEGIN_SRC emacs-lisp
+    (require-package 'bug-hunter)
+
+    (autoload 'bug-hunter-init-file "bug-hunter"
+      "Debug issues with emacs start-up")
+  #+END_SRC

@@ -94,13 +94,9 @@
    https://github.com/abo-abo/avy
 
    #+BEGIN_SRC emacs-lisp
-     (global-set-key   (kbd "M-g") 'goto-line)
-     (global-set-key   (kbd "M-z") 'zap-to-char)
+     (global-set-key (kbd "M-g") 'goto-line)
+     (global-set-key (kbd "M-z") 'zap-to-char)
      (global-unset-key (kbd "M-SPC"))
-
-     (global-set-key (kbd "<end>")    'ace-window)
-     (global-set-key (kbd "<select>") 'ace-window)
-     (global-set-key (kbd "<next>")   'ido-switch-buffer)
 
      (require-package 'avy)
      (global-set-key (kbd "M-SPC")   'avy-goto-word-1)
@@ -109,13 +105,13 @@
 
 ** Frame/Window Properties
    #+BEGIN_SRC emacs-lisp
-     (define-key global-map (kbd "C-c s +") 'text-scale-increase)
-     (define-key global-map (kbd "C-c s -") 'text-scale-decrease)
-     (define-key global-map (kbd "C-c s =") 'text-scale-set)
-     (global-set-key        (kbd "C-s-f")   'ns-toggle-fullscreen)
+     (define-key global-map (kbd "C-+") 'text-scale-increase)
+     (define-key global-map (kbd "C--") 'text-scale-decrease)
+     (define-key global-map (kbd "C-=") 'text-scale-set)
+     (global-set-key (kbd "C-s-f")     'ns-toggle-fullscreen)
    #+END_SRC
 
-** File and Buffer Handling
+** File and Buffer Switching
 
    Commands to switch buffers:
    #+BEGIN_SRC emacs-lisp
@@ -153,9 +149,7 @@
      (require-package 'avy)
      (require-package 'ace-window)
      (global-set-key (kbd "C-x o")   'ace-window)
-     (global-set-key (kbd "C-x C-o") 'ace-window)
-     (global-set-key (kbd "C-x M-o") 'other-window)
-     (global-set-key (kbd "M-p")     'ace-window)
+     (global-set-key (kbd "M-p") 'ace-window)
 
      (setq aw-keys '(?a ?o ?e ?u ?i  ?d ?h ?t ?n ?s))
    #+END_SRC
@@ -172,7 +166,7 @@
      (global-set-key (kbd "<f17>") 'ace-window)
    #+END_SRC
 
-   On larger screens, I like to divide my frame into thirds:
+   On larger screens, I like to divide me frame into thirds:
    #+BEGIN_SRC emacs-lisp
      (defun split-in-thirds ()
        "Split the window vertically into three segments."
@@ -182,20 +176,6 @@
        (balance-windows))
 
      (global-set-key (kbd "C-x 6") 'split-in-thirds)
-   #+END_SRC
-
-   A function for `killing` the current buffer window without prompting:
-
-   #+BEGIN_SRC emacs-lisp
-     (defun toby/kill-this-buffer ()
-       (interactive)
-       (kill-buffer (current-buffer)))
-   #+END_SRC
-
-   And key-bindings to call it:
-
-   #+BEGIN_SRC emacs-lisp
-     (global-set-key (kbd "C-c k") 'toby/kill-this-buffer)
    #+END_SRC
 
 ** Getting Help

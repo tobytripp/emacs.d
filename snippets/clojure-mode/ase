@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# name: (is (= expected actual))
-# key: ase
-# --
-(is (= ${expected}
-       ${actual}))

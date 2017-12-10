@@ -74,33 +74,32 @@
 
 ** Theme
    I have one.
-
-   #+begin_src emacs-lisp :tangle no
+   #+BEGIN_SRC emacs-lisp
      (load-theme 'toby)
-     ;; make sure terminals pick up the theme settings:
+     ;; Make sure terminals pick up the theme settings:
      (setq term-default-fg-color (face-foreground 'default))
      (setq term-default-bg-color (face-background 'default))
-   #+end_src
+   #+END_SRC
 
-* twitter
-  talk about senseless…
+* Twitter
+  Talk about senseless…
 
-  #+begin_src emacs-lisp
+  #+BEGIN_SRC emacs-lisp
     (require-package 'twittering-mode)
-    (autoload 'twittering-mode "twittering-mode" "twitter stream in emacs" t)
+    (autoload 'twittering-mode "twittering-mode" "Twitter stream in Emacs" t)
 
     (setq twittering-username "tobytripp")
     (setq twittering-icon-mode t)
 
     (global-set-key (kbd "C-c t") 'twittering-update-status-interactive)
-  #+end_src
+  #+END_SRC
 
-  make its window sticky:
-  #+begin_src emacs-lisp
+  Make its window sticky:
+  #+BEGIN_SRC emacs-lisp
   (toby/defhook twittering-mode-hook
     (set-window-dedicated-p (selected-window) 1))
-  #+end_src
+  #+END_SRC
 
-#+begin_src emacs-lisp :exports none
+#+BEGIN_SRC emacs-lisp :exports none
 (provide 'senseless-eye-candy)
-#+end_src
+#+END_SRC

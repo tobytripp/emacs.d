@@ -3,7 +3,7 @@
 * ERC Chat Set-up
 
   #+BEGIN_SRC emacs-lisp
-    (setq auth-sources '("~/.authinfo.gpg" "~/.emacs.d/secrets/.authinfo.gpg" "~/.authinfo")
+    (setq auth-sources '("~/.authinfo.gpg" "~/.authinfo")
           whitespace-global-modes '(not erc-mode)
           erc-prompt-for-password nil
           erc-server-coding-system '(utf-8 . utf-8)
@@ -11,18 +11,4 @@
           erc-timestamp-format "[%H:%M] "
           erc-fill-prefix      "        "
           erc-insert-timestamp-function 'erc-insert-timestamp-left)
-  #+END_SRC
-
-  #+BEGIN_SRC emacs-lisp
-    (defun slack ()
-      (interactive)
-      (let ((server "goldstarlearning.irc.slack.com")
-            (nick "toby")
-            (full-name "Toby Tripp, CodeBot")
-            (erc-server-auto-reconnect nil)
-            (port 6697))
-        (erc-tls :server server
-                 :port port
-                 :full-name full-name
-                 :nick nick)))
   #+END_SRC

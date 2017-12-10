@@ -43,37 +43,31 @@
 ** Cider
 
    Set-up some local key-bindings.  This will pull in =clojure-mode= as well.
-
    #+BEGIN_SRC emacs-lisp
-     (require-package 'clojure-mode (version-to-list "5.6.1"))
+     (require-package 'clojure-mode)
      (autoload 'clojure-mode "clojure-mode" "Major mode for clojure")
-     (autoload 'cider-mode "cider-mode" "Minor mode for live clojure development")
 
-     (defun toby/cider-onload ()
-       (require-package 'cider-eval-sexp-fu (version-to-list "1.1"))
-       (require 'cider-eval-sexp-fu)
-       (define-key cider-mode-map (kbd "<f3>")    'cider-eval-defun-at-point)
-       (define-key cider-mode-map (kbd "<f5>")    'toby/save-and-eval-buffer)
-       (define-key cider-mode-map (kbd "<f12>")   'cider-test-run-tests)
-       (define-key cider-mode-map (kbd "C-c C-e") 'cider-eval-print-last-sexp)
-       (setq cider-mode-line '(:eval "🍺")))
+     (eval-after-load 'clojure-mode
+       '(progn
+          (require-package 'cider)))
 
-     (eval-after-load 'cider #'toby/cider-onload)
+     (eval-after-load 'cider
+       '(progn
+          (require-package 'cider-eval-sexp-fu)
+          (require 'cider-eval-sexp-fu)
+          (define-key cider-mode-map (kbd "<f3>")    'cider-eval-defun-at-point)
+          (define-key cider-mode-map (kbd "<f5>")    'toby/save-and-eval-buffer)
+          (define-key cider-mode-map (kbd "<f12>")   'cider-test-run-tests)
+          (define-key cider-mode-map (kbd "C-c C-e") 'cider-eval-print-last-sexp)
+          (setq cider-mode-line '(:eval "🍺"))))
 
-     (defun toby/cider-init ()
-       (eldoc-mode 1)
-       (toby/activate-structured-editing))
-     (add-hook 'cider-mode-hook #'toby/cider-init)
-
-     (defun toby/clj-repl-init ()
-       (subword-mode 1)
-       (toby/activate-structured-editing))
-
-     (add-hook 'cider-repl-mode-hook #'toby/clj-repl-init)
+     (add-hook 'cider-mode-hook      #'eldoc-mode)
+     (add-hook 'cider-mode-hook      #'paredit-mode)
+     (add-hook 'cider-repl-mode-hook #'paredit-mode)
+     (add-hook 'cider-repl-mode-hook #'subword-mode)
 
      (defun toby/save-and-eval-buffer ()
-       "Save open buffers and send the current buffer to the active
-        Cider session."
+       "Save open buffers and send the current buffer to the active Cider session."
        (interactive)
        (save-some-buffers 't)
        (cider-eval-buffer))
@@ -92,35 +86,19 @@
 
 ** Clojure
 
+   Paredit is my best-est friend
    #+BEGIN_SRC emacs-lisp
-     (require-package 'clj-refactor (version-to-list "2.3.1"))
+     (require-package 'clj-refactor)
      (autoload 'clj-refactor "clj-refactor-mode")
 
-     (defun toby/insert-comma ()
-       "Insert commas in lisp environments where its binding may have
-       been overridden (given that `,` is considered white-space in
-       many lisps, its use can be more convenient elsewhere)"
-       (interactive)
-       (insert ",")
-       (god-local-mode -1))
-
-     (defun toby/lisp-keys (kmap)
-       (require 'god-mode)
-       ;; Consider use of (current-local-map)
-       (define-key kmap (kbd ",")   'god-local-mode)
-       (global-set-key  (kbd "C-,") 'toby/insert-comma)
-       (define-key god-local-mode-map  (kbd "C-,") 'toby/insert-comma))
-
      (defun toby/clojure-init ()
-       (toby/activate-structured-editing)
+       (paredit-mode 1)
+       (show-paren-mode 1)
 
-       (cider-mode 1)
        (clj-refactor-mode 1)
        (yas-minor-mode 1)
 
        (cljr-add-keybindings-with-prefix "C-c c")
-
-       (toby/lisp-keys (current-local-map))
 
        ;; Compojure Macros:
        (define-clojure-indent
@@ -134,8 +112,14 @@
          (ANY 2)
          (context 2)))
 
-     (add-hook 'clojure-mode-hook #'toby/clojure-init)
-     ;; (toby/lisp-keys clojure-mode-map)
+     (defun toby/lisp-keys ()
+       (define-key clojure-mode-map (kbd "<C-down>") 'forward-sexp)
+       (define-key clojure-mode-map (kbd "<C-up>")   'backward-sexp))
+
+     (eval-after-load 'clojure-mode '(toby/lisp-keys))
+
+     (add-hook 'clojure-mode-hook 'toby/clojure-init)
+     (toby/defhook cider-mode-hook (paredit-mode))
    #+END_SRC
 
 *** Clojuredocs
@@ -165,21 +149,9 @@
         (funcall (cider-prompt-for-symbol-function arg)
                  "Clojuredoc for"
                  #'toby/clojuredocs-lookup))
+
+      (define-key clojure-mode-map (kbd "C-c C-d o") 'toby/clojuredocs-web)
     #+END_SRC
-
-** On-Load
-
-    #+BEGIN_SRC emacs-lisp
-
-        (defun toby/clojure-onload ()
-       (require-package 'cider (version-to-list "0.15.1"))
-       (define-key clojure-mode-map (kbd "<C-down>") 'forward-sexp)
-       (define-key clojure-mode-map (kbd "<C-up>")   'backward-sexp)
-       (define-key clojure-mode-map (kbd "C-c C-d o") 'toby/clojuredocs-web))
-
-     (eval-after-load 'clojure-mode #'toby/clojure-onload)
-    #+END_SRC
-
 
 #+BEGIN_SRC emacs-lisp :exports none
 (provide 'clojure)

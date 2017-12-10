@@ -15,7 +15,6 @@
 
    I like it to open full-screen and then restore my windows where
    they were when it is done:
-
    #+BEGIN_SRC emacs-lisp
      (require-package 'magit)
      (require-package 'fullframe)
@@ -54,6 +53,19 @@
        (goto-char (point-min))
        (forward-word 2)
        (yas-expand))
+   #+END_SRC
+
+** git-grep
+   #+BEGIN_SRC emacs-lisp
+     (defun git-grep-rb (regexp)
+       "Run git-grep on ruby files in the current project"
+       (interactive "sSearch for (regexp): ")
+       (vc-git-grep regexp "'*.rb'" (textmate-project-root)))
+
+     (defun git-grep (regexp)
+       "Run git-grep on files in the current project"
+       (interactive "sSearch for (regexp): ")
+       (vc-git-grep regexp "'*.rb' '*.clj'" (textmate-project-root)))
    #+END_SRC
 
 ** vc-annotate

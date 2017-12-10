@@ -19,7 +19,6 @@ projectile-bookmarks.eld
 /elisp/*.elc
 /org-init/*.el
 /org-init/*.elc
-/org-init/toby@*
 /html/*.html
 /var/
 /ido.last

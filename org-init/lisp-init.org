@@ -4,9 +4,9 @@
 ** Highlight on Eval
 
    #+BEGIN_SRC emacs-lisp
-     ;(require 'highlight)
+     ;; (require 'highlight)
      (require-package 'eval-sexp-fu)
-     (require 'eval-sexp-fu)
+     ;; (require 'eval-sexp-fu)
    #+END_SRC
 
 ** ELisp

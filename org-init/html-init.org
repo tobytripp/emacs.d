@@ -17,7 +17,8 @@
      (add-hook 'web-mode-hook 'toby/web-mode-hook)
    #+END_SRC
 
-** Emmet Mode
+** Emmet Modex
+
 
    From the Emmet Docs at https://github.com/smihica/emmet-mode
 

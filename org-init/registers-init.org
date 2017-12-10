@@ -27,3 +27,12 @@
      (dolist (r `((?i (file . ,(concat dotfiles-dir "init.el")))))
        (set-register (car r) (cadr r)))
    #+END_SRC
+
+*** EXPERIMENTAL Better(?) Keybindings
+    - State "EXPERIMENTAL" from              [2017-12-06 Wed 12:15]
+
+    #+BEGIN_SRC emacs-lisp
+      ;; Formerly bound to some flyspell fn I don't use
+      (global-unset-key (kbd "C-c j"))
+      (global-set-key (kbd "C-c j") 'jump-to-register)
+    #+END_SRC

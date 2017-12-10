@@ -16,29 +16,49 @@
      (setq eshell-smart-space-goes-to-end t)
    #+END_SRC
 
-** EXPERIMENTAL EShell ‘visual’ commands
+** ADOPTED EShell ‘visual’ commands
+   - State "ADOPTED"    from "REJECTED"   [2017-12-08 Fri 11:30]
    - State "EXPERIMENTAL" from              [2017-07-25 Tue 12:50]
 
    #+BEGIN_SRC emacs-lisp
-   (eval-after-load 'eshell
-     '(progn
-        (require 'em-term)
-        (add-to-list 'eshell-visual-commands "bundle")
-        (add-to-list 'eshell-visual-commands "tail")
-        (add-to-list 'eshell-visual-commands "rake")
-        (add-to-list 'eshell-visual-commands "rspec")))
+     (eval-after-load 'eshell
+       '(progn
+          (require 'em-term)
+          (add-to-list 'eshell-visual-commands "bundle")
+          (add-to-list 'eshell-visual-commands "tail")
+          (add-to-list 'eshell-visual-commands "rake")
+          (add-to-list 'eshell-visual-commands "rspec")
+          ))
    #+END_SRC
 
+*** Returning from a 'visual' command
+
+    Visual commands run in a new term-mode buffer named *env<n>*, killing this
+    buffer will not, by default, return you to the shell that started it.  This
+    function will kill the current buffer and open the eshell.
+
+    #+BEGIN_SRC emacs-lisp
+      (defun toby/kill-buffer-and-open-eshell ()
+        (interactive)
+        (toby/kill-this-buffer)
+        (eshell))
+
+      (global-set-key (kbd "C-c q") 'toby/kill-buffer-and-open-eshell)
+    #+END_SRC
+
 ** Opening EShells
+
    First, a short-cut to quickly open a shell.  Repeated invocations
    will bring back the same shell so we don't end up with a bunch of
    them running about.
+
    #+BEGIN_SRC emacs-lisp
      (global-set-key (kbd "C-x m") 'eshell)
    #+END_SRC
 
    It's nice to have an easy short-cut to launch into a shell in the
    current buffer's directory.  We'll start with a function to launch it:
+
    #+BEGIN_SRC emacs-lisp
      (defun toby/eshell-in-buffer-dir ()
        "Open eshell in the current buffer's directory"
@@ -56,11 +76,13 @@
    #+END_SRC
 
    and a binding to launch it:
+
    #+BEGIN_SRC emacs-lisp
      (global-set-key (kbd "C-x C-m") 'toby/eshell-in-buffer-dir)
    #+END_SRC
 
    Sometimes what you want is a real terminal:
+
    #+BEGIN_SRC emacs-lisp
      (global-set-key (kbd "C-x M") 'multi-term)
      (global-set-key (kbd "C-c n") 'multi-term-next)
@@ -70,6 +92,7 @@
    as though they were shell commands.  Here we'll define an alias
    =ff= that will open a file from the Eshell command line into an
    Emacs buffer:
+
    #+BEGIN_SRC emacs-lisp
      (defun toby/eshell-hooks ()
        ""
@@ -101,6 +124,7 @@
   #+END_SRC
 
   Binding =s-k= to =kill-buffer= doesn't make sense to me.
+
   #+BEGIN_SRC emacs-lisp
   (global-unset-key (kbd "s-k"))
   #+END_SRC
@@ -110,6 +134,8 @@
       (interactive)
       (local-set-key (kbd "<up>")   'comint-previous-input)
       (local-set-key (kbd "<down>") 'comint-next-input)
+      (local-set-key (kbd "C-c k")  'toby/kill-this-buffer)
+      (local-set-key (kbd "C-c q")  'toby/kill-this-buffer)
       (local-set-key (kbd "s-k")    'clear-shell))
 
     (add-hook 'term-exec-hook
@@ -146,9 +172,9 @@
     (defun toby/term-exec-hook ()
       (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix))
 
-    (add-hook 'term-mode-hook 'toby/term-hook)
+    (add-hook 'term-mode-hook   'toby/term-hook)
     (add-hook 'eshell-mode-hook 'toby/term-hook)
-    (add-hook 'term-exec-hook 'toby/term-exec-hook)
+    (add-hook 'term-exec-hook   'toby/term-exec-hook)
   #+END_SRC
 
 #+BEGIN_SRC emacs-lisp :exports none

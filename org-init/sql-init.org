@@ -1,0 +1,13 @@
+#+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
+* SQL Buffer/Connection Configuration
+** EXPERIMENTAL Upcase SQL Keywords
+   - State "EXPERIMENTAL" from              [2017-10-16 Mon 09:08]
+
+   #+BEGIN_SRC emacs-lisp
+     (defun toby/sql-init ()
+       (require-package 'sqlup-mode (version-to-list "0.8.0"))
+       (sqlup-mode t))
+
+     (add-hook 'sql-mode-hook #'toby/sql-init)
+     (add-hook 'sql-interactive-mode-hook #'toby/sql-init)
+   #+END_SRC

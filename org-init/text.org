@@ -14,12 +14,27 @@
 
 ** Using LaTeX to Enter Characters
 
+   | Key | Command                  |
+   | C-\ | Activate 'τεχ input mode |
+
    #+BEGIN_SRC emacs-lisp
    (setq default-input-method 'TeX)
    #+END_SRC
 
    Then press =C-\= to enter \lambda → λ, for example.  You should
    only have to enter =C-\= once to set the input mode.
+
+*** Examples
+
+    | Input   | Out |
+    |---------+-----|
+    | \ldots  | …   |
+    | \lambda | λ   |
+    | \ldq    | “   |
+    | \rdq    | ”   |
+    | \alpha  | α   |
+    | \beta   | β   |
+    | \theta  | θ   |
 
 ** Alignment
 

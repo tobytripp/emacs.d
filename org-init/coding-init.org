@@ -34,25 +34,64 @@
 ** Hooks Useful in All Programming Environments
 
    Here are a couple functions that can help line up stubborn bits of code:
-   #+BEGIN_SRC emacs-lisp
-     (require-package 'highlight-indentation)
-     (autoload 'highlight-indentation-current-column-mode "highlight-indentation")
-     (autoload 'highlight-indentation-mode "highlight-indentation")
-   #+END_SRC
+
+   Activate/deactivate via customize:
+
+    #+BEGIN_SRC emacs-lisp :tangle no
+      (customize-variable-other-window 'global-highlight-changes-mode)
+    #+END_SRC
+
+**** TODO clear change marks on commit
+
+     Some variant of the following:
+
+     #+BEGIN_SRC emacs-lisp :tangle no
+       (defun highlight-changes-remove-after-save ()
+         "Remove previous changes after save."
+         (make-local-variable 'after-save-hook)
+         (add-hook 'after-save-hook
+                   (lambda ()
+                     (highlight-changes-remove-highlight (point-min) (point-max)))))
+     #+END_SRC
+
+*** EXPERIMENTAL diff-hl
+    - State "EXPERIMENTAL" from              [2017-12-06 Wed 17:23]
+
+    #+BEGIN_SRC emacs-lisp
+    (require-package 'diff-hl (version-to-list "1.8.4"))
+    (autoload 'global-diff-hl-mode "diff-hl")
+    (autoload 'turn-on-diff-hl-mode "diff-hl")
+    (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
+    #+END_SRC
 
 *** EXPERIMENTAL Auto sex-p management
     - State "EXPERIMENTAL" from              [2017-06-30 Fri 09:58]
 
-   #+BEGIN_SRC emacs-lisp
-     ;; Haven't decided between the two yet…
-     (require-package 'paredit)
-     (require-package 'smartparens)
-     (require 'smartparens-config)
-     (define-key smartparens-mode-map (kbd "C-k") 'sp-kill-sexp)
+**** EXPERIMENTAL Need to decide between paredit/smartparens
 
-     (if (require 'smartparens nil 'noerror)
-         (smartparens-mode t)
-       (paredit-mode t))
+     - State "EXPERIMENTAL" from "TODO"       [2017-12-10 Sun 12:58]
+     - State "TODO"       from              [2017-12-10 Sun 12:58]
+
+   #+BEGIN_SRC emacs-lisp
+     (defun toby/activate-stuctured-editing (& strict?)
+       (interactive "P")
+
+       (require-package 'paredit)
+       (require-package 'dash (version-to-list "2.13.0"))
+       (require-package 'smartparens (version-to-list "1.11.0"))
+
+       (if (require 'smartparens nil 'noerror)
+           (progn
+             (require 'smartparens-config)
+             (define-key smartparens-mode-map (kbd "C-k") 'sp-kill-sexp)
+             (if strict?
+                 (smartparens-strict-mode t)
+               (smartparens-mode t))
+             (show-smartparens-mode t)
+             )
+         (progn
+           (paredit-mode t)
+           (show-paren-mode 1))))
    #+END_SRC
 
 *** Formatting Hooks/Functions
@@ -90,6 +129,8 @@
 
        (idle-highlight-mode t)
        (highlight-indentation-current-column-mode)
+
+       ;; (highlight-changes-mode)
 
        (rainbow-delimiters-mode))
 
@@ -154,7 +195,7 @@
      (add-to-list 'mmm-set-file-name-for-modes 'ruby-mode)
    #+END_SRC
 
-** [#B] Commands
+** Commands
 
    #+BEGIN_SRC emacs-lisp
      (setq-default indent-tabs-mode nil)
@@ -176,6 +217,7 @@
 
    First, a function that allows another function to act on either a
    region or the buffer, based on whether a region is curently active.
+
    #+BEGIN_SRC emacs-lisp
      (defun act-on-region-or-buffer (fn)
        "Given a function that operates between to points, pass it the

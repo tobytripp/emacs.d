@@ -1,26 +1,20 @@
 #+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
 * CTags
 
-** Commands
+
+** TODO Tag Bindings
+
+   - State "TODO"       from "EXPERIMENTAL" [2017-12-10 Sun 09:57]
+   - State "EXPERIMENTAL" from              [2017-12-04 Mon 11:12]
+
+   Keybindings:
+
+   =tags-loop-continue= needs a good binding.  =M-.= has been re-bound in
+   recent versions of Emacs to an arguably better fn =xref-pop-marker-stack=
+
+   TODO:
 
    #+BEGIN_SRC emacs-lisp
-     (defun build-ctags ()
-       (interactive)
-       (message "building project tags")
-       (let (root (textmate-project-root))
-         (shell-command
-          (concat
-             "ctags -e -R --extra=+fq --exclude=db --exclude=test "
-             "--exclude=.git --exclude=public -f "
-             root ".TAGS " root)))
-       (visit-project-tags)
-       (message "tags built successfully"))
-
-     (defun visit-project-tags ()
-       (interactive)
-       (let ((tags-file (concat (textmate-project-root) ".TAGS")))
-         (visit-tags-table tags-file)
-         (message (concat "Loaded " tags-file))))
    #+END_SRC
 
 #+BEGIN_SRC emacs-lisp

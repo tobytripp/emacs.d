@@ -22,9 +22,4 @@
 
 (setq erc-hide-list '("JOIN" "PART" "QUIT"))
 
-(require 'tls)
-(defun erc-slack ()
-  (interactive)
-  (erc-tls ))
-
 (provide 'erc-init)

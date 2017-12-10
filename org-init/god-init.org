@@ -52,7 +52,10 @@
      (eval-after-load 'god-mode
        '(progn
           (global-unset-key [escape])
+          (global-unset-key (kbd "C--"))
+
           (global-set-key (kbd "<escape>") 'god-local-mode)
+          ;; (global-set-key (kbd "<escape>") 'god-mode-all)
 
           (global-set-key (kbd "C-x C-1") 'delete-other-windows)
           (global-set-key (kbd "C-x C-2") 'split-window-below)
@@ -61,11 +64,41 @@
           (global-set-key (kbd "C-x C-o") 'other-window)
 
           (define-key god-local-mode-map (kbd "C-<return>") 'god-local-mode)
+          (define-key god-local-mode-map (kbd ".") 'repeat)
+
+          (define-key god-local-mode-map  (kbd "C--") 'negative-argument)
 
           (add-hook 'god-mode-enabled-hook  'my-update-cursor)
-          (add-hook 'god-mode-disabled-hook 'my-update-cursor)))
+          (add-hook 'god-mode-disabled-hook 'my-update-cursor)
+
+          (defun god-toggle-on-overwrite ()
+            "Toggle god-mode on overwrite-mode."
+            (if (bound-and-true-p overwrite-mode)
+                (god-local-mode-pause)
+              (god-local-mode-resume)))
+
+          (add-hook 'overwrite-mode-hook 'god-toggle-on-overwrite)
+
+          (add-to-list 'god-exempt-major-modes 'cider-test-report-mode)
+          (add-to-list 'god-exempt-major-modes 'cider-stacktrace-mode)
+          (add-to-list 'god-exempt-major-modes 'ag-mode)
+
+          (defun c/god-mode-update-cursor ()
+            (let ((limited-colors-p (> 257 (length (defined-colors)))))
+              (cond (god-local-mode
+                     (progn
+                       (set-face-background 'mode-line (if limited-colors-p "white" "#e9e2cb"))
+                       (set-face-background 'mode-line-inactive (if limited-colors-p "white" "#e9e2cb"))))
+                    (t (progn
+                         (set-face-background 'mode-line (if limited-colors-p "black" "#0a2832"))
+                         (set-face-background 'mode-line-inactive (if limited-colors-p "black" "#0a2832")))))))
+
+          (require 'god-mode-isearch)
+          (define-key isearch-mode-map (kbd "<escape>") 'god-mode-isearch-activate)
+          (define-key god-mode-isearch-map (kbd "<escape>") 'god-mode-isearch-disable)))
    #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
 (provide 'god-init)
 #+END_SRC
+

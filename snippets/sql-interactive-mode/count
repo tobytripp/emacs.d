@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: select count(*) from
+# key: count
+# --
+select count(*) from ${table} $0;

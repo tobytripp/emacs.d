@@ -16,7 +16,7 @@
    #+END_SRC
 
    Start the emacs server, if it isn't running already.
-   #+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp :tangle no
      (if (and (fboundp 'server-running-p)
               (not (server-running-p)))
          (server-start))

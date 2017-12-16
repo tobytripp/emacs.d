@@ -31,6 +31,13 @@
      (global-set-key "\C-x7" 'set-window-columns)
    #+END_SRC
 
+** EXPERIMENTAL itail mode for log files
+   - State "EXPERIMENTAL" from              [2017-12-16 Sat 10:26]
+
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'itail)
+     (autoload 'itail "itail" "Interactive tail mode")
+   #+END_SRC
 ** Hooks Useful in All Programming Environments
 
    Here are a couple functions that can help line up stubborn bits of code:

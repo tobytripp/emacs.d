@@ -2,8 +2,7 @@
   "Created 2017-03-07.")
 
 (custom-theme-set-variables
- 'toby
- '(ansi-color-names-vector [solarized-bg red green yellow blue magenta cyan solarized-fg])
+ 'toby 
  '(aquamacs-additional-fontsets nil)
  '(aquamacs-customization-version-id 211)
  '(aquamacs-tool-bar-user-customization nil)

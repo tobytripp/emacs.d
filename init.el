@@ -1,3 +1,4 @@
+(setq debug-on-error t)
 
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
@@ -24,7 +25,6 @@
 (require 'org-install)
 (require 'ob-tangle)
 
-(setq debug-on-error t)
 
 (org-babel-load-file
  (expand-file-name "index.org"

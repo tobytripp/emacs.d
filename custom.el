@@ -44,7 +44,9 @@
       (mouse-color . "Grey")
       (top-toolbar-shadow-color . "#fffffbeeffff")
       (viper-saved-cursor-color-in-replace-mode . "Red3"))))
+ '(desktop-save-mode t)
  '(dired-auto-revert-buffer (quote dired-directory-changed-p))
+ '(dired-use-ls-dired nil)
  '(ediff-window-setup-function (quote ediff-setup-windows-plain))
  '(electric-pair-mode nil)
  '(enh-ruby-deep-indent-paren nil)
@@ -148,9 +150,10 @@
  '(rspec-rake-command "bundle exec rake")
  '(rspec-spec-command "rspec ")
  '(rspec-use-bundler-when-possible t)
+ '(rspec-use-docker-when-possible nil)
  '(rspec-use-rake-flag nil)
  '(rspec-use-rake-when-possible nil)
- '(rspec-use-rvm t)
+ '(rspec-use-rvm nil)
  '(ruby-align-to-stmt-keywords (quote (def if case unless)))
  '(ruby-deep-arglist nil)
  '(safe-local-variable-values
@@ -346,7 +349,7 @@
  '(web-mode-code-indent-offset 2)
  '(web-mode-enable-whitespace-fontification nil)
  '(web-mode-markup-indent-offset 2)
- '(whitespace-style (quote (trailing tab-mark)))
+ '(whitespace-style (quote (trailing tab-mark)) t)
  '(winner-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

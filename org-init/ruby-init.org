@@ -13,10 +13,22 @@
 ** Start-up
 
    #+BEGIN_SRC emacs-lisp
-     (setq rbenv-installation-dir "/usr/local/opt/rbenv")
+     (setq rbenv-installation-dir (concat (getenv "HOME") "/.rbenv"))
      (require-package 'ruby-mode)
      (autoload 'ruby-mode "ruby-mode" "Major mode for Ruby" t)
 
+     (setenv "PATH"
+             (string-join (list
+                           (concat rbenv-installation-dir "/shims")
+                           (concat rbenv-installation-dir "/bin")
+                           (getenv "PATH"))
+                          ":"))
+
+     (setenv "PATH" (concat (getenv "PATH") ":" ))
+     (add-to-list 'exec-path (concat rbenv-installation-dir "/shims"))
+
+     (require-package 'enh-ruby-mode)
+     (autoload 'enh-ruby-mode "enh-ruby-mode" "Major mode for ruby files" t)
      (setq enh-ruby-program (concat rbenv-installation-dir "/shims/ruby"))
 
      (eval-after-load 'ruby-mode

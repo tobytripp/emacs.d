@@ -92,51 +92,66 @@
 
 ** Clojure
 
-   #+BEGIN_SRC emacs-lisp
-     (require-package 'clj-refactor (version-to-list "2.3.1"))
-     (autoload 'clj-refactor "clj-refactor-mode")
+*** ADOPTED Clojure Refactorings
 
-     (defun toby/insert-comma ()
-       "Insert commas in lisp environments where its binding may have
-       been overridden (given that `,` is considered white-space in
-       many lisps, its use can be more convenient elsewhere)"
-       (interactive)
-       (insert ",")
-       (god-local-mode -1))
+    - State "ADOPTED"    from    [2018-02-05 Mon 10:09]
 
-     (defun toby/lisp-keys (kmap)
-       (require 'god-mode)
-       ;; Consider use of (current-local-map)
-       (define-key kmap (kbd ",")   'god-local-mode)
-       (global-set-key  (kbd "C-,") 'toby/insert-comma)
-       (define-key god-local-mode-map  (kbd "C-,") 'toby/insert-comma))
+    #+BEGIN_SRC emacs-lisp
+      (require-package 'clj-refactor (version-to-list "2.3.1"))
+      (autoload 'clj-refactor "clj-refactor-mode")
+    #+END_SRC
 
-     (defun toby/clojure-init ()
-       (toby/activate-structured-editing)
+*** Set-up General Lisp Key-Bindings
 
-       (cider-mode 1)
-       (clj-refactor-mode 1)
-       (yas-minor-mode 1)
+**** TODO Consider use of (current-local-map)
 
-       (cljr-add-keybindings-with-prefix "C-c c")
+     #+BEGIN_SRC emacs-lisp
+       (require-package 'god-mode)
 
-       (toby/lisp-keys (current-local-map))
+       (defun toby/insert-comma ()
+         "Insert commas in lisp environments where its binding may have
+         been overridden (given that `,` is considered white-space in
+         many lisps, its use can be more convenient elsewhere)"
+         (interactive)
+         (insert ",")
+         (god-local-mode -1))
 
-       ;; Compojure Macros:
-       (define-clojure-indent
-         (defroutes 'defun)
-         (defspec 'defun)
-         (GET 2)
-         (POST 2)
-         (PUT 2)
-         (DELETE 2)
-         (HEAD 2)
-         (ANY 2)
-         (context 2)))
+       (defun toby/lisp-keys (kmap)
+         (require 'god-mode)
+         ;; Consider use of (current-local-map)
+         (define-key kmap (kbd ",")   'god-local-mode)
+         (global-set-key  (kbd "C-,") 'toby/insert-comma)
+         (define-key god-local-mode-map  (kbd "C-,") 'toby/insert-comma))
+     #+END_SRC
 
-     (add-hook 'clojure-mode-hook #'toby/clojure-init)
-     ;; (toby/lisp-keys clojure-mode-map)
-   #+END_SRC
+*** Clojure Init
+
+    #+BEGIN_SRC emacs-lisp
+      (defun toby/clojure-init ()
+        (toby/activate-structured-editing)
+
+        (cider-mode 1)
+        (clj-refactor-mode 1)
+        (yas-minor-mode 1)
+
+        (cljr-add-keybindings-with-prefix "C-c c")
+
+        (toby/lisp-keys (current-local-map))
+
+        ;; Compojure Macros:
+        (define-clojure-indent
+          (defroutes 'defun)
+          (defspec 'defun)
+          (GET 2)
+          (POST 2)
+          (PUT 2)
+          (DELETE 2)
+          (HEAD 2)
+          (ANY 2)
+          (context 2)))
+
+      (add-hook 'clojure-mode-hook #'toby/clojure-init)
+    #+END_SRC
 
 *** Clojuredocs
 

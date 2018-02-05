@@ -73,7 +73,7 @@
      - State "TODO"       from              [2017-12-10 Sun 12:58]
 
    #+BEGIN_SRC emacs-lisp
-     (defun toby/activate-stuctured-editing (& strict?)
+     (defun toby/activate-structured-editing (&optional strict?)
        (interactive "P")
 
        (require-package 'paredit)

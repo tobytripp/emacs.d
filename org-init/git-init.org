@@ -16,6 +16,7 @@
 
    I like it to open full-screen and then restore my windows where
    they were when it is done:
+
    #+BEGIN_SRC emacs-lisp
      (require-package 'magit)
      (require-package 'fullframe)
@@ -26,35 +27,49 @@
           (fullframe vc-annotate  quit-window)))
    #+END_SRC
 
-   Quick one-button git status:
-   #+BEGIN_SRC emacs-lisp
-     (global-set-key (kbd "<f2>") 'magit-status)
-   #+END_SRC
+*** =diff-hl= integration
 
-   Snippet-ize git commit templates:
-   #+BEGIN_SRC emacs-lisp
-     (defun toby/update-tracker-id (&optional story-file)
-       (interactive)
+    #+BEGIN_SRC emacs-lisp
+    (require-package 'diff-hl)
+    (autoload 'diff-hl-magit-post-refresh "diff-hl")
+    #+END_SRC
 
-       (save-excursion
-         (let* ((story-f  (if (consp story-file) story-file "../.story_id"))
-                (story-id (if (file-readable-p story-f)
-                              (with-temp-buffer
-                                (insert-file-contents story-f)
-                                (goto-char (point-min))
-                                (re-search-forward "^\\(#[0-9]+\\)[[:space:]]*" nil)
-                                (replace-match (match-string 1))
-                                (buffer-string))
-                            "")))
-           (goto-char (point-min))
-           (re-search-forward "_STORY_ID_" nil t)
-           (replace-match story-id)))
+*** Keybingings
 
-       (yas-minor-mode-on)
-       (goto-char (point-min))
-       (forward-word 2)
-       (yas-expand))
-   #+END_SRC
+    Quick one-button git status:
+
+    #+BEGIN_SRC emacs-lisp
+      (global-set-key (kbd "<f2>") 'magit-status)
+    #+END_SRC
+
+*** EXPERIMENTAL Snippets
+    - State "EXPERIMENTAL" from              [2018-02-05 Mon 10:31]
+
+    Snippet-ize git commit templates:
+
+    #+BEGIN_SRC emacs-lisp
+      (defun toby/update-tracker-id (&optional story-file)
+        (interactive)
+
+        (save-excursion
+          (let* ((story-f  (if (consp story-file) story-file "../.story_id"))
+                 (story-id (if (file-readable-p story-f)
+                               (with-temp-buffer
+                                 (insert-file-contents story-f)
+                                 (goto-char (point-min))
+                                 (re-search-forward "^\\(#[0-9]+\\)[[:space:]]*" nil)
+                                 (replace-match (match-string 1))
+                                 (buffer-string))
+                             "")))
+            (goto-char (point-min))
+            (re-search-forward "_STORY_ID_" nil t)
+            (replace-match story-id)))
+
+        (yas-minor-mode-on)
+        (goto-char (point-min))
+        (forward-word 2)
+        (yas-expand))
+    #+END_SRC
 
 ** git-grep
    #+BEGIN_SRC emacs-lisp

@@ -58,7 +58,9 @@
              (tab-mark 9 [9655 9] [92 9])    ; tab, ▷
              ))
      (setq whitespace-line-column 78)
-     (setq whitespace-style  '(face lines-tail))
+
+     ;; Set in customize
+     ; (setq whitespace-style  '(face lines-tail))
    #+END_SRC
 
 ** Word-Wrapping

@@ -15,7 +15,7 @@
  '(coffee-tab-width 2)
  '(company-backends
    (quote
-    (company-robe company-tern company-bbdb company-nxml company-css company-eclim company-semantic company-clang company-xcode company-cmake company-capf
+    (company-bbdb company-nxml company-css company-eclim company-semantic company-clang company-xcode company-cmake company-capf
                   (company-dabbrev-code company-gtags company-etags company-keywords)
                   company-oddmuse company-files company-dabbrev)))
  '(compilation-always-kill t)
@@ -94,7 +94,7 @@
  '(glasses-separator " ")
  '(glasses-uncapitalize-p nil)
  '(global-color-identifiers-mode t)
- '(global-linum-mode t)
+ '(global-linum-mode nil)
  '(haskell-cabal-list-comma-position (quote after))
  '(haskell-font-lock-symbols (quote unicode))
  '(inf-ruby-default-implementation "pry")
@@ -118,6 +118,12 @@
     (("198.211.113.142:389" base "dc=mmtest" binddn "cn=admin,dc=mmtest" passwd "2funky4u" auth simple scope nil)
      ("localhost:389" base "dc=ldap,dc=masterymanager,dc=local" binddn "cn=admin,dc=ldap,dc=masterymanager,dc=local" passwd "2funky4u" auth simple))))
  '(magit-push-arguments nil)
+ '(magit-wip-after-apply-mode t)
+ '(magit-wip-after-apply-mode-lighter " 𝛼")
+ '(magit-wip-after-save-local-mode-lighter " 𝛿")
+ '(magit-wip-after-save-mode t)
+ '(magit-wip-before-change-mode t)
+ '(magit-wip-before-change-mode-lighter " 𝛥")
  '(menu-bar-mode t)
  '(minitest-default-command (quote ("ruby" "-Ilib:test:spec:src/ruby:test/ruby")))
  '(mmm-mode-ext-classes-alist
@@ -136,6 +142,7 @@
  '(rspec-rake-command "bundle exec rake")
  '(rspec-spec-command "rspec ")
  '(rspec-use-bundler-when-possible t)
+ '(rspec-use-docker-when-possible t)
  '(rspec-use-rake-flag nil)
  '(rspec-use-rake-when-possible nil)
  '(rspec-use-rvm nil)
@@ -274,7 +281,7 @@
  '(web-mode-code-indent-offset 2)
  '(web-mode-enable-whitespace-fontification nil)
  '(web-mode-markup-indent-offset 2)
- '(whitespace-style (quote (trailing tab-mark)) t)
+ '(whitespace-style (quote (trailing tab-mark lines empty indentation)))
  '(winner-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

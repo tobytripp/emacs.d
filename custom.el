@@ -131,6 +131,8 @@
     ((web-mode "\\.mm\\'" mason)
      (html-mode "\\.mm\\'" mason)
      (ruby-mode "\\.rb\\'" toby/heredoc))) nil (mmm-mode))
+ '(org-agenda-file-regexp "\\`[^.].*\\.org\\(\\.gpg\\)?\\'")
+ '(org-agenda-files (quote ("~/.emacs.d/agenda/")))
  '(org-src-window-setup (quote other-window))
  '(package-selected-packages
    (quote

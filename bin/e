@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+TARGET=${1:-~/Code/.}
+
+EMACS_PATH=${EMACS_PATH:-/usr/local/bin}
+EMACSCLIENT=${EMACS_PATH}/emacsclient
+EMACS=${EMACS_PATH}/emacs
+
+echo "$EMACSCLIENT -nca '' $TARGET"
+
+$EMACSCLIENT -nca '' $TARGET || \
+    ($EMACS --daemon && $EMACSCLIENT -nc $TARGET)

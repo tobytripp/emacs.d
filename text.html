@@ -235,36 +235,75 @@ for the JavaScript code in this tag.
 <p><a accesskey="H" href="index.html">HOME</a></p>
 </div>
 <div id="content">
-<div id="outline-container-orga5d9f05" class="outline-2">
-<h2 id="orga5d9f05">CTags</h2>
-<div class="outline-text-2" id="text-orga5d9f05">
+<div id="outline-container-org55e5133" class="outline-2">
+<h2 id="org55e5133">Settings for Text Modes</h2>
+<div class="outline-text-2" id="text-org55e5133">
 </div>
-<div id="outline-container-org9a8d96c" class="outline-3">
-<h3 id="org9a8d96c">Commands</h3>
-<div class="outline-text-3" id="text-org9a8d96c">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">build-ctags</span> <span style="color: #b58900;">()</span>
-  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">interactive</span><span style="color: #b58900;">)</span>
-  <span style="color: #b58900;">(</span>message <span style="color: #2aa198;">"building project tags"</span><span style="color: #b58900;">)</span>
-  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #268bd2;">(</span>root <span style="color: #dc322f;">(</span>textmate-project-root<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
-    <span style="color: #268bd2;">(</span>shell-command
-     <span style="color: #dc322f;">(</span>concat
-        <span style="color: #2aa198;">"ctags -e -R --extra=+fq --exclude=db --exclude=test "</span>
-        <span style="color: #2aa198;">"--exclude=.git --exclude=public -f "</span>
-        root <span style="color: #2aa198;">".TAGS "</span> root<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
-  <span style="color: #b58900;">(</span>visit-project-tags<span style="color: #b58900;">)</span>
-  <span style="color: #b58900;">(</span>message <span style="color: #2aa198;">"tags built successfully"</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+<div id="outline-container-org77de776" class="outline-3">
+<h3 id="org77de776">Spell-check</h3>
+<div class="outline-text-3" id="text-org77de776">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
-<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">visit-project-tags</span> <span style="color: #b58900;">()</span>
-  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">interactive</span><span style="color: #b58900;">)</span>
-  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #268bd2;">(</span><span style="color: #dc322f;">(</span>tags-file <span style="color: #cb4b16;">(</span>concat <span style="color: #268bd2;">(</span>textmate-project-root<span style="color: #268bd2;">)</span> <span style="color: #2aa198;">".TAGS"</span><span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
-    <span style="color: #268bd2;">(</span>visit-tags-table tags-file<span style="color: #268bd2;">)</span>
-    <span style="color: #268bd2;">(</span>message <span style="color: #dc322f;">(</span>concat <span style="color: #2aa198;">"Loaded "</span> tags-file<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Key</td>
+<td class="org-left">Command</td>
+</tr>
+
+<tr>
+<td class="org-left">C-;</td>
+<td class="org-left">Correct most recent error</td>
+</tr>
+</tbody>
+</table>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span>add-hook 'text-mode-hook  'flyspell-mode<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>add-hook 'org-mode-hook   'flyspell-mode<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>add-hook 'latex-mode-hook 'flyspell-mode<span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8b97ada" class="outline-3">
+<h3 id="org8b97ada">Using LaTeX to Enter Characters</h3>
+<div class="outline-text-3" id="text-org8b97ada">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">setq</span> default-input-method 'TeX<span style="color: #2aa198;">)</span>
 </pre>
 </div>
 
+<p>
+Then press <code>C-\</code> to enter &lambda; → λ, for example.  You should
+only have to enter <code>C-\</code> once to set the input mode.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2accec3" class="outline-3">
+<h3 id="org2accec3">Alignment</h3>
+<div class="outline-text-3" id="text-org2accec3">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">provide</span> '<span style="color: #268bd2; font-weight: bold;">tags</span><span style="color: #2aa198;">)</span>
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">bjm/align-whitespace</span> <span style="color: #b58900;">(</span>start end<span style="color: #b58900;">)</span>
+  <span style="color: #2aa198; font-style: italic;">"Align columns by whitespace.</span>
+
+<span style="color: #2aa198; font-style: italic;">   source: http://pragmaticemacs.com/emacs/aligning-text/"</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">interactive</span> <span style="color: #2aa198;">"r"</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>align-regexp start end
+                <span style="color: #2aa198;">"</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">(</span><span style="color: #2aa198;">\\s-*</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">)</span><span style="color: #2aa198;">\\s-"</span> 1 0 t<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">bjm/align-&amp;</span> <span style="color: #b58900;">(</span>start end<span style="color: #b58900;">)</span>
+  <span style="color: #2aa198; font-style: italic;">"Align columns by ampersand"</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">interactive</span> <span style="color: #2aa198;">"r"</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>align-regexp start end
+                <span style="color: #2aa198;">"</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">(</span><span style="color: #2aa198;">\\s-*</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">)</span><span style="color: #2aa198;">&amp;"</span> 1 1 t<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 </pre>
 </div>
 </div>

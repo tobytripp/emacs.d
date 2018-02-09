@@ -4,3 +4,8 @@
 /org-init/
 /vendor/
 /projectile-bookmarks.eld
+/.mc-lists.el
+/agenda
+/eshell
+/ido.last
+/recentf

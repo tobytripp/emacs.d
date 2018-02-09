@@ -3,23 +3,30 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>git-init</title>
-<!-- 2015-02-04 Wed 10:41 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Toby Tripp" />
+<!-- 2018-02-09 Fri 15:33 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Toby Tripp" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
   .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -46,27 +53,111 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
+  .footpara { display: inline; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -86,6 +177,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -96,7 +188,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -143,26 +235,26 @@ for the JavaScript code in this tag.
 <p><a accesskey="H" href="index.html">HOME</a></p>
 </div>
 <div id="content">
-<h1 class="title">git-init</h1>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">Git Source Control</h2>
-<div class="outline-text-2" id="text-1">
-</div><div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1">Git Executable Path</h3>
-<div class="outline-text-3" id="text-1-1">
+<div id="outline-container-org8b1d7af" class="outline-2">
+<h2 id="org8b1d7af">Git Source Control</h2>
+<div class="outline-text-2" id="text-org8b1d7af">
+</div>
+<div id="outline-container-org57aa326" class="outline-3">
+<h3 id="org57aa326">Git Executable Path</h3>
+<div class="outline-text-3" id="text-org57aa326">
 <div class="org-src-container">
-
-<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>setenv  <span style="color: #2aa198;">"PATH"</span> <span style="color: #b58900;">(</span>concat <span style="color: #268bd2;">(</span>getenv <span style="color: #2aa198;">"PATH"</span><span style="color: #268bd2;">)</span> <span style="color: #2aa198;">":"</span> <span style="color: #2aa198;">"/usr/local/bin"</span> <span style="color: #2aa198;">":"</span> <span style="color: #2aa198;">"/usr/local/git/bin/"</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
-<span style="color: #f5deb3;">(</span>setq exec-path <span style="color: #b58900;">(</span>append exec-path '<span style="color: #268bd2;">(</span><span style="color: #2aa198;">"/usr/local/bin"</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
-<span style="color: #f5deb3;">(</span>setq exec-path <span style="color: #b58900;">(</span>append exec-path '<span style="color: #268bd2;">(</span><span style="color: #2aa198;">"/usr/local/git/bin"</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span>setenv <span style="color: #2aa198;">"EDITOR"</span> <span style="color: #2aa198;">"/usr/local/bin/emacsclient"</span><span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>setenv  <span style="color: #2aa198;">"PATH"</span> <span style="color: #b58900;">(</span>concat <span style="color: #268bd2;">(</span>getenv <span style="color: #2aa198;">"PATH"</span><span style="color: #268bd2;">)</span> <span style="color: #2aa198;">":"</span> <span style="color: #2aa198;">"/usr/local/bin"</span> <span style="color: #2aa198;">":"</span> <span style="color: #2aa198;">"/usr/local/git/bin/"</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">setq</span> exec-path <span style="color: #b58900;">(</span>append exec-path '<span style="color: #268bd2;">(</span><span style="color: #2aa198;">"/usr/local/bin"</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">setq</span> exec-path <span style="color: #b58900;">(</span>append exec-path '<span style="color: #268bd2;">(</span><span style="color: #2aa198;">"/usr/local/git/bin"</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-1-2" class="outline-3">
-<h3 id="sec-1-2">Magit</h3>
-<div class="outline-text-3" id="text-1-2">
+<div id="outline-container-org145d574" class="outline-3">
+<h3 id="org145d574">Magit</h3>
+<div class="outline-text-3" id="text-org145d574">
 <p>
 Probably the very best git front-end out there.
 </p>
@@ -171,59 +263,104 @@ Probably the very best git front-end out there.
 I like it to open full-screen and then restore my windows where
 they were when it is done:
 </p>
+
 <div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span>require-package 'magit<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>require-package 'fullframe<span style="color: #2aa198;">)</span>
 
-<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>require-package 'magit<span style="color: #f5deb3;">)</span>
-<span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">eval-after-load</span> <span style="color: #2aa198;">"magit"</span>
+<span style="color: #2aa198;">(</span>eval-after-load <span style="color: #2aa198;">"magit"</span>
   '<span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">progn</span>
-     <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">defadvice</span> <span style="color: #268bd2;">magit-status</span> <span style="color: #dc322f;">(</span>around magit-fullscreen activate<span style="color: #dc322f;">)</span>
-       <span style="color: #dc322f;">(</span>window-configuration-to-register <span style="color: #268bd2; font-style: italic;">:magit-fullscreen</span><span style="color: #dc322f;">)</span>
-       ad-do-it
-       <span style="color: #dc322f;">(</span>delete-other-windows<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
-
-     <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">magit-quit-session</span> <span style="color: #dc322f;">()</span>
-       <span style="color: #2aa198; font-style: italic;">"Restores the previous window configuration and kills the magit buffer"</span>
-       <span style="color: #dc322f;">(</span>interactive<span style="color: #dc322f;">)</span>
-       <span style="color: #dc322f;">(</span>kill-buffer<span style="color: #dc322f;">)</span>
-       <span style="color: #dc322f;">(</span>jump-to-register <span style="color: #268bd2; font-style: italic;">:magit-fullscreen</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
-
-     <span style="color: #268bd2;">(</span>define-key magit-status-mode-map <span style="color: #dc322f;">(</span>kbd <span style="color: #2aa198;">"q"</span><span style="color: #dc322f;">)</span> 'magit-quit-session<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+     <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">fullframe</span> magit-status magit-mode-quit-window nil<span style="color: #268bd2;">)</span>
+     <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">fullframe</span> vc-annotate  quit-window<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 </pre>
 </div>
+</div>
 
+<div id="outline-container-orgffda66a" class="outline-4">
+<h4 id="orgffda66a"><code>diff-hl</code> integration</h4>
+<div class="outline-text-4" id="text-orgffda66a">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span>require-package 'diff-hl<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>autoload 'diff-hl-magit-post-refresh <span style="color: #2aa198;">"diff-hl"</span><span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org13660f0" class="outline-4">
+<h4 id="org13660f0">Keybingings</h4>
+<div class="outline-text-4" id="text-org13660f0">
 <p>
 Quick one-button git status:
 </p>
-<div class="org-src-container">
 
-<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"&lt;f2&gt;"</span><span style="color: #b58900;">)</span> 'magit-status<span style="color: #f5deb3;">)</span>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"&lt;f2&gt;"</span><span style="color: #b58900;">)</span> 'magit-status<span style="color: #2aa198;">)</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-1-3" class="outline-3">
-<h3 id="sec-1-3">git-grep</h3>
-<div class="outline-text-3" id="text-1-3">
-<div class="org-src-container">
+<div id="outline-container-org1a6c721" class="outline-4">
+<h4 id="org1a6c721"><span class="todo EXPERIMENTAL">EXPERIMENTAL</span> Snippets</h4>
+<div class="outline-text-4" id="text-org1a6c721">
+<ul class="org-ul">
+<li>State "EXPERIMENTAL" from              <span class="timestamp-wrapper"><span class="timestamp">[2018-02-05 Mon 10:31]</span></span></li>
+</ul>
 
-<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">git-grep-rb</span> <span style="color: #b58900;">(</span>regexp<span style="color: #b58900;">)</span>
+<p>
+Snippet-ize git commit templates:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/update-tracker-id</span> <span style="color: #b58900;">(</span><span style="color: #b58900;">&amp;optional</span> story-file<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">interactive</span><span style="color: #b58900;">)</span>
+
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">save-excursion</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">let*</span> <span style="color: #dc322f;">(</span><span style="color: #cb4b16;">(</span>story-f  <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #859900;">(</span>consp story-file<span style="color: #859900;">)</span> story-file <span style="color: #2aa198;">"../.story_id"</span><span style="color: #268bd2;">)</span><span style="color: #cb4b16;">)</span>
+           <span style="color: #cb4b16;">(</span>story-id <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #859900;">(</span>file-readable-p story-f<span style="color: #859900;">)</span>
+                         <span style="color: #859900;">(</span><span style="color: #859900; font-weight: bold;">with-temp-buffer</span>
+                           <span style="color: #dc322f;">(</span>insert-file-contents story-f<span style="color: #dc322f;">)</span>
+                           <span style="color: #dc322f;">(</span>goto-char <span style="color: #b58900;">(</span>point-min<span style="color: #b58900;">)</span><span style="color: #dc322f;">)</span>
+                           <span style="color: #dc322f;">(</span>re-search-forward <span style="color: #2aa198;">"^</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">(</span><span style="color: #2aa198;">#[0-9]+</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">)</span><span style="color: #2aa198;">[[:space:]]*"</span> nil<span style="color: #dc322f;">)</span>
+                           <span style="color: #dc322f;">(</span>replace-match <span style="color: #b58900;">(</span>match-string 1<span style="color: #b58900;">)</span><span style="color: #dc322f;">)</span>
+                           <span style="color: #dc322f;">(</span>buffer-string<span style="color: #dc322f;">)</span><span style="color: #859900;">)</span>
+                       <span style="color: #2aa198;">""</span><span style="color: #268bd2;">)</span><span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span>
+      <span style="color: #dc322f;">(</span>goto-char <span style="color: #cb4b16;">(</span>point-min<span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span>
+      <span style="color: #dc322f;">(</span>re-search-forward <span style="color: #2aa198;">"_STORY_ID_"</span> nil t<span style="color: #dc322f;">)</span>
+      <span style="color: #dc322f;">(</span>replace-match story-id<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+
+  <span style="color: #b58900;">(</span>yas-minor-mode-on<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>goto-char <span style="color: #268bd2;">(</span>point-min<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>forward-word 2<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>yas-expand<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org54b1545" class="outline-3">
+<h3 id="org54b1545">git-grep</h3>
+<div class="outline-text-3" id="text-org54b1545">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">git-grep-rb</span> <span style="color: #b58900;">(</span>regexp<span style="color: #b58900;">)</span>
   <span style="color: #2aa198; font-style: italic;">"Run git-grep on ruby files in the current project"</span>
-  <span style="color: #b58900;">(</span>interactive <span style="color: #2aa198;">"sSearch for (regexp): "</span><span style="color: #b58900;">)</span>
-  <span style="color: #b58900;">(</span>vc-git-grep regexp <span style="color: #2aa198;">"'*.rb'"</span> <span style="color: #268bd2;">(</span>textmate-project-root<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">interactive</span> <span style="color: #2aa198;">"sSearch for (regexp): "</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>vc-git-grep regexp <span style="color: #2aa198;">"'*.rb'"</span> <span style="color: #268bd2;">(</span>textmate-project-root<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
-<span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">git-grep</span> <span style="color: #b58900;">(</span>regexp<span style="color: #b58900;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">git-grep</span> <span style="color: #b58900;">(</span>regexp<span style="color: #b58900;">)</span>
   <span style="color: #2aa198; font-style: italic;">"Run git-grep on files in the current project"</span>
-  <span style="color: #b58900;">(</span>interactive <span style="color: #2aa198;">"sSearch for (regexp): "</span><span style="color: #b58900;">)</span>
-  <span style="color: #b58900;">(</span>vc-git-grep regexp <span style="color: #2aa198;">"'*.rb' '*.clj'"</span> <span style="color: #268bd2;">(</span>textmate-project-root<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">interactive</span> <span style="color: #2aa198;">"sSearch for (regexp): "</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>vc-git-grep regexp <span style="color: #2aa198;">"'*.rb' '*.clj'"</span> <span style="color: #268bd2;">(</span>textmate-project-root<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-1-4" class="outline-3">
-<h3 id="sec-1-4">vc-annotate</h3>
-<div class="outline-text-3" id="text-1-4">
+<div id="outline-container-org2730aad" class="outline-3">
+<h3 id="org2730aad">vc-annotate</h3>
+<div class="outline-text-3" id="text-org2730aad">
 <p>
 Built-in to Emacs and really useful.  It allows you to not only
 view source control annotations, but also to move back and forward
@@ -234,16 +371,14 @@ in time within the file.  Very nice.
 It's nicer, I think, when it ignores white-space:
 </p>
 <div class="org-src-container">
-
-<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">vc-git-annotate-command</span> <span style="color: #b58900;">(</span>file buf <span style="color: #b58900;">&amp;optional</span> rev<span style="color: #b58900;">)</span>
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">vc-git-annotate-command</span> <span style="color: #b58900;">(</span>file buf <span style="color: #b58900;">&amp;optional</span> rev<span style="color: #b58900;">)</span>
   <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #268bd2;">(</span><span style="color: #dc322f;">(</span>name <span style="color: #cb4b16;">(</span>file-relative-name file<span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
-    <span style="color: #268bd2;">(</span>vc-git-command buf 0 name <span style="color: #2aa198;">"blame"</span> <span style="color: #2aa198;">"-w"</span> rev<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+    <span style="color: #268bd2;">(</span>vc-git-command buf 0 name <span style="color: #2aa198;">"blame"</span> <span style="color: #2aa198;">"-w"</span> rev<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 </pre>
 </div>
 
 <div class="org-src-container">
-
-<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">provide</span> '<span style="color: #268bd2; font-weight: bold;">git-init</span><span style="color: #f5deb3;">)</span>
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">provide</span> '<span style="color: #268bd2; font-weight: bold;">git-init</span><span style="color: #2aa198;">)</span>
 </pre>
 </div>
 </div>
@@ -252,8 +387,7 @@ It's nicer, I think, when it ignores white-space:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Toby Tripp</p>
-<p class="date">Created: 2015-02-04 Wed 10:41</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="date">Created: 2018-02-09 Fri 15:33</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

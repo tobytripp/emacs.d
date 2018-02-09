@@ -235,36 +235,21 @@ for the JavaScript code in this tag.
 <p><a accesskey="H" href="index.html">HOME</a></p>
 </div>
 <div id="content">
-<div id="outline-container-orga5d9f05" class="outline-2">
-<h2 id="orga5d9f05">CTags</h2>
-<div class="outline-text-2" id="text-orga5d9f05">
+<div id="outline-container-orga15d1e4" class="outline-2">
+<h2 id="orga15d1e4">For Perl (rarely used, I hope)</h2>
+<div class="outline-text-2" id="text-orga15d1e4">
 </div>
-<div id="outline-container-org9a8d96c" class="outline-3">
-<h3 id="org9a8d96c">Commands</h3>
-<div class="outline-text-3" id="text-org9a8d96c">
+<div id="outline-container-org4a5e177" class="outline-3">
+<h3 id="org4a5e177">Perl Mode Settings</h3>
+<div class="outline-text-3" id="text-org4a5e177">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">build-ctags</span> <span style="color: #b58900;">()</span>
-  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">interactive</span><span style="color: #b58900;">)</span>
-  <span style="color: #b58900;">(</span>message <span style="color: #2aa198;">"building project tags"</span><span style="color: #b58900;">)</span>
-  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #268bd2;">(</span>root <span style="color: #dc322f;">(</span>textmate-project-root<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
-    <span style="color: #268bd2;">(</span>shell-command
-     <span style="color: #dc322f;">(</span>concat
-        <span style="color: #2aa198;">"ctags -e -R --extra=+fq --exclude=db --exclude=test "</span>
-        <span style="color: #2aa198;">"--exclude=.git --exclude=public -f "</span>
-        root <span style="color: #2aa198;">".TAGS "</span> root<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
-  <span style="color: #b58900;">(</span>visit-project-tags<span style="color: #b58900;">)</span>
-  <span style="color: #b58900;">(</span>message <span style="color: #2aa198;">"tags built successfully"</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defalias</span> '<span style="color: #268bd2;">perl-mode</span> 'cperl-mode<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defvar</span> <span style="color: #268bd2;">cperl-auto-tidy</span> t<span style="color: #2aa198;">)</span>
+<span style="color: #586e75;">; </span><span style="color: #586e75;">(cperl-set-style "BSD")</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">setq</span> cperl-indent-parens-as-block t
+      cperl-close-paren-offset -4<span style="color: #2aa198;">)</span>
 
-<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">visit-project-tags</span> <span style="color: #b58900;">()</span>
-  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">interactive</span><span style="color: #b58900;">)</span>
-  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #268bd2;">(</span><span style="color: #dc322f;">(</span>tags-file <span style="color: #cb4b16;">(</span>concat <span style="color: #268bd2;">(</span>textmate-project-root<span style="color: #268bd2;">)</span> <span style="color: #2aa198;">".TAGS"</span><span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
-    <span style="color: #268bd2;">(</span>visit-tags-table tags-file<span style="color: #268bd2;">)</span>
-    <span style="color: #268bd2;">(</span>message <span style="color: #dc322f;">(</span>concat <span style="color: #2aa198;">"Loaded "</span> tags-file<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
-</pre>
-</div>
-
-<div class="org-src-container">
-<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">provide</span> '<span style="color: #268bd2; font-weight: bold;">tags</span><span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">perltidy</span><span style="color: #2aa198;">)</span>
 </pre>
 </div>
 </div>

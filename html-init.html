@@ -3,23 +3,30 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>html-init</title>
-<!-- 2015-02-04 Wed 10:41 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Toby Tripp" />
+<!-- 2018-02-09 Fri 15:33 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Toby Tripp" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
   .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -46,27 +53,111 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
+  .footpara { display: inline; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -86,6 +177,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -96,7 +188,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -143,20 +235,39 @@ for the JavaScript code in this tag.
 <p><a accesskey="H" href="index.html">HOME</a></p>
 </div>
 <div id="content">
-<h1 class="title">html-init</h1>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">HTML Editing</h2>
-<div class="outline-text-2" id="text-1">
-</div><div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1">Emmet Mode</h3>
-<div class="outline-text-3" id="text-1-1">
+<div id="outline-container-org81c3f74" class="outline-2">
+<h2 id="org81c3f74">HTML Editing</h2>
+<div class="outline-text-2" id="text-org81c3f74">
+</div>
+<div id="outline-container-orga2d9337" class="outline-3">
+<h3 id="orga2d9337">web-mode</h3>
+<div class="outline-text-3" id="text-orga2d9337">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span>require-package 'web-mode<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>autoload 'web-mode <span style="color: #2aa198;">"web-mode"</span> <span style="color: #2aa198; font-style: italic;">"Web Mode"</span> t<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>add-to-list 'auto-mode-alist '<span style="color: #b58900;">(</span><span style="color: #2aa198;">"\\.html$"</span> . web-mode<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/web-mode-hook</span> <span style="color: #b58900;">()</span>
+  <span style="color: #2aa198; font-style: italic;">"Hooks for web-mode"</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">setq</span> web-mode-markup-indent-offset 2<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">setq</span> web-mode-html-offset 2<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">setq</span> web-mode-enable-css-colorization t<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">setq</span> js-indent-level 2<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>add-hook 'web-mode-hook 'toby/web-mode-hook<span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7e83340" class="outline-3">
+<h3 id="org7e83340">Emmet Mode</h3>
+<div class="outline-text-3" id="text-org7e83340">
 <p>
 From the Emmet Docs at <a href="https://github.com/smihica/emmet-mode">https://github.com/smihica/emmet-mode</a>
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-markdown"><code class="markdown">## Usage
+<pre class="src src-markdown">## Usage
 
 Place point in a emmet snippet and press C-j to expand it (or alternatively,
 alias your preferred keystroke to M-x emmet-expand-line) and
@@ -171,13 +282,13 @@ you'll transform your snippet into the appropriate tag structure.
     a#q.x                    &lt;a id="q" class="x" href=""&gt;&lt;/a&gt;
     a#q.x.y.z                &lt;a id="q" class="x y z" href=""&gt;&lt;/a&gt;
     #q                       &lt;div id="q"&gt;
-			     &lt;/div&gt;
+                             &lt;/div&gt;
     .x                       &lt;div class="x"&gt;
-			     &lt;/div&gt;
+                             &lt;/div&gt;
     #q.x                     &lt;div id="q" class="x"&gt;
-			     &lt;/div&gt;
+                             &lt;/div&gt;
     #q.x.y.z                 &lt;div id="q" class="x y z"&gt;
-			     &lt;/div&gt;
+                             &lt;/div&gt;
 
 #### Empty tags
 
@@ -191,50 +302,50 @@ you'll transform your snippet into the appropriate tag structure.
     input[type=text]         &lt;input type="text" name="" value=""/&gt;
     img                      &lt;img src="" alt=""/&gt;
     img&gt;metadata/*2          &lt;img src="" alt=""&gt;
-				 &lt;metadata/&gt;
-				 &lt;metadata/&gt;
-			     &lt;/img&gt;
+                                 &lt;metadata/&gt;
+                                 &lt;metadata/&gt;
+                             &lt;/img&gt;
 
 #### Siblings
 
     a+b                      &lt;a href=""&gt;&lt;/a&gt;
-			     &lt;b&gt;&lt;/b&gt;
+                             &lt;b&gt;&lt;/b&gt;
     a+b+c                    &lt;a href=""&gt;&lt;/a&gt;
-			     &lt;b&gt;&lt;/b&gt;
-			     &lt;c&gt;&lt;/c&gt;
+                             &lt;b&gt;&lt;/b&gt;
+                             &lt;c&gt;&lt;/c&gt;
     a.x+b                    &lt;a class="x" href=""&gt;&lt;/a&gt;
-			     &lt;b&gt;&lt;/b&gt;
+                             &lt;b&gt;&lt;/b&gt;
     a#q.x+b                  &lt;a id="q" class="x" href=""&gt;&lt;/a&gt;
-			     &lt;b&gt;&lt;/b&gt;
+                             &lt;b&gt;&lt;/b&gt;
     a#q.x.y.z+b              &lt;a id="q" class="x y z" href=""&gt;&lt;/a&gt;
-			     &lt;b&gt;&lt;/b&gt;
+                             &lt;b&gt;&lt;/b&gt;
     a#q.x.y.z+b#p.l.m.n      &lt;a id="q" class="x y z" href=""&gt;&lt;/a&gt;
-			     &lt;b id="p" class="l m n"&gt;&lt;/b&gt;
+                             &lt;b id="p" class="l m n"&gt;&lt;/b&gt;
 
 #### Tag expansion
 
     table+                   &lt;table&gt;
-				 &lt;tr&gt;
-				     &lt;td&gt;
-				     &lt;/td&gt;
-				 &lt;/tr&gt;
-			     &lt;/table&gt;
+                                 &lt;tr&gt;
+                                     &lt;td&gt;
+                                     &lt;/td&gt;
+                                 &lt;/tr&gt;
+                             &lt;/table&gt;
     dl+                      &lt;dl&gt;
-				 &lt;dt&gt;&lt;/dt&gt;
-				 &lt;dd&gt;&lt;/dd&gt;
-			     &lt;/dl&gt;
+                                 &lt;dt&gt;&lt;/dt&gt;
+                                 &lt;dd&gt;&lt;/dd&gt;
+                             &lt;/dl&gt;
     ul+                      &lt;ul&gt;
-				 &lt;li&gt;&lt;/li&gt;
-			     &lt;/ul&gt;
+                                 &lt;li&gt;&lt;/li&gt;
+                             &lt;/ul&gt;
     ul++ol+                  &lt;ul&gt;
-				 &lt;li&gt;&lt;/li&gt;
-			     &lt;/ul&gt;
-			     &lt;ol&gt;
-				 &lt;li&gt;&lt;/li&gt;
-			     &lt;/ol&gt;
+                                 &lt;li&gt;&lt;/li&gt;
+                             &lt;/ul&gt;
+                             &lt;ol&gt;
+                                 &lt;li&gt;&lt;/li&gt;
+                             &lt;/ol&gt;
     ul#q.x.y[m=l]            &lt;ul id="q" class="x y" m="l"&gt;
-				 &lt;li&gt;&lt;/li&gt;
-			     &lt;/ul&gt;
+                                 &lt;li&gt;&lt;/li&gt;
+                             &lt;/ul&gt;
 
 #### Parent &gt; child
 
@@ -245,27 +356,27 @@ you'll transform your snippet into the appropriate tag structure.
     a#q.x.y.z&gt;b              &lt;a id="q" class="x y z" href=""&gt;&lt;b&gt;&lt;/b&gt;&lt;/a&gt;
     a#q.x.y.z&gt;b#p.l.m.n      &lt;a id="q" class="x y z" href=""&gt;&lt;b id="p" class="l m n"&gt;&lt;/b&gt;&lt;/a&gt;
     #q&gt;.x                    &lt;div id="q"&gt;
-				 &lt;div class="x"&gt;
-				 &lt;/div&gt;
-			     &lt;/div&gt;
+                                 &lt;div class="x"&gt;
+                                 &lt;/div&gt;
+                             &lt;/div&gt;
     a&gt;b+c                    &lt;a href=""&gt;
-				 &lt;b&gt;&lt;/b&gt;
-				 &lt;c&gt;&lt;/c&gt;
-			     &lt;/a&gt;
+                                 &lt;b&gt;&lt;/b&gt;
+                                 &lt;c&gt;&lt;/c&gt;
+                             &lt;/a&gt;
     a&gt;b+c&gt;d                  &lt;a href=""&gt;
-				 &lt;b&gt;&lt;/b&gt;
-				 &lt;c&gt;&lt;d&gt;&lt;/d&gt;&lt;/c&gt;
-			     &lt;/a&gt;
+                                 &lt;b&gt;&lt;/b&gt;
+                                 &lt;c&gt;&lt;d&gt;&lt;/d&gt;&lt;/c&gt;
+                             &lt;/a&gt;
 
 #### Climb-up
 
     a&gt;b^c                    &lt;a href=""&gt;&lt;b&gt;&lt;/b&gt;&lt;/a&gt;&lt;c&gt;&lt;/c&gt;
     a&gt;b&gt;c^d                  &lt;a href=""&gt;
-				 &lt;b&gt;&lt;c&gt;&lt;/c&gt;&lt;/b&gt;
-				 &lt;d&gt;&lt;/d&gt;
-			     &lt;/a&gt;
+                                 &lt;b&gt;&lt;c&gt;&lt;/c&gt;&lt;/b&gt;
+                                 &lt;d&gt;&lt;/d&gt;
+                             &lt;/a&gt;
     a&gt;b&gt;c^^d                 &lt;a href=""&gt;&lt;b&gt;&lt;c&gt;&lt;/c&gt;&lt;/b&gt;&lt;/a&gt;
-			     &lt;d&gt;&lt;/d&gt;
+                             &lt;d&gt;&lt;/d&gt;
 
 
 #### Properties
@@ -285,67 +396,67 @@ you'll transform your snippet into the appropriate tag structure.
     b#foo.bar.mu[x=y m=l]    &lt;b id="foo" class="bar mu" x="y" m="l"&gt;&lt;/b&gt;
     b/#foo.bar.mu[x=y m=l]   &lt;b id="foo" class="bar mu" x="y" m="l"/&gt;
     b[x=y]+b                 &lt;b x="y"&gt;&lt;/b&gt;
-			     &lt;b&gt;&lt;/b&gt;
+                             &lt;b&gt;&lt;/b&gt;
     b[x=y]+b[x=y]            &lt;b x="y"&gt;&lt;/b&gt;
-			     &lt;b x="y"&gt;&lt;/b&gt;
+                             &lt;b x="y"&gt;&lt;/b&gt;
     b[x=y]&gt;b                 &lt;b x="y"&gt;&lt;b&gt;&lt;/b&gt;&lt;/b&gt;
     b[x=y]&gt;b[x=y]            &lt;b x="y"&gt;&lt;b x="y"&gt;&lt;/b&gt;&lt;/b&gt;
     b[x=y]&gt;b[x=y]+c[x=y]     &lt;b x="y"&gt;
-				 &lt;b x="y"&gt;&lt;/b&gt;
-				 &lt;c x="y"&gt;&lt;/c&gt;
-			     &lt;/b&gt;
+                                 &lt;b x="y"&gt;&lt;/b&gt;
+                                 &lt;c x="y"&gt;&lt;/c&gt;
+                             &lt;/b&gt;
 
 #### Parentheses
 
     (a)                      &lt;a href=""&gt;&lt;/a&gt;
     (a)+(b)                  &lt;a href=""&gt;&lt;/a&gt;
-			     &lt;b&gt;&lt;/b&gt;
+                             &lt;b&gt;&lt;/b&gt;
     a&gt;(b)                    &lt;a href=""&gt;&lt;b&gt;&lt;/b&gt;&lt;/a&gt;
     (a&gt;b)&gt;c                  &lt;a href=""&gt;&lt;b&gt;&lt;/b&gt;&lt;/a&gt;
     (a&gt;b)+c                  &lt;a href=""&gt;&lt;b&gt;&lt;/b&gt;&lt;/a&gt;
-			     &lt;c&gt;&lt;/c&gt;
+                             &lt;c&gt;&lt;/c&gt;
     z+(a&gt;b)+c+k              &lt;z&gt;&lt;/z&gt;
-			     &lt;a href=""&gt;&lt;b&gt;&lt;/b&gt;&lt;/a&gt;
-			     &lt;c&gt;&lt;/c&gt;
-			     &lt;k&gt;&lt;/k&gt;
+                             &lt;a href=""&gt;&lt;b&gt;&lt;/b&gt;&lt;/a&gt;
+                             &lt;c&gt;&lt;/c&gt;
+                             &lt;k&gt;&lt;/k&gt;
     (x)*2                    &lt;x&gt;&lt;/x&gt;
-			     &lt;x&gt;&lt;/x&gt;
+                             &lt;x&gt;&lt;/x&gt;
     ((x)*2)                  &lt;x&gt;&lt;/x&gt;
-			     &lt;x&gt;&lt;/x&gt;
+                             &lt;x&gt;&lt;/x&gt;
     ((x))*2                  &lt;x&gt;&lt;/x&gt;
-			     &lt;x&gt;&lt;/x&gt;
+                             &lt;x&gt;&lt;/x&gt;
     (x&gt;b)*2                  &lt;x&gt;&lt;b&gt;&lt;/b&gt;&lt;/x&gt;
-			     &lt;x&gt;&lt;b&gt;&lt;/b&gt;&lt;/x&gt;
+                             &lt;x&gt;&lt;b&gt;&lt;/b&gt;&lt;/x&gt;
     (x+b)*2                  &lt;x&gt;&lt;/x&gt;
-			     &lt;b&gt;&lt;/b&gt;
-			     &lt;x&gt;&lt;/x&gt;
-			     &lt;b&gt;&lt;/b&gt;
+                             &lt;b&gt;&lt;/b&gt;
+                             &lt;x&gt;&lt;/x&gt;
+                             &lt;b&gt;&lt;/b&gt;
 
 #### Text
 
     a{Click me}              &lt;a href=""&gt;Click me&lt;/a&gt;
     a&gt;{Click me}*2           &lt;a href=""&gt;
-				 Click me
-				 Click me
-			     &lt;/a&gt;
+                                 Click me
+                                 Click me
+                             &lt;/a&gt;
     x{click}+b{here}         &lt;x&gt;click&lt;/x&gt;
-			     &lt;b&gt;here&lt;/b&gt;
+                             &lt;b&gt;here&lt;/b&gt;
     span&gt;{click}+b{here}     &lt;span&gt;
-				 click
-				 &lt;b&gt;here&lt;/b&gt;
-			     &lt;/span&gt;
+                                 click
+                                 &lt;b&gt;here&lt;/b&gt;
+                             &lt;/span&gt;
     p&gt;{Click}+span{here}+{ to continue}
-			     &lt;p&gt;
-				 Click
-				 &lt;span&gt;here&lt;/span&gt;
-				  to continue
-			     &lt;/p&gt;
+                             &lt;p&gt;
+                                 Click
+                                 &lt;span&gt;here&lt;/span&gt;
+                                  to continue
+                             &lt;/p&gt;
     p{Click}+span{here}+{ to continue}
-			     &lt;p&gt;
-				 Click
-			     &lt;/p&gt;
-			     &lt;span&gt;here&lt;/span&gt;
-			      to continue
+                             &lt;p&gt;
+                                 Click
+                             &lt;/p&gt;
+                             &lt;span&gt;here&lt;/span&gt;
+                              to continue
 
 #### Lorem-Ipsum generator
 
@@ -353,76 +464,91 @@ you'll transform your snippet into the appropriate tag structure.
     lorem5                   Hendrerit gravida rutrum quisque non?
     ipsum3                   Viverra ipsum nunc.
     p*3&gt;lorem3               &lt;p&gt;Pellentesque elit eget?&lt;/p&gt;
-			     &lt;p&gt;Sed odio morbi?&lt;/p&gt;
-			     &lt;p&gt;Eget arcu dictum!&lt;/p&gt;
+                             &lt;p&gt;Sed odio morbi?&lt;/p&gt;
+                             &lt;p&gt;Eget arcu dictum!&lt;/p&gt;
     ul.list&gt;ipsum3*3         &lt;ul class=\"list\"&gt;
-				 Nam libero justo.
-				 Pellentesque habitant morbi?
-				 Enim blandit volutpat.
-			     &lt;/ul&gt;
+                                 Nam libero justo.
+                                 Pellentesque habitant morbi?
+                                 Enim blandit volutpat.
+                             &lt;/ul&gt;
     ul.list&gt;ipsum3.itm*3     &lt;ul class=\"list\"&gt;
-				 &lt;div class=\"itm\"&gt;Urna condimentum mattis.&lt;/div&gt; &lt;!-- emmet-mode doesn't support implicit tag name resolver --&gt;
-				 &lt;div class=\"itm\"&gt;Sed turpis tincidunt.&lt;/div&gt;
-				 &lt;div class=\"itm\"&gt;Faucibus turpis in?&lt;/div&gt;
-			     &lt;/ul&gt;
+                                 &lt;div class=\"itm\"&gt;Urna condimentum mattis.&lt;/div&gt; &lt;!-- emmet-mode doesn't support implicit tag name resolver --&gt;
+                                 &lt;div class=\"itm\"&gt;Sed turpis tincidunt.&lt;/div&gt;
+                                 &lt;div class=\"itm\"&gt;Faucibus turpis in?&lt;/div&gt;
+                             &lt;/ul&gt;
     ul.list&gt;(li.itm&gt;lorem3)*3
-			     &lt;ul class=\"list\"&gt;
-				 &lt;li class=\"itm\"&gt;Est pellentesque elit.&lt;/li&gt;
-				 &lt;li class=\"itm\"&gt;In nulla posuere.&lt;/li&gt;
-				 &lt;li class=\"itm\"&gt;Felis eget nunc.&lt;/li&gt;
-			     &lt;/ul&gt;
+                             &lt;ul class=\"list\"&gt;
+                                 &lt;li class=\"itm\"&gt;Est pellentesque elit.&lt;/li&gt;
+                                 &lt;li class=\"itm\"&gt;In nulla posuere.&lt;/li&gt;
+                                 &lt;li class=\"itm\"&gt;Felis eget nunc.&lt;/li&gt;
+                             &lt;/ul&gt;
 
 #### Filter: escape
 
     script[src=&amp;quot;]|e     &amp;lt;script src="&amp;amp;quot;"&amp;gt;
-			     &amp;lt;/script&amp;gt;
+                             &amp;lt;/script&amp;gt;
 
 #### Aliases
 
     html:5                   &lt;!doctype html&gt;
-			     &lt;html lang="en"&gt;
-			       &lt;head&gt;
-				 &lt;meta charset="UTF-8"/&gt;
-				 &lt;title&gt;Document&lt;/title&gt;
-			       &lt;/head&gt;
-			       &lt;body&gt;
-			       &lt;/body&gt;
-			     &lt;/html&gt;
+                             &lt;html lang="en"&gt;
+                               &lt;head&gt;
+                                 &lt;meta charset="UTF-8"/&gt;
+                                 &lt;title&gt;Document&lt;/title&gt;
+                               &lt;/head&gt;
+                               &lt;body&gt;
+                               &lt;/body&gt;
+                             &lt;/html&gt;
 
     html:xt                  &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
-			     &lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"&gt;
-			       &lt;head&gt;
-				 &lt;meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/&gt;
-				 &lt;title&gt;Document&lt;/title&gt;
-			       &lt;/head&gt;
-			     &lt;/html&gt;
+                             &lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"&gt;
+                               &lt;head&gt;
+                                 &lt;meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/&gt;
+                                 &lt;title&gt;Document&lt;/title&gt;
+                               &lt;/head&gt;
+                             &lt;/html&gt;
 
     meta:vp                  &lt;meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/&gt;
-</code></pre>
+
+</pre>
 </div>
 
 <div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span>require-package 'emmet-mode<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>autoload 'emmet-mode <span style="color: #2aa198;">"emmet-mode"</span><span style="color: #2aa198;">)</span>
 
-<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>require-package 'emmet-mode<span style="color: #f5deb3;">)</span>
-<span style="color: #f5deb3;">(</span>autoload 'emmet-mode <span style="color: #2aa198;">"emmet-mode"</span><span style="color: #f5deb3;">)</span>
-
-<span style="color: #f5deb3;">(</span>add-hook 'sgml-mode-hook 'emmet-mode<span style="color: #f5deb3;">)</span>
-<span style="color: #f5deb3;">(</span>add-hook 'css-mode-hook  'emmet-mode<span style="color: #f5deb3;">)</span>
-<span style="color: #f5deb3;">(</span>add-hook 'sass-mode-hook 'emmet-mode<span style="color: #f5deb3;">)</span>
+<span style="color: #2aa198;">(</span>add-hook 'sgml-mode-hook 'emmet-mode<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>add-hook 'css-mode-hook  'emmet-mode<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>add-hook 'sass-mode-hook 'emmet-mode<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>add-hook 'web-mode-hook  'emmet-mode<span style="color: #2aa198;">)</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-1-2" class="outline-3">
-<h3 id="sec-1-2">Sass Mode</h3>
-<div class="outline-text-3" id="text-1-2">
+<div id="outline-container-org197da91" class="outline-3">
+<h3 id="org197da91">Web Mode</h3>
+<div class="outline-text-3" id="text-org197da91">
 <div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/web-mode-hook</span> <span style="color: #b58900;">()</span>
+  <span style="color: #2aa198; font-style: italic;">"Hooks for Web Mode"</span>
+  <span style="color: #b58900;">(</span>define-key web-mode-map <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"C-j"</span><span style="color: #268bd2;">)</span> 'emmet-expand-line<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">setq</span> web-mode-markup-indent-offset 2<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
-<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>require-package 'sass-mode<span style="color: #f5deb3;">)</span>
-<span style="color: #f5deb3;">(</span>autoload 'sass-mode <span style="color: #2aa198;">"sass-mode"</span><span style="color: #f5deb3;">)</span>
+<span style="color: #2aa198;">(</span>add-hook 'web-mode-hook 'toby/web-mode-hook<span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
+</div>
 
-<span style="color: #f5deb3;">(</span>add-to-list 'auto-mode-alist '<span style="color: #b58900;">(</span><span style="color: #2aa198;">"\.scss$"</span> . sass-mode<span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+<div id="outline-container-org00040f7" class="outline-3">
+<h3 id="org00040f7">Sass Mode</h3>
+<div class="outline-text-3" id="text-org00040f7">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span>require-package 'sass-mode<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>autoload 'sass-mode <span style="color: #2aa198;">"sass-mode"</span><span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span>add-to-list 'auto-mode-alist '<span style="color: #b58900;">(</span><span style="color: #2aa198;">"\.scss$"</span> . sass-mode<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 </pre>
 </div>
 </div>
@@ -431,8 +557,7 @@ you'll transform your snippet into the appropriate tag structure.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Toby Tripp</p>
-<p class="date">Created: 2015-02-04 Wed 10:41</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="date">Created: 2018-02-09 Fri 15:33</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

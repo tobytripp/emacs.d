@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2018-02-09 Fri 15:34 -->
+<!-- 2018-02-09 Fri 15:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
@@ -235,36 +235,22 @@ for the JavaScript code in this tag.
 <p><a accesskey="H" href="index.html">HOME</a></p>
 </div>
 <div id="content">
-<div id="outline-container-orga5d9f05" class="outline-2">
-<h2 id="orga5d9f05">CTags</h2>
-<div class="outline-text-2" id="text-orga5d9f05">
-</div>
-<div id="outline-container-org9a8d96c" class="outline-3">
-<h3 id="org9a8d96c">Commands</h3>
-<div class="outline-text-3" id="text-org9a8d96c">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">build-ctags</span> <span style="color: #b58900;">()</span>
-  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">interactive</span><span style="color: #b58900;">)</span>
-  <span style="color: #b58900;">(</span>message <span style="color: #2aa198;">"building project tags"</span><span style="color: #b58900;">)</span>
-  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #268bd2;">(</span>root <span style="color: #dc322f;">(</span>textmate-project-root<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
-    <span style="color: #268bd2;">(</span>shell-command
-     <span style="color: #dc322f;">(</span>concat
-        <span style="color: #2aa198;">"ctags -e -R --extra=+fq --exclude=db --exclude=test "</span>
-        <span style="color: #2aa198;">"--exclude=.git --exclude=public -f "</span>
-        root <span style="color: #2aa198;">".TAGS "</span> root<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
-  <span style="color: #b58900;">(</span>visit-project-tags<span style="color: #b58900;">)</span>
-  <span style="color: #b58900;">(</span>message <span style="color: #2aa198;">"tags built successfully"</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
-<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">visit-project-tags</span> <span style="color: #b58900;">()</span>
-  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">interactive</span><span style="color: #b58900;">)</span>
-  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #268bd2;">(</span><span style="color: #dc322f;">(</span>tags-file <span style="color: #cb4b16;">(</span>concat <span style="color: #268bd2;">(</span>textmate-project-root<span style="color: #268bd2;">)</span> <span style="color: #2aa198;">".TAGS"</span><span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
-    <span style="color: #268bd2;">(</span>visit-tags-table tags-file<span style="color: #268bd2;">)</span>
-    <span style="color: #268bd2;">(</span>message <span style="color: #dc322f;">(</span>concat <span style="color: #2aa198;">"Loaded "</span> tags-file<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
-</pre>
+<div id="outline-container-org8322acc" class="outline-2">
+<h2 id="org8322acc">Elm Language Support</h2>
+<div class="outline-text-2" id="text-org8322acc">
+<p>
+<a href="http://elm-lang.org">elm-lang.org</a>
+</p>
 </div>
 
+<div id="outline-container-org77384d2" class="outline-3">
+<h3 id="org77384d2">Load Package</h3>
+<div class="outline-text-3" id="text-org77384d2">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">provide</span> '<span style="color: #268bd2; font-weight: bold;">tags</span><span style="color: #2aa198;">)</span>
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span>require-package 'elm-mode<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>autoload 'elm-mode <span style="color: #2aa198;">"elm-mode"</span> <span style="color: #2aa198; font-style: italic;">"Major mode for Elm"</span> t<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>add-to-list 'auto-mode-alist '<span style="color: #b58900;">(</span><span style="color: #2aa198;">"\\.elm$"</span> . elm-mode<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 </pre>
 </div>
 </div>
@@ -273,7 +259,7 @@ for the JavaScript code in this tag.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Toby Tripp</p>
-<p class="date">Created: 2018-02-09 Fri 15:34</p>
+<p class="date">Created: 2018-02-09 Fri 15:33</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -3,23 +3,30 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>clojure</title>
-<!-- 2015-02-04 Wed 10:55 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Toby Tripp" />
+<!-- 2018-02-09 Fri 15:33 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Toby Tripp" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
   .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -46,27 +53,111 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
+  .footpara { display: inline; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -86,6 +177,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -96,7 +188,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -143,116 +235,283 @@ for the JavaScript code in this tag.
 <p><a accesskey="H" href="index.html">HOME</a></p>
 </div>
 <div id="content">
-<h1 class="title">clojure</h1>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">Clojure Customizations</h2>
-<div class="outline-text-2" id="text-1">
-</div><div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1">Clojure + Cider Keybindings of Interest</h3>
-<div class="outline-text-3" id="text-1-1">
+<div id="outline-container-org896cce5" class="outline-2">
+<h2 id="org896cce5">Clojure Customizations</h2>
+<div class="outline-text-2" id="text-org896cce5">
+</div>
+<div id="outline-container-org23b8c44" class="outline-3">
+<h3 id="org23b8c44">DONE Clojure + Cider Keybindings of Interest</h3>
+<div class="outline-text-3" id="text-org23b8c44">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <tbody>
 <tr>
-<td class="left">Key-Chord</td>
-<td class="left">Command</td>
+<td class="org-left">Key-Chord</td>
+<td class="org-left">Command</td>
 </tr>
 
 <tr>
-<td class="left">C-c C-x</td>
-<td class="left">Reload the current namespace</td>
+<td class="org-left">C-c C-x</td>
+<td class="org-left">Reload the current namespace</td>
 </tr>
 
 <tr>
-<td class="left">C-c ,</td>
-<td class="left">Run the current namespace's tests</td>
+<td class="org-left">C-c ,</td>
+<td class="org-left">Run the current namespace's tests</td>
 </tr>
 
 <tr>
-<td class="left">C-c M-,</td>
-<td class="left">Run one test</td>
+<td class="org-left">C-c M-,</td>
+<td class="org-left">Run one test</td>
 </tr>
 
 <tr>
-<td class="left">C-c C-,</td>
-<td class="left">Re-run last test</td>
+<td class="org-left">C-c C-,</td>
+<td class="org-left">Re-run last test</td>
 </tr>
 
 <tr>
-<td class="left">C-c C-e</td>
-<td class="left">Eval and print last s-exp</td>
+<td class="org-left">C-c C-e</td>
+<td class="org-left">Eval and print last s-exp</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 
-<div id="outline-container-sec-1-2" class="outline-3">
-<h3 id="sec-1-2">Cider</h3>
-<div class="outline-text-3" id="text-1-2">
+<div id="outline-container-orgfd06a14" class="outline-3">
+<h3 id="orgfd06a14"><span class="todo EXPERIMENTAL">EXPERIMENTAL</span> Clojure prettify-symbols</h3>
+<div class="outline-text-3" id="text-orgfd06a14">
+<ul class="org-ul">
+<li>State "EXPERIMENTAL" from              <span class="timestamp-wrapper"><span class="timestamp">[2017-08-07 Mon 11:42]</span></span></li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defvar</span> <span style="color: #268bd2;">toby/clojure-prettify-alist</span> '<span style="color: #b58900;">()</span><span style="color: #2aa198;">)</span>
+
+<span style="color: #586e75;">;; </span><span style="color: #586e75;">(setq toby/clojure-prettify-alist '())</span>
+<span style="color: #2aa198;">(</span>add-to-list 'toby/clojure-prettify-alist '<span style="color: #b58900;">(</span><span style="color: #2aa198;">"&lt;="</span>  . <span style="color: #268bd2;">(</span>?&#183; <span style="color: #dc322f;">(</span>Br . Bl<span style="color: #dc322f;">)</span> ?&#8804;<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>add-to-list 'toby/clojure-prettify-alist '<span style="color: #b58900;">(</span><span style="color: #2aa198;">"&gt;="</span>  . <span style="color: #268bd2;">(</span>?&#183; <span style="color: #dc322f;">(</span>Br . Bl<span style="color: #dc322f;">)</span> ?&#8805;<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>add-to-list 'toby/clojure-prettify-alist '<span style="color: #b58900;">(</span><span style="color: #2aa198;">"fn"</span>  . 955<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>add-to-list 'toby/clojure-prettify-alist '<span style="color: #b58900;">(</span><span style="color: #2aa198;">"-&gt;"</span>  . 10230<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>add-to-list 'toby/clojure-prettify-alist '<span style="color: #b58900;">(</span><span style="color: #2aa198;">"-&gt;&gt;"</span> . 10233<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+
+<span style="color: #586e75;">;; </span><span style="color: #586e75;">(add-to-list 'toby/clojure-prettify-alist</span>
+<span style="color: #586e75;">;;              </span><span style="color: #586e75;">'("-&gt;&gt;" .  (?\s (Br . Bl) ?\s (Br . Bl) ?\s</span>
+<span style="color: #586e75;">;;                              </span><span style="color: #586e75;">(Bl . Bl) ?- (Bc . Br) ?- (Bc . Bc) ?&gt;</span>
+<span style="color: #586e75;">;;                              </span><span style="color: #586e75;">(Bc . Bl) ?- (Br . Br) ?&gt;)))</span>
+
+<span style="color: #2aa198;">(</span>eval-after-load 'clojure-mode
+  '<span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">setq</span> clojure--prettify-symbols-alist
+         <span style="color: #268bd2;">(</span>append toby/clojure-prettify-alist
+                 clojure--prettify-symbols-alist<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span>eval-after-load 'lisp-mode
+  '<span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">setq</span> lisp--prettify-symbols-alist
+         <span style="color: #268bd2;">(</span>append toby/clojure-prettify-alist
+                 lisp--prettify-symbols-alist<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org55950a5" class="outline-3">
+<h3 id="org55950a5">Cider</h3>
+<div class="outline-text-3" id="text-org55950a5">
 <p>
 Set-up some local key-bindings.  This will pull in <code>clojure-mode</code> as well.
 </p>
+
 <div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span>require-package 'clojure-mode <span style="color: #b58900;">(</span>version-to-list <span style="color: #2aa198;">"5.6.1"</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>autoload 'clojure-mode <span style="color: #2aa198;">"clojure-mode"</span> <span style="color: #2aa198; font-style: italic;">"Major mode for clojure"</span><span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>autoload 'cider-mode <span style="color: #2aa198;">"cider-mode"</span> <span style="color: #2aa198; font-style: italic;">"Minor mode for live clojure development"</span><span style="color: #2aa198;">)</span>
 
-<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span>require-package 'cider<span style="color: #f5deb3;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/cider-onload</span> <span style="color: #b58900;">()</span>
+  <span style="color: #b58900;">(</span>require-package 'cider-eval-sexp-fu <span style="color: #268bd2;">(</span>version-to-list <span style="color: #2aa198;">"1.1"</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">cider-eval-sexp-fu</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>define-key cider-mode-map <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"&lt;f3&gt;"</span><span style="color: #268bd2;">)</span>    'cider-eval-defun-at-point<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>define-key cider-mode-map <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"&lt;f5&gt;"</span><span style="color: #268bd2;">)</span>    'toby/save-and-eval-buffer<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>define-key cider-mode-map <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"&lt;f12&gt;"</span><span style="color: #268bd2;">)</span>   'cider-test-run-tests<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>define-key cider-mode-map <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"C-c C-e"</span><span style="color: #268bd2;">)</span> 'cider-eval-print-last-sexp<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">setq</span> cider-mode-line '<span style="color: #268bd2;">(</span><span style="color: #268bd2; font-style: italic;">:eval</span> <span style="color: #2aa198;">"&#127866;"</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
-<span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">eval-after-load</span> 'cider
-  '<span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">progn</span>
-     <span style="color: #268bd2;">(</span>define-key cider-mode-map <span style="color: #dc322f;">(</span>kbd <span style="color: #2aa198;">"C-x M-e"</span><span style="color: #dc322f;">)</span> 'repl/eval-and-print<span style="color: #268bd2;">)</span>
-     <span style="color: #268bd2;">(</span>define-key cider-mode-map <span style="color: #dc322f;">(</span>kbd <span style="color: #2aa198;">"&lt;f3&gt;"</span><span style="color: #dc322f;">)</span>    'cider-eval-defun-at-point<span style="color: #268bd2;">)</span>
-     <span style="color: #268bd2;">(</span>define-key cider-mode-map <span style="color: #dc322f;">(</span>kbd <span style="color: #2aa198;">"&lt;f5&gt;"</span><span style="color: #dc322f;">)</span>    'toby/save-and-eval-buffer<span style="color: #268bd2;">)</span>
-     <span style="color: #268bd2;">(</span>define-key cider-mode-map <span style="color: #dc322f;">(</span>kbd <span style="color: #2aa198;">"C-c C-e"</span><span style="color: #dc322f;">)</span> 'cider-eval-print-last-sexp<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
-</pre>
-</div>
+<span style="color: #2aa198;">(</span>eval-after-load 'cider #'toby/cider-onload<span style="color: #2aa198;">)</span>
 
-<p>
-Activate eldoc and paredit in Cider.
-</p>
-<div class="org-src-container">
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/cider-init</span> <span style="color: #b58900;">()</span>
+  <span style="color: #b58900;">(</span>eldoc-mode 1<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>toby/activate-structured-editing<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>add-hook 'cider-mode-hook #'toby/cider-init<span style="color: #2aa198;">)</span>
 
-<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/save-and-eval-buffer</span> <span style="color: #b58900;">()</span>
-  <span style="color: #2aa198; font-style: italic;">"Save open buffers and send the current buffer to the active Cider session."</span>
-  <span style="color: #b58900;">(</span>interactive<span style="color: #b58900;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/clj-repl-init</span> <span style="color: #b58900;">()</span>
+  <span style="color: #b58900;">(</span>subword-mode 1<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>toby/activate-structured-editing<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span>add-hook 'cider-repl-mode-hook #'toby/clj-repl-init<span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/save-and-eval-buffer</span> <span style="color: #b58900;">()</span>
+  <span style="color: #2aa198; font-style: italic;">"Save open buffers and send the current buffer to the active</span>
+<span style="color: #2aa198; font-style: italic;">   Cider session."</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">interactive</span><span style="color: #b58900;">)</span>
   <span style="color: #b58900;">(</span>save-some-buffers 't<span style="color: #b58900;">)</span>
-  <span style="color: #b58900;">(</span>cider-eval-buffer<span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
-
-<span style="color: #f5deb3;">(</span>add-hook 'cider-interaction-mode-hook 'cider-turn-on-eldoc-mode<span style="color: #f5deb3;">)</span>
-<span style="color: #f5deb3;">(</span>toby/defhook cider-mode-hook <span style="color: #b58900;">(</span>paredit-mode<span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+  <span style="color: #b58900;">(</span>cider-eval-buffer<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-1-3" class="outline-3">
-<h3 id="sec-1-3">Clojure</h3>
-<div class="outline-text-3" id="text-1-3">
+<div id="outline-container-org107c756" class="outline-3">
+<h3 id="org107c756">ClojureScript</h3>
+<div class="outline-text-3" id="text-org107c756">
 <p>
-Paredit is my bestest friend
+Enable CIDER-repl connections via figwheel:
 </p>
-<div class="org-src-container">
 
-<pre class="src src-emacs-lisp"><span style="color: #f5deb3;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/clojure-init</span> <span style="color: #b58900;">()</span>
-  <span style="color: #b58900;">(</span>paredit-mode 1<span style="color: #b58900;">)</span>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">setq</span> cider-cljs-lein-repl
+      <span style="color: #2aa198;">"(do (require 'figwheel-sidecar.repl-api)</span>
+<span style="color: #2aa198;">           (figwheel-sidecar.repl-api/start-figwheel!)</span>
+<span style="color: #2aa198;">           (figwheel-sidecar.repl-api/cljs-repl))"</span><span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org78c3aeb" class="outline-3">
+<h3 id="org78c3aeb">Clojure</h3>
+<div class="outline-text-3" id="text-org78c3aeb">
+</div>
+<div id="outline-container-org7fdc55b" class="outline-4">
+<h4 id="org7fdc55b"><span class="done ADOPTED">ADOPTED</span> Clojure Refactorings</h4>
+<div class="outline-text-4" id="text-org7fdc55b">
+<ul class="org-ul">
+<li>State "ADOPTED"    from    <span class="timestamp-wrapper"><span class="timestamp">[2018-02-05 Mon 10:09]</span></span></li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span>require-package 'clj-refactor <span style="color: #b58900;">(</span>version-to-list <span style="color: #2aa198;">"2.3.1"</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>autoload 'clj-refactor <span style="color: #2aa198;">"clj-refactor-mode"</span><span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc3ab662" class="outline-4">
+<h4 id="orgc3ab662">Set-up General Lisp Key-Bindings</h4>
+<div class="outline-text-4" id="text-orgc3ab662">
+</div>
+<ul class="org-ul">
+<li><a id="org0cf3289"></a>TODO Consider use of (current-local-map)<br />
+<div class="outline-text-5" id="text-org0cf3289">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span>require-package 'god-mode<span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/insert-comma</span> <span style="color: #b58900;">()</span>
+  <span style="color: #2aa198; font-style: italic;">"Insert commas in lisp environments where its binding may have</span>
+<span style="color: #2aa198; font-style: italic;">  been overridden (given that `,` is considered white-space in</span>
+<span style="color: #2aa198; font-style: italic;">  many lisps, its use can be more convenient elsewhere)"</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">interactive</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>insert <span style="color: #2aa198;">","</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>god-local-mode -1<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/lisp-keys</span> <span style="color: #b58900;">(</span>kmap<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">god-mode</span><span style="color: #b58900;">)</span>
+  <span style="color: #586e75;">;; </span><span style="color: #586e75;">Consider use of (current-local-map)</span>
+  <span style="color: #b58900;">(</span>define-key kmap <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">","</span><span style="color: #268bd2;">)</span>   'god-local-mode<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>global-set-key  <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"C-,"</span><span style="color: #268bd2;">)</span> 'toby/insert-comma<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>define-key god-local-mode-map  <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"C-,"</span><span style="color: #268bd2;">)</span> 'toby/insert-comma<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+
+<div id="outline-container-orgd4ccfe0" class="outline-4">
+<h4 id="orgd4ccfe0">Clojure Init</h4>
+<div class="outline-text-4" id="text-orgd4ccfe0">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/clojure-init</span> <span style="color: #b58900;">()</span>
+  <span style="color: #b58900;">(</span>toby/activate-structured-editing<span style="color: #b58900;">)</span>
+
+  <span style="color: #b58900;">(</span>cider-mode 1<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>clj-refactor-mode 1<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>yas-minor-mode 1<span style="color: #b58900;">)</span>
+
+  <span style="color: #b58900;">(</span>cljr-add-keybindings-with-prefix <span style="color: #2aa198;">"C-c c"</span><span style="color: #b58900;">)</span>
+
+  <span style="color: #b58900;">(</span>toby/lisp-keys <span style="color: #268bd2;">(</span>current-local-map<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
 
   <span style="color: #586e75;">;; </span><span style="color: #586e75;">Compojure Macros:</span>
-  <span style="color: #b58900;">(</span>define-clojure-indent
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">define-clojure-indent</span>
     <span style="color: #268bd2;">(</span>defroutes 'defun<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>defspec 'defun<span style="color: #268bd2;">)</span>
     <span style="color: #268bd2;">(</span>GET 2<span style="color: #268bd2;">)</span>
     <span style="color: #268bd2;">(</span>POST 2<span style="color: #268bd2;">)</span>
     <span style="color: #268bd2;">(</span>PUT 2<span style="color: #268bd2;">)</span>
     <span style="color: #268bd2;">(</span>DELETE 2<span style="color: #268bd2;">)</span>
     <span style="color: #268bd2;">(</span>HEAD 2<span style="color: #268bd2;">)</span>
     <span style="color: #268bd2;">(</span>ANY 2<span style="color: #268bd2;">)</span>
-    <span style="color: #268bd2;">(</span>context 2<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #f5deb3;">)</span>
+    <span style="color: #268bd2;">(</span>context 2<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
-<span style="color: #f5deb3;">(</span>add-hook 'clojure-mode-hook 'toby/clojure-init<span style="color: #f5deb3;">)</span>
+<span style="color: #2aa198;">(</span>add-hook 'clojure-mode-hook #'toby/clojure-init<span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge0c755e" class="outline-4">
+<h4 id="orge0c755e">Clojuredocs</h4>
+<div class="outline-text-4" id="text-orge0c755e">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defconst</span> <span style="color: #268bd2;">clojuredocs-url</span> <span style="color: #2aa198;">"http://clojuredocs.org/"</span><span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">clojuredocs-url</span> <span style="color: #b58900;">(</span>ns name<span style="color: #b58900;">)</span>
+  <span style="color: #2aa198; font-style: italic;">"Generate a clojuredocs search"</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #268bd2;">(</span><span style="color: #dc322f;">(</span>base-url clojuredocs-url<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">when</span> <span style="color: #dc322f;">(</span><span style="color: #859900; font-weight: bold;">and</span> name ns<span style="color: #dc322f;">)</span>
+      <span style="color: #dc322f;">(</span>concat base-url ns <span style="color: #2aa198;">"/"</span> name<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/clojuredocs-lookup</span> <span style="color: #b58900;">(</span>symbol<span style="color: #b58900;">)</span>
+  <span style="color: #2aa198; font-style: italic;">"Open the clojuredocs.org documentation for SYMBOL"</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">if-let</span> <span style="color: #268bd2;">(</span><span style="color: #dc322f;">(</span>var-info <span style="color: #cb4b16;">(</span>cider-var-info symbol<span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
+      <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #dc322f;">(</span><span style="color: #cb4b16;">(</span>name <span style="color: #268bd2;">(</span>nrepl-dict-get var-info <span style="color: #2aa198;">"name"</span><span style="color: #268bd2;">)</span><span style="color: #cb4b16;">)</span>
+            <span style="color: #cb4b16;">(</span>ns <span style="color: #268bd2;">(</span>nrepl-dict-get var-info <span style="color: #2aa198;">"ns"</span><span style="color: #268bd2;">)</span><span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span>
+        <span style="color: #dc322f;">(</span>browse-url <span style="color: #cb4b16;">(</span>clojuredocs-url ns name<span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #dc322f; font-weight: bold; text-decoration: underline;">error</span> <span style="color: #2aa198;">"Symbol %s not resolved"</span> symbol<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/clojuredocs-web</span> <span style="color: #b58900;">(</span><span style="color: #b58900;">&amp;optional</span> arg<span style="color: #b58900;">)</span>
+  <span style="color: #2aa198; font-style: italic;">"Open clojuredocs.org in the default web browser.</span>
+
+<span style="color: #2aa198; font-style: italic;">   Prompts for the symbol to look-up, or uses the symbol at point."</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">interactive</span> <span style="color: #2aa198;">"P"</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>funcall <span style="color: #268bd2;">(</span>cider-prompt-for-symbol-function arg<span style="color: #268bd2;">)</span>
+           <span style="color: #2aa198;">"Clojuredoc for"</span>
+           #'toby/clojuredocs-lookup<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org48e53dc" class="outline-3">
+<h3 id="org48e53dc">On-Load</h3>
+<div class="outline-text-3" id="text-org48e53dc">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">
+   <span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/clojure-onload</span> <span style="color: #b58900;">()</span>
+  <span style="color: #b58900;">(</span>require-package 'cider <span style="color: #268bd2;">(</span>version-to-list <span style="color: #2aa198;">"0.15.1"</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>define-key clojure-mode-map <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"&lt;C-down&gt;"</span><span style="color: #268bd2;">)</span> 'forward-sexp<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>define-key clojure-mode-map <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"&lt;C-up&gt;"</span><span style="color: #268bd2;">)</span>   'backward-sexp<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>define-key clojure-mode-map <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"C-c C-d o"</span><span style="color: #268bd2;">)</span> 'toby/clojuredocs-web<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span>eval-after-load 'clojure-mode #'toby/clojure-onload<span style="color: #2aa198;">)</span>
 </pre>
 </div>
 </div>
@@ -261,8 +520,7 @@ Paredit is my bestest friend
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Toby Tripp</p>
-<p class="date">Created: 2015-02-04 Wed 10:55</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="date">Created: 2018-02-09 Fri 15:33</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

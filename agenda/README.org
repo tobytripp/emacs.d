@@ -1,0 +1,5 @@
+#+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
+* Org-Mode Agenda Files
+
+  Link =.org= files into this directory that you want to show up in
+  =org-agenda…= commands.

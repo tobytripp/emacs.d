@@ -27,3 +27,4 @@ projectile-bookmarks.eld
 /.mc-lists.el
 image-dired/
 games
+/agenda/*

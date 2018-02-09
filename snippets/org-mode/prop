@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: org property
+# key: prop
+# --
+:${1:$$(upcase yas-text)}: ${value}
+prop$0

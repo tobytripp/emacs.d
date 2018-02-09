@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: Contact Info
+# key: con
+# --
+:PROPERTIES:
+${ :EMAIL: ${uname}@${domain.com}}
+${ :PHONE: (${000}) ${000}-${0000}}
+${ :COMPANY: ${name}}
+prop$0
+:END:

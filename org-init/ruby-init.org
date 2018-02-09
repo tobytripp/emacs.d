@@ -83,11 +83,13 @@
 
        ;; Doesn't work in the terminal, unfortunately…
        (define-key ruby-mode-map (kbd "C-=") 'insert-rocket)
-       (define-key enh-ruby-mode-map (kbd "C-c =") 'insert-rocket)
-
        (define-key ruby-mode-map (kbd "C-c =") 'insert-rocket)
        (define-key ruby-mode-map (kbd "C-c c") 'compile)
-       (define-key enh-ruby-mode-map (kbd "C-c c") 'compile)
+
+       (if (boundp 'enh-ruby-mode-map)
+           (progn
+             (define-key enh-ruby-mode-map (kbd "C-c =") 'insert-rocket)
+             (define-key enh-ruby-mode-map (kbd "C-c c") 'compile)))
 
        (hs-minor-mode 1) ;; Code folding
 

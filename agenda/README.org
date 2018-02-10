@@ -1,5 +1,60 @@
 #+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
+#+AUTHOR: Toby Tripp
+#+EMAIL: toby@tripp.net
+
 * Org-Mode Agenda Files
 
   Link =.org= files into this directory that you want to show up in
   =org-agenda…= commands.
+
+* Calendar Integration
+
+  Uses the =ical-buddy= package to extract iCal entries into the org agenda.
+
+** Installation
+
+   #+BEGIN_SRC sh :tangle no
+     brew install ical-buddy
+   #+END_SRC
+
+** Exporting Calendar to Org
+
+   List Calendars with:
+
+   #+BEGIN_SRC sh :tangle no
+     icalBuddy calendars
+   #+END_SRC
+
+   Once you've selected the calendars you want: =C-c C-v t= =(org-babel-tangle)=.
+
+   #+BEGIN_SRC sh :tangle ../bin/ical-to-org.sh
+     #!/usr/bin/env bash
+     export ICAL_ORG_PATH="${HOME}/.emacs.d/agenda/ical.org"
+
+     if [ -s "$ICAL_ORG_PATH" ] ; then
+         echo "** Calendars Imported" >> $ICAL_ORG_PATH
+         echo "  :PROPERTIES:"     >> $ICAL_ORG_PATH
+         echo "  :CATEGORY: Calendar Event" >> $ICAL_ORG_PATH
+         echo "  :IMPORTED_AT: " $(date "+<%Y-%m-%d %b %H:%M>") >> $ICAL_ORG_PATH
+         echo "  :END:"            >> $ICAL_ORG_PATH
+     else
+         cat <<EOF > $ICAL_ORG_PATH
+     ,#+TODO: SCHEDULED(s) | CANCELLED(c)
+     ,* Imported Calendar Events
+     EOF
+     fi
+
+     icalBuddy -b "*** "                                          \
+               --includeEventProperties "title,datetime,location" \
+               --propertyOrder "datetime,title,location"          \
+               --propertySeparators "| |\\n  |"                   \
+               --includeCals "Toby Tripp,Work,Home"               \
+               --excludeAllDayEvents                              \
+               --noRelativeDates                                  \
+               --dateFormat "<%Y-%m-%d %b %H:%M>"                 \
+               --timeFormat ""                                    \
+               --excludeEndDates                                  \
+               eventsToday+14 >> $ICAL_ORG_PATH
+   #+END_SRC
+
+   #+RESULTS:

@@ -3,6 +3,7 @@
 # key: con
 # --
 :PROPERTIES:
+:CATEGORY: Contact
 ${ :EMAIL: ${uname}@${domain.com}}
 ${ :PHONE: (${000}) ${000}-${0000}}
 ${ :COMPANY: ${name}}

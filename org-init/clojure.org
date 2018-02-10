@@ -185,14 +185,13 @@
 ** On-Load
 
     #+BEGIN_SRC emacs-lisp
+      (defun toby/clojure-onload ()
+        (require-package 'cider (version-to-list "0.15.1"))
+        (define-key clojure-mode-map (kbd "<C-down>") 'forward-sexp)
+        (define-key clojure-mode-map (kbd "<C-up>")   'backward-sexp)
+        (define-key clojure-mode-map (kbd "C-c C-d o") 'toby/clojuredocs-web))
 
-        (defun toby/clojure-onload ()
-       (require-package 'cider (version-to-list "0.15.1"))
-       (define-key clojure-mode-map (kbd "<C-down>") 'forward-sexp)
-       (define-key clojure-mode-map (kbd "<C-up>")   'backward-sexp)
-       (define-key clojure-mode-map (kbd "C-c C-d o") 'toby/clojuredocs-web))
-
-     (eval-after-load 'clojure-mode #'toby/clojure-onload)
+      (eval-after-load 'clojure-mode #'toby/clojure-onload)
     #+END_SRC
 
 

@@ -1,0 +1,104 @@
+#+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
+* EMail Configurations
+** EXPERIMENTAL Wanderlust
+
+   - State "EXPERIMENTAL" from              [2018-02-09 Fri 21:21]
+
+   #+BEGIN_SRC emacs-lisp
+   (require-package 'wanderlust)
+   #+END_SRC
+
+*** Initialization
+
+    [[http://emacs-fu.blogspot.com/2009/06/e-mail-with-wanderlust.html][Wanderlust Blog Post]]
+
+    #+BEGIN_SRC emacs-lisp
+      (require 'mime-setup)
+      (autoload 'wl "wl" "Wanderlust" t)
+      (autoload 'wl-draft "wl-draft" "Write draft with Wanderlust." t)
+      (setq
+       elmo-maildir-folder-path "~/Maildir"
+       wl-stay-folder-window t                       ;; show the folder pane (left)
+       wl-folder-window-width 25                     ;; toggle on/off with 'i'
+       wl-smtp-posting-server "smtp.gmail.com"
+       wl-from "Toby Tripp <toby@tripp.net>"
+
+       ;; hide many fields from message buffers
+       wl-message-ignored-field-list '("^.*:")
+       wl-message-visible-field-list
+       '("^\\(To\\|Cc\\):"
+         "^Subject:"
+         "^\\(From\\|Reply-To\\):"
+         "^Organization:"
+         "^Message-Id:"
+         "^Delivered-To:"
+         "^\\(Posted\\|Date\\):"
+         "^X-Keywords:")
+       wl-message-sort-field-list
+       '("^From"
+         "^Organization:"
+         "^X-Attribution:"
+         "^Subject"
+         "^Date"
+         "^To"
+         "^Cc"))
+    #+END_SRC
+
+*** EXPERIMENTAL Mail indexing with =mu=
+    - State "EXPERIMENTAL" from              [2018-02-09 Fri 22:16]
+
+    #+BEGIN_SRC sh
+      brew install mu
+      mu index --rebuild --maildir ~/Maildir
+    #+END_SRC
+
+**** EXPERIMENTAL Searching Emails
+
+     - State "EXPERIMENTAL" from              [2018-02-09 Fri 22:17]
+
+     [[https://emacs-fu.blogspot.com/2011/03/searching-e-mails-with-wanderlust-and.html][Emacs-Fu: Searching emails with wanderlust and mu]]
+
+     #+BEGIN_SRC emacs-lisp
+       (require 'elmo-search)
+       (elmo-search-register-engine
+        'mu 'local-file
+        :prog "/usr/local/bin/mu"
+        :args '("find" pattern "--fields" "l")
+        :charset 'utf-8)
+
+       (setq elmo-search-default-engine 'mu
+             wl-default-spec "[")
+     #+END_SRC
+
+*** EXPERIMENTAL =org-capture= Integration
+
+    - State "EXPERIMENTAL" from              [2018-02-10 Sat 07:01]
+
+    #+BEGIN_SRC emacs-lisp
+    (require 'org-wl)
+    #+END_SRC
+
+    With this, you can mark text in a Wanderlust email view and type =C-c c e=
+    to create an =org= node with the marked contents.  Meta-data about the
+    current email will automatically be included.
+
+*** Setting wanderlust as the Emacs Mail composer
+
+    #+BEGIN_SRC emacs-lisp
+      (autoload 'wl-user-agent-compose "wl-draft" nil t)
+      (if (boundp 'mail-user-agent)
+          (setq mail-user-agent 'wl-user-agent))
+
+      (if (fboundp 'define-mail-user-agent)
+          (define-mail-user-agent
+            'wl-user-agent
+            'wl-user-agent-compose
+            'wl-draft-send
+            'wl-draft-kill
+            'mail-send-hook))
+    #+END_SRC
+
+*** Starting Up for Reading
+
+    =M-x wl=
+

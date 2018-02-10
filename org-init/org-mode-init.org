@@ -166,3 +166,13 @@
  #+BEGIN_SRC emacs-lisp :exports none
  (provide 'org-mode-init)
  #+END_SRC
+
+** EXPERIMENTAL Custom bullets
+   - State "EXPERIMENTAL" from              [2018-02-10 Sat 06:41]
+
+   #+BEGIN_SRC emacs-lisp
+   (require-package 'org-bullets)
+   #+END_SRC
+
+*** TODO Configure =org-bullets=
+

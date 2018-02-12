@@ -1,5 +1,14 @@
 #+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
 * EMail Configurations
+** EXPERIMENTAL OfflineIMAP
+   - State "EXPERIMENTAL" from              [2018-02-10 Sat 22:54]
+*** TODO .offlineimaprc
+
+    - State "TODO"       from              [2018-02-10 Sat 22:56]
+
+    This config file should probably be managed in this repo (where it is
+    used) rather in dotfiles.
+
 ** EXPERIMENTAL Wanderlust
 
    - State "EXPERIMENTAL" from              [2018-02-09 Fri 21:21]
@@ -7,6 +16,11 @@
    #+BEGIN_SRC emacs-lisp
    (require-package 'wanderlust)
    #+END_SRC
+
+*** Wanderlust Customization
+    [2018-02-12 Mon]
+
+    [[elisp:(customize-group 'Wanderlust)][Wanderlust Group]]
 
 *** Initialization
 
@@ -44,6 +58,12 @@
          "^Cc"))
     #+END_SRC
 
+*** TODO Configure OAuth2 Authentication
+    - State "TODO"       from "EXPERIMENTAL" [2018-02-10 Sat 12:11]
+    - State "EXPERIMENTAL" from              [2018-02-10 Sat 12:11]
+
+    [[https://hobo.house/2017/07/17/using-offlineimap-with-the-gmail-imap-api/][Using Offlineimap with the Gmail IMAP API]] <2018-02-10 Sat 12:13>
+
 *** EXPERIMENTAL Mail indexing with =mu=
     - State "EXPERIMENTAL" from              [2018-02-09 Fri 22:16]
 
@@ -58,6 +78,8 @@
 
      [[https://emacs-fu.blogspot.com/2011/03/searching-e-mails-with-wanderlust-and.html][Emacs-Fu: Searching emails with wanderlust and mu]]
 
+     Search =mu= index by typing =g= in folder or summary.
+
      #+BEGIN_SRC emacs-lisp
        (require 'elmo-search)
        (elmo-search-register-engine
@@ -66,9 +88,12 @@
         :args '("find" pattern "--fields" "l")
         :charset 'utf-8)
 
-       (setq elmo-search-default-engine 'mu
-             wl-default-spec "[")
+       (setq elmo-search-default-engine 'mu)
      #+END_SRC
+
+     [[http://www.djcbsoftware.nl/code/mu/cheatsheet.html][mu cheat-sheet]]
+
+     Also src_shell{man mu-find}.
 
 *** EXPERIMENTAL =org-capture= Integration
 
@@ -82,8 +107,9 @@
     to create an =org= node with the marked contents.  Meta-data about the
     current email will automatically be included.
 
-*** Setting wanderlust as the Emacs Mail composer
+*** EXPERIMENTAL Setting wanderlust as the Emacs Mail composer
 
+    - State "EXPERIMENTAL" from              [2018-02-10 Sat 22:42]
     #+BEGIN_SRC emacs-lisp
       (autoload 'wl-user-agent-compose "wl-draft" nil t)
       (if (boundp 'mail-user-agent)

@@ -137,10 +137,19 @@
    (quote
     (("e" "Email Communication" entry
       (file+headline "~/.emacs.d/agenda/tasks.org.gpg" "Communication")
-      (file "~/.emacs.d/agenda/templates/communication.org")))))
+      (file "~/.emacs.d/agenda/templates/communication.org"))
+     ("n" "Emacs Note with Reference" entry
+      (file "~/.emacs.d/org-init/misc-init.org")
+      (file "~/.emacs.d/agenda/templates/emacs-note.org")
+      :jump-to-captured t)
+     ("r" "Todo/ToRead" entry
+      (file "~/org/notes.org")
+      "* TODO %?\\\\\\n  %i\\\\\\n  %a" :jump-to-captured t))))
  '(org-default-notes-file "~/.emacs.d/agenda/notes.org")
- '(org-refile-targets (quote ((nil :maxlevel . 3))))
- '(org-refile-use-outline-path nil)
+ '(org-directory "~/.emacs.d/agenda")
+ '(org-goto-interface (quote outline-path-completion))
+ '(org-refile-targets (quote ((org-agenda-files :maxlevel . 3))))
+ '(org-refile-use-outline-path (quote buffer-name))
  '(org-src-window-setup (quote other-window))
  '(package-selected-packages
    (quote
@@ -292,7 +301,25 @@
  '(web-mode-enable-whitespace-fontification nil)
  '(web-mode-markup-indent-offset 2)
  '(whitespace-style (quote (trailing tab-mark lines empty indentation)))
- '(winner-mode t))
+ '(winner-mode t)
+ '(wl-default-spec ".")
+ '(wl-dispose-folder-alist
+   (quote
+    (("^-" . remove)
+     ("^@" . remove)
+     ("^." . ".archive"))))
+ '(wl-draft-folder ".drafts")
+ '(wl-folder-desktop-name
+   #("Mail" 0 4
+     (wl-folder-entity-id 0 wl-folder-is-group is-group)))
+ '(wl-folder-hierarchy-access-folders
+   (quote
+    ("^-[^.]*\\(:\\|@\\|$\\)" "^@$" "^'$" "^\\.[^.]*\\.$")))
+ '(wl-forward-subject-prefix "Fwd: ")
+ '(wl-quicksearch-folder "[]")
+ '(wl-summary-width 120)
+ '(wl-trash-folder ".Trash")
+ '(wl-use-folder-petname (quote (modeline read-folder))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

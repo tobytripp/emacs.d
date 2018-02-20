@@ -1,5 +1,111 @@
 #+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
 * EMail Configurations
+** EXPERIMENTAL mbsync
+   - State "EXPERIMENTAL" from "TODO"       [2018-02-13 Tue 07:25]
+   - State "TODO"       from              [2018-02-13 Tue 07:25]
+
+   [[https://wiki.archlinux.org/index.php/Isync][ArchLinux Help Page]]
+   [[http://isync.sourceforge.net/mbsync.html][mbsync man page]]
+   [[http://pragmaticemacs.com/emacs/migrating-from-offlineimap-to-mbsync-for-mu4e/][Pragmatic Emacs mbsync Page]]
+
+   #+BEGIN_SRC conf :tangle ~/.mbsyncrc
+     IMAPAccount gmail
+     Host imap.gmail.com
+     Port 993
+     User toby.tripp@gmail.com
+     PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/.emacs.d/secrets/.authinfo.gpg | awk '/imap\.gmail/ { print $8 }'"
+     AuthMechs LOGIN
+     SSLType IMAPS
+     #SSLVersions SSLv3
+     SystemCertificates no
+     CertificateFile /usr/local/etc/openssl/cert.pem
+
+     IMAPStore gmail-remote
+     Account gmail
+
+     MaildirStore gmail-local
+     # The trailing "/" is important
+     Path ~/.mail/gmail/
+     Inbox ~/.mail/gmail/Inbox
+     SubFolders Verbatim
+
+     #Channel gmail
+     #Master :gmail-remote:
+     #Slave :gmail-local:
+     # 1 "*" TO MATCH EVERYTHING
+     # 2 "!DIR" TO EXCLUDE "DIR"
+     # 3 "DIR" TO MATCH DIR
+     # Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail"
+     #Patterns *
+     #Create Both
+     #SyncState *
+
+     Channel gmail-inbox
+     Master :gmail-remote:
+     Slave :gmail-local:
+     Patterns "INBOX" "Record*" "Group*"
+     Create Both
+     SyncState *
+
+     Channel gmail-trash
+     Master :gmail-remote:"[Gmail]/Trash"
+     Slave :gmail-local:trash
+     Create Both
+     Expunge Both
+     SyncState *
+
+     Channel gmail-sent
+     Master :gmail-remote:"[Gmail]/Sent Mail"
+     Slave :gmail-local:sent
+     Create Both
+     Expunge Both
+     SyncState *
+
+     Channel gmail-archive
+     Master ":gmail-remote:[Gmail]/All Mail"
+     Slave :gmail-local:archive
+     Create Both
+     SyncState *
+
+     # GROUPS PUT TOGETHER CHANNELS, SO THAT WE CAN INVOKE
+     # MBSYNC ON A GROUP TO SYNC ALL CHANNELS
+     #
+     # FOR INSTANCE: "mbsync gmail" GETS MAIL FROM
+     # "gmail-inbox", "gmail-sent", and "gmail-trash"
+     #
+     Group gmail
+     Channel gmail-inbox
+     Channel gmail-sent
+     Channel gmail-trash
+     Channel gmail-archive
+   #+END_SRC
+
+   #+BEGIN_SRC sh :tangle no
+     mkdir -p ~/.mail/gmail
+     mbsync -al
+   #+END_SRC
+
+   #+RESULTS:
+   |-----------------------------------+---------|
+   | gmail-inbox:                      |         |
+   | INBOX                             |         |
+   | Archive/Accounts                  |         |
+   | Archive/Receipts                  |         |
+   | Archive/Receipts/StrangeLoop 2012 |         |
+   | Archive/Travel                    |         |
+   | Groups                            |         |
+   | Groups/CITCon                     |         |
+   | Groups/Meetup                     |         |
+   |-----------------------------------+---------|
+   | gmail-trash:                      |         |
+   | [Gmail]/Trash                     | trash   |
+   |-----------------------------------+---------|
+   | gmail-sent:                       |         |
+   | [Gmail]/Sent Mail                 | sent    |
+   |-----------------------------------+---------|
+   | gmail-archive:                    |         |
+   | [Gmail]/All Mail                  | archive |
+
 ** EXPERIMENTAL OfflineIMAP
    - State "EXPERIMENTAL" from              [2018-02-10 Sat 22:54]
 *** TODO .offlineimaprc
@@ -28,10 +134,10 @@
 
     #+BEGIN_SRC emacs-lisp
       (require 'mime-setup)
-      (autoload 'wl "wl" "Wanderlust" t)
+      (autoload 'wl       "wl"       "Wanderlust" t)
       (autoload 'wl-draft "wl-draft" "Write draft with Wanderlust." t)
       (setq
-       elmo-maildir-folder-path "~/Maildir"
+       elmo-maildir-folder-path "~/.mail/gmail"
        wl-stay-folder-window t                       ;; show the folder pane (left)
        wl-folder-window-width 25                     ;; toggle on/off with 'i'
        wl-smtp-posting-server "smtp.gmail.com"

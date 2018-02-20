@@ -1,16 +1,23 @@
 #!/usr/bin/env bash
-export ICAL_ORG_PATH="${HOME}/.emacs.d/agenda/ical.org"
+export ICAL_ORG_PATH="${HOME}/Documents/Notes/calendar.org"
 
 if [ -s "$ICAL_ORG_PATH" ] ; then
-    echo "** Calendars Imported" >> $ICAL_ORG_PATH
-    echo "  :PROPERTIES:"        >> $ICAL_ORG_PATH
-    echo "  :CATEGORY: Calendar Import" >> $ICAL_ORG_PATH
-    echo "  :IMPORTED_AT: " $(date "+<%Y-%m-%d %b %H:%M>") >> $ICAL_ORG_PATH
-    echo "  :END:"               >> $ICAL_ORG_PATH
+    echo "* Imported Calendars"                             >> $ICAL_ORG_PATH
+    echo "  :PROPERTIES:"                                   >> $ICAL_ORG_PATH
+    echo "  :CATEGORY: Calendar Event"                      >> $ICAL_ORG_PATH
+    echo "  :CUSTOM_ID: Imported Calendars"                 >> $ICAL_ORG_PATH
+    echo "  :IMPORTED_AT: " $(date "+<%Y-%m-%d %b %H:%M>")  >> $ICAL_ORG_PATH
+    echo "  :END:"                                          >> $ICAL_ORG_PATH
+    echo "** " $(date "+<%Y-%m-%d %b %H:%M>") " <<Import>>" >> $ICAL_ORG_PATH
+    echo "  :PROPERTIES:"                                   >> $ICAL_ORG_PATH
+    echo "  :CATEGORY: Calendar Event"                      >> $ICAL_ORG_PATH
+    echo "  :CUSTOM_ID: Import"                             >> $ICAL_ORG_PATH
+    echo "  :END:"                                          >> $ICAL_ORG_PATH
 else
     cat <<EOF > $ICAL_ORG_PATH
 #+TODO: SCHEDULED(s) | CANCELLED(c)
-* Imported Calendar Events
+* Current Calendar Events
+* Imported Calendars
 EOF
 fi
 
@@ -24,4 +31,4 @@ icalBuddy -b "*** "                                          \
           --dateFormat "<%Y-%m-%d %b %H:%M>"                 \
           --timeFormat ""                                    \
           --excludeEndDates                                  \
-          eventsToday+14 >> $ICAL_ORG_PATH
+          eventsToday+21 >> $ICAL_ORG_PATH

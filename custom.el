@@ -132,7 +132,7 @@
      (html-mode "\\.mm\\'" mason)
      (ruby-mode "\\.rb\\'" toby/heredoc))) nil (mmm-mode))
  '(org-agenda-file-regexp "\\`[^.].*\\.org\\(\\.gpg\\)?\\'")
- '(org-agenda-files (quote ("~/.emacs.d/agenda/")))
+ '(org-agenda-files (quote ("~/.emacs.d/agenda/" "~/Documents/Notes/")))
  '(org-capture-templates
    (quote
     (("e" "Email Communication" entry
@@ -311,14 +311,14 @@
  '(wl-draft-folder ".drafts")
  '(wl-folder-desktop-name
    #("Mail" 0 4
-     (wl-folder-entity-id 0 wl-folder-is-group is-group)))
+     (wl-folder-is-group is-group wl-folder-entity-id 0)))
  '(wl-folder-hierarchy-access-folders
    (quote
     ("^-[^.]*\\(:\\|@\\|$\\)" "^@$" "^'$" "^\\.[^.]*\\.$")))
  '(wl-forward-subject-prefix "Fwd: ")
  '(wl-quicksearch-folder "[]")
  '(wl-summary-width 120)
- '(wl-trash-folder ".Trash")
+ '(wl-trash-folder ".trash")
  '(wl-use-folder-petname (quote (modeline read-folder))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

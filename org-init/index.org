@@ -26,7 +26,8 @@
 
 *** TODO Keep the tangled elisp in a separate directory that is in .gitignore
 
-** EXPERIMENTAL Decorations
+** ADOPTED Decorations
+   - State "ADOPTED"    from "EXPERIMENTAL" [2018-02-23 Fri 10:03]
    - State "EXPERIMENTAL" from              [2017-09-07 Thu 10:00]
    Turn off tool-bars and scroll bars and other features I deem unnecessary.
 
@@ -186,19 +187,19 @@ I keep these in a separate file to make it easy to find them.
   Errors encountered while loading these libraries will show up in
   the Messages buffer after start-up.
 
-*** Toby Mode
+** Toby Mode
 
-    I push some key-bindings and behaviors into my own minor mode so
-    that, should I ever sit with an experienced Emacs user, we can
-    turn them off easily.  This way Emacs can behave in a more
-    “standard” way for a while.
+   I push some key-bindings and behaviors into my own minor mode so
+   that, should I ever sit with an experienced Emacs user, we can
+   turn them off easily.  This way Emacs can behave in a more
+   “standard” way for a while.
 
-    =toby-mode= is defined in [[file:toby-mode.org][toby-mode.org]].
+   =toby-mode= is defined in [[file:toby-mode.org][toby-mode.org]].
 
-    #+BEGIN_SRC emacs-lisp
-    (require 'toby-mode)
-    (global-toby-mode)
-    #+END_SRC
+   #+BEGIN_SRC emacs-lisp
+   (require 'toby-mode)
+   (global-toby-mode)
+   #+END_SRC
 
 * Mode-Specific Configurations
   # Evaluate with C-c C-c

@@ -10,8 +10,9 @@
    | C-c C-,   | Re-run last test                  |
    | C-c C-e   | Eval and print last s-exp         |
 
-** EXPERIMENTAL Clojure prettify-symbols
+** ADOPTED Clojure prettify-symbols
 
+   - State "ADOPTED"    from "EXPERIMENTAL" [2018-02-23 Fri 10:02]
    - State "EXPERIMENTAL" from              [2017-08-07 Mon 11:42]
 
    #+BEGIN_SRC emacs-lisp

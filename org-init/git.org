@@ -17,6 +17,27 @@
    I like it to open full-screen and then restore my windows where
    they were when it is done:
 
+   #+BEGIN_QUOTE
+   fullframe is an autoloaded Lisp macro in ‘fullframe.el’.
+
+   (fullframe COMMAND-ON COMMAND-OFF &optional KILL-ON-COFF
+   AFTER-COMMAND-ON-FUNC)
+
+   Save window/frame state when executing COMMAND-ON.
+
+   Advises COMMAND-ON so that the buffer it displays will appear in
+   a full-frame window.  The previous window configuration will be
+   restored when COMMAND-OFF is executed in that buffer.  If
+   KILL-ON-COFF is non-nil, then the buffer will also be killed
+   after COMMAND-OFF has completed.
+
+   This function uses ‘defadvice’ on versions of emacs < 24.4,
+   ‘advice-add’ otherwise.
+
+   AFTER-COMMAND-ON-FUNC is called after COMMAND-ON was called and
+   the window it generated is the only one in in the frame.
+   #+END_QUOTE
+
    #+BEGIN_SRC emacs-lisp
      (require-package 'magit)
      (require-package 'fullframe)

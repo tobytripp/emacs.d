@@ -1,18 +1,5 @@
 #+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
 
-* Authentication Secrets
-
-  #+BEGIN_SRC emacs-lisp
-    (setq auth-sources '("~/.authinfo.gpg" "~/.authinfo"))
-  #+END_SRC
-
-** GPG Encryption
-
-   #+BEGIN_SRC emacs-lisp
-   (require 'epa-file)
-   (epa-file-enable)
-   #+END_SRC
-
 * ERC Chat Set-up
 
   #+BEGIN_SRC emacs-lisp

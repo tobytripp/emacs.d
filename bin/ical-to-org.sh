@@ -23,8 +23,8 @@ fi
 
 icalBuddy -b "*** "                                          \
           --includeEventProperties "title,datetime,location" \
-          --propertyOrder "datetime,title,location"          \
-          --propertySeparators "| |\\n  |"                   \
+          --propertyOrder "title,location,datetime"          \
+          --propertySeparators "|\\n |\\n  |"                \
           --includeCals "Toby Tripp,Work,Home"               \
           --excludeAllDayEvents                              \
           --noRelativeDates                                  \

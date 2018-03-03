@@ -5,8 +5,9 @@
   capable than other terminal emulators and also gives it some
   interesting features.
 
-** EXPERIMENTAL EShell “Smart Shell”
+** ADOPTED EShell “Smart Shell”
 
+   - State "ADOPTED"    from "EXPERIMENTAL" [2018-02-23 Fri 10:02]
    - State "EXPERIMENTAL" from              [2017-07-25 Tue 12:49]
 
    #+BEGIN_SRC emacs-lisp
@@ -16,7 +17,8 @@
      (setq eshell-smart-space-goes-to-end t)
    #+END_SRC
 
-** EXPERIMENTAL EShell ‘visual’ commands
+** ADOPTED EShell ‘visual’ commands
+   - State "ADOPTED"    from "EXPERIMENTAL" [2018-02-23 Fri 10:02]
    - State "EXPERIMENTAL" from              [2017-07-25 Tue 12:50]
 
    #+BEGIN_SRC emacs-lisp

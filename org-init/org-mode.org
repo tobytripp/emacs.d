@@ -98,6 +98,11 @@
 
    Publish with: =org-publish-project=.
 
+** Calendar and Calendar Integration
+
+   #+BEGIN_SRC emacs-lisp
+     (appt-activate 1)
+   #+END_SRC
 ** Literate Haskell
 
    Automatically load and run Haskell code after it's been “tangeled”
@@ -167,7 +172,8 @@
  (provide 'org-mode-init)
  #+END_SRC
 
-** EXPERIMENTAL Custom bullets
+** TODO Custom bullets
+   - State "TODO"       from "EXPERIMENTAL" [2018-02-23 Fri 13:50]
    - State "EXPERIMENTAL" from              [2018-02-10 Sat 06:41]
 
    #+BEGIN_SRC emacs-lisp
@@ -175,4 +181,4 @@
    #+END_SRC
 
 *** TODO Configure =org-bullets=
-
+    * [[https://zhangda.wordpress.com/2016/02/15/configurations-for-beautifying-emacs-org-mode/][Example configurations]]

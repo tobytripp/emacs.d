@@ -21,7 +21,7 @@
                                 " Paredit" " Wrap" " Fill"))
 
            (if after-init-time
-             (sml/setup)
+               (sml/setup)
              (add-hook 'after-init-hook 'sml/setup))
 
            (setq rm-text-properties
@@ -39,13 +39,9 @@
 
            (add-to-list 'sml/replacer-regexp-list '("^~/Dropbox/" ":DB:"))
            (add-to-list 'sml/replacer-regexp-list
-             '("^~/Code/ib/investor-bridge" ":IB:"))
+                        '("^~/.*/lib/ruby/gems" ":GEMS" ))
            (add-to-list 'sml/replacer-regexp-list
-             '("^~/Code/ib/visibility" ":VIS:"))
-           (add-to-list 'sml/replacer-regexp-list
-             '("^~/.*/lib/ruby/gems" ":GEMS" ))))
-           (add-to-list 'sml/replacer-regexp-list
-             '("^~/Code/" ":CODE:"))
+                        '("^~/Projects/" ":CODE:"))))
    #+END_SRC
 
 

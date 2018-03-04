@@ -3,6 +3,9 @@
 #+PROPERTY: tangle yes
 
 * My Emacs Configuration
+  A Literate emacs configuration.
+
+  HTML version available at [[http://tobytripp.github.io/emacs.d/][http://tobytripp.github.io/emacs.d/]]
 
   #+begin_quote
   Emacs out-shines all other editing software in approximately the same
@@ -12,10 +15,8 @@
   -- Neal Stephenson, "In the Beginning was the Command Line"
   #+end_quote
 
-  Testing out a Literate emacs configuration.
-
-  This file should catalog my [[file:keybindings.org][key-bindings]] as well as my language mode
-  settings, such as for [[file:clojure.org][Clojure]] and [[file:ruby-init.org][Ruby]].
+  This file catalogs my [[file:keybindings.org][key-bindings]] as well as my language mode settings,
+  such as for [[file:clojure.org][Clojure]] and [[file:ruby.org][Ruby]].
 
   # Edit code snippets with =C-c '=
   # Load this configuration file using the function: =org-babel-load-file=
@@ -23,8 +24,6 @@
   #   C-c C-e h h     (org-html-export-to-html)
   # Export the whole org-init project with:
   #   C-c C-e P p
-
-*** TODO Keep the tangled elisp in a separate directory that is in .gitignore
 
 ** ADOPTED Decorations
    - State "ADOPTED"    from "EXPERIMENTAL" [2018-02-23 Fri 10:03]
@@ -82,52 +81,50 @@
    #+END_SRC
 
 ** Initialize Load Paths
+   - Add some directories to the load path so we can require files in them later.
+   #+BEGIN_SRC emacs-lisp
+     (defvar dotfiles-dir user-emacs-directory)
+   #+END_SRC
 
- Add some directories to the load path so we can require files in them later.
+   - Make a path to add libraries installed from source.
+   #+BEGIN_SRC emacs-lisp
+     (defvar vendor-dir (concat dotfiles-dir "vendor/"))
 
- #+BEGIN_SRC emacs-lisp
-   (defvar dotfiles-dir user-emacs-directory)
- #+END_SRC
+     (let ((default-directory vendor-dir))
+       (add-to-list 'load-path default-directory)
+       (normal-top-level-add-subdirs-to-load-path))
+   #+END_SRC
 
- Make a path to add libraries installed from source.
- #+BEGIN_SRC emacs-lisp
-   (defvar vendor-dir (concat dotfiles-dir "vendor/"))
-
-   (let ((default-directory vendor-dir))
-     (add-to-list 'load-path default-directory)
-     (normal-top-level-add-subdirs-to-load-path))
- #+END_SRC
-
- Also create a place to put my various initialization hooks.
- #+BEGIN_SRC emacs-lisp
-   (defvar lib-dir (concat dotfiles-dir "elisp/"))
-   (add-to-list 'load-path lib-dir)
-   (defvar org-lib-dir (concat dotfiles-dir "org-init/"))
-   (add-to-list 'load-path org-lib-dir)
- #+END_SRC
+   - Also create a place to put my various initialization hooks.
+   #+BEGIN_SRC emacs-lisp
+     (defvar lib-dir (concat dotfiles-dir "elisp/"))
+     (add-to-list 'load-path lib-dir)
+     (defvar org-lib-dir (concat dotfiles-dir "org-init/"))
+     (add-to-list 'load-path org-lib-dir)
+   #+END_SRC
 
 ** Change the Destination of Customization Settings
 
-These are the settings saved from the customize menus and prompts within Emacs.
+   These are the settings saved from the customize menus and prompts within Emacs.
 
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
   (setq custom-file "~/.emacs.d/custom.el")
   (load custom-file 'noerror)
-#+END_SRC
+   #+END_SRC
 
 ** Setup Environment Variables and Path
 
-I keep these in a separate file to make it easy to find them.
+   I keep these in a separate file to make it easy to find them.
 
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
   (load "env.el")
-#+END_SRC
+   #+END_SRC
 
 ** Install and Load Packages
 
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
   (require 'init-packages)
-#+END_SRC
+   #+END_SRC
 
 ** Load Third-Party Libraries from =Vendor=
 
@@ -215,26 +212,27 @@ I keep these in a separate file to make it easy to find them.
   Other Configuraion Files:
   #+RESULTS:
   - [[file:clojure.org][clojure]]
-  - [[file:coding-init.org][coding-init]]
+  - [[file:coding.org][coding]]
   - [[file:completion.org][completion]]
-  - [[file:emacs-init.org][emacs-init]]
-  - [[file:eshell-init.org][eshell-init]]
+  - [[file:emacs.org][emacs]]
+  - [[file:eshell.org][eshell]]
   - [[file:finding-files.org][finding-files]]
-  - [[file:git-init.org][git-init]]
-  - [[file:god-init.org][god-init]]
-  - [[file:haskell-init.org][haskell-init]]
-  - [[file:html-init.org][html-init]]
+  - [[file:git.org][git]]
+  - [[file:god.org][god]]
+  - [[file:haskell.org][haskell]]
+  - [[file:html.org][html]]
   - [[file:index.org][index]]
-  - [[file:javascript-init.org][javascript-init]]
+  - [[file:javascript.org][javascript]]
   - [[file:keybindings.org][keybindings]]
-  - [[file:lisp-init.org][lisp-init]]
+  - [[file:lisp.org][lisp]]
+  - [[file:mail-in-emacs.org::*Mail%20with%20Emacs][Mail with Emacs]]
   - [[file:main.org][main]]
   - [[file:modeline-custom.org][modeline-custom]]
-  - [[file:org-mode-init.org][org-mode-init]]
-  - [[file:registers-init.org][registers-init]]
-  - [[file:ruby-init.org][ruby-init]]
+  - [[file:org-mode.org][org-mode]]
+  - [[file:registers.org][registers]]
+  - [[file:ruby.org][ruby]]
   - [[file:senseless-eye-candy.org][senseless-eye-candy]]
-  - [[file:snippet-init.org][snippet-init]]
+  - [[file:snippet.org][snippet]]
   - [[file:tags.org][tags]]
   - [[file:toby-mode.org][toby-mode]]
 

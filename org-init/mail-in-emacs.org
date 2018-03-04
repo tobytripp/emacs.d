@@ -1,6 +1,6 @@
 #+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
 * Mail with Emacs
-  #+BEGIN_SRC emacs-lisp
+  #+BEGIN_SRC emacs-lisp :exports none
    ;; -*- lexical-binding: t -*-
   #+END_SRC
 ** Maintaining Secrets
@@ -23,12 +23,13 @@
       #+END_SRC
     - The current set of sources:
       #+name: current-sources
-      #+BEGIN_SRC emacs-lisp :tangle no :exports both
+      #+BEGIN_SRC emacs-lisp :tangle no :exports both :results list
         auth-sources
       #+END_SRC
 
-      #+RESULTS:
-      | ~/.emacs.d/secrets/.authinfo.gpg | macos-keychain-internet |
+      #+RESULTS: current-sources
+      - ~/.emacs.d/secrets/.authinfo.gpg
+      - macos-keychain-internet
 
 *** Authentication Secret Look-up
     - Require the =auth-sources= library

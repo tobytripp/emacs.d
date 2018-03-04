@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2018-02-09 Fri 15:33 -->
+<!-- 2018-03-03 Sat 22:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Toby's Emacs Keybindings</title>
@@ -180,7 +180,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/htmlize.css">
 <link rel="stylesheet" href="css/config.css">
 <script type="text/javascript">
@@ -617,8 +617,10 @@ Commands to switch windows:
 
 <span style="color: #2aa198;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"M-s-&lt;left&gt;"</span><span style="color: #b58900;">)</span>  'windmove-left<span style="color: #2aa198;">)</span>
 <span style="color: #2aa198;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"M-s-&lt;right&gt;"</span><span style="color: #b58900;">)</span> 'windmove-right<span style="color: #2aa198;">)</span>
-<span style="color: #2aa198;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"s-&lt;left&gt;"</span><span style="color: #b58900;">)</span>  'windmove-left<span style="color: #2aa198;">)</span>
-<span style="color: #2aa198;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"s-&lt;right&gt;"</span><span style="color: #b58900;">)</span> 'windmove-right<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"s-&lt;left&gt;"</span><span style="color: #b58900;">)</span>    'windmove-left<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"s-&lt;right&gt;"</span><span style="color: #b58900;">)</span>   'windmove-right<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"s-&lt;down&gt;"</span><span style="color: #b58900;">)</span>    'windmove-down<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"s-&lt;up&gt;"</span><span style="color: #b58900;">)</span>      'windmove-up<span style="color: #2aa198;">)</span>
 </pre>
 </div>
 
@@ -636,8 +638,8 @@ bunch of different panes.
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span>require-package 'avy<span style="color: #2aa198;">)</span>
 <span style="color: #2aa198;">(</span>require-package 'ace-window<span style="color: #2aa198;">)</span>
-<span style="color: #2aa198;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-x o"</span><span style="color: #b58900;">)</span>   'ace-window<span style="color: #2aa198;">)</span>
-<span style="color: #2aa198;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"M-p"</span><span style="color: #b58900;">)</span> 'ace-window<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-x o"</span><span style="color: #b58900;">)</span> 'ace-window<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"M-p"</span><span style="color: #b58900;">)</span>   'ace-window<span style="color: #2aa198;">)</span>
 
 <span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">setq</span> aw-keys '<span style="color: #b58900;">(</span>?a ?o ?e ?u ?i  ?d ?h ?t ?n ?s<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 </pre>
@@ -767,7 +769,7 @@ Attempt to accomodate modifiers to arrow keys in the terminal:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Toby Tripp</p>
-<p class="date">Created: 2018-02-09 Fri 15:33</p>
+<p class="date">Created: 2018-03-03 Sat 22:54</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2018-03-03 Sat 22:54 -->
+<!-- 2018-03-04 Sun 00:00 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
@@ -235,154 +235,56 @@ for the JavaScript code in this tag.
 <p><a accesskey="H" href="index.html">HOME</a></p>
 </div>
 <div id="content">
-<div id="outline-container-org9cd303b" class="outline-2">
-<h2 id="org9cd303b">Elixir</h2>
-<div class="outline-text-2" id="text-org9cd303b">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span>require-package 'alchemist<span style="color: #2aa198;">)</span>
-<span style="color: #2aa198;">(</span>require-package 'elixir-mode<span style="color: #2aa198;">)</span>
-<span style="color: #2aa198;">(</span>autoload 'alchemist-mode <span style="color: #2aa198;">"alchemist"</span> <span style="color: #2aa198; font-style: italic;">"Mode for elixir code"</span> t<span style="color: #2aa198;">)</span>
-<span style="color: #2aa198;">(</span>autoload 'elixir-mode <span style="color: #2aa198;">"elixir"</span> <span style="color: #2aa198; font-style: italic;">"Mode for elixir code"</span> t<span style="color: #2aa198;">)</span>
-
-<span style="color: #2aa198;">(</span>add-to-list 'auto-mode-alist '<span style="color: #b58900;">(</span><span style="color: #2aa198;">"\\.exs?$"</span> . elixir-mode<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
-
-<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/elixir-init</span> <span style="color: #b58900;">()</span>
-  <span style="color: #2aa198;">)</span>
-
-<span style="color: #2aa198;">(</span>add-hook 'alchemist-mode-hook 'toby/elixir-init<span style="color: #2aa198;">)</span>
-</pre>
-</div>
-</div>
-
-<div id="outline-container-orgc469d9c" class="outline-3">
-<h3 id="orgc469d9c">Alchemist Mode Commands</h3>
-<div class="outline-text-3" id="text-orgc469d9c">
-</div>
-<div id="outline-container-org04274f1" class="outline-4">
-<h4 id="org04274f1">IEx interaction:</h4>
-<div class="outline-text-4" id="text-org04274f1">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-left" />
-
-<col  class="org-left" />
-
-<col  class="org-left" />
-</colgroup>
-<tbody>
-<tr>
-<td class="org-left">Key</td>
-<td class="org-left">Command</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">C-c a i i</td>
-<td class="org-left">alchemist-iex-run</td>
-<td class="org-left">Start the Elixir REPL</td>
-</tr>
-
-<tr>
-<td class="org-left">C-c a i p</td>
-<td class="org-left">alchemist-iex-project-run</td>
-<td class="org-left">Start IEx from Mix</td>
-</tr>
-
-<tr>
-<td class="org-left">C-c a i l</td>
-<td class="org-left">alchemist-iex-send-current-line</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">C-C a i c</td>
-<td class="org-left">alchemist-iex-send-current-line-and-go</td>
-<td class="org-left">Send and jump to buffer</td>
-</tr>
-
-<tr>
-<td class="org-left">C-c a i r</td>
-<td class="org-left">alchemist-iex-send-region</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">C-c a i m</td>
-<td class="org-left">alchemist-iex-send-region-and-go</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">C-c a i b</td>
-<td class="org-left">alchemist-iex-compile-this-bufferL</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-
-<div id="outline-container-org37175c9" class="outline-4">
-<h4 id="org37175c9">Code evaluation</h4>
-<div class="outline-text-4" id="text-org37175c9">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-left" />
-
-<col  class="org-left" />
-
-<col  class="org-left" />
-</colgroup>
-<tbody>
-<tr>
-<td class="org-left">Key</td>
-<td class="org-left">Command</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">C-c a v w</td>
-<td class="org-left">alchemist-eval-print-buffer</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-
-
-<div id="outline-container-org730e025" class="outline-3">
-<h3 id="org730e025">Company Integration</h3>
-<div class="outline-text-3" id="text-org730e025">
+<div id="outline-container-orgc7aef03" class="outline-2">
+<h2 id="orgc7aef03">Emacs Registers</h2>
+<div class="outline-text-2" id="text-orgc7aef03">
 <blockquote>
 <p>
-When Alchemist finds company-mode it enables completion inside in
-IEx process buffer.
+Emacs registers are compartments where you can save text,
+rectangles, positions, and other things for later use. Once you save
+text or a rectangle in a register, you can copy it into the buffer
+once, or many times; once you save a position in a register, you can
+jump back to that position once, or many times.
 </p>
 
 <p>
-Documention lookup inside an IEx process buffer will also be
-activated.
+Each register has a name that consists of a single character, which
+we will denote by r; r can be a letter (such as ‘a’) or a number
+(such as ‘1’); case matters, so register ‘a’ is not the same as
+register ‘A’.
 </p>
 
 <p>
-When the keybinding C-d is used on one of the selected completion
-candidates, a documentation lookup for the candidate will be made
-and displayed in another window.
+A register can store a position, a piece of text, a rectangle, a
+number, a window configuration, or a file name, but only one thing
+at any given time. Whatever you store in a register remains there
+until you store something else in that register. To see what
+register r contains, use M-x view-register
 </p>
 </blockquote>
+<p>
+<a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Registers.html">https://www.gnu.org/software/emacs/manual/html_node/emacs/Registers.html</a>
+</p>
+</div>
+
+<div id="outline-container-orgd32c1ac" class="outline-3">
+<h3 id="orgd32c1ac">Set Some Registers</h3>
+<div class="outline-text-3" id="text-orgd32c1ac">
+<p>
+Jump to a register with: <code>C-x r j &lt;register&gt;</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">dolist</span> <span style="color: #b58900;">(</span>r `<span style="color: #268bd2;">(</span><span style="color: #dc322f;">(</span>?i <span style="color: #cb4b16;">(</span>file . ,<span style="color: #268bd2;">(</span>concat dotfiles-dir <span style="color: #2aa198;">"init.el"</span><span style="color: #268bd2;">)</span><span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>set-register <span style="color: #268bd2;">(</span>car r<span style="color: #268bd2;">)</span> <span style="color: #268bd2;">(</span>cadr r<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+</pre>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Toby Tripp</p>
-<p class="date">Created: 2018-03-03 Sat 22:54</p>
+<p class="date">Created: 2018-03-04 Sun 00:00</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

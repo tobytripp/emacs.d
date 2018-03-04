@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2018-03-03 Sat 22:54 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Toby Tripp" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/htmlize.css">
+<link rel="stylesheet" href="css/config.css">
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<p><a accesskey="H" href="index.html">HOME</a></p>
+</div>
+<div id="content">
+<div id="outline-container-org863c348" class="outline-2">
+<h2 id="org863c348">HTML Editing</h2>
+<div class="outline-text-2" id="text-org863c348">
+</div>
+<div id="outline-container-orgde40b26" class="outline-3">
+<h3 id="orgde40b26">web-mode</h3>
+<div class="outline-text-3" id="text-orgde40b26">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span>require-package 'web-mode<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>autoload 'web-mode <span style="color: #2aa198;">"web-mode"</span> <span style="color: #2aa198; font-style: italic;">"Web Mode"</span> t<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>add-to-list 'auto-mode-alist '<span style="color: #b58900;">(</span><span style="color: #2aa198;">"\\.html$"</span> . web-mode<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/web-mode-hook</span> <span style="color: #b58900;">()</span>
+  <span style="color: #2aa198; font-style: italic;">"Hooks for web-mode"</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">setq</span> web-mode-markup-indent-offset 2<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">setq</span> web-mode-html-offset 2<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">setq</span> web-mode-enable-css-colorization t<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">setq</span> js-indent-level 2<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>add-hook 'web-mode-hook 'toby/web-mode-hook<span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbe28449" class="outline-3">
+<h3 id="orgbe28449">Emmet Mode</h3>
+<div class="outline-text-3" id="text-orgbe28449">
+<p>
+From the Emmet Docs at <a href="https://github.com/smihica/emmet-mode">https://github.com/smihica/emmet-mode</a>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-markdown"><span style="color: #b3b3b3;">## </span><span style="color: #268bd2; font-weight: bold;">Usage</span>
+
+Place point in a emmet snippet and press C-j to expand it (or alternatively,
+alias your preferred keystroke to M-x emmet-expand-line) and
+you'll transform your snippet into the appropriate tag structure.
+
+<span style="color: #b3b3b3;">## </span><span style="color: #268bd2; font-weight: bold;">HTML abbreviations</span>
+
+<span style="color: #b3b3b3;">#### </span><span style="color: #268bd2; font-weight: bold;">Basic tags</span>
+
+<span style="color: #268bd2; font-weight: bold;">    a                        &lt;a href=""&gt;&lt;/a&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    a.x                      &lt;a class="x" href=""&gt;&lt;/a&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    a#q.x                    &lt;a id="q" class="x" href=""&gt;&lt;/a&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    a#q.x.y.z                &lt;a id="q" class="x y z" href=""&gt;&lt;/a&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    #q                       &lt;div id="q"&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;/div&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    .x                       &lt;div class="x"&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;/div&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    #q.x                     &lt;div id="q" class="x"&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;/div&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    #q.x.y.z                 &lt;div id="q" class="x y z"&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;/div&gt;</span>
+
+<span style="color: #b3b3b3;">#### </span><span style="color: #268bd2; font-weight: bold;">Empty tags</span>
+
+<span style="color: #268bd2; font-weight: bold;">    a/                       &lt;a href=""/&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    a/.x                     &lt;a class="x" href=""/&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    a/#q.x                   &lt;a id="q" class="x" href=""/&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    a/#q.x.y.z               &lt;a id="q" class="x y z" href=""/&gt;</span>
+
+<span style="color: #b3b3b3;">#### </span><span style="color: #268bd2; font-weight: bold;">Self-closing tags</span>
+
+<span style="color: #268bd2; font-weight: bold;">    input[type=text]         &lt;input type="text" name="" value=""/&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    img                      &lt;img src="" alt=""/&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    img&gt;metadata/*2          &lt;img src="" alt=""&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                 &lt;metadata/&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                 &lt;metadata/&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;/img&gt;</span>
+
+<span style="color: #b3b3b3;">#### </span><span style="color: #268bd2; font-weight: bold;">Siblings</span>
+
+<span style="color: #268bd2; font-weight: bold;">    a+b                      &lt;a href=""&gt;&lt;/a&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;b&gt;&lt;/b&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    a+b+c                    &lt;a href=""&gt;&lt;/a&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;b&gt;&lt;/b&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;c&gt;&lt;/c&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    a.x+b                    &lt;a class="x" href=""&gt;&lt;/a&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;b&gt;&lt;/b&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    a#q.x+b                  &lt;a id="q" class="x" href=""&gt;&lt;/a&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;b&gt;&lt;/b&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    a#q.x.y.z+b              &lt;a id="q" class="x y z" href=""&gt;&lt;/a&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;b&gt;&lt;/b&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    a#q.x.y.z+b#p.l.m.n      &lt;a id="q" class="x y z" href=""&gt;&lt;/a&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;b id="p" class="l m n"&gt;&lt;/b&gt;</span>
+
+<span style="color: #b3b3b3;">#### </span><span style="color: #268bd2; font-weight: bold;">Tag expansion</span>
+
+<span style="color: #268bd2; font-weight: bold;">    table+                   &lt;table&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                 &lt;tr&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                     &lt;td&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                     &lt;/td&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                 &lt;/tr&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;/table&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    dl+                      &lt;dl&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                 &lt;dt&gt;&lt;/dt&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                 &lt;dd&gt;&lt;/dd&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;/dl&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    ul+                      &lt;ul&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                 &lt;li&gt;&lt;/li&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;/ul&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    ul++ol+                  &lt;ul&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                 &lt;li&gt;&lt;/li&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;/ul&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;ol&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                 &lt;li&gt;&lt;/li&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;/ol&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    ul#q.x.y[m=l]            &lt;ul id="q" class="x y" m="l"&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                 &lt;li&gt;&lt;/li&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;/ul&gt;</span>
+
+<span style="color: #b3b3b3;">#### </span><span style="color: #268bd2; font-weight: bold;">Parent &gt; child</span>
+
+<span style="color: #268bd2; font-weight: bold;">    a&gt;b                      &lt;a href=""&gt;&lt;b&gt;&lt;/b&gt;&lt;/a&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    a&gt;b&gt;c                    &lt;a href=""&gt;&lt;b&gt;&lt;c&gt;&lt;/c&gt;&lt;/b&gt;&lt;/a&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    a.x&gt;b                    &lt;a class="x" href=""&gt;&lt;b&gt;&lt;/b&gt;&lt;/a&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    a#q.x&gt;b                  &lt;a id="q" class="x" href=""&gt;&lt;b&gt;&lt;/b&gt;&lt;/a&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    a#q.x.y.z&gt;b              &lt;a id="q" class="x y z" href=""&gt;&lt;b&gt;&lt;/b&gt;&lt;/a&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    a#q.x.y.z&gt;b#p.l.m.n      &lt;a id="q" class="x y z" href=""&gt;&lt;b id="p" class="l m n"&gt;&lt;/b&gt;&lt;/a&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    #q&gt;.x                    &lt;div id="q"&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                 &lt;div class="x"&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                 &lt;/div&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;/div&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    a&gt;b+c                    &lt;a href=""&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                 &lt;b&gt;&lt;/b&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                 &lt;c&gt;&lt;/c&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;/a&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    a&gt;b+c&gt;d                  &lt;a href=""&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                 &lt;b&gt;&lt;/b&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                 &lt;c&gt;&lt;d&gt;&lt;/d&gt;&lt;/c&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;/a&gt;</span>
+
+<span style="color: #b3b3b3;">#### </span><span style="color: #268bd2; font-weight: bold;">Climb-up</span>
+
+<span style="color: #268bd2; font-weight: bold;">    a&gt;b^c                    &lt;a href=""&gt;&lt;b&gt;&lt;/b&gt;&lt;/a&gt;&lt;c&gt;&lt;/c&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    a&gt;b&gt;c^d                  &lt;a href=""&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                 &lt;b&gt;&lt;c&gt;&lt;/c&gt;&lt;/b&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                 &lt;d&gt;&lt;/d&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;/a&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    a&gt;b&gt;c^^d                 &lt;a href=""&gt;&lt;b&gt;&lt;c&gt;&lt;/c&gt;&lt;/b&gt;&lt;/a&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;d&gt;&lt;/d&gt;</span>
+
+
+<span style="color: #b3b3b3;">#### </span><span style="color: #268bd2; font-weight: bold;">Properties</span>
+
+<span style="color: #268bd2; font-weight: bold;">    b[x]                     &lt;b x=""&gt;&lt;/b&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    b[x=]                    &lt;b x=""&gt;&lt;/b&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    b[x=""]                  &lt;b x=""&gt;&lt;/b&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    b[x=y]                   &lt;b x="y"&gt;&lt;/b&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    b[x="y"]                 &lt;b x="y"&gt;&lt;/b&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    b[x="()"]                &lt;b x="()"&gt;&lt;/b&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    b[x m]                   &lt;b x="" m=""&gt;&lt;/b&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    b[x= m=""]               &lt;b x="" m=""&gt;&lt;/b&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    b[x=y m=l]               &lt;b x="y" m="l"&gt;&lt;/b&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    b/[x=y m=l]              &lt;b x="y" m="l"/&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    b#foo[x=y m=l]           &lt;b id="foo" x="y" m="l"&gt;&lt;/b&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    b.foo[x=y m=l]           &lt;b class="foo" x="y" m="l"&gt;&lt;/b&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    b#foo.bar.mu[x=y m=l]    &lt;b id="foo" class="bar mu" x="y" m="l"&gt;&lt;/b&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    b/#foo.bar.mu[x=y m=l]   &lt;b id="foo" class="bar mu" x="y" m="l"/&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    b[x=y]+b                 &lt;b x="y"&gt;&lt;/b&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;b&gt;&lt;/b&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    b[x=y]+b[x=y]            &lt;b x="y"&gt;&lt;/b&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;b x="y"&gt;&lt;/b&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    b[x=y]&gt;b                 &lt;b x="y"&gt;&lt;b&gt;&lt;/b&gt;&lt;/b&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    b[x=y]&gt;b[x=y]            &lt;b x="y"&gt;&lt;b x="y"&gt;&lt;/b&gt;&lt;/b&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    b[x=y]&gt;b[x=y]+c[x=y]     &lt;b x="y"&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                 &lt;b x="y"&gt;&lt;/b&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                 &lt;c x="y"&gt;&lt;/c&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;/b&gt;</span>
+
+<span style="color: #b3b3b3;">#### </span><span style="color: #268bd2; font-weight: bold;">Parentheses</span>
+
+<span style="color: #268bd2; font-weight: bold;">    (a)                      &lt;a href=""&gt;&lt;/a&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    (a)+(b)                  &lt;a href=""&gt;&lt;/a&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;b&gt;&lt;/b&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    a&gt;(b)                    &lt;a href=""&gt;&lt;b&gt;&lt;/b&gt;&lt;/a&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    (a&gt;b)&gt;c                  &lt;a href=""&gt;&lt;b&gt;&lt;/b&gt;&lt;/a&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    (a&gt;b)+c                  &lt;a href=""&gt;&lt;b&gt;&lt;/b&gt;&lt;/a&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;c&gt;&lt;/c&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    z+(a&gt;b)+c+k              &lt;z&gt;&lt;/z&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;a href=""&gt;&lt;b&gt;&lt;/b&gt;&lt;/a&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;c&gt;&lt;/c&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;k&gt;&lt;/k&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    (x)*2                    &lt;x&gt;&lt;/x&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;x&gt;&lt;/x&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    ((x)*2)                  &lt;x&gt;&lt;/x&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;x&gt;&lt;/x&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    ((x))*2                  &lt;x&gt;&lt;/x&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;x&gt;&lt;/x&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    (x&gt;b)*2                  &lt;x&gt;&lt;b&gt;&lt;/b&gt;&lt;/x&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;x&gt;&lt;b&gt;&lt;/b&gt;&lt;/x&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    (x+b)*2                  &lt;x&gt;&lt;/x&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;b&gt;&lt;/b&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;x&gt;&lt;/x&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;b&gt;&lt;/b&gt;</span>
+
+<span style="color: #b3b3b3;">#### </span><span style="color: #268bd2; font-weight: bold;">Text</span>
+
+<span style="color: #268bd2; font-weight: bold;">    a{Click me}              &lt;a href=""&gt;Click me&lt;/a&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    a&gt;{Click me}*2           &lt;a href=""&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                 Click me</span>
+<span style="color: #268bd2; font-weight: bold;">                                 Click me</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;/a&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    x{click}+b{here}         &lt;x&gt;click&lt;/x&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;b&gt;here&lt;/b&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    span&gt;{click}+b{here}     &lt;span&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                 click</span>
+<span style="color: #268bd2; font-weight: bold;">                                 &lt;b&gt;here&lt;/b&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;/span&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    p&gt;{Click}+span{here}+{ to continue}</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;p&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                 Click</span>
+<span style="color: #268bd2; font-weight: bold;">                                 &lt;span&gt;here&lt;/span&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                  to continue</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;/p&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    p{Click}+span{here}+{ to continue}</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;p&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                 Click</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;/p&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;span&gt;here&lt;/span&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                              to continue</span>
+
+<span style="color: #b3b3b3;">#### </span><span style="color: #268bd2; font-weight: bold;">Lorem-Ipsum generator</span>
+
+<span style="color: #268bd2; font-weight: bold;">    lorem                    Diam, vulputate ut pharetra sit amet, aliquam id! Egestas sed tempus, urna et pharetra pharetra, massa massa ultricies mi, quis hendrerit dolor magna eget est lorem ipsum dolor sit amet!</span>
+<span style="color: #268bd2; font-weight: bold;">    lorem5                   Hendrerit gravida rutrum quisque non?</span>
+<span style="color: #268bd2; font-weight: bold;">    ipsum3                   Viverra ipsum nunc.</span>
+<span style="color: #268bd2; font-weight: bold;">    p*3&gt;lorem3               &lt;p&gt;Pellentesque elit eget?&lt;/p&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;p&gt;Sed odio morbi?&lt;/p&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;p&gt;Eget arcu dictum!&lt;/p&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    ul.list&gt;ipsum3*3         &lt;ul class=\"list\"&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                 Nam libero justo.</span>
+<span style="color: #268bd2; font-weight: bold;">                                 Pellentesque habitant morbi?</span>
+<span style="color: #268bd2; font-weight: bold;">                                 Enim blandit volutpat.</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;/ul&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    ul.list&gt;ipsum3.itm*3     &lt;ul class=\"list\"&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                 &lt;div class=\"itm\"&gt;Urna condimentum mattis.&lt;/div&gt; &lt;!-- emmet-mode doesn't support implicit tag name resolver --&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                 &lt;div class=\"itm\"&gt;Sed turpis tincidunt.&lt;/div&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                 &lt;div class=\"itm\"&gt;Faucibus turpis in?&lt;/div&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;/ul&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">    ul.list&gt;(li.itm&gt;lorem3)*3</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;ul class=\"list\"&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                 &lt;li class=\"itm\"&gt;Est pellentesque elit.&lt;/li&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                 &lt;li class=\"itm\"&gt;In nulla posuere.&lt;/li&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                 &lt;li class=\"itm\"&gt;Felis eget nunc.&lt;/li&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;/ul&gt;</span>
+
+<span style="color: #b3b3b3;">#### </span><span style="color: #268bd2; font-weight: bold;">Filter: escape</span>
+
+<span style="color: #268bd2; font-weight: bold;">    script[src=&amp;quot;]|e     &amp;lt;script src="&amp;amp;quot;"&amp;gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &amp;lt;/script&amp;gt;</span>
+
+<span style="color: #b3b3b3;">#### </span><span style="color: #268bd2; font-weight: bold;">Aliases</span>
+
+<span style="color: #268bd2; font-weight: bold;">    html:5                   &lt;!doctype html&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;html lang="en"&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                               &lt;head&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                 &lt;meta charset="UTF-8"/&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                 &lt;title&gt;Document&lt;/title&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                               &lt;/head&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                               &lt;body&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                               &lt;/body&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;/html&gt;</span>
+
+<span style="color: #268bd2; font-weight: bold;">    html:xt                  &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                               &lt;head&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                 &lt;meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                                 &lt;title&gt;Document&lt;/title&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                               &lt;/head&gt;</span>
+<span style="color: #268bd2; font-weight: bold;">                             &lt;/html&gt;</span>
+
+<span style="color: #268bd2; font-weight: bold;">    meta:vp                  &lt;meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/&gt;</span>
+
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span>require-package 'emmet-mode<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>autoload 'emmet-mode <span style="color: #2aa198;">"emmet-mode"</span><span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span>add-hook 'sgml-mode-hook 'emmet-mode<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>add-hook 'css-mode-hook  'emmet-mode<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>add-hook 'sass-mode-hook 'emmet-mode<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>add-hook 'web-mode-hook  'emmet-mode<span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbf01dde" class="outline-3">
+<h3 id="orgbf01dde">Web Mode</h3>
+<div class="outline-text-3" id="text-orgbf01dde">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/web-mode-hook</span> <span style="color: #b58900;">()</span>
+  <span style="color: #2aa198; font-style: italic;">"Hooks for Web Mode"</span>
+  <span style="color: #b58900;">(</span>define-key web-mode-map <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"C-j"</span><span style="color: #268bd2;">)</span> 'emmet-expand-line<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">setq</span> web-mode-markup-indent-offset 2<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span>add-hook 'web-mode-hook 'toby/web-mode-hook<span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org53dd784" class="outline-3">
+<h3 id="org53dd784">Sass Mode</h3>
+<div class="outline-text-3" id="text-org53dd784">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span>require-package 'sass-mode<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>autoload 'sass-mode <span style="color: #2aa198;">"sass-mode"</span><span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span>add-to-list 'auto-mode-alist '<span style="color: #b58900;">(</span><span style="color: #2aa198;">"\.scss$"</span> . sass-mode<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Toby Tripp</p>
+<p class="date">Created: 2018-03-03 Sat 22:54</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

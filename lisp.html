@@ -235,147 +235,73 @@ for the JavaScript code in this tag.
 <p><a accesskey="H" href="index.html">HOME</a></p>
 </div>
 <div id="content">
-<div id="outline-container-org9cd303b" class="outline-2">
-<h2 id="org9cd303b">Elixir</h2>
-<div class="outline-text-2" id="text-org9cd303b">
+<div id="outline-container-org698d8cf" class="outline-2">
+<h2 id="org698d8cf">LISP</h2>
+<div class="outline-text-2" id="text-org698d8cf">
+</div>
+<div id="outline-container-org63aa4a9" class="outline-3">
+<h3 id="org63aa4a9">Highlight on Eval</h3>
+<div class="outline-text-3" id="text-org63aa4a9">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span>require-package 'alchemist<span style="color: #2aa198;">)</span>
-<span style="color: #2aa198;">(</span>require-package 'elixir-mode<span style="color: #2aa198;">)</span>
-<span style="color: #2aa198;">(</span>autoload 'alchemist-mode <span style="color: #2aa198;">"alchemist"</span> <span style="color: #2aa198; font-style: italic;">"Mode for elixir code"</span> t<span style="color: #2aa198;">)</span>
-<span style="color: #2aa198;">(</span>autoload 'elixir-mode <span style="color: #2aa198;">"elixir"</span> <span style="color: #2aa198; font-style: italic;">"Mode for elixir code"</span> t<span style="color: #2aa198;">)</span>
-
-<span style="color: #2aa198;">(</span>add-to-list 'auto-mode-alist '<span style="color: #b58900;">(</span><span style="color: #2aa198;">"\\.exs?$"</span> . elixir-mode<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
-
-<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/elixir-init</span> <span style="color: #b58900;">()</span>
-  <span style="color: #2aa198;">)</span>
-
-<span style="color: #2aa198;">(</span>add-hook 'alchemist-mode-hook 'toby/elixir-init<span style="color: #2aa198;">)</span>
+<pre class="src src-emacs-lisp"><span style="color: #586e75;">;</span><span style="color: #586e75;">(require 'highlight)</span>
+<span style="color: #2aa198;">(</span>require-package 'eval-sexp-fu<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">eval-sexp-fu</span><span style="color: #2aa198;">)</span>
 </pre>
 </div>
 </div>
-
-<div id="outline-container-orgc469d9c" class="outline-3">
-<h3 id="orgc469d9c">Alchemist Mode Commands</h3>
-<div class="outline-text-3" id="text-orgc469d9c">
-</div>
-<div id="outline-container-org04274f1" class="outline-4">
-<h4 id="org04274f1">IEx interaction:</h4>
-<div class="outline-text-4" id="text-org04274f1">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-left" />
-
-<col  class="org-left" />
-
-<col  class="org-left" />
-</colgroup>
-<tbody>
-<tr>
-<td class="org-left">Key</td>
-<td class="org-left">Command</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">C-c a i i</td>
-<td class="org-left">alchemist-iex-run</td>
-<td class="org-left">Start the Elixir REPL</td>
-</tr>
-
-<tr>
-<td class="org-left">C-c a i p</td>
-<td class="org-left">alchemist-iex-project-run</td>
-<td class="org-left">Start IEx from Mix</td>
-</tr>
-
-<tr>
-<td class="org-left">C-c a i l</td>
-<td class="org-left">alchemist-iex-send-current-line</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">C-C a i c</td>
-<td class="org-left">alchemist-iex-send-current-line-and-go</td>
-<td class="org-left">Send and jump to buffer</td>
-</tr>
-
-<tr>
-<td class="org-left">C-c a i r</td>
-<td class="org-left">alchemist-iex-send-region</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">C-c a i m</td>
-<td class="org-left">alchemist-iex-send-region-and-go</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">C-c a i b</td>
-<td class="org-left">alchemist-iex-compile-this-bufferL</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-</tbody>
-</table>
-</div>
 </div>
 
-<div id="outline-container-org37175c9" class="outline-4">
-<h4 id="org37175c9">Code evaluation</h4>
-<div class="outline-text-4" id="text-org37175c9">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-left" />
-
-<col  class="org-left" />
-
-<col  class="org-left" />
-</colgroup>
-<tbody>
-<tr>
-<td class="org-left">Key</td>
-<td class="org-left">Command</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">C-c a v w</td>
-<td class="org-left">alchemist-eval-print-buffer</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-
-
-<div id="outline-container-org730e025" class="outline-3">
-<h3 id="org730e025">Company Integration</h3>
-<div class="outline-text-3" id="text-org730e025">
-<blockquote>
+<div id="outline-container-orgff4eaf0" class="outline-3">
+<h3 id="orgff4eaf0">ELisp</h3>
+<div class="outline-text-3" id="text-orgff4eaf0">
 <p>
-When Alchemist finds company-mode it enables completion inside in
-IEx process buffer.
+Automatically byte-compile the current buffer:
 </p>
 
-<p>
-Documention lookup inside an IEx process buffer will also be
-activated.
-</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">byte-compile-current-buffer</span> <span style="color: #b58900;">()</span>
+  <span style="color: #2aa198; font-style: italic;">"`</span><span style="color: #268bd2; font-weight: bold; font-style: italic;">byte-compile</span><span style="color: #2aa198; font-style: italic;">' current buffer if it's emacs-lisp-mode and</span>
+<span style="color: #2aa198; font-style: italic;">    compiled file exists."</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">interactive</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">when</span> <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">and</span> <span style="color: #dc322f;">(</span>eq major-mode 'emacs-lisp-mode<span style="color: #dc322f;">)</span>
+             <span style="color: #dc322f;">(</span>file-exists-p
+              <span style="color: #cb4b16;">(</span>concat <span style="color: #268bd2;">(</span>file-name-sans-extension <span style="color: #859900;">(</span>buffer-file-name<span style="color: #859900;">)</span><span style="color: #268bd2;">)</span> <span style="color: #2aa198;">".elc"</span><span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>byte-compile-file buffer-file-name<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
+<span style="color: #2aa198;">(</span>add-hook 'emacs-lisp-mode-hook
+          <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">lambda</span> <span style="color: #268bd2;">()</span>
+            <span style="color: #268bd2;">(</span>add-hook 'after-save-hook 'byte-compile-current-buffer<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2397912" class="outline-3">
+<h3 id="org2397912">Paredit</h3>
+<div class="outline-text-3" id="text-org2397912">
+</div>
+<div id="outline-container-org2f94c48" class="outline-4">
+<h4 id="org2f94c48"><span class="todo TODO">TODO</span> Need to think about some keybindings for <code>slurp</code></h4>
+<div class="outline-text-4" id="text-org2f94c48">
 <p>
-When the keybinding C-d is used on one of the selected completion
-candidates, a documentation lookup for the candidate will be made
-and displayed in another window.
+Something along the lines of:
 </p>
-</blockquote>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/paredit-init</span> <span style="color: #b58900;">()</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">progn</span>
+    <span style="color: #268bd2;">(</span>define-key paredit-mode-map <span style="color: #dc322f;">(</span>kbd <span style="color: #2aa198;">"C-0"</span><span style="color: #dc322f;">)</span> 'paredit-forward-slurp-sexp<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>define-key paredit-mode-map <span style="color: #dc322f;">(</span>kbd <span style="color: #2aa198;">"C-0"</span><span style="color: #dc322f;">)</span> 'paredit-backward-slurp-sexp<span style="color: #268bd2;">)</span>
+    <span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span>eval-after-load 'paredit-mode 'toby/paredit-init<span style="color: #2aa198;">)</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">provide</span> '<span style="color: #268bd2; font-weight: bold;">lisp-init</span><span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
 </div>
 </div>
 </div>

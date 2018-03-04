@@ -1,0 +1,1125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2018-03-04 Sun 00:23 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Toby Tripp" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/htmlize.css">
+<link rel="stylesheet" href="css/config.css">
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<p><a accesskey="H" href="index.html">HOME</a></p>
+</div>
+<div id="content">
+<div id="outline-container-org696026b" class="outline-2">
+<h2 id="org696026b">Mail with Emacs</h2>
+<div class="outline-text-2" id="text-org696026b">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #586e75;">;; </span><span style="color: #586e75;">-*- lexical-binding: t -*-</span>
+</pre>
+</div>
+</div>
+<div id="outline-container-org6482a0c" class="outline-3">
+<h3 id="org6482a0c">Maintaining Secrets</h3>
+<div class="outline-text-3" id="text-org6482a0c">
+</div>
+<div id="outline-container-org1506ca6" class="outline-4">
+<h4 id="org1506ca6">GPG Encryption</h4>
+<div class="outline-text-4" id="text-org1506ca6">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">epa-file</span><span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>epa-file-enable<span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf69a1c0" class="outline-4">
+<h4 id="orgf69a1c0"><code>auth-sources</code></h4>
+<div class="outline-text-4" id="text-orgf69a1c0">
+<ul class="org-ul">
+<li><a href="(customize-variable 'auth-sources)">Customize auth-sources</a></li>
+<li><p>
+To enable debug information:
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">setq</span> auth-source-debug t<span style="color: #2aa198;">)</span>
+</pre>
+</div></li>
+<li><p>
+To clear the Emacs authentication cache:
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span>auth-source-forget-all-cached<span style="color: #2aa198;">)</span>
+</pre>
+</div></li>
+<li><p>
+The current set of sources:
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp" id="orgdab5bec">auth-sources
+</pre>
+</div>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">~/.emacs.d/secrets/.authinfo.gpg</td>
+<td class="org-left">macos-keychain-internet</td>
+</tr>
+</tbody>
+</table>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">~/.emacs.d/secrets/.authinfo.gpg</td>
+<td class="org-left">macos-keychain-internet</td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc056eab" class="outline-4">
+<h4 id="orgc056eab">Authentication Secret Look-up</h4>
+<div class="outline-text-4" id="text-orgc056eab">
+<ul class="org-ul">
+<li><p>
+Require the <code>auth-sources</code> library
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp" id="org2fa8a15"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">auth-source</span><span style="color: #2aa198;">)</span>
+</pre>
+</div></li>
+<li><p>
+<code>auth-sources</code> usage
+</p>
+
+<p>
+The <code>auth-source-search</code> function takes a “search spec” plist and
+returns a list with all matching entries.  The results themselves are
+plists containing full entries that matched the search spec.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp" id="org54699b3"><span style="color: #2aa198;">(</span>auth-source-search <span style="color: #268bd2; font-style: italic;">:user</span> <span style="color: #2aa198;">"toby.tripp"</span><span style="color: #2aa198;">)</span>
+</pre>
+</div>
+
+<p>
+The <code>:secret</code> entry will be a lambda that, when evaluated,
+will return the password.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp" id="orge43ed8b"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">let*</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">(</span>matches <span style="color: #dc322f;">(</span>auth-source-search
+                 <span style="color: #268bd2; font-style: italic;">:user</span> <span style="color: #2aa198;">"toby.tripp"</span>
+                 <span style="color: #268bd2; font-style: italic;">:max</span> 1
+                 <span style="color: #268bd2; font-style: italic;">:require</span> '<span style="color: #cb4b16;">(</span><span style="color: #268bd2; font-style: italic;">:secret</span><span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
+       <span style="color: #268bd2;">(</span>entry <span style="color: #dc322f;">(</span>nth 0 matches<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
+       <span style="color: #268bd2;">(</span>secret <span style="color: #dc322f;">(</span>plist-get entry <span style="color: #268bd2; font-style: italic;">:secret</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>list
+   <span style="color: #268bd2;">(</span>list <span style="color: #268bd2; font-style: italic;">:user</span>   <span style="color: #dc322f;">(</span>plist-get entry <span style="color: #268bd2; font-style: italic;">:user</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
+   <span style="color: #268bd2;">(</span>list <span style="color: #268bd2; font-style: italic;">:host</span>   <span style="color: #dc322f;">(</span>plist-get entry <span style="color: #268bd2; font-style: italic;">:host</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
+   <span style="color: #268bd2;">(</span>list <span style="color: #268bd2; font-style: italic;">:port</span>   <span style="color: #dc322f;">(</span>plist-get entry <span style="color: #268bd2; font-style: italic;">:port</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
+   <span style="color: #268bd2;">(</span>list <span style="color: #268bd2; font-style: italic;">:secret</span> <span style="color: #dc322f;">(</span>funcall secret<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+</pre>
+</div>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">:user</td>
+<td class="org-left">toby.tripp</td>
+</tr>
+
+<tr>
+<td class="org-left">:host</td>
+<td class="org-left">example.server</td>
+</tr>
+
+<tr>
+<td class="org-left">:port</td>
+<td class="org-left">80</td>
+</tr>
+
+<tr>
+<td class="org-left">:secret</td>
+<td class="org-left">incredible-secret</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+We will define a function for returning a single <code>auth-sources</code> result as
+an <code>alist</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp" id="org678a908"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/auth-info</span> <span style="color: #b58900;">(</span><span style="color: #b58900;">&amp;rest</span> search-spec<span style="color: #b58900;">)</span>
+  <span style="color: #2aa198; font-style: italic;">"Given a LOGIN to search for, return `</span><span style="color: #268bd2; font-weight: bold; font-style: italic;">auth-sources</span><span style="color: #2aa198; font-style: italic;">' that match.</span>
+
+<span style="color: #2aa198; font-style: italic;">Valid search keys are:</span>
+
+<span style="color: #2aa198; font-style: italic;">  - :user</span>
+<span style="color: #2aa198; font-style: italic;">  - :host</span>
+<span style="color: #2aa198; font-style: italic;">  - :port</span>
+
+<span style="color: #2aa198; font-style: italic;">Setting :max will have no result as this function only returns a</span>
+<span style="color: #2aa198; font-style: italic;">single result.  If there are multiple matches, the first will be</span>
+<span style="color: #2aa198; font-style: italic;">returned.</span>
+
+<span style="color: #2aa198; font-style: italic;">Results are returned as an alist with the `</span><span style="color: #268bd2; font-weight: bold; font-style: italic;">:secret</span><span style="color: #2aa198; font-style: italic;">' property</span>
+<span style="color: #2aa198; font-style: italic;">pre-evaluated."</span>
+
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">dolist</span> <span style="color: #268bd2;">(</span>default '<span style="color: #dc322f;">(</span><span style="color: #cb4b16;">(</span><span style="color: #268bd2; font-style: italic;">:max</span> . 1<span style="color: #cb4b16;">)</span> <span style="color: #cb4b16;">(</span><span style="color: #268bd2; font-style: italic;">:require</span> . <span style="color: #268bd2;">(</span><span style="color: #268bd2; font-style: italic;">:secret</span><span style="color: #268bd2;">)</span><span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>plist-put search-spec <span style="color: #dc322f;">(</span>car default<span style="color: #dc322f;">)</span> <span style="color: #dc322f;">(</span>cdr default<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #268bd2;">(</span><span style="color: #dc322f;">(</span>entry <span style="color: #cb4b16;">(</span>nth 0 <span style="color: #268bd2;">(</span>apply 'auth-source-search search-spec<span style="color: #268bd2;">)</span><span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>mapcar <span style="color: #dc322f;">(</span><span style="color: #859900; font-weight: bold;">lambda</span> <span style="color: #cb4b16;">(</span>e<span style="color: #cb4b16;">)</span>
+              <span style="color: #cb4b16;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #268bd2;">(</span><span style="color: #859900;">(</span>prop  <span style="color: #dc322f;">(</span>car e<span style="color: #dc322f;">)</span><span style="color: #859900;">)</span>
+                    <span style="color: #859900;">(</span>value <span style="color: #dc322f;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900;">(</span>functionp <span style="color: #2aa198;">(</span>cadr e<span style="color: #2aa198;">)</span><span style="color: #b58900;">)</span>
+                               <span style="color: #b58900;">(</span>funcall <span style="color: #2aa198;">(</span>cadr e<span style="color: #2aa198;">)</span><span style="color: #b58900;">)</span>
+                             <span style="color: #b58900;">(</span>cadr e<span style="color: #b58900;">)</span><span style="color: #dc322f;">)</span><span style="color: #859900;">)</span><span style="color: #268bd2;">)</span>
+                <span style="color: #268bd2;">(</span>cons prop value<span style="color: #268bd2;">)</span><span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span>
+            <span style="color: #dc322f;">(</span>seq-partition entry 2<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+</pre>
+</div>
+
+<p>
+For example, given an <code>.authinfo</code> file containing:
+</p>
+<pre class="example" id="authinfo-example">
+machine example.server login toby.tripp port 80 password incredible-secret
+</pre>
+
+<p>
+and then the following call:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp" id="org52be144"><span style="color: #2aa198;">(</span>toby/auth-info <span style="color: #268bd2; font-style: italic;">:user</span> <span style="color: #2aa198;">"toby.tripp"</span><span style="color: #2aa198;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+((:host . "example.server") (:user . "toby.tripp") (:port . "80") (:secret . "incredible-secret"))
+
+</pre>
+
+<p>
+We can then, for example, get just the password like this:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp" id="org7804b96"><span style="color: #2aa198;">(</span>alist-get <span style="color: #268bd2; font-style: italic;">:secret</span> <span style="color: #b58900;">(</span>toby/auth-info <span style="color: #268bd2; font-style: italic;">:user</span> <span style="color: #2aa198;">"toby.tripp"</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+"incredible-secret"
+
+</pre></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org078de96" class="outline-4">
+<h4 id="org078de96">Secret Configurations</h4>
+<div class="outline-text-4" id="text-org078de96">
+<p>
+Facilities for the evaluation of encrypted elisp configuration.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp" id="orgd9d2e29"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/get-secret-var</span> <span style="color: #b58900;">(</span>sym<span style="color: #b58900;">)</span>
+  <span style="color: #2aa198; font-style: italic;">"Get the value of the symbol `</span><span style="color: #268bd2; font-weight: bold; font-style: italic;">sym</span><span style="color: #2aa198; font-style: italic;">' from the custom.el.gpg</span>
+<span style="color: #2aa198; font-style: italic;">  customization/configuration file."</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">with-temp-buffer</span>
+    <span style="color: #268bd2;">(</span>insert-file-contents <span style="color: #2aa198;">"~/.emacs.d/secrets/custom.el.gpg"</span><span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>eval-buffer<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>alist-get sym toby/secret-custom<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp" id="org328e255"><span style="color: #2aa198;">(</span>toby/get-secret-var <span style="color: #b58900;">(</span>intern property<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9b5fd7a" class="outline-3">
+<h3 id="org9b5fd7a"><span class="done ADOPTED">ADOPTED</span> mbsync</h3>
+<div class="outline-text-3" id="text-org9b5fd7a">
+<ul class="org-ul">
+<li>State "EXPERIMENTAL" from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2018-02-13 Tue 07:25]</span></span></li>
+<li>State "TODO"       from              <span class="timestamp-wrapper"><span class="timestamp">[2018-02-13 Tue 07:25]</span></span></li>
+
+<li><a href="https://wiki.archlinux.org/index.php/Isync">ArchLinux Help Page</a></li>
+<li><a href="http://isync.sourceforge.net/mbsync.html">mbsync man page</a></li>
+<li><a href="http://pragmaticemacs.com/emacs/migrating-from-offlineimap-to-mbsync-for-mu4e/">Pragmatic Emacs mbsync Page</a></li>
+</ul>
+
+
+<div class="org-src-container">
+<pre class="src src-conf"><span style="color: #586e75;"># </span><span style="color: #586e75;">-*- mode: conf -*-</span>
+Expunge Both
+SyncState *
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org3fbca14" class="outline-4">
+<h4 id="org3fbca14">GMail</h4>
+<div class="outline-text-4" id="text-org3fbca14">
+<ul class="org-ul">
+<li>A script for retrieving encrypted authinfo</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-sh" id="orge7ce6c8">gpg2 -q --for-your-eyes-only --no-tty -d ~/.emacs.d/secrets/.authinfo.gpg | awk <span style="color: #2aa198;">'/imap\.gmail/ { print $8 }'</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>The mbsync configuration for the gmail account</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-conf" id="orgc459ed3">IMAPAccount gmail
+Host imap.gmail.com
+Port 993
+<span style="color: #268bd2;">User &lt;&lt; get-secret(property</span>=<span style="color: #2aa198;">"gmail-user"</span>) &gt;&gt;
+AuthMechs LOGIN
+SSLType IMAPS
+SystemCertificates no
+CertificateFile /usr/local/etc/openssl/cert.pem
+PassCmd <span style="color: #2aa198;">"&lt;&lt;gmail-password&gt;&gt;"</span>
+
+IMAPStore gmail-remote
+Account gmail
+</pre>
+</div>
+
+<p>
+Trailing slashes in mail directory entries are important.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-conf" id="org4b598a7">MaildirStore gmail-local
+Path ~/.mail/gmail/
+Inbox ~/.mail/gmail/Inbox
+SubFolders Verbatim
+</pre>
+</div>
+
+<p>
+Patterns match remote mail folders for syncing:
+</p>
+
+<p>
+#+tblname pattern-examples
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Pattern</th>
+<th scope="col" class="org-left">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">*</td>
+<td class="org-left">Match everything</td>
+</tr>
+
+<tr>
+<td class="org-left">!DIR</td>
+<td class="org-left">Exclude DIR</td>
+</tr>
+
+<tr>
+<td class="org-left">DIR</td>
+<td class="org-left">Include DIR</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+For example:
+</p>
+<div class="org-src-container">
+<pre class="src src-conf" id="orgc4924b4">Patterns ![Gmail]* <span style="color: #2aa198;">"[Gmail]/Sent Mail"</span> <span style="color: #2aa198;">"[Gmail]/Starred"</span> <span style="color: #2aa198;">"[Gmail]/All Mail"</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-conf" id="org3c68069">Channel gmail-inbox
+Master :gmail-remote:
+Slave :gmail-local:
+Patterns <span style="color: #2aa198;">"INBOX"</span> <span style="color: #2aa198;">"Record*"</span> <span style="color: #2aa198;">"Group*"</span>
+Create Both
+
+Channel gmail-trash
+Master :gmail-remote:<span style="color: #2aa198;">"[Gmail]/Trash"</span>
+Slave :gmail-local:trash
+Create Both
+Expunge Both
+
+Channel gmail-sent
+Master :gmail-remote:<span style="color: #2aa198;">"[Gmail]/Sent Mail"</span>
+Slave :gmail-local:sent
+Create Both
+Expunge Both
+
+Channel gmail-archive
+Master <span style="color: #2aa198;">":gmail-remote:[Gmail]/All Mail"</span>
+Slave :gmail-local:archive
+Create Both
+</pre>
+</div>
+
+<p>
+Groups put together Channels, so that we can invoke <code>mbsync</code> on a Group to
+sync all Channels, for instance: <code>mbsync gmail</code> gets mail from
+"gmail-inbox", "gmail-sent", and "gmail-trash"
+</p>
+
+<div class="org-src-container">
+<pre class="src src-conf" id="orge452356">Group gmail
+Channel gmail-inbox
+Channel gmail-sent
+Channel gmail-trash
+Channel gmail-archive
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-sh" id="org91e8a34">mkdir -p ~/.mail/gmail
+mbsync -al
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1fef275" class="outline-4">
+<h4 id="org1fef275">iCloud</h4>
+<div class="outline-text-4" id="text-org1fef275">
+<p>
+This configuration uses authentication info stored in the MacOS Keychain.
+I'm not convinced this is better or worse than authinfo.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-conf" id="org8a5f399">IMAPAccount icloud
+Host imap.mail.me.com
+Port 993
+<span style="color: #268bd2;">User &lt;&lt;get-secret(property</span>=<span style="color: #2aa198;">"icloud-user"</span>)&gt;&gt;
+PassCmd <span style="color: #2aa198;">"security find-internet-password -s imap.mail.me.com -w"</span>
+AuthMechs LOGIN PLAIN
+SSLType IMAPS
+SSLVersions TLSv1.2
+SystemCertificates no
+CertificateFile /usr/local/etc/openssl/cert.pem
+
+IMAPStore icloud-remote
+Account icloud
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-conf" id="org6241f37">MaildirStore icloud-local
+Path ~/.mail/icloud/
+Inbox ~/.mail/icloud/Inbox
+Trash Trash
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-conf" id="org90275c1">Channel icloud-folders
+Master :icloud-remote:
+Slave :icloud-local:
+Patterns <span style="color: #2aa198;">"INBOX"</span> <span style="color: #2aa198;">"Saved"</span> <span style="color: #2aa198;">"Drafts"</span> <span style="color: #2aa198;">"Archive"</span> <span style="color: #2aa198;">"Sent*"</span> <span style="color: #2aa198;">"Trash"</span>
+Create Both
+Expunge Both
+SyncState *
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-conf" id="org38fe081">Group icloud
+Channel icloud-folders
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-sh" id="org23a0349">mkdir -p ~/.mail/icloud
+mbsync -l icloud
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org62bea2f" class="outline-3">
+<h3 id="org62bea2f"><span class="done ADOPTED">ADOPTED</span> Wanderlust</h3>
+<div class="outline-text-3" id="text-org62bea2f">
+<ul class="org-ul">
+<li>State "ADOPTED"    from "EXPERIMENTAL" <span class="timestamp-wrapper"><span class="timestamp">[2018-02-23 Fri 10:01]</span></span></li>
+<li>State "EXPERIMENTAL" from              <span class="timestamp-wrapper"><span class="timestamp">[2018-02-09 Fri 21:21]</span></span></li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span>require-package 'wanderlust<span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org9f84a08" class="outline-4">
+<h4 id="org9f84a08">Wanderlust Customization</h4>
+<div class="outline-text-4" id="text-org9f84a08">
+<p>
+<span class="timestamp-wrapper"><span class="timestamp">[2018-02-12 Mon]</span></span>
+</p>
+
+<ul class="org-ul">
+<li><a href="(customize-group 'wl-folder)">Wanderlust Customize Folders</a></li>
+<li><a href="(customize-group 'wl-setting)">Wanderlust Customize Settings</a></li>
+<li><a href="(customize-group 'wl-summary)">Wanderlust Customize Summary</a></li>
+<li><a href="(customize-group 'wl-draft)">Wanderlust Customize Draft</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2b3943d" class="outline-4">
+<h4 id="org2b3943d">Initialization</h4>
+<div class="outline-text-4" id="text-org2b3943d">
+<ul class="org-ul">
+<li><a href="http://emacs-fu.blogspot.com/2009/06/e-mail-with-wanderlust.html">Wanderlust Blog Post</a></li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp" id="org4887e94"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">mime-setup</span><span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>autoload 'wl       <span style="color: #2aa198;">"wl"</span>       <span style="color: #2aa198; font-style: italic;">"Wanderlust"</span> t<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>autoload 'wl-draft <span style="color: #2aa198;">"wl-draft"</span> <span style="color: #2aa198; font-style: italic;">"Write draft with Wanderlust."</span> t<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">setq</span>
+ elmo-maildir-folder-path <span style="color: #2aa198;">"~/.mail"</span>
+ wl-stay-folder-window t                       <span style="color: #586e75;">;; </span><span style="color: #586e75;">show the folder pane (left)</span>
+ wl-folder-window-width 25                     <span style="color: #586e75;">;; </span><span style="color: #586e75;">toggle on/off with 'i'</span>
+
+ <span style="color: #586e75;">;; </span><span style="color: #586e75;">hide many fields from message buffers</span>
+ wl-message-ignored-field-list '<span style="color: #b58900;">(</span><span style="color: #2aa198;">"^.*:"</span><span style="color: #b58900;">)</span>
+ wl-message-visible-field-list
+ '<span style="color: #b58900;">(</span><span style="color: #2aa198;">"^</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">(</span><span style="color: #2aa198;">To</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">|</span><span style="color: #2aa198;">Cc</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">)</span><span style="color: #2aa198;">:"</span>
+   <span style="color: #2aa198;">"^Subject:"</span>
+   <span style="color: #2aa198;">"^</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">(</span><span style="color: #2aa198;">From</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">|</span><span style="color: #2aa198;">Reply-To</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">)</span><span style="color: #2aa198;">:"</span>
+   <span style="color: #2aa198;">"^Organization:"</span>
+   <span style="color: #2aa198;">"^Message-Id:"</span>
+   <span style="color: #2aa198;">"^Delivered-To:"</span>
+   <span style="color: #2aa198;">"^</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">(</span><span style="color: #2aa198;">Posted</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">|</span><span style="color: #2aa198;">Date</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">)</span><span style="color: #2aa198;">:"</span>
+   <span style="color: #2aa198;">"^X-Keywords:"</span><span style="color: #b58900;">)</span>
+ wl-message-sort-field-list
+ '<span style="color: #b58900;">(</span><span style="color: #2aa198;">"^From"</span>
+   <span style="color: #2aa198;">"^Organization:"</span>
+   <span style="color: #2aa198;">"^X-Attribution:"</span>
+   <span style="color: #2aa198;">"^Subject"</span>
+   <span style="color: #2aa198;">"^Date"</span>
+   <span style="color: #2aa198;">"^To"</span>
+   <span style="color: #2aa198;">"^Cc"</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga7a6fd7" class="outline-3">
+<h3 id="orga7a6fd7"><span class="done ADOPTED">ADOPTED</span> Mail indexing with <code>mu</code></h3>
+<div class="outline-text-3" id="text-orga7a6fd7">
+<ul class="org-ul">
+<li>State "EXPERIMENTAL" from              <span class="timestamp-wrapper"><span class="timestamp">[2018-02-09 Fri 22:16]</span></span></li>
+
+<li><a href="https://emacs-fu.blogspot.com/2011/03/searching-e-mails-with-wanderlust-and.html">Emacs-Fu: Searching emails with wanderlust and mu</a></li>
+
+<li><p>
+A sync script for use by the OS Scheduler:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh" id="org5295bb0"><span style="color: #586e75;">#</span><span style="color: #586e75;">!/usr/bin/</span><span style="color: #859900; font-weight: bold;">env</span><span style="color: #586e75;"> bash</span>
+<span style="color: #859900; font-weight: bold;">exec</span> &amp;&gt; &gt;<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">while </span><span style="color: #268bd2; font-style: italic;">read</span> line; <span style="color: #859900; font-weight: bold;">do </span><span style="color: #268bd2; font-style: italic;">echo</span> <span style="color: #2aa198;">"$(date -R) $line"</span>; <span style="color: #859900; font-weight: bold;">done</span>;<span style="color: #2aa198;">)</span>
+
+<span style="color: #268bd2; font-style: italic;">which</span> -s mbsync
+<span style="color: #859900; font-weight: bold;">if</span> <span style="color: #2aa198;">[</span><span style="color: #b58900;">[</span> $<span style="color: #268bd2;">?</span> -ne 0 <span style="color: #b58900;">]</span><span style="color: #2aa198;">]</span>; <span style="color: #859900; font-weight: bold;">then</span>
+    brew install isync
+<span style="color: #859900; font-weight: bold;">fi</span>
+
+<span style="color: #268bd2; font-style: italic;">which</span> -s mu
+<span style="color: #859900; font-weight: bold;">if</span> <span style="color: #2aa198;">[</span><span style="color: #b58900;">[</span> $<span style="color: #268bd2;">?</span> -ne 0 <span style="color: #b58900;">]</span><span style="color: #2aa198;">]</span>; <span style="color: #859900; font-weight: bold;">then</span>
+    brew install mu
+<span style="color: #859900; font-weight: bold;">fi</span>
+
+<span style="color: #268bd2; font-style: italic;">echo</span> Mail Sync &amp;&amp;
+    mbsync -Va &amp;&amp;
+    <span style="color: #268bd2; font-style: italic;">echo</span> Mail Index &amp;&amp;
+    mu index --maildir=~/.mail --lazy-check
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><p>
+Under MacOS, this script can be triggered by <code>launchd</code> with the following plist:
+</p>
+<div class="org-src-container">
+<pre class="src src-xml" id="orgc441943">&lt;?<span style="color: #859900; font-weight: bold;">xml</span> <span style="color: #268bd2;">version</span>=<span style="color: #2aa198;">"</span><span style="color: #2aa198;">1.0</span><span style="color: #2aa198;">"</span> <span style="color: #268bd2;">encoding</span>=<span style="color: #2aa198;">"</span><span style="color: #2aa198;">UTF-8</span><span style="color: #2aa198;">"</span>?&gt;
+&lt;!<span style="color: #859900; font-weight: bold;">DOCTYPE</span> plist <span style="color: #859900; font-weight: bold;">PUBLIC</span> <span style="color: #2aa198; font-style: italic;">"</span><span style="color: #2aa198; font-style: italic;">-//Apple Computer//DTD PLIST 1.0//EN</span><span style="color: #2aa198; font-style: italic;">"</span> <span style="color: #2aa198; font-style: italic;">"</span><span style="color: #2aa198; font-style: italic;">http://www.apple.com/DTDs/PropertyList-1.0.dtd</span><span style="color: #2aa198; font-style: italic;">"</span>&gt;
+&lt;<span style="color: #268bd2;">plist</span> <span style="color: #268bd2;">version</span>=<span style="color: #2aa198;">"</span><span style="color: #2aa198;">1.0</span><span style="color: #2aa198;">"</span>&gt;
+  &lt;<span style="color: #268bd2;">dict</span>&gt;
+    &lt;<span style="color: #268bd2;">key</span>&gt;EnvironmentVariables&lt;/<span style="color: #268bd2;">key</span>&gt;
+    &lt;<span style="color: #268bd2;">dict</span>&gt;
+      &lt;<span style="color: #268bd2;">key</span>&gt;PATH&lt;/<span style="color: #268bd2;">key</span>&gt;
+      &lt;<span style="color: #268bd2;">string</span>&gt;/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin&lt;/<span style="color: #268bd2;">string</span>&gt;
+    &lt;/<span style="color: #268bd2;">dict</span>&gt;
+    &lt;<span style="color: #268bd2;">key</span>&gt;KeepAlive&lt;/<span style="color: #268bd2;">key</span>&gt;
+    &lt;<span style="color: #268bd2;">false</span>/&gt;
+    &lt;<span style="color: #268bd2;">key</span>&gt;Label&lt;/<span style="color: #268bd2;">key</span>&gt;
+    &lt;<span style="color: #268bd2;">string</span>&gt;org.thetripps.isync&lt;/<span style="color: #268bd2;">string</span>&gt;
+    &lt;<span style="color: #268bd2;">key</span>&gt;ProgramArguments&lt;/<span style="color: #268bd2;">key</span>&gt;
+    &lt;<span style="color: #268bd2;">array</span>&gt;
+      &lt;<span style="color: #268bd2;">string</span>&gt;~/bin/mail-sync&lt;/<span style="color: #268bd2;">string</span>&gt;
+    &lt;/<span style="color: #268bd2;">array</span>&gt;
+    &lt;<span style="color: #268bd2;">key</span>&gt;StartInterval&lt;/<span style="color: #268bd2;">key</span>&gt;
+    &lt;<span style="color: #268bd2;">integer</span>&gt;300&lt;/<span style="color: #268bd2;">integer</span>&gt;
+    &lt;<span style="color: #268bd2;">key</span>&gt;RunAtLoad&lt;/<span style="color: #268bd2;">key</span>&gt;
+    &lt;<span style="color: #268bd2;">true</span> /&gt;
+    &lt;<span style="color: #268bd2;">key</span>&gt;StandardOutPath&lt;/<span style="color: #268bd2;">key</span>&gt;
+    &lt;<span style="color: #268bd2;">string</span>&gt;/var/log/agents.user/org.thetripps.isync.log&lt;/<span style="color: #268bd2;">string</span>&gt;
+    &lt;<span style="color: #268bd2;">key</span>&gt;StandardErrorPath&lt;/<span style="color: #268bd2;">key</span>&gt;
+    &lt;<span style="color: #268bd2;">string</span>&gt;/var/log/agents.user/org.thetripps.isync.log&lt;/<span style="color: #268bd2;">string</span>&gt;
+  &lt;/<span style="color: #268bd2;">dict</span>&gt;
+&lt;/<span style="color: #268bd2;">plist</span>&gt;
+</pre>
+</div></li>
+</ul></li>
+</ul>
+</div>
+
+<div id="outline-container-org033af23" class="outline-4">
+<h4 id="org033af23"><span class="done ADOPTED">ADOPTED</span> Searching Emails</h4>
+<div class="outline-text-4" id="text-org033af23">
+<ul class="org-ul">
+<li>State "EXPERIMENTAL" from              <span class="timestamp-wrapper"><span class="timestamp">[2018-02-09 Fri 22:17]</span></span></li>
+</ul>
+
+<p>
+Search <code>mu</code> index by typing <code>g</code> in folder or summary.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">elmo-search</span><span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>elmo-search-register-engine
+ 'mu 'local-file
+ <span style="color: #268bd2; font-style: italic;">:prog</span> <span style="color: #2aa198;">"/usr/local/bin/mu"</span>
+ <span style="color: #268bd2; font-style: italic;">:args</span> '<span style="color: #b58900;">(</span><span style="color: #2aa198;">"find"</span> pattern <span style="color: #2aa198;">"--fields"</span> <span style="color: #2aa198;">"l"</span><span style="color: #b58900;">)</span>
+ <span style="color: #268bd2; font-style: italic;">:charset</span> 'utf-8<span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">setq</span> elmo-search-default-engine 'mu<span style="color: #2aa198;">)</span>
+</pre>
+</div>
+
+<p>
+<a href="http://www.djcbsoftware.nl/code/mu/cheatsheet.html">mu cheat-sheet</a>
+</p>
+
+<p>
+Also <code>man mu-find</code>.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org692690d" class="outline-3">
+<h3 id="org692690d"><span class="done ADOPTED">ADOPTED</span> <code>org-capture</code> Integration</h3>
+<div class="outline-text-3" id="text-org692690d">
+<ul class="org-ul">
+<li>State "EXPERIMENTAL" from              <span class="timestamp-wrapper"><span class="timestamp">[2018-02-10 Sat 07:01]</span></span></li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp" id="orgdd1fbb1"><span style="color: #2aa198;">(</span>global-unset-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"&lt;f3&gt;"</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"&lt;f3&gt;"</span><span style="color: #b58900;">)</span> 'wl<span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span>eval-after-load 'wl
+  '<span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">progn</span>
+     <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">org-wl</span><span style="color: #268bd2;">)</span>
+     <span style="color: #268bd2;">(</span>define-key wl-folder-mode-map <span style="color: #dc322f;">(</span>kbd <span style="color: #2aa198;">"q"</span><span style="color: #dc322f;">)</span> 'bury-buffer<span style="color: #268bd2;">)</span>
+     <span style="color: #268bd2;">(</span>define-key wl-folder-mode-map <span style="color: #dc322f;">(</span>kbd <span style="color: #2aa198;">"Q"</span><span style="color: #dc322f;">)</span> 'wl-exit<span style="color: #268bd2;">)</span>
+     <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">fullframe</span> wl bury-buffer nil<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li class="on"><code>[X]</code> Figure out how to auto-load this package on wanderlust init
+<ul class="org-ul">
+<li>the approach in <a href="#org3422e21">BBDB for Contacts</a> would probably work</li>
+</ul></li>
+</ul>
+
+<p>
+With this, you can mark text in a Wanderlust email view and type <code>C-c c e</code>
+to create an <code>org</code> node with the marked contents.  Meta-data about the
+current email will automatically be included.
+</p>
+</div>
+
+<div id="outline-container-org80ce7c9" class="outline-4">
+<h4 id="org80ce7c9">Starting Up for Reading</h4>
+<div class="outline-text-4" id="text-org80ce7c9">
+<p>
+<code>M-x wl</code>
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org21c110c" class="outline-3">
+<h3 id="org21c110c"><span class="done ADOPTED">ADOPTED</span> Setting wanderlust as the Emacs Mail composer</h3>
+<div class="outline-text-3" id="text-org21c110c">
+<ul class="org-ul">
+<li>State "ADOPTED"    from "EXPERIMENTAL" <span class="timestamp-wrapper"><span class="timestamp">[2018-02-28 Wed 20:41]</span></span></li>
+<li>State "EXPERIMENTAL" from              <span class="timestamp-wrapper"><span class="timestamp">[2018-02-10 Sat 22:42]</span></span></li>
+</ul>
+
+<p>
+Open a message for writing with <code>wl-draft</code>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp" id="orgda83aa9"><span style="color: #2aa198;">(</span>autoload 'wl-user-agent-compose <span style="color: #2aa198;">"wl-draft"</span> nil t<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900;">(</span>boundp 'mail-user-agent<span style="color: #b58900;">)</span>
+    <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">setq</span> mail-user-agent 'wl-user-agent<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #b58900;">(</span>fboundp 'define-mail-user-agent<span style="color: #b58900;">)</span>
+    <span style="color: #b58900;">(</span>define-mail-user-agent
+      'wl-user-agent
+      'wl-user-agent-compose
+      'wl-draft-send
+      'wl-draft-kill
+      'mail-send-hook<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgfd26226" class="outline-4">
+<h4 id="orgfd26226"><span class="done ADOPTED">ADOPTED</span> Try GMail for SMTP</h4>
+<div class="outline-text-4" id="text-orgfd26226">
+<ul class="org-ul">
+<li>State "ADOPTED"    from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2018-02-28 Wed 20:39]</span></span></li>
+</ul>
+
+<table id="org88558d3" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Incoming Mail (IMAP) Server</th>
+<th scope="col" class="org-right">imap.gmail.com</th>
+<th scope="col" class="org-right">&#xa0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">Requires SSL:</td>
+<td class="org-right">Yes</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">Port:</td>
+<td class="org-right">993</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">Outgoing Mail (SMTP) Server</td>
+<td class="org-right">smtp.gmail.com</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">Requires SSL</td>
+<td class="org-right">Yes</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">Requires TLS</td>
+<td class="org-right">Yes<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup></td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">Port for SSL</td>
+<td class="org-right">465</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">Port for TLS/STARTTLS</td>
+<td class="org-right">587</td>
+</tr>
+</tbody>
+</table>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp" id="orgd31fbf7"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">let*</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">(</span>smtp-server <span style="color: #dc322f;">(</span>toby/get-secret-var 'smtp-server<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
+       <span style="color: #268bd2;">(</span>smtp-config <span style="color: #dc322f;">(</span>toby/auth-info <span style="color: #268bd2; font-style: italic;">:host</span> smtp-server<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">setq</span> wl-smtp-authenticate-type <span style="color: #2aa198;">"plain"</span>
+        wl-smtp-posting-server    <span style="color: #268bd2;">(</span>alist-get <span style="color: #268bd2; font-style: italic;">:host</span> smtp-config<span style="color: #268bd2;">)</span>
+        wl-smtp-posting-port      <span style="color: #268bd2;">(</span>alist-get <span style="color: #268bd2; font-style: italic;">:port</span> smtp-config<span style="color: #268bd2;">)</span>
+        wl-smtp-posting-user      <span style="color: #268bd2;">(</span>alist-get <span style="color: #268bd2; font-style: italic;">:user</span> smtp-config<span style="color: #268bd2;">)</span>
+        wl-from           <span style="color: #268bd2;">(</span>toby/get-secret-var 'toby/mail-from<span style="color: #268bd2;">)</span>
+        wl-smtp-connection-type   <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">quote</span> ssl<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3422e21" class="outline-4">
+<h4 id="org3422e21"><span class="todo TODO">TODO</span> BBDB for Contacts <code>[0/1]</code></h4>
+<div class="outline-text-4" id="text-org3422e21">
+<ul class="org-ul">
+<li>State "ADOPTED"    from "EXPERIMENTAL" <span class="timestamp-wrapper"><span class="timestamp">[2018-03-01 Thu 12:33]</span></span></li>
+<li>State "EXPERIMENTAL" from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2018-02-21 Wed 12:46]</span></span></li>
+<li>State "TODO"       from              <span class="timestamp-wrapper"><span class="timestamp">[2018-02-21 Wed 12:46]</span></span></li>
+
+<li>Referenced
+<ul class="org-ul">
+<li><a href="https://www.emacswiki.org/emacs/CategoryBbdb">Emacs Wiki Entry</a></li>
+<li><a href="http://bbdb.sourceforge.net/bbdb.html">BBDB Manual</a></li>
+<li><a href="https://emacs-fu.blogspot.com/2009/08/managing-e-mail-addresses-with-bbdb.html">Emacs-Fu Blog Entry</a></li>
+</ul></li>
+
+<li class="off"><code>[&#xa0;]</code> <a href="https://www.emacswiki.org/emacs/BBDBV3-Wl">BBDB Wanderlust Integration</a>
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> “BBDB: MUA ‘mime-view-mode’ Not Supported”
+<ul class="org-ul">
+<li><a href="#orgeafb798">bbdb-init</a> some change (it's unclear which) fixed this</li>
+<li class="off"><code>[&#xa0;]</code> Turns out that it didn't There is a problem with the hook in
+<code>wl-message-redisplay-hook</code>, currently set to:
+<code>bbdb-mua-auto-update</code>.  This function appears unable or unwilling
+to parse the headers from a message viewed with
+<code>mime-view-mode</code>. <a href="http://savannah.nongnu.org/git/?group=bbdb">BBDB Source Repo</a>.</li>
+</ul></li>
+</ul></li>
+</ul>
+
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp" id="orgeafb798"><span style="color: #2aa198;">(</span>require-package 'bbdb <span style="color: #b58900;">(</span>version-to-list <span style="color: #2aa198;">"3.2"</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>eval-after-load 'wl
+  '<span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">progn</span>
+     <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">bbdb-wl</span><span style="color: #268bd2;">)</span>
+     <span style="color: #268bd2;">(</span>bbdb-initialize 'wl<span style="color: #268bd2;">)</span>
+     <span style="color: #268bd2;">(</span>bbdb-insinuate-wl<span style="color: #268bd2;">)</span>
+     <span style="color: #268bd2;">(</span>bbdb-mua-auto-update-init 'wl<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org15eef57" class="outline-3">
+<h3 id="org15eef57">Package Declaration Here</h3>
+<div class="outline-text-3" id="text-org15eef57">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">provide</span> '<span style="color: #268bd2; font-weight: bold;">mail-in-emacs</span><span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org9925a60" class="outline-4">
+<h4 id="org9925a60">Archive&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ARCHIVE">ARCHIVE</span></span></h4>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+If available
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="author">Author: Toby Tripp</p>
+<p class="date">Created: 2018-03-04 Sun 00:23</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

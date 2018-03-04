@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2018-02-09 Fri 15:33 -->
+<!-- 2018-03-03 Sat 22:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
@@ -180,7 +180,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/htmlize.css">
 <link rel="stylesheet" href="css/config.css">
 <script type="text/javascript">
@@ -286,9 +286,10 @@ for the JavaScript code in this tag.
 </div>
 
 <div id="outline-container-orgfd06a14" class="outline-3">
-<h3 id="orgfd06a14"><span class="todo EXPERIMENTAL">EXPERIMENTAL</span> Clojure prettify-symbols</h3>
+<h3 id="orgfd06a14"><span class="done ADOPTED">ADOPTED</span> Clojure prettify-symbols</h3>
 <div class="outline-text-3" id="text-orgfd06a14">
 <ul class="org-ul">
+<li>State "ADOPTED"    from "EXPERIMENTAL" <span class="timestamp-wrapper"><span class="timestamp">[2018-02-23 Fri 10:02]</span></span></li>
 <li>State "EXPERIMENTAL" from              <span class="timestamp-wrapper"><span class="timestamp">[2017-08-07 Mon 11:42]</span></span></li>
 </ul>
 
@@ -407,8 +408,8 @@ Enable CIDER-repl connections via figwheel:
 <div class="outline-text-4" id="text-orgc3ab662">
 </div>
 <ul class="org-ul">
-<li><a id="org0cf3289"></a>TODO Consider use of (current-local-map)<br />
-<div class="outline-text-5" id="text-org0cf3289">
+<li><a id="org9535ad7"></a><span class="todo TODO">TODO</span> Consider use of (current-local-map)<br />
+<div class="outline-text-5" id="text-org9535ad7">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span>require-package 'god-mode<span style="color: #2aa198;">)</span>
 
@@ -504,8 +505,7 @@ Enable CIDER-repl connections via figwheel:
 <h3 id="org48e53dc">On-Load</h3>
 <div class="outline-text-3" id="text-org48e53dc">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">
-   <span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/clojure-onload</span> <span style="color: #b58900;">()</span>
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/clojure-onload</span> <span style="color: #b58900;">()</span>
   <span style="color: #b58900;">(</span>require-package 'cider <span style="color: #268bd2;">(</span>version-to-list <span style="color: #2aa198;">"0.15.1"</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
   <span style="color: #b58900;">(</span>define-key clojure-mode-map <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"&lt;C-down&gt;"</span><span style="color: #268bd2;">)</span> 'forward-sexp<span style="color: #b58900;">)</span>
   <span style="color: #b58900;">(</span>define-key clojure-mode-map <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"&lt;C-up&gt;"</span><span style="color: #268bd2;">)</span>   'backward-sexp<span style="color: #b58900;">)</span>
@@ -520,7 +520,7 @@ Enable CIDER-repl connections via figwheel:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Toby Tripp</p>
-<p class="date">Created: 2018-02-09 Fri 15:33</p>
+<p class="date">Created: 2018-03-03 Sat 22:54</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

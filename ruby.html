@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2018-03-04 Sun 00:00 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Toby Tripp" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/htmlize.css">
+<link rel="stylesheet" href="css/config.css">
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<p><a accesskey="H" href="index.html">HOME</a></p>
+</div>
+<div id="content">
+<div id="outline-container-orgd5ec052" class="outline-2">
+<h2 id="orgd5ec052">Ruby</h2>
+<div class="outline-text-2" id="text-orgd5ec052">
+<p>
+Still my favorite language.
+</p>
+</div>
+
+<div id="outline-container-org990de4d" class="outline-3">
+<h3 id="org990de4d">Ruby Mode Keybindings</h3>
+<div class="outline-text-3" id="text-org990de4d">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Key-Chord</td>
+<td class="org-left">Command</td>
+</tr>
+
+<tr>
+<td class="org-left">C-c C-z</td>
+<td class="org-left">Switch to IRB REPL</td>
+</tr>
+
+<tr>
+<td class="org-left">C-c C-l</td>
+<td class="org-left">Load current buffer into the REPL</td>
+</tr>
+
+<tr>
+<td class="org-left">C-'</td>
+<td class="org-left">Convert Symbol-&gt;String</td>
+</tr>
+
+<tr>
+<td class="org-left">C-:</td>
+<td class="org-left">Convert String-&gt;Symbol</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org474ab0c" class="outline-3">
+<h3 id="org474ab0c">Start-up</h3>
+<div class="outline-text-3" id="text-org474ab0c">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">setq</span> rbenv-installation-dir <span style="color: #b58900;">(</span>concat <span style="color: #268bd2;">(</span>getenv <span style="color: #2aa198;">"HOME"</span><span style="color: #268bd2;">)</span> <span style="color: #2aa198;">"/.rbenv"</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>require-package 'ruby-mode<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>autoload 'ruby-mode <span style="color: #2aa198;">"ruby-mode"</span> <span style="color: #2aa198; font-style: italic;">"Major mode for Ruby"</span> t<span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span>setenv <span style="color: #2aa198;">"PATH"</span>
+        <span style="color: #b58900;">(</span>string-join <span style="color: #268bd2;">(</span>list
+                      <span style="color: #dc322f;">(</span>concat rbenv-installation-dir <span style="color: #2aa198;">"/shims"</span><span style="color: #dc322f;">)</span>
+                      <span style="color: #dc322f;">(</span>concat rbenv-installation-dir <span style="color: #2aa198;">"/bin"</span><span style="color: #dc322f;">)</span>
+                      <span style="color: #dc322f;">(</span>getenv <span style="color: #2aa198;">"PATH"</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
+                     <span style="color: #2aa198;">":"</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span>setenv <span style="color: #2aa198;">"PATH"</span> <span style="color: #b58900;">(</span>concat <span style="color: #268bd2;">(</span>getenv <span style="color: #2aa198;">"PATH"</span><span style="color: #268bd2;">)</span> <span style="color: #2aa198;">":"</span> <span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>add-to-list 'exec-path <span style="color: #b58900;">(</span>concat rbenv-installation-dir <span style="color: #2aa198;">"/shims"</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span>require-package 'enh-ruby-mode<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>autoload 'enh-ruby-mode <span style="color: #2aa198;">"enh-ruby-mode"</span> <span style="color: #2aa198; font-style: italic;">"Major mode for ruby files"</span> t<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">setq</span> enh-ruby-program <span style="color: #b58900;">(</span>concat rbenv-installation-dir <span style="color: #2aa198;">"/shims/ruby"</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span>eval-after-load 'ruby-mode
+  '<span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">progn</span>
+     <span style="color: #268bd2;">(</span>require-package 'smartparens<span style="color: #268bd2;">)</span>
+     <span style="color: #268bd2;">(</span>require-package 'inf-ruby<span style="color: #268bd2;">)</span>
+     <span style="color: #268bd2;">(</span>require-package 'rbenv<span style="color: #268bd2;">)</span>
+     <span style="color: #268bd2;">(</span>require-package 'rspec-mode<span style="color: #268bd2;">)</span>
+     <span style="color: #268bd2;">(</span>autoload 'rspec-mode <span style="color: #2aa198;">"rspec-mode"</span> <span style="color: #2aa198; font-style: italic;">"Minor mode for RSpec specs"</span> t<span style="color: #268bd2;">)</span>
+     <span style="color: #268bd2;">(</span>require-package 'minitest<span style="color: #268bd2;">)</span>
+     <span style="color: #268bd2;">(</span>autoload 'minitest-mode <span style="color: #2aa198;">"minitest-mode"</span> <span style="color: #2aa198; font-style: italic;">"Minor mode for Minitest specs"</span> t<span style="color: #268bd2;">)</span>
+     <span style="color: #268bd2;">(</span>require-package 'enh-ruby-mode<span style="color: #268bd2;">)</span>
+     <span style="color: #268bd2;">(</span>autoload 'enh-ruby-mode <span style="color: #2aa198;">"enh-ruby-mode"</span> <span style="color: #2aa198; font-style: italic;">"Major mode for ruby files"</span> t<span style="color: #268bd2;">)</span>
+     <span style="color: #268bd2;">(</span>require-package 'column-marker<span style="color: #268bd2;">)</span>
+     <span style="color: #268bd2;">(</span>require-package 'flyspell<span style="color: #268bd2;">)</span>
+     <span style="color: #268bd2;">(</span>require-package 'ruby-tools<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+
+<span style="color: #586e75;">;; </span><span style="color: #586e75;">(require-package 'robe)</span>
+<span style="color: #586e75;">;; </span><span style="color: #586e75;">(eval-after-load 'company</span>
+<span style="color: #586e75;">;;   </span><span style="color: #586e75;">'(push 'company-robe company-backends))</span>
+
+<span style="color: #586e75;">;; </span><span style="color: #586e75;">Hide-show settings</span>
+<span style="color: #2aa198;">(</span>add-to-list 'hs-special-modes-alist
+             '<span style="color: #b58900;">(</span>ruby-mode
+               <span style="color: #2aa198;">"</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">(</span><span style="color: #2aa198;">class</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">|</span><span style="color: #2aa198;">def</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">|</span><span style="color: #2aa198;">do</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">|</span><span style="color: #2aa198;">if</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">)</span><span style="color: #2aa198;">"</span> <span style="color: #2aa198;">"</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">(</span><span style="color: #2aa198;">end</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">)</span><span style="color: #2aa198;">"</span> <span style="color: #2aa198;">"#"</span>
+               <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">lambda</span> <span style="color: #dc322f;">(</span>arg<span style="color: #dc322f;">)</span> <span style="color: #dc322f;">(</span>ruby-end-of-block<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span> nil<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span>add-to-list 'hs-special-modes-alist
+             '<span style="color: #b58900;">(</span>enh-ruby-mode
+               <span style="color: #2aa198;">"</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">(</span><span style="color: #2aa198;">class</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">|</span><span style="color: #2aa198;">def</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">|</span><span style="color: #2aa198;">do</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">|</span><span style="color: #2aa198;">if</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">)</span><span style="color: #2aa198;">"</span> <span style="color: #2aa198;">"</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">(</span><span style="color: #2aa198;">end</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">)</span><span style="color: #2aa198;">"</span> <span style="color: #2aa198;">"#"</span>
+               <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">lambda</span> <span style="color: #dc322f;">(</span>arg<span style="color: #dc322f;">)</span> <span style="color: #dc322f;">(</span>enh-ruby-end-of-block<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span> nil<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span>add-hook 'after-init-hook    'inf-ruby-switch-setup<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>add-hook 'ruby-mode-hook     'toby/add-prettified-symbols<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>add-hook 'enh-ruby-mode-hook 'toby/add-prettified-symbols<span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/ruby-prettify</span> <span style="color: #b58900;">()</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">setq</span> prettify-symbols-alist
+        '<span style="color: #268bd2;">(</span><span style="color: #dc322f;">(</span><span style="color: #2aa198;">"lambda"</span> . 955<span style="color: #dc322f;">)</span>
+          <span style="color: #dc322f;">(</span><span style="color: #2aa198;">"-&gt;"</span>     . <span style="color: #cb4b16;">(</span>?&#8594; <span style="color: #268bd2;">(</span>Br . Bl<span style="color: #268bd2;">)</span> ?&#955;<span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span>
+          <span style="color: #dc322f;">(</span><span style="color: #2aa198;">"=&gt;"</span>     . 10233<span style="color: #dc322f;">)</span>
+          <span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/ruby-init</span> <span style="color: #b58900;">()</span>
+  <span style="color: #b58900;">(</span>set <span style="color: #268bd2;">(</span>make-local-variable 'indent-tabs-mode<span style="color: #268bd2;">)</span> 'nil<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>set <span style="color: #268bd2;">(</span>make-local-variable 'tab-width<span style="color: #268bd2;">)</span> 2<span style="color: #b58900;">)</span>
+
+  <span style="color: #b58900;">(</span>toby/ruby-prettify<span style="color: #b58900;">)</span>
+
+  <span style="color: #b58900;">(</span>column-marker-1 80<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>whitespace-mode t<span style="color: #b58900;">)</span>
+
+  <span style="color: #586e75;">;; </span><span style="color: #586e75;">Doesn't work in the terminal, unfortunately&#8230;</span>
+  <span style="color: #b58900;">(</span>define-key ruby-mode-map <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"C-="</span><span style="color: #268bd2;">)</span> 'insert-rocket<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>define-key ruby-mode-map <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"C-c ="</span><span style="color: #268bd2;">)</span> 'insert-rocket<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>define-key ruby-mode-map <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"C-c c"</span><span style="color: #268bd2;">)</span> 'compile<span style="color: #b58900;">)</span>
+
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #268bd2;">(</span>boundp 'enh-ruby-mode-map<span style="color: #268bd2;">)</span>
+      <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">progn</span>
+        <span style="color: #dc322f;">(</span>define-key enh-ruby-mode-map <span style="color: #cb4b16;">(</span>kbd <span style="color: #2aa198;">"C-c ="</span><span style="color: #cb4b16;">)</span> 'insert-rocket<span style="color: #dc322f;">)</span>
+        <span style="color: #dc322f;">(</span>define-key enh-ruby-mode-map <span style="color: #cb4b16;">(</span>kbd <span style="color: #2aa198;">"C-c c"</span><span style="color: #cb4b16;">)</span> 'compile<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+
+  <span style="color: #b58900;">(</span>hs-minor-mode 1<span style="color: #b58900;">)</span> <span style="color: #586e75;">;; </span><span style="color: #586e75;">Code folding</span>
+
+  <span style="color: #b58900;">(</span>flyspell-prog-mode<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>eldoc-mode<span style="color: #b58900;">)</span>
+
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">ruby-tools</span><span style="color: #b58900;">)</span>
+
+  <span style="color: #b58900;">(</span>global-rbenv-mode<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>rbenv-use-corresponding<span style="color: #b58900;">)</span>
+
+  <span style="color: #586e75;">;; </span><span style="color: #586e75;">(robe-mode)</span>
+  <span style="color: #586e75;">;; </span><span style="color: #586e75;">(yard-mode)</span>
+
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">smartparens-config</span><span style="color: #b58900;">)</span>
+  <span style="color: #586e75;">;; </span><span style="color: #586e75;">(smartparens-strict-mode)</span>
+  <span style="color: #b58900;">(</span>smartparens-mode<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>show-smartparens-mode t<span style="color: #b58900;">)</span>
+
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">setq</span> buffer-save-without-query t<span style="color: #b58900;">)</span>
+
+  <span style="color: #586e75;">;; </span><span style="color: #586e75;">(require 'rspec-mode)</span>
+  <span style="color: #586e75;">;; </span><span style="color: #586e75;">(require 'minitest-mode)</span>
+
+  <span style="color: #b58900;">(</span>local-set-key <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"M-r"</span><span style="color: #268bd2;">)</span>            'rspec-verify<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>local-set-key <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"M-S-r"</span><span style="color: #268bd2;">)</span>          'rspec-verify-single<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>local-set-key <span style="color: #268bd2;">[</span>f12<span style="color: #268bd2;">]</span>                  'rspec-verify<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>local-set-key <span style="color: #268bd2;">[</span>f11<span style="color: #268bd2;">]</span>                  'rspec-verify-single<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>local-set-key <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"S-&lt;f12&gt;"</span><span style="color: #268bd2;">)</span>        'rspec-rerun<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>local-set-key <span style="color: #268bd2;">[</span>f13<span style="color: #268bd2;">]</span>                  'rspec-rerun<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>local-set-key <span style="color: #268bd2;">[</span>f10<span style="color: #268bd2;">]</span>                  'next-error<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span>add-to-list 'auto-mode-alist        '<span style="color: #b58900;">(</span><span style="color: #2aa198;">"\\.rb$"</span> . ruby-mode<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>add-to-list 'interpreter-mode-alist '<span style="color: #b58900;">(</span><span style="color: #2aa198;">"ruby"</span> . enh-ruby-mode<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span>add-hook 'ruby-mode-hook     'toby/ruby-init<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>add-hook 'enh-ruby-mode-hook 'toby/ruby-init<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>add-hook 'enh-ruby-mode-hook <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">lambda</span> <span style="color: #268bd2;">()</span> <span style="color: #268bd2;">(</span>electric-pair-mode 0<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org20ed3bc" class="outline-4">
+<h4 id="org20ed3bc">Inf-Ruby</h4>
+<div class="outline-text-4" id="text-org20ed3bc">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span>eval-after-load 'inf-ruby
+  '<span style="color: #b58900;">(</span>define-key inf-ruby-minor-mode-map
+     <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"C-c C-s"</span><span style="color: #268bd2;">)</span> 'inf-ruby-console-auto<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/inf-ruby-hooks</span> <span style="color: #b58900;">()</span>
+  <span style="color: #b58900;">(</span>color-identifiers-mode -1<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>linum-mode -1<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span>add-hook 'inf-ruby-mode-hook 'toby/inf-ruby-hooks<span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org60d01c3" class="outline-4">
+<h4 id="org60d01c3">RSpec</h4>
+<div class="outline-text-4" id="text-org60d01c3">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/rspec-init</span> <span style="color: #b58900;">()</span><span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">toby/rspec-compile-init</span> <span style="color: #b58900;">()</span>
+  <span style="color: #b58900;">(</span>linum-mode -1<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>local-set-key <span style="color: #268bd2;">(</span>kbd <span style="color: #2aa198;">"r"</span><span style="color: #268bd2;">)</span> 'inf-ruby-switch-from-compilation<span style="color: #b58900;">)</span>
+  <span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span>add-hook 'rspec-compilation-mode-hook 'toby/rspec-compile-init<span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb82e759" class="outline-3">
+<h3 id="orgb82e759">Rbenv</h3>
+<div class="outline-text-3" id="text-orgb82e759">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span>require-package 'rbenv<span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #b58900;">(</span><span style="color: #268bd2;">(</span>rbenv-home
+       <span style="color: #dc322f;">(</span>replace-regexp-in-string <span style="color: #2aa198;">"[</span><span style="color: #839496;">^</span><span style="color: #2aa198;">[:word:]]*$"</span> <span style="color: #2aa198;">""</span>
+                                 <span style="color: #cb4b16;">(</span>shell-command-to-string <span style="color: #2aa198;">"brew --prefix rbenv"</span><span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>setenv <span style="color: #2aa198;">"PATH"</span>
+          <span style="color: #268bd2;">(</span>concat rbenv-home <span style="color: #2aa198;">"/shims:"</span>
+                  rbenv-home <span style="color: #2aa198;">"/bin:"</span>
+                  <span style="color: #dc322f;">(</span>getenv <span style="color: #2aa198;">"PATH"</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">setq</span> exec-path
+      <span style="color: #268bd2;">(</span>cons <span style="color: #dc322f;">(</span>concat rbenv-home <span style="color: #2aa198;">"/shims"</span><span style="color: #dc322f;">)</span>
+            <span style="color: #dc322f;">(</span>cons <span style="color: #cb4b16;">(</span>concat rbenv-home <span style="color: #2aa198;">"/bin"</span><span style="color: #cb4b16;">)</span>
+                  exec-path<span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">setq</span> rbenv-installation-dir rbenv-home<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgce9158e" class="outline-3">
+<h3 id="orgce9158e">Cucumber</h3>
+<div class="outline-text-3" id="text-orgce9158e">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span>require-package 'feature-mode<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>add-to-list 'auto-mode-alist '<span style="color: #b58900;">(</span><span style="color: #2aa198;">"\.feature$"</span> . feature-mode<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">when</span> <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">and</span> <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">featurep</span> '<span style="color: #268bd2; font-weight: bold;">yasnippet</span><span style="color: #268bd2;">)</span>
+           feature-snippet-directory
+           <span style="color: #268bd2;">(</span>file-exists-p feature-snippet-directory<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>yas-load-directory feature-snippet-directory<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span>add-hook 'feature-mode-hook
+          <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">lambda</span> <span style="color: #268bd2;">()</span>
+            <span style="color: #268bd2;">(</span>local-set-key <span style="color: #dc322f;">(</span>kbd <span style="color: #2aa198;">"M-r"</span><span style="color: #dc322f;">)</span>   'feature-verify-all-scenarios-in-buffer<span style="color: #268bd2;">)</span>
+            <span style="color: #268bd2;">(</span>local-set-key <span style="color: #dc322f;">[</span>f12<span style="color: #dc322f;">]</span>         'feature-verify-all-scenarios-in-buffer<span style="color: #268bd2;">)</span>
+            <span style="color: #268bd2;">(</span>local-set-key <span style="color: #dc322f;">(</span>kbd <span style="color: #2aa198;">"M-S-r"</span><span style="color: #dc322f;">)</span> 'feature-verify-scenario-at-pos<span style="color: #268bd2;">)</span>
+            <span style="color: #268bd2;">(</span>local-set-key <span style="color: #dc322f;">[</span>f11<span style="color: #dc322f;">]</span>         'feature-verify-scenario-at-pos<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org19f937d" class="outline-3">
+<h3 id="org19f937d">Rails</h3>
+<div class="outline-text-3" id="text-org19f937d">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span>add-to-list 'auto-mode-alist '<span style="color: #b58900;">(</span><span style="color: #2aa198;">"\\.rabl$"</span> . enh-ruby-mode<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>add-to-list 'auto-mode-alist '<span style="color: #b58900;">(</span><span style="color: #2aa198;">"\\.rake$"</span> . enh-ruby-mode<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span>require-package 'web-mode<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>autoload 'web-mode <span style="color: #2aa198;">"web-mode"</span> <span style="color: #2aa198; font-style: italic;">"Web Mode"</span> t<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>add-to-list 'auto-mode-alist '<span style="color: #b58900;">(</span><span style="color: #2aa198;">"\\.html.erb$"</span> . web-mode<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd5e3ffb" class="outline-3">
+<h3 id="orgd5e3ffb">Lining Up Data Structures</h3>
+<div class="outline-text-3" id="text-orgd5e3ffb">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">align</span><span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>add-hook 'align-load-hook
+          <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">lambda</span> <span style="color: #268bd2;">()</span>
+            <span style="color: #268bd2;">(</span>add-to-list 'align-rules-list
+                         '<span style="color: #dc322f;">(</span>ruby-comma-delimiter
+                           <span style="color: #cb4b16;">(</span>regexp . <span style="color: #2aa198;">",</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">(</span><span style="color: #2aa198;">\\s-*</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">)</span><span style="color: #2aa198;">[</span><span style="color: #839496;">^</span><span style="color: #2aa198;"># \t\n]"</span><span style="color: #cb4b16;">)</span>
+                           <span style="color: #cb4b16;">(</span>repeat . t<span style="color: #cb4b16;">)</span>
+                           <span style="color: #cb4b16;">(</span>modes  . '<span style="color: #268bd2;">(</span>ruby-mode<span style="color: #268bd2;">)</span><span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
+            <span style="color: #268bd2;">(</span>add-to-list 'align-rules-list
+                         '<span style="color: #dc322f;">(</span>ruby-hash-literal
+                           <span style="color: #cb4b16;">(</span>regexp . <span style="color: #2aa198;">"</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">(</span><span style="color: #2aa198;">\\s-*</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">)</span><span style="color: #2aa198;">=&gt;\\s-*[</span><span style="color: #839496;">^</span><span style="color: #2aa198;"># \t\n]"</span><span style="color: #cb4b16;">)</span>
+                           <span style="color: #cb4b16;">(</span>repeat . t<span style="color: #cb4b16;">)</span>
+                           <span style="color: #cb4b16;">(</span>modes  . '<span style="color: #268bd2;">(</span>ruby-mode<span style="color: #268bd2;">)</span><span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
+            <span style="color: #268bd2;">(</span>add-to-list 'align-rules-list
+                         '<span style="color: #dc322f;">(</span>ruby-assignment-literal
+                           <span style="color: #cb4b16;">(</span>regexp . <span style="color: #2aa198;">"</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">(</span><span style="color: #2aa198;">\\s-*</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">)</span><span style="color: #2aa198;">=\\s-*[</span><span style="color: #839496;">^</span><span style="color: #2aa198;"># \t\n]"</span><span style="color: #cb4b16;">)</span>
+                           <span style="color: #cb4b16;">(</span>repeat . t<span style="color: #cb4b16;">)</span>
+                           <span style="color: #cb4b16;">(</span>modes  . '<span style="color: #268bd2;">(</span>ruby-mode<span style="color: #268bd2;">)</span><span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span>
+            <span style="color: #268bd2;">(</span>add-to-list 'align-rules-list
+                         '<span style="color: #dc322f;">(</span>ruby-xmpfilter-mark
+                           <span style="color: #cb4b16;">(</span>regexp . <span style="color: #2aa198;">"</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">(</span><span style="color: #2aa198;">\\s-*</span><span style="color: #2aa198; font-weight: bold;">\\</span><span style="color: #2aa198; font-weight: bold;">)</span><span style="color: #2aa198;"># =&gt; [</span><span style="color: #839496;">^</span><span style="color: #2aa198;">#\t\n]"</span><span style="color: #cb4b16;">)</span>
+                           <span style="color: #cb4b16;">(</span>repeat . nil<span style="color: #cb4b16;">)</span>
+                           <span style="color: #cb4b16;">(</span>modes  . '<span style="color: #268bd2;">(</span>ruby-mode<span style="color: #268bd2;">)</span><span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgbb9bbf4" class="outline-4">
+<h4 id="orgbb9bbf4"><span class="todo TODO">TODO</span> Make sure this hack is still necessary:</h4>
+<div class="outline-text-4" id="text-orgbb9bbf4">
+<p>
+It used to prevent a strange start-up error on inf-ruby, but I
+should check if it's still needed.
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defalias</span> '<span style="color: #268bd2;">inf-ruby-keys</span> 'inf-ruby-setup-keybindings<span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc1eec74" class="outline-3">
+<h3 id="orgc1eec74">Cleaning Up Sloppy Code</h3>
+<div class="outline-text-3" id="text-orgc1eec74">
+</div>
+<div id="outline-container-orgeaf67fd" class="outline-4">
+<h4 id="orgeaf67fd">Add Useful White-Space</h4>
+<div class="outline-text-4" id="text-orgeaf67fd">
+<p>
+Here's a function to add some helpful white-space:
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">add-pride</span> <span style="color: #b58900;">()</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">interactive</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>fix-parens<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>decompress-hash-rockets<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>untabify-buffer<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>delete-trailing-whitespace<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6fbf3cb" class="outline-4">
+<h4 id="org6fbf3cb">Break-up Long Hashes</h4>
+<div class="outline-text-4" id="text-org6fbf3cb">
+<p>
+Sometimes, people spew massive hashes onto a single line without
+bothering to break it up for readability.  This function will break
+the hash up on commas.
+</p>
+
+<p>
+It will detect the bounds of the hash and set a region to its
+bounds.  Then it moves through the hash injecting line-breaks after
+the commas.
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">break-ruby-hash</span> <span style="color: #b58900;">()</span>
+  <span style="color: #2aa198; font-style: italic;">"Break the ruby hash around point into multiple lines at commas"</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">interactive</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #268bd2;">(</span><span style="color: #dc322f;">(</span>chars <span style="color: #2aa198;">"^{}"</span><span style="color: #dc322f;">)</span> p1 p2<span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">save-excursion</span>
+      <span style="color: #dc322f;">(</span>skip-chars-backward chars<span style="color: #dc322f;">)</span>
+      <span style="color: #dc322f;">(</span><span style="color: #859900; font-weight: bold;">setq</span> p1 <span style="color: #cb4b16;">(</span>point<span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span>
+      <span style="color: #dc322f;">(</span>skip-chars-forward chars<span style="color: #dc322f;">)</span>
+      <span style="color: #dc322f;">(</span><span style="color: #859900; font-weight: bold;">setq</span> p2 <span style="color: #cb4b16;">(</span>point<span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span>
+
+      <span style="color: #dc322f;">(</span>goto-char p1<span style="color: #dc322f;">)</span> <span style="color: #dc322f;">(</span>insert <span style="color: #2aa198;">"\n"</span><span style="color: #dc322f;">)</span>
+      <span style="color: #dc322f;">(</span>goto-char p2<span style="color: #dc322f;">)</span> <span style="color: #dc322f;">(</span>forward-char 1<span style="color: #dc322f;">)</span> <span style="color: #dc322f;">(</span>insert <span style="color: #2aa198;">"\n"</span><span style="color: #dc322f;">)</span>
+      <span style="color: #dc322f;">(</span>replace-in <span style="color: #2aa198;">", "</span> <span style="color: #2aa198;">",\n"</span> p1 p2<span style="color: #dc322f;">)</span>
+      <span style="color: #dc322f;">(</span>indent-region p1 <span style="color: #cb4b16;">(</span>+ 2 p2<span style="color: #cb4b16;">)</span><span style="color: #dc322f;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">provide</span> '<span style="color: #268bd2; font-weight: bold;">ruby-init</span><span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Toby Tripp</p>
+<p class="date">Created: 2018-03-04 Sun 00:00</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2018-02-09 Fri 15:33 -->
+<!-- 2018-03-03 Sat 23:06 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Toby's Emacs Configuration</title>
@@ -180,7 +180,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/htmlize.css">
 <link rel="stylesheet" href="css/config.css">
 <script type="text/javascript">
@@ -240,6 +240,14 @@ for the JavaScript code in this tag.
 <div id="outline-container-org68c8397" class="outline-2">
 <h2 id="org68c8397">My Emacs Configuration</h2>
 <div class="outline-text-2" id="text-org68c8397">
+<p>
+A Literate emacs configuration.
+</p>
+
+<p>
+HTML version available at <a href="http://tobytripp.github.io/emacs.d/">http://tobytripp.github.io/emacs.d/</a>
+</p>
+
 <blockquote>
 <p>
 Emacs out-shines all other editing software in approximately the same
@@ -253,23 +261,16 @@ brighter; it simply makes everything else vanish.
 </blockquote>
 
 <p>
-Testing out a Literate emacs configuration.
+This file catalogs my <a href="keybindings.html">key-bindings</a> as well as my language mode settings,
+such as for <a href="clojure.html">Clojure</a> and <a href="ruby.html">Ruby</a>.
 </p>
-
-<p>
-This file should catalog my <a href="keybindings.html">key-bindings</a> as well as my language mode
-settings, such as for <a href="clojure.html">Clojure</a> and <a href="ruby-init.html">Ruby</a>.
-</p>
-</div>
-
-<div id="outline-container-org518ab21" class="outline-4">
-<h4 id="org518ab21">TODO Keep the tangled elisp in a separate directory that is in .gitignore</h4>
 </div>
 
 <div id="outline-container-org4ba7a9c" class="outline-3">
-<h3 id="org4ba7a9c"><span class="todo EXPERIMENTAL">EXPERIMENTAL</span> Decorations</h3>
+<h3 id="org4ba7a9c"><span class="done ADOPTED">ADOPTED</span> Decorations</h3>
 <div class="outline-text-3" id="text-org4ba7a9c">
 <ul class="org-ul">
+<li>State "ADOPTED"    from "EXPERIMENTAL" <span class="timestamp-wrapper"><span class="timestamp">[2018-02-23 Fri 10:03]</span></span></li>
 <li>State "EXPERIMENTAL" from              <span class="timestamp-wrapper"><span class="timestamp">[2017-09-07 Thu 10:00]</span></span></li>
 </ul>
 <p>
@@ -350,18 +351,17 @@ Enable some features that the Emacs developers have deemed scary.
 <div id="outline-container-orgb405ca5" class="outline-3">
 <h3 id="orgb405ca5">Initialize Load Paths</h3>
 <div class="outline-text-3" id="text-orgb405ca5">
-<p>
-Add some directories to the load path so we can require files in them later.
-</p>
-
+<ul class="org-ul">
+<li>Add some directories to the load path so we can require files in them later.</li>
+</ul>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defvar</span> <span style="color: #268bd2;">dotfiles-dir</span> user-emacs-directory<span style="color: #2aa198;">)</span>
 </pre>
 </div>
 
-<p>
-Make a path to add libraries installed from source.
-</p>
+<ul class="org-ul">
+<li>Make a path to add libraries installed from source.</li>
+</ul>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defvar</span> <span style="color: #268bd2;">vendor-dir</span> <span style="color: #b58900;">(</span>concat dotfiles-dir <span style="color: #2aa198;">"vendor/"</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
@@ -371,9 +371,9 @@ Make a path to add libraries installed from source.
 </pre>
 </div>
 
-<p>
-Also create a place to put my various initialization hooks.
-</p>
+<ul class="org-ul">
+<li>Also create a place to put my various initialization hooks.</li>
+</ul>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defvar</span> <span style="color: #268bd2;">lib-dir</span> <span style="color: #b58900;">(</span>concat dotfiles-dir <span style="color: #2aa198;">"elisp/"</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 <span style="color: #2aa198;">(</span>add-to-list 'load-path lib-dir<span style="color: #2aa198;">)</span>
@@ -509,9 +509,9 @@ the Messages buffer after start-up.
 </p>
 </div>
 
-<div id="outline-container-org658ecc8" class="outline-4">
-<h4 id="org658ecc8">Toby Mode</h4>
-<div class="outline-text-4" id="text-org658ecc8">
+<div id="outline-container-org658ecc8" class="outline-3">
+<h3 id="org658ecc8">Toby Mode</h3>
+<div class="outline-text-3" id="text-org658ecc8">
 <p>
 I push some key-bindings and behaviors into my own minor mode so
 that, should I ever sit with an experienced Emacs user, we can
@@ -540,26 +540,27 @@ Other Configuraion Files:
 </p>
 <ul class="org-ul">
 <li><a href="clojure.html">clojure</a></li>
-<li><a href="coding-init.html">coding-init</a></li>
+<li><a href="coding.html">coding</a></li>
 <li><a href="completion.html">completion</a></li>
-<li><a href="emacs-init.html">emacs-init</a></li>
-<li><a href="eshell-init.html">eshell-init</a></li>
+<li><a href="emacs.html">emacs</a></li>
+<li><a href="eshell.html">eshell</a></li>
 <li><a href="finding-files.html">finding-files</a></li>
-<li><a href="git-init.html">git-init</a></li>
-<li><a href="god-init.html">god-init</a></li>
-<li><a href="haskell-init.html">haskell-init</a></li>
-<li><a href="html-init.html">html-init</a></li>
+<li><a href="git.html">git</a></li>
+<li><a href="god.html">god</a></li>
+<li><a href="haskell.html">haskell</a></li>
+<li><a href="html.html">html</a></li>
 <li><a href="index.html">index</a></li>
-<li><a href="javascript-init.html">javascript-init</a></li>
+<li><a href="javascript.html">javascript</a></li>
 <li><a href="keybindings.html">keybindings</a></li>
-<li><a href="lisp-init.html">lisp-init</a></li>
+<li><a href="lisp.html">lisp</a></li>
+<li><a href="mail-in-emacs.html#org696026b">Mail with Emacs</a></li>
 <li><a href="main.html">main</a></li>
 <li><a href="modeline-custom.html">modeline-custom</a></li>
-<li><a href="org-mode-init.html">org-mode-init</a></li>
-<li><a href="registers-init.html">registers-init</a></li>
-<li><a href="ruby-init.html">ruby-init</a></li>
+<li><a href="org-mode.html">org-mode</a></li>
+<li><a href="registers.html">registers</a></li>
+<li><a href="ruby.html">ruby</a></li>
 <li><a href="senseless-eye-candy.html">senseless-eye-candy</a></li>
-<li><a href="snippet-init.html">snippet-init</a></li>
+<li><a href="snippet.html">snippet</a></li>
 <li><a href="tags.html">tags</a></li>
 <li><a href="toby-mode.html">toby-mode</a></li>
 </ul>
@@ -603,7 +604,7 @@ helpful for this: <code>elisp-bug-hunter</code>.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Toby Tripp</p>
-<p class="date">Created: 2018-02-09 Fri 15:33</p>
+<p class="date">Created: 2018-03-03 Sat 23:06</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

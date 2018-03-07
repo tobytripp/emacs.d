@@ -197,5 +197,5 @@
 
 
 #+BEGIN_SRC emacs-lisp :exports none
-(provide 'clojure)
+(provide 'clojure-init)
 #+END_SRC

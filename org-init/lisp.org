@@ -23,9 +23,19 @@
                    (concat (file-name-sans-extension (buffer-file-name)) ".elc")))
          (byte-compile-file buffer-file-name)))
 
-     (add-hook 'emacs-lisp-mode-hook
-               (lambda ()
-                 (add-hook 'after-save-hook 'byte-compile-current-buffer)))
+     (eval-after-load 'emacs-lisp-mode
+       '(progn
+          (require-package 'smartparens)
+          (require 'smartparens-config)
+          (sp-local-pair 'emacs-lisp-mode "`" "'")
+          (sp-local-pair '(emacs-lisp-mode lisp-interaction-mode) "'" nil :actions nil)))
+
+     (defun toby/emacs-lisp-init ()
+       (smartparens-strict-mode)
+       (add-hook 'after-save-hook 'byte-compile-current-buffer))
+
+     (add-hook 'emacs-lisp-mode-hook #'toby/emacs-lisp-init)
+     (add-hook 'lisp-interaction-mode-hook #'smartparens-strict-mode)
    #+END_SRC
 
 ** Paredit

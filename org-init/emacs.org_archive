@@ -1,0 +1,39 @@
+#    -*- mode: org -*-
+
+
+Archived entries from file /Users/toby/.emacs.d/org-init/emacs.org
+
+
+* via Shell Script
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2018-03-06 Tue 17:41
+  :ARCHIVE_FILE: ~/.emacs.d/org-init/emacs.org
+  :ARCHIVE_OLPATH: General Emacs Configurations/Daemon Start-up
+  :ARCHIVE_CATEGORY: emacs
+  :END:
+  Unfortunately, this won't work with the =emacs-mac= port.  =emacs-mac=
+  can't craete a GUI frame if started within a shell.
+
+  #+name: emacs-daemon-start-script
+  #+header: :tangle ~/bin/emacs-daemon
+  #+header: :mkdirp yes
+  #+header: :tangle-mode (identity #o750)
+  #+header: :shebang #!/bin/bash
+  #+BEGIN_SRC sh
+    # Pipe stdout/stderr through a time-stamp transform
+    exec &> >(while read line; do echo "$(date -R) $line"; done;)
+    SERVER_NAME=launchd
+    EMACS=`brew --prefix emacs-mac`/bin/emacs
+
+    ${EMACS} --daemon=${SERVER_NAME}
+  #+END_SRC
+
+  The above script will start a daemon with a /named/ server.  To connect to
+  it from =emacsclient= we need to tell =emacsclient= what the server name
+  is:
+
+  #+name: emacsclient example
+  #+BEGIN_SRC sh :tangle no
+    emacsclient -s launchd
+  #+END_SRC
+

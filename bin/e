@@ -1,12 +1,7 @@
-#!/usr/bin/env bash
+#!/bin/bash
+TARGET=${1:-~/}
 
-TARGET=${1:-~/Code/.}
-
-EMACS_PATH=${EMACS_PATH:-/usr/local/bin}
+EMACS_PATH=`/usr/local/bin/brew --prefix emacs-mac`/bin
 EMACSCLIENT=${EMACS_PATH}/emacsclient
-EMACS=${EMACS_PATH}/emacs
 
-echo "$EMACSCLIENT -nca '' $TARGET"
-
-$EMACSCLIENT -nca '' $TARGET || \
-    ($EMACS --daemon && $EMACSCLIENT -nc $TARGET)
+$EMACSCLIENT -nc -s launchd $TARGET

@@ -28,3 +28,5 @@ projectile-bookmarks.eld
 image-dired/
 games
 /agenda/*
+/.emacs.desktop*
+/tmp/*

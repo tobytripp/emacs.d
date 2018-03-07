@@ -1,5 +1,183 @@
 #+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
 * General Emacs Configurations
+** Frame/Window Functions
+
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'mac-pseudo-daemon)
+     (require 'mac-pseudo-daemon)
+     (mac-pseudo-daemon-mode t)
+
+     (defun toby/fullscreen-p (&optional frame)
+       "Returns non-nil if FRAME is currently fullscreen.  FRAME
+       defaults to the value of `(selected-frame)`."
+       (memq (frame-parameter (or frame (selected-frame)) 'fullscreen)
+             '(fullscreen fullboth)))
+
+     (defun toby/on-redisplay (window)
+       (message "-- redisplay --"))
+
+     (defun toby/hide-emacs ()
+       (if (toby/fullscreen-p)
+           (progn
+             (toggle-frame-fullscreen)
+             (run-at-time 1.0 nil #'macpd-hide-emacs))
+         (macpd-hide-emacs)))
+   #+END_SRC
+
+   #+RESULTS:
+   : toby/hide-emacs
+
+** Emacs-Mac Installation
+   #+name: emacs-install
+   #+header: :tangle no
+   #+BEGIN_SRC sh
+     brew reinstall emacs-mac \
+          --with-emacs-icons-project-EmacsIcon4 \
+          --with-glib && \
+     ln -fs /usr/local/opt/emacs-mac/Emacs.app /Applications/
+   #+END_SRC
+
+** Daemon Start-up
+
+   #+name: absolute-path
+   #+header: :results value
+   #+header: :tangle no
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'apples-mode)
+     (autoload 'apples-mode "apples-mode" "AppleScript" t)
+     (file-truename "~/.emacs.d/bin/emacs-daemon")
+   #+END_SRC
+
+   #+RESULTS: absolute-path
+   : /Users/toby/.emacs.d/bin/emacs-daemon
+
+*** via Applescript/osascript
+
+    #+name: applescript
+    #+BEGIN_SRC apples
+      tell application "Emacs" to launch
+
+      tell application "Terminal"
+        set x to false
+        repeat
+          try
+            do shell script "/usr/local/opt/emacs-mac/bin/emacsclient -e '(toby/hide-emacs)'"
+            set x to true
+          end try
+          if x then
+            exit repeat
+          else
+            delay 0.1
+          end if
+        end repeat
+      end tell
+    #+END_SRC
+
+    #+name: emacs-daemon-osascript-start
+    #+header: :mkdirp yes
+    #+header: :tangle ~/.emacs.d/bin/emacs-daemon
+    #+header: :tangle-mode (identity #o750)
+    #+header: :shebang #!/bin/bash
+    #+BEGIN_SRC sh :noweb yes :exports both
+      /usr/bin/osascript <<-EOF
+      <<applescript>>
+      EOF
+    #+END_SRC
+
+*** TODO Launchd Service [0/1]
+
+    - [ ] Start on-demand using a fixed Unix-Socket resource.
+
+    #+name: Emacs LaunchAgent Configuration PList
+    #+header: :noweb no-export
+    #+header: :tangle ~/Library/LaunchAgents/org.thetripps.emacs.plist
+    #+BEGIN_SRC xml
+      <?xml version="1.0" encoding="UTF-8"?>
+      <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+      <plist version="1.0">
+        <dict>
+          <key>Label</key>
+          <string>org.thetripps.emacs</string>
+
+          <key>EnvironmentVariables</key>
+          <dict>
+            <key>LANG</key>
+            <string>en_US.UTF-8</string>
+            <key>LC_ALL</key>
+            <string>en_US.UTF-8</string>
+          </dict>
+
+          <key>WorkingDirectory</key>
+          <string>/Users/toby</string>
+
+          <key>ProgramArguments</key>
+          <array>
+            <string><<absolute-path()>></string>
+          </array>
+
+          <key>RunAtLoad</key>
+          <true />
+
+          <key>StartCalendarInterval</key>
+          <dict>
+            <key>Hour</key>
+            <integer>5</integer>
+          </dict>
+
+          <key>KeepAlive</key>
+          <dict>
+            <key>SuccessfulExit</key>
+            <false />
+          </dict>
+
+          <key>StandardOutPath</key>
+          <string>/var/log/agents.user/emacs.agent.log</string>
+
+          <key>StandardErrorPath</key>
+          <string>/var/log/agents.user/emacs.agent.log</string>
+        </dict>
+      </plist>
+    #+END_SRC
+
+    #+name: install agent
+    #+BEGIN_SRC sh :tangle no :results output list
+      launchctl unload ~/Library/LaunchAgents/org.thetripps.emacs.plist
+      launchctl load   ~/Library/LaunchAgents/org.thetripps.emacs.plist
+    #+END_SRC
+
+    #+RESULTS: install agent
+    :
+
+    #+name: Service Status
+    #+BEGIN_SRC sh :tangle no :results output list
+      launchctl list | awk '/org.thetripps/ { print $0 }; /^PID/ { print $0 }'
+    #+END_SRC
+
+    #+RESULTS: Service Status
+    : - PID	Status	Label
+    : - -	1	org.thetripps.emacs
+    : - -	78	org.thetripps.isync
+    : - -	0	org.thetripps.trashdownloads
+
+
+** Client Start-up
+
+   The following script will connect to the launchd daemon, if it exists, or
+   create a new server otherwise:
+
+   #+name: emacsclient-start-script
+   #+header: :tangle ~/.emacs.d/bin/e
+   #+header: :mkdirp yes
+   #+header: :tangle-mode (identity #o755)
+   #+header: :shebang #!/bin/bash
+   #+BEGIN_SRC sh
+     TARGET=${1:-~/}
+
+     EMACS_PATH=`/usr/local/bin/brew --prefix emacs-mac`/bin
+     EMACSCLIENT=${EMACS_PATH}/emacsclient
+
+     $EMACSCLIENT -nc -s launchd $TARGET
+   #+END_SRC
 
 ** Emacs Server
    This sets it up such that, when =C-x k= is pressed, an active
@@ -19,7 +197,9 @@
    #+BEGIN_SRC emacs-lisp
      (if (and (fboundp 'server-running-p)
               (not (server-running-p)))
-         (server-start))
+         (progn
+           ;; (setq server-socket-dir (concat user-emacs-directory "server"))
+           (server-start)))
    #+END_SRC
 
 ** Abbrev-Mode

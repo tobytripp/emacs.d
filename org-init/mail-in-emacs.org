@@ -1,8 +1,13 @@
 #+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
 * Mail with Emacs
+  :PROPERTIES:
+  :noweb:    no-export
+  :exports:  code
+  :END:
   #+BEGIN_SRC emacs-lisp :exports none
    ;; -*- lexical-binding: t -*-
   #+END_SRC
+
 ** Maintaining Secrets
 *** GPG Encryption
 
@@ -12,18 +17,22 @@
     #+END_SRC
 
 *** =auth-sources=
+    :PROPERTIES:
+    :tangle:   no
+    :END:
+
     - [[elisp:(customize-variable 'auth-sources)][Customize auth-sources]]
     - To enable debug information:
-      #+BEGIN_SRC emacs-lisp :tangle no :exports code
+      #+BEGIN_SRC emacs-lisp
         (setq auth-source-debug t)
       #+END_SRC
     - To clear the Emacs authentication cache:
-      #+BEGIN_SRC emacs-lisp :tangle on :exports code
+      #+BEGIN_SRC emacs-lisp
         (auth-source-forget-all-cached)
       #+END_SRC
     - The current set of sources:
       #+name: current-sources
-      #+BEGIN_SRC emacs-lisp :tangle no :exports both :results list
+      #+BEGIN_SRC emacs-lispt :results list
         auth-sources
       #+END_SRC
 
@@ -44,7 +53,7 @@
       plists containing full entries that matched the search spec.
 
       #+name: search-example
-      #+BEGIN_SRC emacs-lisp :tangle no :exports code
+      #+BEGIN_SRC emacs-lisp :tangle no
         (auth-source-search :user "toby.tripp")
       #+END_SRC
 
@@ -52,7 +61,7 @@
       will return the password.
 
       #+name: parse-results-example
-      #+BEGIN_SRC emacs-lisp :tangle no :results value :exports both
+      #+BEGIN_SRC emacs-lisp :tangle no :results value
         (let* ((matches (auth-source-search
                          :user "toby.tripp"
                          :max 1
@@ -115,7 +124,7 @@
       and then the following call:
 
       #+name: call-example
-      #+BEGIN_SRC emacs-lisp :tangle no :results verbatim :exports both
+      #+BEGIN_SRC emacs-lisp :tangle no :results verbatim
         (toby/auth-info :user "toby.tripp")
       #+END_SRC
 
@@ -125,7 +134,7 @@
       We can then, for example, get just the password like this:
 
       #+name: getting-password
-      #+BEGIN_SRC emacs-lisp :tangle no :results verbatim :exports both
+      #+BEGIN_SRC emacs-lisp :tangle no :results verbatim
         (alist-get :secret (toby/auth-info :user "toby.tripp"))
       #+END_SRC
 
@@ -149,57 +158,52 @@
 
     #+name: get-secret
     #+header: :var property="gmail-user"
-    #+header: :exports code
     #+BEGIN_SRC emacs-lisp
       (toby/get-secret-var (intern property))
     #+END_SRC
 
 ** ADOPTED mbsync
-   - State "EXPERIMENTAL" from "TODO"       [2018-02-13 Tue 07:25]
+   :PROPERTIES:
+   :tangle: ~/.mbsyncrc
+   :tanble-mode: (identity #o640)
+   :noweb: no-export
+   :END:
+
+   - State "EXPERIMENTAL" from "TODO"     [2018-02-13 Tue 07:25]
    - State "TODO"       from              [2018-02-13 Tue 07:25]
 
    - [[https://wiki.archlinux.org/index.php/Isync][ArchLinux Help Page]]
    - [[http://isync.sourceforge.net/mbsync.html][mbsync man page]]
    - [[http://pragmaticemacs.com/emacs/migrating-from-offlineimap-to-mbsync-for-mu4e/][Pragmatic Emacs mbsync Page]]
 
-
-   #+BEGIN_SRC conf :tangle ~/.mbsyncrc :tangle-mode (identity #o640)
+   #+header: :tangle-mode (identity #o640)
+   #+BEGIN_SRC conf :tangle ~/.mbsyncrc
      # -*- mode: conf -*-
      Expunge Both
      SyncState *
    #+END_SRC
 
 *** GMail
+   :PROPERTIES:
+   :tangle: ~/.mbsyncrc
+   :tangle-mode: (identity #o640)
+   :noweb: no-export
+   :END:
 
-    - A script for retrieving encrypted authinfo
+    A script for retrieving encrypted authinfo
     #+name: gmail-password
-    #+BEGIN_SRC sh :tangle no :exports code
+    #+BEGIN_SRC sh :tangle no
       gpg2 -q --for-your-eyes-only --no-tty -d ~/.emacs.d/secrets/.authinfo.gpg | awk '/imap\.gmail/ { print $8 }'
     #+END_SRC
 
-    - The mbsync configuration for the gmail account
+    The mbsync configuration for the gmail account
     #+name: gmail-account
-    #+BEGIN_SRC conf :tangle ~/.mbsyncrc :noweb yes :exports none
+    #+header: :noweb no-export
+    #+BEGIN_SRC conf :tangle ~/.mbsyncrc
      IMAPAccount gmail
      Host imap.gmail.com
      Port 993
      User <<get-secret(property="gmail-user")>>
-     AuthMechs LOGIN
-     SSLType IMAPS
-     SystemCertificates no
-     CertificateFile /usr/local/etc/openssl/cert.pem
-     PassCmd "<<gmail-password>>"
-
-     IMAPStore gmail-remote
-     Account gmail
-    #+END_SRC
-
-    #+name: gmail-account-2
-    #+BEGIN_SRC conf :tangle no :noweb no :exports code
-     IMAPAccount gmail
-     Host imap.gmail.com
-     Port 993
-     User << get-secret(property="gmail-user") >>
      AuthMechs LOGIN
      SSLType IMAPS
      SystemCertificates no
@@ -236,7 +240,8 @@
     #+END_SRC
 
     #+name: Gmail Channels
-    #+BEGIN_SRC conf :tangle ~/.mbsyncrc
+    #+header: :tangle ~/.mbsyncrc
+    #+BEGIN_SRC conf
       Channel gmail-inbox
       Master :gmail-remote:
       Slave :gmail-local:
@@ -266,7 +271,8 @@
     "gmail-inbox", "gmail-sent", and "gmail-trash"
 
     #+name: Gmail Groups
-    #+BEGIN_SRC conf :tangle ~/.mbsyncrc
+    #+header: :tangle ~/.mbsyncrc
+    #+BEGIN_SRC conf
       Group gmail
       Channel gmail-inbox
       Channel gmail-sent
@@ -275,35 +281,25 @@
     #+END_SRC
 
     #+name: gmail-mailbox-list
-    #+BEGIN_SRC sh :tangle no :results output :exports code
+    #+BEGIN_SRC sh :tangle no :results output
       mkdir -p ~/.mail/gmail
       mbsync -al
     #+END_SRC
 
 *** iCloud
+   :PROPERTIES:
+   :tangle: ~/.mbsyncrc
+   :tanble-mode: (identity #o640)
+   :noweb: no-export
+   :END:
 
     This configuration uses authentication info stored in the MacOS Keychain.
     I'm not convinced this is better or worse than authinfo.
 
     #+name: iCloud-Account
-    #+BEGIN_SRC conf :tangle ~/.mbsyncrc :noweb yes :exports none
-      IMAPAccount icloud
-      Host imap.mail.me.com
-      Port 993
-      User <<get-secret(property="icloud-user")>>
-      PassCmd "security find-internet-password -s imap.mail.me.com -w"
-      AuthMechs LOGIN PLAIN
-      SSLType IMAPS
-      SSLVersions TLSv1.2
-      SystemCertificates no
-      CertificateFile /usr/local/etc/openssl/cert.pem
-
-      IMAPStore icloud-remote
-      Account icloud
-    #+END_SRC
-
-    #+name: iCloud-Account
-    #+BEGIN_SRC conf :tangle no :noweb no
+    #+header: :tangle ~/.mbsyncrc
+    #+header: :noweb no-export
+    #+BEGIN_SRC conf
       IMAPAccount icloud
       Host imap.mail.me.com
       Port 993
@@ -320,7 +316,8 @@
     #+END_SRC
 
     #+name: iCloud Maildir Storage
-    #+BEGIN_SRC conf :tangle ~/.mbsyncrc
+    #+header: :tangle ~/.mbsyncrc
+    #+BEGIN_SRC conf
       MaildirStore icloud-local
       Path ~/.mail/icloud/
       Inbox ~/.mail/icloud/Inbox
@@ -328,7 +325,8 @@
     #+END_SRC
 
     #+name: iCloud Channels
-    #+BEGIN_SRC conf :tangle ~/.mbsyncrc
+    #+header: :tangle ~/.mbsyncrc
+    #+BEGIN_SRC conf
       Channel icloud-folders
       Master :icloud-remote:
       Slave :icloud-local:
@@ -339,13 +337,14 @@
     #+END_SRC
 
     #+name: iCloud Groups
-    #+BEGIN_SRC conf :tangle ~/.mbsyncrc
+    #+header: :tangle ~/.mbsyncrc
+    #+BEGIN_SRC conf
       Group icloud
       Channel icloud-folders
     #+END_SRC
 
     #+name: icloud-mailbox-list
-    #+BEGIN_SRC sh :tangle no :results output :exports code
+    #+BEGIN_SRC sh :tangle no :results output
       mkdir -p ~/.mail/icloud
       mbsync -l icloud
     #+END_SRC
@@ -383,30 +382,35 @@
       (require 'mime-setup)
       (autoload 'wl       "wl"       "Wanderlust" t)
       (autoload 'wl-draft "wl-draft" "Write draft with Wanderlust." t)
-      (setq
-       elmo-maildir-folder-path "~/.mail"
-       wl-stay-folder-window t                       ;; show the folder pane (left)
-       wl-folder-window-width 25                     ;; toggle on/off with 'i'
 
-       ;; hide many fields from message buffers
-       wl-message-ignored-field-list '("^.*:")
-       wl-message-visible-field-list
-       '("^\\(To\\|Cc\\):"
-         "^Subject:"
-         "^\\(From\\|Reply-To\\):"
-         "^Organization:"
-         "^Message-Id:"
-         "^Delivered-To:"
-         "^\\(Posted\\|Date\\):"
-         "^X-Keywords:")
-       wl-message-sort-field-list
-       '("^From"
-         "^Organization:"
-         "^X-Attribution:"
-         "^Subject"
-         "^Date"
-         "^To"
-         "^Cc"))
+      (eval-after-load 'wl
+        '(progn
+           (setq
+            elmo-maildir-folder-path "~/.mail"
+            wl-stay-folder-window t                       ;; show the folder pane (left)
+            wl-folder-window-width 25                     ;; toggle on/off with 'i'
+
+            ;; hide many fields from message buffers
+            wl-message-ignored-field-list '("^.*:")
+            wl-message-visible-field-list
+            '("^\\(To\\|Cc\\):"
+              "^Subject:"
+              "^\\(From\\|Reply-To\\):"
+              "^Organization:"
+              "^Message-Id:"
+              "^Delivered-To:"
+              "^\\(Posted\\|Date\\):"
+              "^X-Keywords:")
+            wl-message-sort-field-list
+            '("^From"
+              "^Organization:"
+              "^X-Attribution:"
+              "^Subject"
+              "^Date"
+              "^To"
+              "^Cc"))
+
+           (define-key mime-view-mode-default-map (kbd "C-c C-o") #'browse-url)))
     #+END_SRC
 
 ** ADOPTED Mail indexing with =mu=
@@ -418,10 +422,9 @@
      #+header: :tangle ~/bin/mail-sync
      #+header: :mkdirp yes
      #+header: :tangle-mode (identity #o750)
-     #+header: :exports code
+     #+header: :shebang #!/bin/bash
      #+name: mail-sync-script
      #+BEGIN_SRC sh
-       #!/usr/bin/env bash
        exec &> >(while read line; do echo "$(date -R) $line"; done;)
 
        which -s mbsync
@@ -460,7 +463,7 @@
            <string>org.thetripps.isync</string>
            <key>ProgramArguments</key>
            <array>
-             <string>~/bin/mail-sync</string>
+             <string>$HOME/bin/mail-sync</string>
            </array>
            <key>StartInterval</key>
            <integer>300</integer>
@@ -473,6 +476,22 @@
          </dict>
        </plist>
      #+END_SRC
+
+     Note that an exit status of 78 indicates a configuration error.
+
+    #+name: install agent
+    #+BEGIN_SRC sh :tangle no :results output list
+      launchctl unload ~/Library/LaunchAgents/org.thetripps.isync.plist
+      launchctl load   ~/Library/LaunchAgents/org.thetripps.isync.plist
+      launchctl list | awk '/org.thetripps/ { print $0 }; /^PID/ { print $0 }'
+    #+END_SRC
+
+    #+RESULTS: install agent
+    : - PID	Status	Label
+    : - -	78	org.thetripps.emacs
+    : - 61991	0	org.thetripps.isync
+    : - -	0	org.thetripps.trashdownloads
+
 
 *** ADOPTED Searching Emails
 
@@ -566,7 +585,7 @@
     |                             | Port for TLS/STARTTLS | 587   |
 
     #+name: smtp-set-up
-    #+BEGIN_SRC emacs-lisp :exports code
+    #+BEGIN_SRC emacs-lisp
        (let* ((smtp-server (toby/get-secret-var 'smtp-server))
               (smtp-config (toby/auth-info :host smtp-server)))
          (setq wl-smtp-authenticate-type "plain"
@@ -636,7 +655,7 @@
       This config file should probably be managed in this repo (where it is
       used) rather in dotfiles.
 
-* Footnotes
+** Footnotes
 
 [fn:tls]  If available
 

@@ -1,164 +1,155 @@
 #+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
 * General Emacs Configurations
-** Frame/Window Functions
+** Path Utilities
 
-   #+BEGIN_SRC emacs-lisp
-     (require-package 'mac-pseudo-daemon)
-     (require 'mac-pseudo-daemon)
-     (mac-pseudo-daemon-mode t)
-
-     (defun toby/fullscreen-p (&optional frame)
-       "Returns non-nil if FRAME is currently fullscreen.  FRAME
-       defaults to the value of `(selected-frame)`."
-       (memq (frame-parameter (or frame (selected-frame)) 'fullscreen)
-             '(fullscreen fullboth)))
-
-     (defun toby/on-redisplay (window)
-       (message "-- redisplay --"))
-
-     (defun toby/hide-emacs ()
-       (if (toby/fullscreen-p)
-           (progn
-             (toggle-frame-fullscreen)
-             (run-at-time 1.0 nil #'macpd-hide-emacs))
-         (macpd-hide-emacs)))
-   #+END_SRC
-
-   #+RESULTS:
-   : toby/hide-emacs
-
-** Emacs-Mac Installation
-   #+name: emacs-install
-   #+header: :tangle no
-   #+BEGIN_SRC sh
-     brew reinstall emacs-mac \
-          --with-emacs-icons-project-EmacsIcon4 \
-          --with-glib && \
-     ln -fs /usr/local/opt/emacs-mac/Emacs.app /Applications/
-   #+END_SRC
-
-** Daemon Start-up
-
-   #+name: absolute-path
+   #+name: expand-path
    #+header: :results value
    #+header: :tangle no
+   #+header: :var path="~/.emacs.d/bin/emacs-daemon"
    #+BEGIN_SRC emacs-lisp
-     (require-package 'apples-mode)
-     (autoload 'apples-mode "apples-mode" "AppleScript" t)
-     (file-truename "~/.emacs.d/bin/emacs-daemon")
+     (file-truename path)
    #+END_SRC
 
-   #+RESULTS: absolute-path
+   #+RESULTS: expand-path
    : /Users/toby/.emacs.d/bin/emacs-daemon
 
-*** via Applescript/osascript
+   #+name: which
+   #+header: :results value
+   #+header: :tangle no
+   #+header: :var exe="emacsclient"
+   #+BEGIN_SRC emacs-lisp
+     (executable-find exe)
+   #+END_SRC
 
-    #+name: applescript
-    #+BEGIN_SRC apples
-      tell application "Emacs" to launch
+   #+RESULTS: which
+   : /usr/local/bin/emacsclient
 
-      tell application "Terminal"
-        set x to false
-        repeat
-          try
-            do shell script "/usr/local/opt/emacs-mac/bin/emacsclient -e '(toby/hide-emacs)'"
-            set x to true
-          end try
-          if x then
-            exit repeat
-          else
-            delay 0.1
-          end if
-        end repeat
-      end tell
-    #+END_SRC
+** Emacs w/Cocoa Installation
+   #+name: emacs-install
+   #+header: :tangle ~/.emacs.d/bin/install
+   #+header: :shebang /usr/bin/bash
+   #+header: :tangle-mode
+   #+begin_src sh
+     brew cask install emacs #--with-gnutls --with-cocoa --with-librsvg
+   #+end_src
 
-    #+name: emacs-daemon-osascript-start
-    #+header: :mkdirp yes
-    #+header: :tangle ~/.emacs.d/bin/emacs-daemon
-    #+header: :tangle-mode (identity #o750)
-    #+header: :shebang #!/bin/bash
-    #+BEGIN_SRC sh :noweb yes :exports both
-      /usr/bin/osascript <<-EOF
-      <<applescript>>
-      EOF
-    #+END_SRC
+** TODO Launchd Service [0/1]
 
-*** TODO Launchd Service [0/1]
+   - [-] Start on-demand using a fixed Unix-Socket resource.
+     - [X] Will require switching away from the =emacs-mac= port, but I think I'm
+       okay with that.
+     - [ ] Re-configure the plist to start on socket-access.
 
-    - [ ] Start on-demand using a fixed Unix-Socket resource.
+   #+name: Emacs LaunchAgent Configuration PList
+   #+header: :noweb no-export
+   #+header: :tangle ~/Library/LaunchAgents/org.thetripps.emacs.plist
+   #+BEGIN_SRC xml
+     <?xml version="1.0" encoding="UTF-8"?>
+     <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+     <plist version="1.0">
+       <dict>
+         <key>Label</key>
+         <string>org.thetripps.emacs</string>
 
-    #+name: Emacs LaunchAgent Configuration PList
-    #+header: :noweb no-export
-    #+header: :tangle ~/Library/LaunchAgents/org.thetripps.emacs.plist
-    #+BEGIN_SRC xml
-      <?xml version="1.0" encoding="UTF-8"?>
-      <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-      <plist version="1.0">
-        <dict>
-          <key>Label</key>
-          <string>org.thetripps.emacs</string>
+         <key>EnvironmentVariables</key>
+         <dict>
+           <key>LANG</key>
+           <string>en_US.UTF-8</string>
+           <key>LC_ALL</key>
+           <string>en_US.UTF-8</string>
+         </dict>
 
-          <key>EnvironmentVariables</key>
-          <dict>
-            <key>LANG</key>
-            <string>en_US.UTF-8</string>
-            <key>LC_ALL</key>
-            <string>en_US.UTF-8</string>
-          </dict>
+         <key>WorkingDirectory</key>
+         <string>/Users/toby</string>
 
-          <key>WorkingDirectory</key>
-          <string>/Users/toby</string>
+         <key>ProgramArguments</key>
+         <array>
+           <string><<expand-path()>></string>
+         </array>
 
-          <key>ProgramArguments</key>
-          <array>
-            <string><<absolute-path()>></string>
-          </array>
+         <key>RunAtLoad</key>
+         <true />
 
-          <key>RunAtLoad</key>
-          <true />
+         <key>StartCalendarInterval</key>
+         <dict>
+           <key>Hour</key>
+           <integer>6</integer>
+         </dict>
 
-          <key>StartCalendarInterval</key>
-          <dict>
-            <key>Hour</key>
-            <integer>5</integer>
-          </dict>
+         <key>KeepAlive</key>
+         <dict>
+           <key>SuccessfulExit</key>
+           <false />
+         </dict>
 
-          <key>KeepAlive</key>
-          <dict>
-            <key>SuccessfulExit</key>
-            <false />
-          </dict>
+         <key>StandardOutPath</key>
+         <string>/var/log/agents.user/emacs.agent.log</string>
 
-          <key>StandardOutPath</key>
-          <string>/var/log/agents.user/emacs.agent.log</string>
+         <key>StandardErrorPath</key>
+         <string>/var/log/agents.user/emacs.agent.log</string>
+       </dict>
+     </plist>
+   #+END_SRC
 
-          <key>StandardErrorPath</key>
-          <string>/var/log/agents.user/emacs.agent.log</string>
-        </dict>
-      </plist>
-    #+END_SRC
+   #+name: install agent
+   #+header: :tangle ~/.emacs.d/bin/reload
+   #+header: :tangle-mode (identity #o750)
+   #+header: :shebang #!/bin/bash
+   #+BEGIN_SRC sh
+     launchctl unload ~/Library/LaunchAgents/org.thetripps.emacs.plist
+     launchctl load   ~/Library/LaunchAgents/org.thetripps.emacs.plist
+   #+END_SRC
 
-    #+name: install agent
-    #+BEGIN_SRC sh :tangle no :results output list
-      launchctl unload ~/Library/LaunchAgents/org.thetripps.emacs.plist
-      launchctl load   ~/Library/LaunchAgents/org.thetripps.emacs.plist
-    #+END_SRC
+   #+RESULTS: install agent
+   :
 
-    #+RESULTS: install agent
-    :
+   #+name: Service Status
+   #+BEGIN_SRC sh :tangle no :results output list
+     launchctl list | awk '/org.thetripps/ { print $0 }; /^PID/ { print $0 }'
+   #+END_SRC
 
-    #+name: Service Status
-    #+BEGIN_SRC sh :tangle no :results output list
-      launchctl list | awk '/org.thetripps/ { print $0 }; /^PID/ { print $0 }'
-    #+END_SRC
+   #+RESULTS: Service Status
+   : - PID	Status	Label
+   : - -	0	org.thetripps.emacs
+   : - -	0	org.thetripps.isync
+   : - -	0	org.thetripps.trashdownloads
 
-    #+RESULTS: Service Status
-    : - PID	Status	Label
-    : - -	1	org.thetripps.emacs
-    : - -	78	org.thetripps.isync
-    : - -	0	org.thetripps.trashdownloads
+   Stop Emacs overnight to allow MacOS automatic updates to complete:
 
+
+
+   #+name: StopEmacs LaunchAgent Configuration PList
+   #+header: :noweb no-export
+   #+header: :tangle ~/Library/LaunchAgents/org.thetripps.stopemacs.plist
+   #+BEGIN_SRC xml
+     <?xml version="1.0" encoding="UTF-8"?>
+     <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+     <plist version="1.0">
+       <dict>
+         <key>Label</key>
+         <string>org.thetripps.stopemacs</string>
+
+         <key>ProgramArguments</key>
+         <array>
+           <string><<which("emacsclient")>></string>
+           <string>-e</string>
+           <string>'(kill-emacs)'</string>
+         </array>
+
+         <key>StartCalendarInterval</key>
+         <dict>
+           <key>Hour</key>
+           <integer>1</integer>
+         </dict>
+
+         <key>StandardOutPath</key>
+         <string>/var/log/agents.user/org.thetripps.stopemacs.log</string>
+
+         <key>StandardErrorPath</key>
+         <string>/var/log/agents.user/org.thetripps.stopemacs.log</string>
+       </dict>
+     </plist>
+   #+END_SRC
 
 ** Client Start-up
 
@@ -222,12 +213,6 @@
    #+END_SRC
 
 ** UI
-   Set native vs non-native fullscreen on the Mac:
-   #+BEGIN_SRC emacs-lisp
-   ;; (setq ns-use-native-fullscreen nil)
-   (setq ns-use-native-fullscreen t)
-   #+END_SRC
-
    Be less aggressive when vertically splitting my windows: (default 80)
    #+BEGIN_SRC emacs-lisp
    (setq split-height-threshold 110)
@@ -274,9 +259,6 @@
    #+BEGIN_SRC emacs-lisp
      (setq dired-listing-switches "-alh")
      (require 'dired-x)
-
-     (require-package 'dired+)
-     (require 'dired+)
    #+END_SRC
 
 ** Kill-Ring
@@ -288,9 +270,6 @@
 ** iSearch
    #+BEGIN_SRC emacs-lisp
      (require-package 'ag)
-
-     (require-package 'isearch+)
-     (eval-after-load "isearch" '(require 'isearch+))
    #+END_SRC
 
 ** ADOPTED Multiple Cursors
@@ -335,5 +314,5 @@
    #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(provide 'emacs-init)
+(provide 'emacs-settings)
 #+END_SRC

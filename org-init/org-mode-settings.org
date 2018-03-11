@@ -6,7 +6,8 @@
 
    #+BEGIN_SRC emacs-lisp
      (defun toby/org-init ()
-       (abbrev-mode t))
+       (abbrev-mode t)
+       (electric-quote-mode t))
 
      (add-hook 'org-mode-hook 'toby/org-init)
    #+END_SRC
@@ -73,6 +74,14 @@
    To regenerate syntax highlighting CSS (for the active theme):
    #+BEGIN_SRC emacs-lisp :tangle no
    (org-export-htmlize-generate-css)
+   #+END_SRC
+
+   Execute TεΧ and elisp without confirmation:
+   #+BEGIN_SRC emacs-lisp
+     (defun toby/org-confirm-babel-evaluate (lang body)
+       (not (or (string= lang "latex")
+                (string= lang "emacs-lisp"))))
+     (setq org-confirm-babel-evaluate 'toby/org-confirm-babel-evaluate)
    #+END_SRC
 
 ** Org Publish

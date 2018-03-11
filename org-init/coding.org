@@ -102,8 +102,8 @@
      (require-package 'rainbow-delimiters)
      (autoload 'rainbow-delimiters-mode "rainbow-delimiters")
 
+     (require-package 'highlight-indentation)
      (require-package 'dash-at-point)
-
      (require-package 'idle-highlight-mode)
      (autoload 'idle-highlight-mode "idle-highlight-mode")
      (setq-default indent-tabs-mode nil)     ; TABs can go straight to hell

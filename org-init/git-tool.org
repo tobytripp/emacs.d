@@ -119,5 +119,5 @@
    #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(provide 'git-init)
+(provide 'git-tool)
 #+END_SRC

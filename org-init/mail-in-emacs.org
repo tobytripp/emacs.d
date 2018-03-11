@@ -356,6 +356,74 @@
     : Sent Messages
     : Trash
 
+** Under MacOS, this script can be triggered by =launchd= with the following plist:
+   #+name: mail-sync-path
+   #+header: :results value
+   #+header: :tangle no
+   #+BEGIN_SRC emacs-lisp
+     (file-truename "~/bin/mail-sync")
+   #+END_SRC
+
+   #+RESULTS: absolute-path
+   : /Users/toby/.emacs.d/bin/emacs-daemon
+
+
+   #+name: mbsync plist
+   #+header: :noweb no-export
+   #+header: :tangle ~/Library/LaunchAgents/org.thetripps.isync.plist
+   #+header: :tangle-mode (identity #o640)
+   #+BEGIN_SRC xml
+     <?xml version="1.0" encoding="UTF-8"?>
+     <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+     <plist version="1.0">
+       <dict>
+         <key>EnvironmentVariables</key>
+         <dict>
+           <key>PATH</key>
+           <string>/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin</string>
+         </dict>
+
+         <key>KeepAlive</key>
+         <false/>
+
+         <key>Label</key>
+         <string>org.thetripps.isync</string>
+
+         <key>ProgramArguments</key>
+         <array>
+           <string><<mail-sync-path()>></string>
+         </array>
+
+         <key>StartInterval</key>
+         <integer>300</integer>
+
+         <key>RunAtLoad</key>
+         <true />
+
+         <key>StandardOutPath</key>
+         <string>/var/log/agents.user/org.thetripps.isync.log</string>
+         <key>StandardErrorPath</key>
+         <string>/var/log/agents.user/org.thetripps.isync.log</string>
+       </dict>
+     </plist>
+   #+END_SRC
+
+   Note that an exit status of 78 indicates a configuration error.
+
+   #+name: install agent
+   #+BEGIN_SRC sh :tangle no :results output list
+      launchctl unload ~/Library/LaunchAgents/org.thetripps.isync.plist
+      launchctl load   ~/Library/LaunchAgents/org.thetripps.isync.plist
+      launchctl list | awk '/org.thetripps/ { print $0 }; /^PID/ { print $0 }'
+   #+END_SRC
+
+   #+RESULTS: install agent
+   : - PID	Status	Label
+   : - -	78	org.thetripps.emacs
+   : - 61991	0	org.thetripps.isync
+   : - -	0	org.thetripps.trashdownloads
+
+
 ** ADOPTED Wanderlust
 
    - State "ADOPTED"    from "EXPERIMENTAL" [2018-02-23 Fri 10:01]
@@ -412,6 +480,26 @@
 
            (define-key mime-view-mode-default-map (kbd "C-c C-o") #'browse-url)))
     #+END_SRC
+*** ADOPTED Searching Emails
+
+    - State "EXPERIMENTAL" from              [2018-02-09 Fri 22:17]
+
+    Search =mu= index by typing =g= in folder or summary.
+
+    #+BEGIN_SRC emacs-lisp
+      (require 'elmo-search)
+      (elmo-search-register-engine
+       'mu 'local-file
+       :prog "/usr/local/bin/mu"
+       :args '("find" pattern "--fields" "l")
+       :charset 'utf-8)
+
+      (setq elmo-search-default-engine 'mu)
+    #+END_SRC
+
+    [[http://www.djcbsoftware.nl/code/mu/cheatsheet.html][mu cheat-sheet]]
+
+    Also =man mu-find=.
 
 ** ADOPTED Mail indexing with =mu=
    - State "EXPERIMENTAL" from              [2018-02-09 Fri 22:16]
@@ -442,77 +530,6 @@
            echo Mail Index &&
            mu index --maildir=~/.mail --lazy-check
      #+END_SRC
-
-   - Under MacOS, this script can be triggered by =launchd= with the following plist:
-     #+name: mbsync plist
-     #+header: :tangle ~/Library/LaunchAgents/org.thetripps.isync.plist
-     #+header: :tangle-mode (identity #o640)
-     #+BEGIN_SRC xml
-       <?xml version="1.0" encoding="UTF-8"?>
-       <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-       <plist version="1.0">
-         <dict>
-           <key>EnvironmentVariables</key>
-           <dict>
-             <key>PATH</key>
-             <string>/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin</string>
-           </dict>
-           <key>KeepAlive</key>
-           <false/>
-           <key>Label</key>
-           <string>org.thetripps.isync</string>
-           <key>ProgramArguments</key>
-           <array>
-             <string>$HOME/bin/mail-sync</string>
-           </array>
-           <key>StartInterval</key>
-           <integer>300</integer>
-           <key>RunAtLoad</key>
-           <true />
-           <key>StandardOutPath</key>
-           <string>/var/log/agents.user/org.thetripps.isync.log</string>
-           <key>StandardErrorPath</key>
-           <string>/var/log/agents.user/org.thetripps.isync.log</string>
-         </dict>
-       </plist>
-     #+END_SRC
-
-     Note that an exit status of 78 indicates a configuration error.
-
-    #+name: install agent
-    #+BEGIN_SRC sh :tangle no :results output list
-      launchctl unload ~/Library/LaunchAgents/org.thetripps.isync.plist
-      launchctl load   ~/Library/LaunchAgents/org.thetripps.isync.plist
-      launchctl list | awk '/org.thetripps/ { print $0 }; /^PID/ { print $0 }'
-    #+END_SRC
-
-    #+RESULTS: install agent
-    : - PID	Status	Label
-    : - -	78	org.thetripps.emacs
-    : - 61991	0	org.thetripps.isync
-    : - -	0	org.thetripps.trashdownloads
-
-
-*** ADOPTED Searching Emails
-
-    - State "EXPERIMENTAL" from              [2018-02-09 Fri 22:17]
-
-    Search =mu= index by typing =g= in folder or summary.
-
-    #+BEGIN_SRC emacs-lisp
-      (require 'elmo-search)
-      (elmo-search-register-engine
-       'mu 'local-file
-       :prog "/usr/local/bin/mu"
-       :args '("find" pattern "--fields" "l")
-       :charset 'utf-8)
-
-      (setq elmo-search-default-engine 'mu)
-    #+END_SRC
-
-    [[http://www.djcbsoftware.nl/code/mu/cheatsheet.html][mu cheat-sheet]]
-
-    Also =man mu-find=.
 
 ** ADOPTED =org-capture= Integration
 
@@ -595,6 +612,9 @@
                wl-from           (toby/get-secret-var 'toby/mail-from)
                wl-smtp-connection-type   (quote ssl)))
     #+END_SRC
+
+    #+RESULTS: smtp-set-up
+    : ssl
 
 *** TODO BBDB for Contacts [0/1]
     - State "ADOPTED"    from "EXPERIMENTAL" [2018-03-01 Thu 12:33]

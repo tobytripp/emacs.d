@@ -42,9 +42,9 @@
           (autoload 'minitest-mode "minitest-mode" "Minor mode for Minitest specs" t)
           (require-package 'enh-ruby-mode)
           (autoload 'enh-ruby-mode "enh-ruby-mode" "Major mode for ruby files" t)
-          (require-package 'column-marker)
           (require-package 'flyspell)
-          (require-package 'ruby-tools)))
+          (require-package 'ruby-tools)
+          (inf-ruby-switch-setup)))
 
      ;; (require-package 'robe)
      ;; (eval-after-load 'company
@@ -61,7 +61,6 @@
                     "\\(class\\|def\\|do\\|if\\)" "\\(end\\)" "#"
                     (lambda (arg) (enh-ruby-end-of-block)) nil))
 
-     (add-hook 'after-init-hook    'inf-ruby-switch-setup)
      (add-hook 'ruby-mode-hook     'toby/add-prettified-symbols)
      (add-hook 'enh-ruby-mode-hook 'toby/add-prettified-symbols)
 
@@ -77,8 +76,6 @@
        (set (make-local-variable 'tab-width) 2)
 
        (toby/ruby-prettify)
-
-       (column-marker-1 80)
        (whitespace-mode t)
 
        ;; Doesn't work in the terminal, unfortunately…
@@ -183,17 +180,12 @@
    #+BEGIN_SRC emacs-lisp
      (require-package 'feature-mode)
      (add-to-list 'auto-mode-alist '("\.feature$" . feature-mode))
-     (when (and (featurep 'yasnippet)
-                feature-snippet-directory
-                (file-exists-p feature-snippet-directory))
-       (yas-load-directory feature-snippet-directory))
 
-     (add-hook 'feature-mode-hook
-               (lambda ()
-                 (local-set-key (kbd "M-r")   'feature-verify-all-scenarios-in-buffer)
-                 (local-set-key [f12]         'feature-verify-all-scenarios-in-buffer)
-                 (local-set-key (kbd "M-S-r") 'feature-verify-scenario-at-pos)
-                 (local-set-key [f11]         'feature-verify-scenario-at-pos)))
+     (defun toby/feature-init ()
+       (local-set-key (kbd "C-c , a") 'feature-verify-all-scenarios-in-buffer)
+       (local-set-key (kbd "C-c , s") 'feature-verify-scenario-at-pos))
+
+     (add-hook 'feature-mode-hook #'toby/feature-init)
    #+END_SRC
 
 ** Rails
@@ -281,5 +273,5 @@
    #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(provide 'ruby-init)
+(provide 'ruby-lang)
 #+END_SRC

@@ -1,0 +1,106 @@
+#    -*- mode: org -*-
+
+
+Archived entries from file /Users/toby/.emacs.d/org-init/emacs-settings.org
+
+
+* Emacs-Mac Installation
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2018-03-11 Sun 16:36
+  :ARCHIVE_FILE: ~/.emacs.d/org-init/emacs-settings.org
+  :ARCHIVE_OLPATH: General Emacs Configurations
+  :ARCHIVE_CATEGORY: emacs-settings
+  :END:
+  #+name: emacs-install
+  #+header: :tangle no
+  #+BEGIN_SRC sh
+    brew reinstall emacs-mac \
+         --with-emacs-icons-project-EmacsIcon4 \
+         --with-glib && \
+    ln -fs /usr/local/opt/emacs-mac/Emacs.app /Applications/
+  #+END_SRC
+** Frame/Window Functions
+
+   #+BEGIN_SRC emacs-lisp :tangle no
+     (require-package 'mac-pseudo-daemon)
+     (require 'mac-pseudo-daemon)
+     (mac-pseudo-daemon-mode t)
+
+     (defun toby/fullscreen-p (&optional frame)
+       "Returns non-nil if FRAME is currently fullscreen.  FRAME
+       defaults to the value of `(selected-frame)`."
+       (memq (frame-parameter (or frame (selected-frame)) 'fullscreen)
+             '(fullscreen fullboth)))
+
+     (defun toby/on-redisplay (window)
+       (message "-- redisplay --"))
+
+     (defun toby/hide-emacs ()
+       (if (toby/fullscreen-p)
+           (progn
+             (toggle-frame-fullscreen)
+             (run-at-time 1.0 nil #'macpd-hide-emacs))
+         (macpd-hide-emacs)))
+   #+END_SRC
+
+   #+RESULTS:
+   : toby/hide-emacs
+
+** Daemon Start-up
+
+   #+name: expand-path
+   #+header: :results value
+   #+header: :tangle no
+   #+header: :var path="~/.emacs.d/bin/emacs-daemon"
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'apples-mode)
+     (autoload 'apples-mode "apples-mode" "AppleScript" t)
+     (file-truename path)
+   #+END_SRC
+
+   #+RESULTS: expand-path
+   : /Users/toby/.emacs.d/bin/emacs-daemon
+
+   #+name: which
+   #+header: :results value
+   #+header: :tangle no
+   #+header: :var exe="emacsclient"
+   #+BEGIN_SRC emacs-lisp
+   (executable-find exe)
+   #+END_SRC
+
+   #+RESULTS: which
+   : /usr/local/bin/emacsclient
+
+*** via Applescript/osascript
+
+    #+name: applescript
+    #+BEGIN_SRC apples
+      tell application "Emacs" to launch
+
+      tell application "Terminal"
+        set x to false
+        repeat
+          try
+            do shell script "/usr/local/opt/emacs-mac/bin/emacsclient -e '(toby/hide-emacs)'"
+            set x to true
+          end try
+          if x then
+            exit repeat
+          else
+            delay 0.1
+          end if
+        end repeat
+      end tell
+    #+END_SRC
+
+    #+name: emacs-daemon-osascript-start
+    #+header: :mkdirp yes
+    #+header: :tangle ~/.emacs.d/bin/emacs-daemon
+    #+header: :tangle-mode (identity #o750)
+    #+header: :shebang #!/bin/bash
+    #+BEGIN_SRC sh :noweb yes :exports both
+      /usr/bin/osascript <<-EOF
+      <<applescript>>
+      EOF
+    #+END_SRC

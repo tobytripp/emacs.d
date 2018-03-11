@@ -75,7 +75,7 @@
    #+BEGIN_SRC emacs-lisp
      (defun toby/eshell-hooks ()
        ""
-       (linum-mode nil)
+       (linum-mode 0)
        (defalias 'ff 'find-file))
 
      (add-hook 'eshell-mode-hook 'toby/eshell-hooks)

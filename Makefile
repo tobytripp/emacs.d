@@ -17,4 +17,11 @@ config-site: $(CONFIG_PATH)/org-init/*.org $(CONFIG_PATH)/html
 %/html:
 	mkdir -p $*
 
-.PHONY: all config-site
+clean:
+	rm -rf $(CONFIG_PATH)/elpa \
+           $(CONFIG_PATH)/org-init/*.el \
+           $(CONFIG_PATH)/org-init/*.elc \
+           $(CONFIG_PATH)/elisp/*.elc
+
+
+.PHONY: all config-site clean

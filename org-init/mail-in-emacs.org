@@ -540,13 +540,21 @@
      (global-unset-key (kbd "<f3>"))
      (global-set-key (kbd "<f3>") 'wl)
 
-     (eval-after-load 'wl
-       '(progn
-          (require 'org-wl)
-          (define-key wl-folder-mode-map (kbd "q") 'bury-buffer)
-          (define-key wl-folder-mode-map (kbd "Q") 'wl-exit)
-          (fullframe wl bury-buffer nil)))
+     (defun toby/load-wl ()
+       (require 'org-wl)
+       (fullframe wl bury-buffer nil))
+
+     (eval-after-load 'wl #'toby/load-wl)
+
+     (defun toby/mail-init ()
+       (define-key wl-folder-mode-map (kbd "q") 'bury-buffer)
+       (define-key wl-folder-mode-map (kbd "Q") 'wl-exit))
+
+     (add-hook 'wl-hook #'toby/mail-init)
    #+END_SRC
+
+   #+RESULTS: define-capture-keys
+   | toby/mail-init |
 
    - [X] Figure out how to auto-load this package on wanderlust init
      - the approach in [[*BBDB for Contacts][BBDB for Contacts]] would probably work

@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: assertEqual
+# key: ase
+# --
+assertEqual
+  "${1:failure message}"
+  ${2:expected}
+  ${3:actual}
+$0

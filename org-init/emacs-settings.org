@@ -24,15 +24,6 @@
    #+RESULTS: which
    : /usr/local/bin/emacsclient
 
-** Emacs w/Cocoa Installation
-   #+name: emacs-install
-   #+header: :tangle ~/.emacs.d/bin/install
-   #+header: :shebang /usr/bin/bash
-   #+header: :tangle-mode
-   #+begin_src sh
-     brew cask install emacs #--with-gnutls --with-cocoa --with-librsvg
-   #+end_src
-
 ** TODO Launchd Service [0/1]
 
    - [-] Start on-demand using a fixed Unix-Socket resource.
@@ -164,10 +155,10 @@
    #+BEGIN_SRC sh
      TARGET=${1:-~/}
 
-     EMACS_PATH=`/usr/local/bin/brew --prefix emacs-mac`/bin
+     EMACS_PATH=/usr/local/bin
      EMACSCLIENT=${EMACS_PATH}/emacsclient
 
-     $EMACSCLIENT -nc -s launchd $TARGET
+     $EMACSCLIENT -nc $TARGET
    #+END_SRC
 
 ** Emacs Server
@@ -190,6 +181,7 @@
               (not (server-running-p)))
          (progn
            ;; (setq server-socket-dir (concat user-emacs-directory "server"))
+					 (setq server-name "toby")
            (server-start)))
    #+END_SRC
 
@@ -254,13 +246,6 @@
      (add-hook 'before-save-hook 'toby/delete-trailing-whitespace)
    #+END_SRC
 
-** Dired Mode
-   Set =ls= flags and load some dired extensions.
-   #+BEGIN_SRC emacs-lisp
-     (setq dired-listing-switches "-alh")
-     (require 'dired-x)
-   #+END_SRC
-
 ** Kill-Ring
    #+BEGIN_SRC emacs-lisp
    (require-package 'browse-kill-ring)
@@ -301,6 +286,19 @@
      (require-package 'which-key)
      (which-key-mode)
    #+END_SRC
+
+** EXPERIMENTAL COMMENT dired-hacks
+   - State "EXPERIMENTAL" from "TODO"       [2018-03-15 Thu 18:58]
+
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'dired-subtree)
+     (require 'dired-subtree)
+     (define-key dired-mode-map (kbd "i") dired-subtree-insert)
+     (define-key dired-mode-map (kbd ";") dired-subtree-remove)
+   #+END_SRC
+
+   #+RESULTS:
+   : dired-subtree
 
 ** Configuration
 

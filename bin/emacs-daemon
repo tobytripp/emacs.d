@@ -1,19 +1,2 @@
 #!/bin/bash
-/usr/bin/osascript <<-EOF
-tell application "Emacs" to launch
-
-tell application "Terminal"
-  set x to false
-  repeat
-    try
-      do shell script "/usr/local/opt/emacs-mac/bin/emacsclient -e '(toby/hide-emacs)'"
-      set x to true
-    end try
-    if x then
-      exit repeat
-    else
-      delay 0.1
-    end if
-  end repeat
-end tell
-EOF
+exec /usr/local/bin/emacs --daemon

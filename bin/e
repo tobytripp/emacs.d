@@ -1,7 +1,7 @@
 #!/bin/bash
 TARGET=${1:-~/}
 
-EMACS_PATH=`/usr/local/bin/brew --prefix emacs-mac`/bin
+EMACS_PATH=/usr/local/bin
 EMACSCLIENT=${EMACS_PATH}/emacsclient
 
-$EMACSCLIENT -nc -s launchd $TARGET
+$EMACSCLIENT -s toby -nc $TARGET

@@ -30,3 +30,4 @@ games
 /agenda/*
 /.emacs.desktop*
 /tmp/*
+/network-security.data

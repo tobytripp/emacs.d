@@ -12,7 +12,7 @@
    #+tblname: haskell-key-bindings
    | key     | fn                             |
    |---------+--------------------------------|
-   | C-c l   | inferior-haskell-load-and-run  |
+   | C-c l   | haskell-process-load-file      |
    | C-;     | insert-arrow                   |
    | C-:     | insert-rocket                  |
    | C-=     | insert-larrow                  |
@@ -33,6 +33,7 @@
        (let ((keys (kbd (car key->fun)))
              (func (cadr key->fun)))
          (message "map: %s" map-var)
+         (global-unset-key keys)
          (define-key map-var keys (intern func))))
    #+END_SRC
 
@@ -44,6 +45,9 @@
        (let ((key-fn (apply-partially #'toby/do-define-key mode-map)))
          (mapcar key-fn key-table-alist)))
    #+END_SRC
+
+   #+RESULTS: define keys from table
+   : toby/define-key-table
 
    #+tblname: test-key-bindings
    | C-c u | beginning-of-buffer |
@@ -58,8 +62,7 @@
    #+END_SRC
 
    #+RESULTS: usage-example
-   - beginning-of-buffer
-   - end-of-buffer
+   - insert-arrow
 
    #+name: haskell-example
    #+header: :var keys=test-key-bindings
@@ -73,27 +76,64 @@
    - beginning-of-buffer
    - end-of-buffer
 
-** Hooks
-   #+name: haskell-hooks
-   #+header: :var keys=haskell-key-bindings
+** Major Mode
+
    #+BEGIN_SRC emacs-lisp
      (require-package 'haskell-mode)
      (autoload 'haskell-mode "haskell-mode")
+   #+END_SRC
 
+** Minor-Modes
+
+   #+header: :var keys=haskell-key-bindings
+   #+BEGIN_SRC emacs-lisp
      (eval-after-load 'haskell-mode
        '(progn
           (require-package 'smartparens)
           (require 'smartparens-config)
-          (require 'haskell-interactive-mode)
           (require 'haskell-process)
+          (require 'haskell-interactive-mode)
           (toby/define-key-table haskell-mode-map keys)))
+   #+END_SRC
 
+*** EXPERIMENTAL Minor-Modes
+    - State "EXPERIMENTAL" from "TODO"       [2018-03-12 Mon 10:40]
+
+    - [[https://github.com/chrisdone/structured-haskell-mode][structured-haskell-mode]]
+      - This one is starting to get on my nerves a bit to little benefit.  It
+        tries to be like paredit for Haskell, but doesn’t seem to handle
+        literate-haskell very well.  Maybe turn it on conditionally only in
+        non-literate mode?
+    - [[http://commercialhaskell.github.io/intero/][intero]]
+      - This one seems to be working out well.  The =stack= integration is
+        especially nice.
+
+    #+BEGIN_SRC emacs-lisp
+      (defun toby/on-load-haskell ()
+        (require-package 'shm)
+        (require 'shm)
+        (add-hook 'haskell-mode-hook 'structured-haskell-mode)
+
+        (require-package 'flycheck-haskell)
+        (add-hook 'flycheck-mode-hook #'flycheck-haskell-setup)
+
+        (require-package 'intero)
+        (require 'intero)
+        (intero-global-mode))
+
+      (eval-after-load 'haskell-mode #'toby/on-load-haskell)
+    #+END_SRC
+
+** Hooks
+   #+name: haskell-hooks
+   #+BEGIN_SRC emacs-lisp
      (eval-after-load "haskell-cabal"
        '(define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-compile))
 
      (defun toby/haskell-init ()
        (turn-on-haskell-doc-mode)
-       (turn-on-haskell-indentation)
+       ;; Conflicts with structured-haskell-mode
+       ;; (turn-on-haskell-indentation)
 
        (smartparens-strict-mode)
        (show-smartparens-mode t)
@@ -123,5 +163,5 @@
    #+END_SRC
 
    #+BEGIN_SRC emacs-lisp
-(provide 'haskell-init)
+     (provide 'haskell-lang)
    #+END_SRC

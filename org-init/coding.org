@@ -41,18 +41,18 @@
       (customize-variable-other-window 'global-highlight-changes-mode)
     #+END_SRC
 
-**** TODO clear change marks on commit
+*** TODO clear change marks on commit
 
-     Some variant of the following:
+    Some variant of the following:
 
-     #+BEGIN_SRC emacs-lisp :tangle no
-       (defun highlight-changes-remove-after-save ()
-         "Remove previous changes after save."
-         (make-local-variable 'after-save-hook)
-         (add-hook 'after-save-hook
-                   (lambda ()
-                     (highlight-changes-remove-highlight (point-min) (point-max)))))
-     #+END_SRC
+    #+BEGIN_SRC emacs-lisp :tangle no
+      (defun highlight-changes-remove-after-save ()
+        "Remove previous changes after save."
+        (make-local-variable 'after-save-hook)
+        (add-hook 'after-save-hook
+                  (lambda ()
+                    (highlight-changes-remove-highlight (point-min) (point-max)))))
+    #+END_SRC
 
 *** EXPERIMENTAL diff-hl
     - State "EXPERIMENTAL" from              [2017-12-06 Wed 17:23]
@@ -71,6 +71,8 @@
 
      - State "EXPERIMENTAL" from "TODO"       [2017-12-10 Sun 12:58]
      - State "TODO"       from              [2017-12-10 Sun 12:58]
+
+   smarparens comes with the command =sp-cheat-sheet=.
 
    #+BEGIN_SRC emacs-lisp
      (defun toby/activate-structured-editing (&optional strict?)
@@ -194,6 +196,28 @@
 
      (add-to-list 'mmm-set-file-name-for-modes 'ruby-mode)
    #+END_SRC
+
+** Compilation/Testing
+   #+BEGIN_SRC emacs-lisp
+     (setq mode-compile-always-save-buffer-p t)
+     (setq compilation-window-height 12)
+
+     (defun toby/on-finish-compile (buf str)
+       "If compilation completes without errors, close the compilation
+     after a short wait."
+       (unless (string-match "exited abnormally" str)
+         (run-at-time
+          "2 sec" nil 'delete-windows-on
+          (get-buffer-create "*compilation*"))
+         (message "No Compilation Errors!")))
+
+     (setq compilation-finish-function #'toby/on-finish-compile)
+
+     (global-set-key [f12] 'compile)
+   #+END_SRC
+
+   #+RESULTS:
+   : compile
 
 ** Commands
 

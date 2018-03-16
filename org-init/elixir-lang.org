@@ -2,18 +2,31 @@
 * Elixir
 
   #+BEGIN_SRC emacs-lisp
+    (require-package 'smartparens)
     (require-package 'alchemist)
+    (add-to-list 'package-pinned-packages
+                 '(alchemist . "melpa-stable") t)
+
     (require-package 'elixir-mode)
+    (add-to-list 'package-pinned-packages
+                 '(elixir-mode . "melpa-stable") t)
+
+    (require-package 'elixir-yasnippets)
+
     (autoload 'alchemist-mode "alchemist" "Mode for elixir code" t)
-    (autoload 'elixir-mode "elixir" "Mode for elixir code" t)
+    (autoload 'elixir-mode    "elixir-mode" "Mode for elixir code" t)
 
     (add-to-list 'auto-mode-alist '("\\.exs?$" . elixir-mode))
 
     (defun toby/elixir-init ()
-      )
+      (alchemist-mode t)
+      (toby/activate-structured-editing nil))
 
-    (add-hook 'alchemist-mode-hook 'toby/elixir-init)
+    (add-hook 'elixir-mode-hook 'toby/elixir-init)
   #+END_SRC
+
+  #+RESULTS:
+  | toby/elixir-init | alchemist-mode-hook |
 
 ** Alchemist Mode Commands
 
@@ -48,3 +61,8 @@
    and displayed in another window.
    #+END_QUOTE
 
+** Package definition
+
+   #+BEGIN_SRC emacs-lisp
+     (provide 'elixir-lang)
+   #+END_SRC

@@ -2,7 +2,6 @@
 #+TITLE:  Customizations That Serve No Other Purpose Than to Make Me Happy
 
 * Senseless Eye-Candy
-
 ** Frame Opacity
    I'm not entirely sure why, but I like to be able to see /through/
    my editor window.  Sometimes I can read documentation through
@@ -72,7 +71,6 @@
    #+BEGIN_SRC emacs-lisp
      (global-visual-line-mode 1)
    #+END_SRC
-
 
 ** Theme
    I have one.

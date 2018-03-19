@@ -29,10 +29,9 @@
                     'face 'sml/minor-modes)))
 
            (require-package 'smart-mode-line-powerline-theme)
-           (sml/apply-theme 'powerline)
-           ;; Alternatives:
+           ;; Themes:
            ;; (sml/apply-theme 'powerline)
-           ;; (sml/apply-theme 'dark)
+           (sml/apply-theme 'dark)
            ;; (sml/apply-theme 'light)
            ;; (sml/apply-theme 'respectful)
            ;; (sml/apply-theme 'automatic)
@@ -43,6 +42,20 @@
            (add-to-list 'sml/replacer-regexp-list
                         '("^~/Projects/" ":CODE:"))))
    #+END_SRC
+
+   #+RESULTS:
+   | ^~/Projects/             | :CODE:           |       |
+   | ^~/.*/lib/ruby/gems      | :GEMS            |       |
+   | ^~/\.emacs\.d/agenda     | :Org:            |       |
+   | ^~/\.emacs\.d/elpa/      | :ELPA:           |       |
+   | ^~/\.emacs\.d/           | :ED:             |       |
+   | ^/sudo:.*:               | :SU:             |       |
+   | ^~/Documents/            | :Doc:            |       |
+   | ^~/Dropbox/              | :DB:             |       |
+   | ^:\([^:]*\):Documento?s/ | :\1/Doc:         |       |
+   | ^~/[Gg]it/               | :Git:            |       |
+   | ^~/[Gg]it[Hh]ub/         | :Git:            |       |
+   | ^~/[Gg]it\([Hh]ub\       | \)-?[Pp]rojects/ | :Git: |
 
 
 ** SVG Modeline

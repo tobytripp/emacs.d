@@ -29,6 +29,7 @@
 		   (concat user-emacs-directory "org-init")))
 
 ;; (setq debug-on-error t)
+;; (setq debug-on-error nil)
 ;; (load-file "aggregate-init.el")
 
 (put 'dired-find-alternate-file 'disabled nil)

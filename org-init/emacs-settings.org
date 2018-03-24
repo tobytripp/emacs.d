@@ -287,21 +287,6 @@
      (which-key-mode)
    #+END_SRC
 
-** EXPERIMENTAL dired-hacks
-   - State "EXPERIMENTAL" from "TODO"       [2018-03-15 Thu 18:58]
-
-   #+BEGIN_SRC emacs-lisp
-     (require-package 'dired-subtree)
-     (require 'dired-subtree)
-     (if (fboundp 'dired-subtree-insert)
-         (define-key dired-mode-map (kbd "i") #'dired-subtree-insert))
-     (if (fboundp 'dired-subtree-remove)
-         (define-key dired-mode-map (kbd ";") #'dired-subtree-remove))
-   #+END_SRC
-
-   #+RESULTS:
-   : dired-subtree
-
 ** Configuration
 
    #+BEGIN_SRC emacs-lisp

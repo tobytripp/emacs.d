@@ -197,6 +197,17 @@
      (add-to-list 'mmm-set-file-name-for-modes 'ruby-mode)
    #+END_SRC
 
+** REJECTED Lenticular (multi-view) Coding
+
+   - State "REJECTED"   from "EXPERIMENTAL" [2018-03-22 Thu 16:43]
+
+     Only works in elisp and is, therefore, of far too limited utility.
+
+   #+BEGIN_SRC emacs-lisp :tangle no
+     (require-package 'lentic)
+   #+END_SRC
+
+   =M-x global-lentic-mode=
 ** Compilation/Testing
    #+BEGIN_SRC emacs-lisp
      (setq mode-compile-always-save-buffer-p t)

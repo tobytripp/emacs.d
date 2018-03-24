@@ -1,32 +1,46 @@
 #+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
 * Elixir
+** Installation
+   - Runtime
+     #+BEGIN_SRC sh :tangle no
+       brew install elixir
+     #+END_SRC
 
-  #+BEGIN_SRC emacs-lisp
-    (require-package 'smartparens)
-    (require-package 'alchemist)
-    (add-to-list 'package-pinned-packages
-                 '(alchemist . "melpa-stable") t)
+   - Packages
+     #+BEGIN_SRC emacs-lisp
+       (require-package 'smartparens)
+       (require-package 'alchemist)
+       (add-to-list 'package-pinned-packages
+                    '(alchemist . "melpa-stable") t)
 
-    (require-package 'elixir-mode)
-    (add-to-list 'package-pinned-packages
-                 '(elixir-mode . "melpa-stable") t)
+       (require-package 'elixir-mode)
+       (add-to-list 'package-pinned-packages
+                    '(elixir-mode . "melpa-stable") t)
 
-    (require-package 'elixir-yasnippets)
+       (require-package 'elixir-yasnippets)
 
-    (autoload 'alchemist-mode "alchemist" "Mode for elixir code" t)
-    (autoload 'elixir-mode    "elixir-mode" "Mode for elixir code" t)
+       (autoload 'alchemist-mode "alchemist" "Mode for elixir code" t)
+       (autoload 'elixir-mode    "elixir-mode" "Mode for elixir code" t)
 
-    (add-to-list 'auto-mode-alist '("\\.exs?$" . elixir-mode))
+       (add-to-list 'auto-mode-alist '("\\.exs?$" . elixir-mode))
 
-    (defun toby/elixir-init ()
-      (alchemist-mode t)
-      (toby/activate-structured-editing nil))
+       (defun toby/elixir-init ()
+         (alchemist-mode t)
+         (company-mode t)
+         (linum-mode t)
+         (toby/activate-structured-editing nil))
 
-    (add-hook 'elixir-mode-hook 'toby/elixir-init)
-  #+END_SRC
+       (defun remove-dos-eol ()
+         "Do not show ^M in files containing mixed line-endings"
+         (setq buffer-display-table (make-display-table))
+         (aset buffer-display-table ?\^M []))
 
-  #+RESULTS:
-  | toby/elixir-init | alchemist-mode-hook |
+       (add-hook 'elixir-mode-hook 'toby/elixir-init)
+       (add-hook 'alchemist-test-mode-hook 'remove-dos-eol)
+     #+END_SRC
+
+     #+RESULTS:
+     | alchemist-mode-hook | toby/elixir-init |
 
 ** Alchemist Mode Commands
 

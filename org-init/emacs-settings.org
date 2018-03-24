@@ -293,8 +293,10 @@
    #+BEGIN_SRC emacs-lisp
      (require-package 'dired-subtree)
      (require 'dired-subtree)
-     (define-key dired-mode-map (kbd "i") dired-subtree-insert)
-     (define-key dired-mode-map (kbd ";") dired-subtree-remove)
+     (if (fboundp 'dired-subtree-insert)
+         (define-key dired-mode-map (kbd "i") #'dired-subtree-insert))
+     (if (fboundp 'dired-subtree-remove)
+         (define-key dired-mode-map (kbd ";") #'dired-subtree-remove))
    #+END_SRC
 
    #+RESULTS:

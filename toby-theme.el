@@ -37,7 +37,6 @@
  '(safe-local-variable-values (quote (quote (quote (quote ((encoding . utf-8) (whitespace-line-column . 80) (lexical-binding . t)))))))
  '(sp-base-key-bindings (quote paredit))
  '(tags-revert-without-query t)
- '(tags-table-list (quote ("/Users/toby/Code/reception-desk/.TAGS")))
  '(visible-bell t)
  '(visual-line-mode nil)
  '(warning-minimum-level :error)

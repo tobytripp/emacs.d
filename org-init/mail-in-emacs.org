@@ -450,6 +450,7 @@
       (require 'mime-setup)
       (autoload 'wl       "wl"       "Wanderlust" t)
       (autoload 'wl-draft "wl-draft" "Write draft with Wanderlust." t)
+      (autoload 'wl-expire-archive-date "wl-expire")
 
       (eval-after-load 'wl
         '(progn

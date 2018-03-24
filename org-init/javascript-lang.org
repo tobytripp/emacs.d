@@ -15,6 +15,7 @@
           )))
    #+END_SRC
 
+*** jq
 ** Node.js Set-up
 
    For REPLs and such, because actually writing server-side code in
@@ -122,5 +123,5 @@
     #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(provide 'javascript-init)
+(provide 'javascript-lang)
 #+END_SRC

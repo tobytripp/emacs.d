@@ -48,15 +48,20 @@
                'toby/babel-hook
                'append)
 
+     (require-package 'ob-elixir)
+
      (require 'ob-shell)
      (require 'ob-ruby)
      (require 'ob-sql)
      (require 'ob-clojure)
+     (require 'ob-elixir)
+
      (org-babel-do-load-languages
       'org-babel-load-languages
       '((shell . t)
         (ruby . t)
-        (sql . t)))
+        (sql . t)
+        (elixir . t)))
 
      (add-to-list 'org-structure-template-alist
                   '("el"  "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC" "<src lang=\"?\">\n\n</src>"))
@@ -65,6 +70,9 @@
      (add-to-list 'org-structure-template-alist
                   '("hs"  "#+BEGIN_SRC haskell\n?\n#+END_SRC" "<src lang=\"?\">\n\n</src>"))
    #+END_SRC
+
+   #+RESULTS:
+   | hs | #+BEGIN_SRC haskell |
 
    This adds syntax highlighting to org-babel html exports.
    #+BEGIN_SRC emacs-lisp

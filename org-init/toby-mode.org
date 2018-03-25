@@ -143,7 +143,7 @@
 
    In some languages, I find code with compressed parenthesis to be
    more difficult to read.  For example:
-   #+BEGIN_SRC ruby
+   #+BEGIN_SRC ruby :tangle no
    def wazzit(even,say,here)
      function_call(or_is_it, argument?)
    end
@@ -157,95 +157,97 @@
    So, I have an overlay that can /temporarily/ add spaces within
    parenthesis:
    #+BEGIN_SRC emacs-lisp
-   (defun toby/set-overlay-properties ()
-     (put 'toby-open-parenthesis 'evaporate t)
-     (put 'toby-open-parenthesis 'after-string " ")
+     (defun toby/set-overlay-properties ()
+       (put 'toby-open-parenthesis 'evaporate t)
+       (put 'toby-open-parenthesis 'after-string " ")
 
-     (put 'toby-close-parenthesis 'evaporate t)
-     (put 'toby-close-parenthesis 'before-string " ")
+       (put 'toby-close-parenthesis 'evaporate t)
+       (put 'toby-close-parenthesis 'before-string " ")
 
-     (put 'toby-rocket 'evaporate t)
-     (put 'toby-rocket 'after-string " ")
-     (put 'toby-rocket 'before-string " ")
-     )
+       (put 'toby-rocket 'evaporate t)
+       (put 'toby-rocket 'after-string " ")
+       (put 'toby-rocket 'before-string " ")
+       )
 
-   (toby/set-overlay-properties)
+     (toby/set-overlay-properties)
 
-   (defun toby/make-overlay (beg end &optional category)
-     "Create and return an overlay over the given region. Category
-   defaults to `toby'."
-     (let ((overlay (make-overlay beg end)))
-       (overlay-put overlay 'category (or category 'toby))
-       overlay))
+     (defun toby/make-overlay (beg end &optional category)
+       "Create and return an overlay over the given region. Category
+     defaults to `toby'."
+       (let ((overlay (make-overlay beg end)))
+         (overlay-put overlay 'category (or category 'toby))
+         overlay))
 
-   (defun toby/my-overlay-p (overlay)
-     "Return whether the given overlay is one of mine."
-     (memq (overlay-get overlay 'category)
-           '(toby-open-parenthesis toby-close-parenthesis toby-rocket)))
+     (defun toby/my-overlay-p (overlay)
+       "Return whether the given overlay is one of mine."
+       (memq (overlay-get overlay 'category)
+             '(toby-open-parenthesis toby-close-parenthesis toby-rocket)))
 
-   (defun toby/make-roomy (beg end)
-     "Add spacing within compressed expressions"
-     (interactive "r")
-     (save-excursion
-       (save-match-data
-         (goto-char beg)
-         (while (re-search-forward
-                 "[({]\\([^[:space:])]\\)"
-                 end t)
-           (toby/make-overlay (match-beginning 0) (match-beginning 1)
-                              'toby-open-parenthesis))
+     (defun toby/make-roomy (beg end)
+       "Add spacing within compressed expressions"
+       (interactive "r")
+       (save-excursion
+         (save-match-data
+           (goto-char beg)
+           (while (re-search-forward
+                   "[({]\\([^[:space:])]\\)"
+                   end t)
+             (toby/make-overlay (match-beginning 0) (match-beginning 1)
+                                'toby-open-parenthesis))
 
-         (goto-char beg)
-         (while (re-search-forward
-                 "\\([^[:space:](]\\)[)}]"
-                 end t)
-           (toby/make-overlay (match-end 1) (match-end 0)
-                              'toby-close-parenthesis))
+           (goto-char beg)
+           (while (re-search-forward
+                   "\\([^[:space:](]\\)[)}]"
+                   end t)
+             (toby/make-overlay (match-end 1) (match-end 0)
+                                'toby-close-parenthesis))
 
-         (goto-char beg)
-         (while (re-search-forward
-                 "[^[:space:]]\\(=>\\)[^[:space:]]"
-                 end t)
-           (toby/make-overlay (match-beginning 1) (match-end 1)
-                              'toby-rocket)))))
+           (goto-char beg)
+           (while (re-search-forward
+                   "[^[:space:]]\\(=>\\)[^[:space:]]"
+                   end t)
+             (toby/make-overlay (match-beginning 1) (match-end 1)
+                                'toby-rocket)))))
 
-   (defun toby/make-sloppy (beg end)
-     "Return the region to its unfriendly state."
-     (interactive "r")
-     (dolist (o (overlays-in beg end))
-       (when (toby/my-overlay-p o)
-         (delete-overlay o))))
+     (defun toby/make-sloppy (beg end)
+       "Return the region to its unfriendly state."
+       (interactive "r")
+       (dolist (o (overlays-in beg end))
+         (when (toby/my-overlay-p o)
+           (delete-overlay o))))
 
-   (defun toby/on-change (beg end)
-     "After change hook to update overlays"
-     (let ((beg-line (save-excursion (goto-char beg) (line-beginning-position)))
-           (end-line (save-excursion (goto-char end) (line-end-position))))
-       (toby/make-sloppy beg-line end-line)
-       (toby/make-roomy beg-line end-line)))
+     (defun toby/on-change (beg end)
+       "After change hook to update overlays"
+       (let ((beg-line (save-excursion (goto-char beg) (line-beginning-position)))
+             (end-line (save-excursion (goto-char end) (line-end-position))))
+         (toby/make-sloppy beg-line end-line)
+         (toby/make-roomy beg-line end-line)))
    #+END_SRC
 
 ** The Mode
 
    Finally, I create the minor-mode to house all of this.
    #+BEGIN_SRC emacs-lisp
-   (define-minor-mode toby-mode
-     "Customization minor mode for ME"
-     :lighter " π"
-     :global t
-     :keymap *tobys-mode-map*)
+     (define-minor-mode toby-mode
+       "Customization minor mode for ME"
+       :lighter " π"
+       :global t
+       :keymap *tobys-mode-map*)
 
-   (define-minor-mode global-toby-mode
-     "Toggle Toby Mode globally"
-     :lighter " π"
-     :global t
-     :keymap *tobys-mode-map*
-     (save-excursion
-       (save-restriction
-         (widen)
-         (toby/make-sloppy (point-min) (point-max))
-         (if global-toby-mode
-             (jit-lock-register 'toby/on-change)
-           (jit-lock-unregister 'toby/on-change)))))
+     (define-minor-mode global-toby-mode
+       "Toggle Toby Mode globally"
+       :lighter " π"
+       :global t
+       :keymap *tobys-mode-map*)
+
+     ;; for auto-roomy:
+     ;; (save-excursion
+     ;;  (save-restriction
+     ;;    (widen)
+     ;;    (toby/make-sloppy (point-min) (point-max))
+     ;;    (if global-toby-mode
+     ;;        (jit-lock-register 'toby/on-change)
+     ;;      (jit-lock-unregister 'toby/on-change))))
    #+END_SRC
 
 #+BEGIN_SRC emacs-lisp

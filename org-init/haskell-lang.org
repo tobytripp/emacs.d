@@ -115,6 +115,7 @@
         (add-hook 'haskell-mode-hook 'structured-haskell-mode)
 
         (require-package 'flycheck-haskell)
+        (require 'flycheck)
         (add-hook 'flycheck-mode-hook #'flycheck-haskell-setup)
 
         (require-package 'intero)

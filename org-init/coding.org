@@ -213,16 +213,43 @@
      (setq mode-compile-always-save-buffer-p t)
      (setq compilation-window-height 12)
 
+     (defvar toby/before-compile-window-configuration nil
+       "Window configuration to restore if compile succeeds")
+     (make-variable-buffer-local 'toby/before-compile-window-configuration)
+     (defvar toby/current-compiling-buffer nil
+       "The buffer that was last compiling.")
+
+     (defun toby/erase-current-buffer-window-config ()
+       (setq toby/before-compile-window-configuration nil))
+
+     (defun toby/restore-windows ()
+       "Restore window-configuration if non-nil"
+       (set-buffer toby/current-compiling-buffer)
+       (let ((config (buffer-local-value
+                      'toby/current-buffer-window-configuration
+                      toby/current-compiling-buffer)))
+         (when config
+           (set-window-configuration config)
+           (toby/erase-current-buffer-window-config))))
+
      (defun toby/on-finish-compile (buf str)
        "If compilation completes without errors, close the compilation
      after a short wait."
        (unless (string-match "exited abnormally" str)
-         (run-at-time
-          "2 sec" nil 'delete-windows-on
-          (get-buffer-create "*compilation*"))
+         (run-at-time "2 sec" nil #'toby/restore-windows)
          (message "No Compilation Errors!")))
 
-     (setq compilation-finish-function #'toby/on-finish-compile)
+     (defun toby/restore-compile (orig-fn &rest args)
+       "Capture the current window configuration before compilation starts."
+       (setq toby/current-buffer-window-configuration (current-window-configuration))
+       (setq toby/current-compiling-buffer (current-buffer))
+       (apply orig-fn args))
+
+     (advice-add #'compile :around
+                 #'toby/restore-compile
+                 '((name . "restore-compile-window-advice")))
+
+     (add-hook 'compilation-finish-functions #'toby/on-finish-compile)
 
      (global-set-key [f12] 'compile)
    #+END_SRC

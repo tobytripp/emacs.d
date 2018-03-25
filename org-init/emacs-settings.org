@@ -276,17 +276,6 @@
      (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
    #+END_SRC
 
-** ADOPTED Which-Key Mode
-
-   - State "ADOPTED"    from "REJECTED"   [2017-07-06 Thu 14:31]
-   - State "REJECTED"   from "EXPERIMENTAL" [2017-07-06 Thu 14:31]
-   - State "EXPERIMENTAL" from              [2017-07-06 Thu 14:31]
-
-   #+BEGIN_SRC emacs-lisp
-     (require-package 'which-key)
-     (which-key-mode)
-   #+END_SRC
-
 ** Configuration
 
    #+BEGIN_SRC emacs-lisp

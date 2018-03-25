@@ -118,40 +118,91 @@
      (setq projectile-mode-line nil)
    #+END_SRC
 
-** Fuzzy Matching of File and Command Names
-   Fuzzy matching is brought in with the =flx= package.
+** Command Completion
+** ADOPTED Which-Key Mode
+
+   - State "ADOPTED"    from "REJECTED"   [2017-07-06 Thu 14:31]
+   - State "REJECTED"   from "EXPERIMENTAL" [2017-07-06 Thu 14:31]
+   - State "EXPERIMENTAL" from              [2017-07-06 Thu 14:31]
+
+   After a short pause, displays command key hints in the mini-buffer.
    #+BEGIN_SRC emacs-lisp
-     (require-package 'flx-ido)
-     (require 'flx-ido)
-
-     (ido-mode 1)
-     (ido-everywhere 1)
-     (flx-ido-mode 1)
-
-     (setq ido-enable-flex-matching t)
-     (setq ido-use-faces t)
+     (require-package 'which-key)
+     (which-key-mode)
    #+END_SRC
 
-   [[https://github.com/nonsequitur/smex][SMEX]] shows recently used
-   commands on the =M-x= prompt:
 
-   #+BEGIN_QUOTE
-   Smex is a M-x enhancement for Emacs. Built on top of Ido, it
-   provides a convenient interface to your recently and most
-   frequently used commands. And to all the other commands, too.
-   #+END_QUOTE
+*** TODO Ivy + Counsel + Swipe
 
-   #+BEGIN_SRC emacs-lisp
-     (require-package 'smex)
-     (smex-initialize)
+    - [[https://github.com/abo-abo/swiper][GitHub Page]]
 
-     (setq smex-save-file (concat user-emacs-directory ".smex-items"))
-     (global-set-key (kbd "M-x") 'smex)
-     (global-set-key (kbd "C-c x") 'smex-major-mode-commands)
+*** EXPERIMENTAL Helm
 
-     ;; Make `super` + x the same as Meta-x:
-     (global-set-key (kbd "s-x") 'smex)
-   #+END_SRC
+    - State "EXPERIMENTAL" from              [2018-03-24 Sat 11:54]
+
+    - Emacs incremental completion and selection narrowing framework
+      - [[https://emacs-helm.github.io/helm/][emacs-helm]]
+      - Helm dependencies:
+        - [[https://github.com/jwiegley/emacs-async][async]]
+        - [[https://github.com/auto-complete/popup-el][popup-el]]
+
+    #+BEGIN_SRC emacs-lisp
+      (add-to-list 'package-pinned-packages
+                   '(helm . "melpa-stable") t)
+      (require-package 'helm)
+
+      (global-set-key (kbd "M-x") 'helm-M-x)
+      (global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
+      (global-set-key (kbd "C-x C-f") #'helm-find-files)
+      (helm-mode 1)
+
+      (setq helm-M-x-fuzzy-match t)
+      (setq helm-etags-fuzzy-match t)
+
+      (require-package 'linum-ralative)
+      (helm-linum-relative-mode 1)
+
+      (require-package 'helm-company)
+      (eval-after-load 'company
+        '(progn
+           (define-key company-mode-map (kbd "C-:") 'helm-company)
+           (define-key company-active-map (kbd "C-:") 'helm-company)))
+    #+END_SRC
+
+*** Ido (What I used to use)
+    Fuzzy matching is brought in with the =flx= package.
+    #+BEGIN_SRC emacs-lisp :tangle no
+      (require-package 'flx-ido)
+      (require 'flx-ido)
+
+      (ido-mode 1)
+      (ido-everywhere 1)
+      (flx-ido-mode 1)
+
+      (setq ido-enable-flex-matching t)
+      (setq ido-use-faces t)
+    #+END_SRC
+
+    [[https://github.com/nonsequitur/smex][SMEX]] shows recently used
+    commands on the =M-x= prompt:
+
+    #+BEGIN_QUOTE
+    Smex is a M-x enhancement for Emacs. Built on top of Ido, it
+    provides a convenient interface to your recently and most
+    frequently used commands. And to all the other commands, too.
+    #+END_QUOTE
+
+    #+BEGIN_SRC emacs-lisp :tangle no
+      (require-package 'smex)
+      (smex-initialize)
+
+      (setq smex-save-file (concat user-emacs-directory ".smex-items"))
+      (global-set-key (kbd "M-x") 'smex)
+      (global-set-key (kbd "C-c x") 'smex-major-mode-commands)
+
+      ;; Make `super` + x the same as Meta-x:
+      (global-set-key (kbd "s-x") 'smex)
+    #+END_SRC
 
 ** Open Recent Files
    Enable “Open Recent” and give it a keybinding:

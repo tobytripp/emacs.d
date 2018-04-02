@@ -16,11 +16,14 @@ Source:
   https://github.com/purcell/emacs.d/blob/master/lisp/init-elpa.el"
   (if (package-installed-p package minimum-version)
       t
-    (if (or (assoc package package-archive-contents) no-refresh)
-	(package-install package)
-      (progn
-	(package-refresh-contents)
-	(require-package package minimum-version t)))))
+    (condition-case package-error
+        (if (or (assoc package package-archive-contents) no-refresh)
+            (package-install package)
+          (progn
+            (package-refresh-contents)
+            (require-package package minimum-version t)))
+      (error (message "Could not install package %s: %s"
+                      package package-error)))))
 
 (package-initialize)
 

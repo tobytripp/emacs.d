@@ -77,11 +77,11 @@
    - end-of-buffer
 
 ** Major Mode
-
    #+BEGIN_SRC emacs-lisp
      (require-package 'haskell-mode "20171022.0" 'haskell-mode)
    #+END_SRC
 
+*** TODO Install Haskell-Stack before installing emacs package
 ** Minor-Modes
 
    #+header: :var keys=haskell-key-bindings

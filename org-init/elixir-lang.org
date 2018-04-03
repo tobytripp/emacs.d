@@ -9,18 +9,15 @@
    - Packages
      #+BEGIN_SRC emacs-lisp
        (require-package 'smartparens)
-       (require-package 'alchemist)
+       (require-package 'alchemist "20180312.604" 'alchemist-mode "alchemist")
        (add-to-list 'package-pinned-packages
                     '(alchemist . "melpa-stable") t)
 
-       (require-package 'elixir-mode)
+       (require-package 'elixir-mode "20170918.2231" 'elixir-mode)
        (add-to-list 'package-pinned-packages
                     '(elixir-mode . "melpa-stable") t)
 
-       (require-package 'elixir-yasnippets)
-
-       (autoload 'alchemist-mode "alchemist" "Mode for elixir code" t)
-       (autoload 'elixir-mode    "elixir-mode" "Mode for elixir code" t)
+       (require-package 'elixir-yasnippets "20150417.539")
 
        (add-to-list 'auto-mode-alist '("\\.exs?$" . elixir-mode))
 

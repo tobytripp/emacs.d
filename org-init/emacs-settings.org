@@ -248,8 +248,9 @@
 
 ** Kill-Ring
    #+BEGIN_SRC emacs-lisp
-   (require-package 'browse-kill-ring)
-   (browse-kill-ring-default-keybindings)
+     (require-package 'browse-kill-ring "20171219.11"
+                      'browse-kill-ring-default-keybindings "browse-kill-ring")
+     (browse-kill-ring-default-keybindings)
    #+END_SRC
 
 ** iSearch

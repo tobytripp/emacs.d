@@ -7,7 +7,6 @@
 ** Load Package
 
    #+BEGIN_SRC emacs-lisp
-     (require-package 'elm-mode)
-     (autoload 'elm-mode "elm-mode" "Major mode for Elm" t)
+     (require-package 'elm-mode "20180114.9")
      (add-to-list 'auto-mode-alist '("\\.elm$" . elm-mode))
    #+END_SRC

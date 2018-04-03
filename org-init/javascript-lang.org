@@ -49,15 +49,17 @@
       (add-to-list 'load-path (concat vendor-dir "tern/emacs"))
       (autoload 'tern-mode "tern.el" nil t)
 
-      (require-package 'company-tern)
-      (add-to-list 'company-backends 'company-tern)
+      (require-package 'company-tern "20161004.11")
+      (eval-after-load 'company
+        '(progn
+           (add-to-list 'company-backends 'company-tern)))
     #+END_SRC
 
 *** Javascript editing modes
 
     #+BEGIN_SRC emacs-lisp
-      (require-package 'js-comint)
-      (require-package 'js2-mode)
+      (require-package 'js-comint "20171129.20" 'run-js "js-comint")
+      (require-package 'js2-mode "20180331.22" 'js2-mode)
 
       (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
       (add-hook 'js-mode-hook 'js2-minor-mode)

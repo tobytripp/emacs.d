@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t -*-
 (require 'package)
 
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
@@ -13,6 +14,7 @@ packages that cannot be found in any of the archives.
 
 Source:
   https://github.com/purcell/emacs.d/blob/master/lisp/init-elpa.el"
+  (interactive)
   (if (package-installed-p package minimum-version) t
     (condition-case package-error
         (if (or (assoc package package-archive-contents) no-refresh)
@@ -25,10 +27,11 @@ Source:
 
 (defun require-package (package &optional minimum-version func loadfile)
   "Install the given PACKAGE.
-Optionally, require a MINIMUM-VERSION of PACKAGE.
+Optionally, require a MINIMUM-VERSION (see ‘version-to-list’) of PACKAGE.
 If FUNCTION is specified, install or load PACKAGE lazily when
-FUNCTION is called.  See ‘autoload'.  If FUNCTION is not
-specified, PACKAGE is used."
+FUNCTION is called.  See ‘autoload'.
+If FUNCTION is not specified, the package is installed
+immediately and no other action is taken."
   (let* ((minver (cond
 		  ((stringp minimum-version) (version-to-list minimum-version))
 		  ((listp minimum-version)   minimum-version)
@@ -36,14 +39,21 @@ specified, PACKAGE is used."
 	 (fname (cond
 		 ((stringp func) (intern func))
 		 ((and func (symbolp func)) func)
-		 (package))))
+		 nil)))
     (if (package-installed-p package minver)
-        (autoload fname (or loadfile (symbol-name fname)))
-      (defalias fname
-        (lambda ()
-          (do-install-package package minver)
-          (fmakunbound fname)
-          (require package))))))
+        (if fname
+            (autoload fname (or loadfile (symbol-name fname)))
+          (require package))
+      (if fname
+          (defalias fname
+            (lambda (&rest args)
+              "Install, require, and run command"
+              (interactive)
+              (fmakunbound fname)
+              (do-install-package package minver)
+              (with-demoted-errors "Failed to ‘require’ package: %S" (require package))
+              (if (list args) (apply fname args)
+                (apply fname))))
+        (do-install-package package minver)))))
 
-(require-package 'yaml-mode)
 (provide 'init-packages)

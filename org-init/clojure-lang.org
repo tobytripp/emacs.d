@@ -46,9 +46,7 @@
    Set-up some local key-bindings.  This will pull in =clojure-mode= as well.
 
    #+BEGIN_SRC emacs-lisp
-     (require-package 'clojure-mode (version-to-list "5.6.1"))
-     (autoload 'clojure-mode "clojure-mode" "Major mode for clojure")
-     (autoload 'cider-mode "cider-mode" "Minor mode for live clojure development")
+     (require-package 'clojure-mode "5.6.1" 'clojure-mode "clojure-mode")
 
      (defun toby/cider-onload ()
        (require-package 'cider-eval-sexp-fu (version-to-list "1.1"))
@@ -98,8 +96,7 @@
     - State "ADOPTED"    from    [2018-02-05 Mon 10:09]
 
     #+BEGIN_SRC emacs-lisp
-      (require-package 'clj-refactor (version-to-list "2.3.1"))
-      (autoload 'clj-refactor "clj-refactor-mode")
+      (require-package 'clj-refactor "2.3.1" 'clj-refactor "clj-refactor-mode")
     #+END_SRC
 
 *** Set-up General Lisp Key-Bindings
@@ -187,7 +184,7 @@
 
     #+BEGIN_SRC emacs-lisp
       (defun toby/clojure-onload ()
-        (require-package 'cider (version-to-list "0.15.1"))
+        (require-package 'cider "0.15.1" 'cider-mode "cider")
         (define-key clojure-mode-map (kbd "<C-down>") 'forward-sexp)
         (define-key clojure-mode-map (kbd "<C-up>")   'backward-sexp)
         (define-key clojure-mode-map (kbd "C-c C-d o") 'toby/clojuredocs-web))
@@ -197,5 +194,5 @@
 
 
 #+BEGIN_SRC emacs-lisp :exports none
-(provide 'clojure-init)
+(provide 'clojure-lang)
 #+END_SRC

@@ -132,21 +132,64 @@
    #+END_SRC
 
 
-*** TODO Ivy + Counsel + Swipe
+*** EXPERIMENTAL Ivy + Counsel + Swipe
 
+    - State "EXPERIMENTAL" from "TODO"       [2018-04-03 Tue 08:15]
     - [[https://github.com/abo-abo/swiper][GitHub Page]]
 
-*** EXPERIMENTAL Helm
+    #+BEGIN_SRC emacs-lisp
+      (require-package 'ivy "0.10.0" 'ivy-mode "ivy")
+      (require-package 'counsel "20180328.0" 'counsel-mode "counsel")
+      (ivy-mode 1)
 
-    - State "EXPERIMENTAL" from              [2018-03-24 Sat 11:54]
+      (eval-after-load 'ivy
+        '(progn
+           (counsel-mode 1)
+           (setq ivy-use-virtual-buffers t)
+           (setq enable-recursive-minibuffers t)
+           (global-set-key (kbd "C-c C-r") 'ivy-resume)
 
-    - Emacs incremental completion and selection narrowing framework
+           ;; Prevent TAB from selecting only candidate
+           (define-key ivy-minibuffer-map (kbd "TAB") 'ivy-partial)
+
+           (setq magit-completing-read-function 'ivy-completing-read)
+           (setq projectile-completion-system 'ivy)
+     
+           (global-set-key "\C-s" 'swiper)
+           (setq ivy-re-builders-alist
+                 '((swiper . ivy--regex)
+                   (t . ivy--regex-plus)))
+           ))
+    #+END_SRC
+
+    - How to do what C-w does in Isearch?
+      #+BEGIN_QUOTE
+      In Isearch, pressing =C-w= will insert the word-at-point into the
+      minibuffer.
+
+      The same can be done in Ivy with =M-j= =(ivy-yank-word)= for any
+      command, not just swiper.
+
+      On a related note, you can paste symbol-at-point into the search with
+      =M-n=, which is a common case for using =C-w= in Isearch.
+      #+END_QUOTE
+
+*** REJECTED Helm
+
+    + State "REJECTED"   from "EXPERIMENTAL" [2018-04-02 Mon 21:24]
+      * Alien navigation
+        1. eschews minibuffer
+        2. confuses use of TAB
+        3. breaks org-refile
+    + State "EXPERIMENTAL" from              [2018-03-24 Sat 11:54]
+
+    + Emacs incremental completion and selection narrowing framework
       - [[https://emacs-helm.github.io/helm/][emacs-helm]]
       - Helm dependencies:
         - [[https://github.com/jwiegley/emacs-async][async]]
         - [[https://github.com/auto-complete/popup-el][popup-el]]
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle no
       (add-to-list 'package-pinned-packages
                    '(helm . "melpa-stable") t)
       (require-package 'helm)

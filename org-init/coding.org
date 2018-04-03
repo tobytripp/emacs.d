@@ -169,10 +169,7 @@
    - State "REJECTED"   from "ADOPTED"    [2017-09-21 Thu 14:26]
    - State "ADOPTED"    from              [2017-09-21 Thu 14:26]
    #+BEGIN_SRC emacs-lisp
-     (require-package 'mmm-mode)
-     (require 'mmm-auto)
-     (setq mmm-global-mode 'maybe)
-     (setq mmm-submode-decoration-level 1)
+     (require-package 'mmm-mode "0.5.6")
 
      (defun toby/heredoc-get-mode (string)
        (message string)
@@ -183,6 +180,9 @@
 
      (eval-after-load 'mmm-mode
        '(progn
+          (require 'mmm-auto)
+          (setq mmm-global-mode 'maybe)
+          (setq mmm-submode-decoration-level 1)
           (mmm-add-classes
            '((toby/heredoc
               :match-submode toby/heredoc-get-mode
@@ -192,9 +192,10 @@
               :save-matches 1
               :back "^[ \t]*~1$"
               :delimeter-mode nil)))
-          (mmm-add-mode-ext-class 'ruby-mode "\\.rb\\'" 'toby/heredoc)))
+          (mmm-add-mode-ext-class 'ruby-mode "\\.rb\\'" 'toby/heredoc)
+          (add-to-list 'mmm-set-file-name-for-modes 'ruby-mode)))
 
-     (add-to-list 'mmm-set-file-name-for-modes 'ruby-mode)
+
    #+END_SRC
 
 ** REJECTED Lenticular (multi-view) Coding

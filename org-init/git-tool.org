@@ -39,7 +39,7 @@
    #+END_QUOTE
 
    #+BEGIN_SRC emacs-lisp
-     (require-package 'magit)
+     (require-package 'magit "20180401.0" 'magit-status "magit")
      (require-package 'fullframe)
 
      (eval-after-load "magit"

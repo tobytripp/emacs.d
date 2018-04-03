@@ -79,8 +79,7 @@
 ** Major Mode
 
    #+BEGIN_SRC emacs-lisp
-     (require-package 'haskell-mode)
-     (autoload 'haskell-mode "haskell-mode")
+     (require-package 'haskell-mode "20171022.0" 'haskell-mode)
    #+END_SRC
 
 ** Minor-Modes

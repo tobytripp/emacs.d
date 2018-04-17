@@ -1,6 +1,8 @@
-# -*- mode: snippet -*-
+# -*- mode: snippet; require-final-newline: nil -*-
 # name: \begin{*}
 # key: begin
+# expand-env: ((yas-indent-line 'fixed))
+# group: environments
 # --
 \begin{${1:tag}}
 $0

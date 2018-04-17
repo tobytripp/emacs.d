@@ -36,25 +36,21 @@
      (require 'ob)
 
      (add-to-list 'org-babel-tangle-lang-exts '("clojure" . "clj"))
-     (add-to-list 'org-babel-tangle-lang-exts '("haskell" . "hs"))
      (add-to-list 'org-babel-tangle-lang-exts '("elixir" . "exs"))
 
      (defun toby/babel-hook ()
-                 (condition-case nil
-                     (org-display-inline-images)
-                   (error nil)))
+       (condition-case nil
+           (org-display-inline-images)
+         (error nil)))
 
      (add-hook 'org-babel-after-execute-hook
                'toby/babel-hook
                'append)
 
-     (require-package 'ob-elixir)
-
      (require 'ob-shell)
      (require 'ob-ruby)
      (require 'ob-sql)
      (require 'ob-clojure)
-     (require 'ob-elixir)
 
      (org-babel-do-load-languages
       'org-babel-load-languages
@@ -67,8 +63,6 @@
                   '("el"  "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC" "<src lang=\"?\">\n\n</src>"))
      (add-to-list 'org-structure-template-alist
                   '("pg"  "#+BEGIN_SRC sql :engine postgresql\n?\n#+END_SRC" "<src lang=\"?\">\n\n</src>"))
-     (add-to-list 'org-structure-template-alist
-                  '("hs"  "#+BEGIN_SRC haskell\n?\n#+END_SRC" "<src lang=\"?\">\n\n</src>"))
    #+END_SRC
 
    #+RESULTS:
@@ -129,29 +123,6 @@
        (appt-activate 1)
        (add-hook 'diary-list-entries-hook 'diary-sort-entries t)
      #+END_SRC
-** Literate Haskell
-
-   Automatically load and run Haskell code after it's been “tangeled”
-   (had the source code parsed out into source files).
-
-   Tangle with:
-     C-c C-v t  (org-babel-tangle)
-   #+BEGIN_SRC emacs-lisp
-          (defun toby/tangle-and-run ()
-            (cond
-             ((eq 'haskell-mode major-mode)
-              (message "Loading tangled buffer in haskell mode!")
-              (inferior-haskell-load-file)
-              (switch-to-haskell))
-             ((eq 'clojure-mode major-mode)
-              (message "Loading tangled buffer in cider mode!")
-              (cider-load-buffer)
-              (cider-switch-to-relevant-repl-buffer))))
-
-          (add-hook 'org-babel-post-tangle-hook 'toby/tangle-and-run)
-          (define-key org-mode-map (kbd "<f6>") 'org-babel-tangle)
-   #+END_SRC
-
 ** Org-Mode Presentations
 
 *** REJECTED Security Vulerabilities in js Dependencies

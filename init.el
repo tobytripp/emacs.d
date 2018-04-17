@@ -4,16 +4,13 @@
 (defvar lib-dir (concat dotfiles-dir "elisp/"))
 (add-to-list 'load-path lib-dir)
 (add-to-list 'load-path "/usr/local/share/emacs/site-lisp")
-;; (setq debug-on-error t)
 
 (require 'init-packages)
 
 (unless package-archive-contents    ;; Refresh the packages descriptions
   (package-refresh-contents))
 
-(unless (package-installed-p 'org-plus-contrib)  ;; Make sure the Org package is
-  (package-install 'org-plus-contrib))           ;; installed, install it if not
-
+(do-install-package 'org-plus-contrib (version-to-list "9.1.9"))
 (require 'org-install)
 (require 'ob-tangle)
 

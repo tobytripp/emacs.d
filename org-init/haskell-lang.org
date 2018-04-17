@@ -124,6 +124,37 @@
       (eval-after-load 'haskell-mode #'toby/on-load-haskell)
     #+END_SRC
 
+** Literate Haskell
+
+   Automatically load and run Haskell code after it's been “tangeled”
+   (had the source code parsed out into source files).
+
+   Tangle with:
+     C-c C-v t  (org-babel-tangle)
+
+   #+BEGIN_SRC emacs-lisp
+     (defun toby/tangle-and-run ()
+       (cond
+        ((eq 'haskell-mode major-mode)
+         (message "Loading tangled buffer in haskell mode!")
+         (inferior-haskell-load-file)
+         (switch-to-haskell))
+        ((eq 'clojure-mode major-mode)
+         (message "Loading tangled buffer in cider mode!")
+         (cider-load-buffer)
+         (cider-switch-to-relevant-repl-buffer))))
+
+     (eval-after-load 'haskell-mode
+       '(progn
+          (add-to-list 'org-babel-tangle-lang-exts '("haskell" . "hs"))
+          (add-to-list 'org-structure-template-alist
+                       '("hs"  "#+BEGIN_SRC haskell\n?\n#+END_SRC" "<src lang=\"?\">\n\n</src>"))
+          (add-hook 'org-babel-post-tangle-hook 'toby/tangle-and-run)))
+
+     (define-key org-mode-map (kbd "<f6>") 'org-babel-tangle)
+   #+END_SRC
+
+
 ** Hooks
    #+name: haskell-hooks
    #+BEGIN_SRC emacs-lisp

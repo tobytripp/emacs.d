@@ -1,43 +1,49 @@
 #+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
 * Elixir
 ** Installation
-   - Runtime
-     #+BEGIN_SRC sh :tangle no
-       brew install elixir
-     #+END_SRC
+*** Runtime
+    #+BEGIN_SRC sh :tangle no
+      brew install elixir
+    #+END_SRC
+**** TODO Auto-install run-time on package installation
+**** TODO Provide docker-compose set-up in lieu of host install
 
-   - Packages
-     #+BEGIN_SRC emacs-lisp
-       (require-package 'smartparens)
-       (require-package 'alchemist "20180312.604" 'alchemist-mode "alchemist")
-       (add-to-list 'package-pinned-packages
-                    '(alchemist . "melpa-stable") t)
+*** Packages
+    #+BEGIN_SRC emacs-lisp
+      (require-package 'smartparens)
+      (require-package 'alchemist "20180312.604" 'alchemist-mode "alchemist")
+      (add-to-list 'package-pinned-packages
+                   '(alchemist . "melpa-stable") t)
 
-       (require-package 'elixir-mode "20170918.2231" 'elixir-mode)
-       (add-to-list 'package-pinned-packages
-                    '(elixir-mode . "melpa-stable") t)
+      (require-package 'elixir-mode "20170918.2231" 'elixir-mode)
+      (add-to-list 'package-pinned-packages
+                   '(elixir-mode . "melpa-stable") t)
 
-       (require-package 'elixir-yasnippets "20150417.539")
+      (eval-after-load 'elixir-mode
+        '(progn
+           (require-package 'elixir-yasnippets "20150417.539")
+           (require-package 'ob-elixir) 
+           ))
 
-       (add-to-list 'auto-mode-alist '("\\.exs?$" . elixir-mode))
+      (add-to-list 'auto-mode-alist '("\\.exs?$" . elixir-mode))
 
-       (defun toby/elixir-init ()
-         (alchemist-mode t)
-         (company-mode t)
-         (linum-mode t)
-         (toby/activate-structured-editing nil))
+      (defun toby/elixir-init ()
+        (alchemist-mode t)
+        (company-mode t)
+        (linum-mode t)
+        (toby/activate-structured-editing nil))
 
-       (defun remove-dos-eol ()
-         "Do not show ^M in files containing mixed line-endings"
-         (setq buffer-display-table (make-display-table))
-         (aset buffer-display-table ?\^M []))
+      (defun remove-dos-eol ()
+        "Do not show ^M in files containing mixed line-endings"
+        (setq buffer-display-table (make-display-table))
+        (aset buffer-display-table ?\^M []))
 
-       (add-hook 'elixir-mode-hook 'toby/elixir-init)
-       (add-hook 'alchemist-test-mode-hook 'remove-dos-eol)
-     #+END_SRC
+      (add-hook 'elixir-mode-hook 'toby/elixir-init)
+      (add-hook 'alchemist-test-mode-hook 'remove-dos-eol)
+    #+END_SRC
 
-     #+RESULTS:
-     | alchemist-mode-hook | toby/elixir-init |
+    #+RESULTS:
+    | alchemist-mode-hook | toby/elixir-init |
 
 ** Alchemist Mode Commands
 

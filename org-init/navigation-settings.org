@@ -65,7 +65,6 @@
 
       #+BEGIN_SRC emacs-lisp
         (require-package 'neotree)
-        (autoload 'neotree "neotree" "Directory tree listing")
       #+END_SRC
 
       #+RESULTS:
@@ -130,7 +129,10 @@
      (require-package 'which-key)
      (which-key-mode)
    #+END_SRC
-
+*** Hydra
+    #+BEGIN_SRC emacs-lisp
+      (require-package 'hydra "0.14.0")
+    #+END_SRC
 
 *** EXPERIMENTAL Ivy + Counsel + Swipe
 
@@ -144,17 +146,20 @@
 
       (eval-after-load 'ivy
         '(progn
+           (require-package 'ivy-hydra "20180208.912")
+           (require 'ivy-hydra)
            (counsel-mode 1)
            (setq ivy-use-virtual-buffers t)
            (setq enable-recursive-minibuffers t)
            (global-set-key (kbd "C-c C-r") 'ivy-resume)
+           (global-set-key (kbd "M-x") 'counsel-M-x)
 
            ;; Prevent TAB from selecting only candidate
            (define-key ivy-minibuffer-map (kbd "TAB") 'ivy-partial)
 
            (setq magit-completing-read-function 'ivy-completing-read)
            (setq projectile-completion-system 'ivy)
-     
+
            (global-set-key "\C-s" 'swiper)
            (setq ivy-re-builders-alist
                  '((swiper . ivy--regex)

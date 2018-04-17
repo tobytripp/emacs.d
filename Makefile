@@ -3,6 +3,7 @@ EMACS=/usr/local/bin/emacsclient
 HTML_BRANCH=gh-pages
 GIT=/usr/local/bin/git
 DL_PATH=$(CONFIG_PATH)/tmp/
+SUFFIXES: .el .pass
 
 all: config-site
 
@@ -33,8 +34,13 @@ clean:
            $(CONFIG_PATH)/org-init/*.elc \
            $(CONFIG_PATH)/elisp/*.elc
 
+test: test/basic.pass
+
+.el.pass:
+	$(TEST) --batch -l $< && touch $@
+
 clobber: clean
 	brew cask uninstall emacs || \
 	brew uninstall --ignore-dependencies --force emacs
 
-.PHONY: all config-site clean install clobber
+.PHONY: all config-site clean install clobber test

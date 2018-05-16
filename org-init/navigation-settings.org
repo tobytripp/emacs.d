@@ -45,10 +45,11 @@
       (require 'dired-x)
     #+END_SRC
 
-*** EXPERIMENTAL dired-hacks
+*** REJECTED dired-hacks
+    - State "REJECTED"   from "EXPERIMENTAL" [2018-04-17 Tue 15:04]
     - State "EXPERIMENTAL" from "TODO"       [2018-03-15 Thu 18:58]
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle no
       (require-package 'dired-subtree)
       (require 'dired-subtree)
       (if (fboundp 'dired-subtree-insert)
@@ -129,128 +130,306 @@
      (require-package 'which-key)
      (which-key-mode)
    #+END_SRC
-*** Hydra
-    #+BEGIN_SRC emacs-lisp
-      (require-package 'hydra "0.14.0")
-    #+END_SRC
-
-*** EXPERIMENTAL Ivy + Counsel + Swipe
-
-    - State "EXPERIMENTAL" from "TODO"       [2018-04-03 Tue 08:15]
-    - [[https://github.com/abo-abo/swiper][GitHub Page]]
+** Hydra
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'hydra "0.14.0")
+   #+END_SRC
+*** Buffer-Menu
 
     #+BEGIN_SRC emacs-lisp
-      (require-package 'ivy "0.10.0" 'ivy-mode "ivy")
-      (require-package 'counsel "20180328.0" 'counsel-mode "counsel")
-      (ivy-mode 1)
+      (defhydra hydra-buffer-menu (:color pink
+                                   :hint nil)
+        "
+      ^Mark^             ^Unmark^           ^Actions^          ^Search
+      ^^^^^^^^-----------------------------------------------------------------                        (__)
+      _m_: mark          _u_: unmark        _x_: execute       _R_: re-isearch                         (oo)
+      _s_: save          _U_: unmark up     _b_: bury          _I_: isearch                      /------\\/
+      _d_: delete        ^ ^                _g_: refresh       _O_: multi-occur                 / |    ||
+      _D_: delete up     ^ ^                _T_: files only: % -28`Buffer-menu-files-only^^    *  /\\---/\\
+      _~_: modified      ^ ^                ^ ^                ^^                                 ~~   ~~
+      "
+        ("m" Buffer-menu-mark)
+        ("u" Buffer-menu-unmark)
+        ("U" Buffer-menu-backup-unmark)
+        ("d" Buffer-menu-delete)
+        ("D" Buffer-menu-delete-backwards)
+        ("s" Buffer-menu-save)
+        ("~" Buffer-menu-not-modified)
+        ("x" Buffer-menu-execute)
+        ("b" Buffer-menu-bury)
+        ("g" revert-buffer)
+        ("T" Buffer-menu-toggle-files-only)
+        ("O" Buffer-menu-multi-occur :color blue)
+        ("I" Buffer-menu-isearch-buffers :color blue)
+        ("R" Buffer-menu-isearch-buffers-regexp :color blue)
+        ("c" nil "cancel")
+        ("v" Buffer-menu-select "select" :color blue)
+        ("o" Buffer-menu-other-window "other-window" :color blue)
+        ("q" quit-window "quit" :color blue))
 
-      (eval-after-load 'ivy
+      (define-key Buffer-menu-mode-map "." 'hydra-buffer-menu/body)
+    #+END_SRC
+
+    #+RESULTS:
+    : hydra-buffer-menu/body
+*** Rectangles
+
+    #+BEGIN_SRC emacs-lisp
+      (require 'rect)
+      (defhydra hydra-rectangle (:body-pre (rectangle-mark-mode 1)
+                                 :color pink
+                                 :post (deactivate-mark))
+        "
+        ^_k_^     _d_elete    _s_tring
+      _h_   _l_   _o_k        _y_ank
+        ^_j_^     _n_ew-copy  _r_eset
+      ^^^^        _e_xchange  _u_ndo
+      ^^^^        ^ ^         _p_aste
+      "
+        ("h" rectangle-backward-char nil)
+        ("l" rectangle-forward-char nil)
+        ("k" rectangle-previous-line nil)
+        ("j" rectangle-next-line nil)
+        ("e" hydra-ex-point-mark nil)
+        ("n" copy-rectangle-as-kill nil)
+        ("d" delete-rectangle nil)
+        ("r" (if (region-active-p)
+                 (deactivate-mark)
+               (rectangle-mark-mode 1)) nil)
+        ("y" yank-rectangle nil)
+        ("u" undo nil)
+        ("s" string-rectangle nil)
+        ("p" kill-rectangle nil)
+        ("o" nil nil))
+
+      (global-set-key (kbd "C-x SPC") 'hydra-rectangle/body)
+    #+END_SRC
+
+    #+RESULTS:
+    : hydra-rectangle/body
+
+*** Org Agenda
+
+    #+BEGIN_SRC emacs-lisp
+      (defun org-agenda-cts ()
+        (and (eq major-mode 'org-agenda-mode)
+             (let ((args (get-text-property
+                          (min (1- (point-max)) (point))
+                          'org-last-args)))
+               (nth 2 args))))
+
+      (eval-after-load 'org-agenda
         '(progn
-           (require-package 'ivy-hydra "20180208.912")
-           (require 'ivy-hydra)
-           (counsel-mode 1)
-           (setq ivy-use-virtual-buffers t)
-           (setq enable-recursive-minibuffers t)
-           (global-set-key (kbd "C-c C-r") 'ivy-resume)
-           (global-set-key (kbd "M-x") 'counsel-M-x)
+           (defhydra hydra-org-agenda-view (:hint none)
+             "
+      _d_: ?d? day        _g_: time grid=?g?  _a_: arch-trees
+      _w_: ?w? week       _[_: inactive       _A_: arch-files
+      _t_: ?t? fortnight  _f_: follow=?f?     _r_: clock report=?r?
+      _m_: ?m? month      _e_: entry text=?e? _D_: include diary=?D?
+      _y_: ?y? year       _q_: quit           _L__l__c_: log = ?l?"
+             ("SPC" org-agenda-reset-view)
+             ("d" org-agenda-day-view (if (eq 'day (org-agenda-cts)) "[x]" "[ ]"))
+             ("w" org-agenda-week-view (if (eq 'week (org-agenda-cts)) "[x]" "[ ]"))
+             ("t" org-agenda-fortnight-view (if (eq 'fortnight (org-agenda-cts)) "[x]" "[ ]"))
+             ("m" org-agenda-month-view (if (eq 'month (org-agenda-cts)) "[x]" "[ ]"))
+             ("y" org-agenda-year-view (if (eq 'year (org-agenda-cts)) "[x]" "[ ]"))
+             ("l" org-agenda-log-mode (format "% -3S" org-agenda-show-log))
+             ("L" (org-agenda-log-mode '(4)))
+             ("c" (org-agenda-log-mode 'clockcheck))
+             ("f" org-agenda-follow-mode (format "% -3S" org-agenda-follow-mode))
+             ("a" org-agenda-archives-mode)
+             ("A" (org-agenda-archives-mode 'files))
+             ("r" org-agenda-clockreport-mode (format "% -3S" org-agenda-clockreport-mode))
+             ("e" org-agenda-entry-text-mode (format "% -3S" org-agenda-entry-text-mode))
+             ("g" org-agenda-toggle-time-grid (format "% -3S" org-agenda-use-time-grid))
+             ("D" org-agenda-toggle-diary (format "% -3S" org-agenda-include-diary))
+             ("!" org-agenda-toggle-deadlines)
+             ("[" (let ((org-agenda-include-inactive-timestamps t))
+                    (org-agenda-check-type t 'timeline 'agenda)
+                    (org-agenda-redo)
+                    (message "Display now includes inactive timestamps as well")))
+             ("q" (message "Abort") :exit t)
+             ("v" nil))
 
-           ;; Prevent TAB from selecting only candidate
-           (define-key ivy-minibuffer-map (kbd "TAB") 'ivy-partial)
-
-           (setq magit-completing-read-function 'ivy-completing-read)
-           (setq projectile-completion-system 'ivy)
-
-           (global-set-key "\C-s" 'swiper)
-           (setq ivy-re-builders-alist
-                 '((swiper . ivy--regex)
-                   (t . ivy--regex-plus)))
-           ))
+           (define-key org-agenda-mode-map "v" 'hydra-org-agenda-view/body)))
     #+END_SRC
 
-    - How to do what C-w does in Isearch?
-      #+BEGIN_QUOTE
-      In Isearch, pressing =C-w= will insert the word-at-point into the
-      minibuffer.
+*** Smart-Parens
 
-      The same can be done in Ivy with =M-j= =(ivy-yank-word)= for any
-      command, not just swiper.
-
-      On a related note, you can paste symbol-at-point into the search with
-      =M-n=, which is a common case for using =C-w= in Isearch.
-      #+END_QUOTE
-
-*** REJECTED Helm
-
-    + State "REJECTED"   from "EXPERIMENTAL" [2018-04-02 Mon 21:24]
-      * Alien navigation
-        1. eschews minibuffer
-        2. confuses use of TAB
-        3. breaks org-refile
-    + State "EXPERIMENTAL" from              [2018-03-24 Sat 11:54]
-
-    + Emacs incremental completion and selection narrowing framework
-      - [[https://emacs-helm.github.io/helm/][emacs-helm]]
-      - Helm dependencies:
-        - [[https://github.com/jwiegley/emacs-async][async]]
-        - [[https://github.com/auto-complete/popup-el][popup-el]]
-
-    #+BEGIN_SRC emacs-lisp :tangle no
-      (add-to-list 'package-pinned-packages
-                   '(helm . "melpa-stable") t)
-      (require-package 'helm)
-
-      (global-set-key (kbd "M-x") 'helm-M-x)
-      (global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
-      (global-set-key (kbd "C-x C-f") #'helm-find-files)
-      (helm-mode 1)
-
-      (setq helm-M-x-fuzzy-match t)
-      (setq helm-etags-fuzzy-match t)
-
-      (require-package 'linum-ralative)
-      (helm-linum-relative-mode 1)
-
-      (require-package 'helm-company)
-      (eval-after-load 'company
+    #+BEGIN_SRC emacs-lisp
+      (eval-after-load 'smartparens-mode
         '(progn
-           (define-key company-mode-map (kbd "C-:") 'helm-company)
-           (define-key company-active-map (kbd "C-:") 'helm-company)))
+           (defhydra hydra-parens (:color pink)
+             "
+           ^Navigate^       ^Kill^       ^Manipulate^          ^Select^
+           ^^^^^^^^^^^^-----------------------------------------------------------
+             ^_u_^          _k_ill       _t_ranspose           _n_arrow to sexp
+           _a_ _b_ _f_ _e_  _w_: copy    _p_ush                _C-w_: select sexp
+             ^_d_^          _s_plice     _)_: forward-slurp    _m_: mark sexp
+                            _S_plit      _C-)_: slurp-hybrid   _ _: ok
+                            _j_oin       _(_: backward-slurp
+                            _D_: clone   _}_: forward-barf
+                                         _{_: backward-barf
+                                         _;_: comment sexp
+           "
+             ("f"   sp-forward-sexp         "forward")
+             ("b"   sp-backward-sexp        "backward")
+             ("a"   sp-beginning-of-sexp    "beginning")
+             ("e"   sp-end-of-sexp          "end")
+             ("u"   sp-up-sexp              "up")
+             ("d"   sp-down-sexp            "down")
+
+             ("k"   sp-kill-sexp            "kill")
+             ("w"   sp-copy-sexp            "copy")
+             ("s"   sp-splice-sexp          "splice")
+             ("S"   sp-split-sexp           "split")
+             ("j"   sp-join-sexp            "join")
+             ("D"   sp-clone-sexp           "clone")
+
+             ("t"   sp-transpose-sexp       "transpose")
+             ("p"   sp-push-hybrid-sexp     "push")
+             (")"   sp-forward-slurp-sexp   "()<-slurp")
+             ("C-)" sp-slurp-hybrid-sexp    "slurp hybrid")
+             ("("   sp-backward-slurp-sexp  "slurp->()")
+             ("}"   sp-forward-barf-sexp    "(barf)->")
+             ("{"   sp-backward-barf-sexp   "<-(barf)")
+             (";"   sp-comment              "comment")
+
+             ("n"   sp-narrow-to-sexp       "narrow")
+             ("C-w" sp-select-next-thing    "select")
+             ("m"   sp-mark-sexp            "mark")
+             (" " nil                       "ok"))
+
+           (global-unset-key (kbd "C-."))
+           (global-unset-key (kbd "C-,"))
+           (define-key flyspell-mode-map (kbd "C-.") nil)
+           (define-key flyspell-mode-map (kbd "C-,") nil)
+
+           (define-key smartparens-mode-map (kbd "C-.") 'hydra-parens/body)))
     #+END_SRC
 
-*** Ido (What I used to use)
-    Fuzzy matching is brought in with the =flx= package.
-    #+BEGIN_SRC emacs-lisp :tangle no
-      (require-package 'flx-ido)
-      (require 'flx-ido)
+    #+RESULTS:
 
-      (ido-mode 1)
-      (ido-everywhere 1)
-      (flx-ido-mode 1)
+** EXPERIMENTAL Ivy + Counsel + Swiper
 
-      (setq ido-enable-flex-matching t)
-      (setq ido-use-faces t)
-    #+END_SRC
+   - State "EXPERIMENTAL" from "TODO"       [2018-04-03 Tue 08:15]
+   - [[https://github.com/abo-abo/swiper][GitHub Page]]
 
-    [[https://github.com/nonsequitur/smex][SMEX]] shows recently used
-    commands on the =M-x= prompt:
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'ivy "0.10.0" 'ivy-mode "ivy")
+     (require-package 'counsel "20180328.0" 'counsel-mode "counsel")
+     (ivy-mode 1)
 
-    #+BEGIN_QUOTE
-    Smex is a M-x enhancement for Emacs. Built on top of Ido, it
-    provides a convenient interface to your recently and most
-    frequently used commands. And to all the other commands, too.
-    #+END_QUOTE
+     (eval-after-load 'ivy
+       '(progn
+          (require-package 'ivy-hydra "20180208.912")
+          (require 'ivy-hydra)
+          (counsel-mode 1)
+          (setq ivy-use-virtual-buffers t)
+          (setq enable-recursive-minibuffers t)
+          (global-set-key (kbd "C-c C-r") 'ivy-resume)
+          (global-set-key (kbd "M-x") 'counsel-M-x)
 
-    #+BEGIN_SRC emacs-lisp :tangle no
-      (require-package 'smex)
-      (smex-initialize)
+          ;; Prevent TAB from selecting only candidate
+          (define-key ivy-minibuffer-map (kbd "TAB") 'ivy-partial)
 
-      (setq smex-save-file (concat user-emacs-directory ".smex-items"))
-      (global-set-key (kbd "M-x") 'smex)
-      (global-set-key (kbd "C-c x") 'smex-major-mode-commands)
+          ;; Search+yank default emacs binding
+          (define-key ivy-minibuffer-map (kbd "C-w") 'ivy-yank-word)
 
-      ;; Make `super` + x the same as Meta-x:
-      (global-set-key (kbd "s-x") 'smex)
-    #+END_SRC
+          (setq magit-completing-read-function 'ivy-completing-read)
+          (setq projectile-completion-system 'ivy)
+
+          (global-set-key "\C-s" 'swiper)
+          (setq ivy-re-builders-alist
+                '((swiper . ivy--regex)
+                  (t . ivy--regex-plus)))
+          ))
+   #+END_SRC
+
+   - How to do what C-w does in Isearch?
+     #+BEGIN_QUOTE
+     In Isearch, pressing =C-w= will insert the word-at-point into the
+     minibuffer.
+
+     The same can be done in Ivy with =M-j= =(ivy-yank-word)= for any
+     command, not just swiper.
+
+     On a related note, you can paste symbol-at-point into the search with
+     =M-n=, which is a common case for using =C-w= in Isearch.
+     #+END_QUOTE
+
+** REJECTED Helm
+
+   + State "REJECTED"   from "EXPERIMENTAL" [2018-04-02 Mon 21:24]
+     * Alien navigation
+       1. eschews minibuffer
+       2. confuses use of TAB
+       3. breaks org-refile
+   + State "EXPERIMENTAL" from              [2018-03-24 Sat 11:54]
+
+   + Emacs incremental completion and selection narrowing framework
+     - [[https://emacs-helm.github.io/helm/][emacs-helm]]
+     - Helm dependencies:
+       - [[https://github.com/jwiegley/emacs-async][async]]
+       - [[https://github.com/auto-complete/popup-el][popup-el]]
+
+   #+BEGIN_SRC emacs-lisp :tangle no
+     (add-to-list 'package-pinned-packages
+                  '(helm . "melpa-stable") t)
+     (require-package 'helm)
+
+     (global-set-key (kbd "M-x") 'helm-M-x)
+     (global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
+     (global-set-key (kbd "C-x C-f") #'helm-find-files)
+     (helm-mode 1)
+
+     (setq helm-M-x-fuzzy-match t)
+     (setq helm-etags-fuzzy-match t)
+
+     (require-package 'linum-ralative)
+     (helm-linum-relative-mode 1)
+
+     (require-package 'helm-company)
+     (eval-after-load 'company
+       '(progn
+          (define-key company-mode-map (kbd "C-:") 'helm-company)
+          (define-key company-active-map (kbd "C-:") 'helm-company)))
+   #+END_SRC
+
+** Ido (What I used to use)
+   Fuzzy matching is brought in with the =flx= package.
+   #+BEGIN_SRC emacs-lisp :tangle no
+     (require-package 'flx-ido)
+     (require 'flx-ido)
+
+     (ido-mode 1)
+     (ido-everywhere 1)
+     (flx-ido-mode 1)
+
+     (setq ido-enable-flex-matching t)
+     (setq ido-use-faces t)
+   #+END_SRC
+
+   [[https://github.com/nonsequitur/smex][SMEX]] shows recently used
+   commands on the =M-x= prompt:
+
+   #+BEGIN_QUOTE
+   Smex is a M-x enhancement for Emacs. Built on top of Ido, it
+   provides a convenient interface to your recently and most
+   frequently used commands. And to all the other commands, too.
+   #+END_QUOTE
+
+   #+BEGIN_SRC emacs-lisp :tangle no
+     (require-package 'smex)
+     (smex-initialize)
+
+     (setq smex-save-file (concat user-emacs-directory ".smex-items"))
+     (global-set-key (kbd "M-x") 'smex)
+     (global-set-key (kbd "C-c x") 'smex-major-mode-commands)
+
+     ;; Make `super` + x the same as Meta-x:
+     (global-set-key (kbd "s-x") 'smex)
+   #+END_SRC
 
 ** Open Recent Files
    Enable “Open Recent” and give it a keybinding:

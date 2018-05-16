@@ -1,0 +1,13 @@
+#+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
+* LaΤΕΧ
+
+  #+BEGIN_SRC emacs-lisp
+    (add-to-path "/Library/TeX/texbin")
+  #+END_SRC
+
+** EXPERIMENTAL AUCTEX Mode
+   - State "EXPERIMENTAL"       [2018-04-28 Sat 18:19]
+
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'auctex "12.1.1" 'latex-mode "auctex.el")
+   #+END_SRC

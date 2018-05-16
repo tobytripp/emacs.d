@@ -24,12 +24,49 @@
    #+RESULTS: which
    : /usr/local/bin/emacsclient
 
-** TODO Launchd Service [0/1]
+** Launchd Service [1/1]
 
-   - [-] Start on-demand using a fixed Unix-Socket resource.
+   - [X] Start on-demand using a fixed Unix-Socket resource.
      - [X] Will require switching away from the =emacs-mac= port, but I think I'm
        okay with that.
-     - [ ] Re-configure the plist to start on socket-access.
+     - [X] Re-configure the plist to start on socket-access.  This would
+       involve figuring out how to hand over the socket from launchd to the
+       emacs process, which-sadly-doesn’t appear to be trivial.
+
+       The wire-protocol seems pretty simple, though:
+       #+BEGIN_SRC sh :tangle no
+         ➜  ~ nc -U .emacs.d/server/local-server
+         -dir /Users/toby/ -current-frame -tty /dev/ttys008 xterm-256color -file .
+         -emacs-pid 25996
+       #+END_SRC
+
+       First line is sent from emacsclient, the second is the return from the
+       emacs server.
+
+       Besides, emacsclient already includes an on-demand server start feature
+       that even allows you to set the server socket path.  So, using launchd
+       for this is overkill.
+
+   #+name: socket-path
+   #+header: :results value
+   #+header: :tangle no
+   #+header: :var path="~/.emacs.d/server/launchd.sock"
+   #+BEGIN_SRC emacs-lisp
+     (file-truename path)
+   #+END_SRC
+
+   #+RESULTS: socket-path
+   : /Users/toby/.emacs.d/server/launchd.sock
+
+   #+name: daemon-launch
+   #+header: :tangle ~/.emacs.d/bin/emacs-daemon
+   #+header: :noweb no-export
+   #+header: :mkdirp yes
+   #+header: :tangle-mode (identity #o755)
+   #+header: :shebang #!/bin/bash
+   #+BEGIN_SRC sh
+     exec /usr/local/bin/emacs --daemon=<<socket-path()>>
+   #+END_SRC
 
    #+name: Emacs LaunchAgent Configuration PList
    #+header: :noweb no-export
@@ -58,15 +95,27 @@
            <string><<expand-path()>></string>
          </array>
 
-         <key>RunAtLoad</key>
-         <true />
-
+         <!-- Start at 06:00 daily -->
          <key>StartCalendarInterval</key>
          <dict>
            <key>Hour</key>
            <integer>6</integer>
          </dict>
 
+         <!-- <key>Sockets</key> -->
+         <!-- <dict> -->
+         <!--   <key>Listeners</key> -->
+         <!--   <dict> -->
+         <!--     <key>SockFamily</key> -->
+         <!--     <string>Unix</string> -->
+         <!--     <key>SockPathName</key> -->
+         <!--     <string><<socket-path()>></string> -->
+         <!--     <key>SockPathMode</key> -->
+         <!--     <integer>504</integer> <!-\- o770 -\-> -->
+         <!--   </dict> -->
+         <!-- </dict> -->
+
+         <!-- Setting this implies RunAtLoad (it needs to get an exit code) -->
          <key>KeepAlive</key>
          <dict>
            <key>SuccessfulExit</key>
@@ -92,7 +141,6 @@
    #+END_SRC
 
    #+RESULTS: install agent
-   :
 
    #+name: Service Status
    #+BEGIN_SRC sh :tangle no :results output list
@@ -102,19 +150,35 @@
    #+RESULTS: Service Status
    : - PID	Status	Label
    : - -	0	org.thetripps.emacs
-   : - -	0	org.thetripps.isync
+   : - -	1	org.thetripps.isync
+   : - -	0	org.thetripps.stopemacs
    : - -	0	org.thetripps.trashdownloads
 
-   Stop Emacs overnight to allow MacOS automatic updates to complete:
+   Stop Emacs overnight to allow MacOS automatic updates to complete.
 
+   First, a command to cleanly shut-down emacs:
 
+   #+BEGIN_SRC emacs-lisp
+     (defun toby/shutdown ()
+       "Save buffers and then shutdown Emacs."
+       (interactive)
+       (save-some-buffers 't)
+       (recentf-save-list)
+       (desktop-save-in-desktop-dir)
+       (kill-emacs 0))
+   #+END_SRC
+
+   #+RESULTS:
+   : toby/shutdown
 
    #+name: StopEmacs LaunchAgent Configuration PList
    #+header: :noweb no-export
    #+header: :tangle ~/Library/LaunchAgents/org.thetripps.stopemacs.plist
    #+BEGIN_SRC xml
      <?xml version="1.0" encoding="UTF-8"?>
-     <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+     <!DOCTYPE plist PUBLIC
+       "-//Apple//DTD PLIST 1.0//EN"
+       "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
      <plist version="1.0">
        <dict>
          <key>Label</key>
@@ -123,8 +187,10 @@
          <key>ProgramArguments</key>
          <array>
            <string><<which("emacsclient")>></string>
+           <string>-s</string>
+           <string><<socket-path()>></string>
            <string>-e</string>
-           <string>'(kill-emacs)'</string>
+           <string>'(toby/shutdown)'</string>
          </array>
 
          <key>StartCalendarInterval</key>
@@ -142,23 +208,29 @@
      </plist>
    #+END_SRC
 
+   #+BEGIN_SRC sh :tangle no :results none
+     launchctl unload ~/Library/LaunchAgents/org.thetripps.stopemacs.plist
+     launchctl load   ~/Library/LaunchAgents/org.thetripps.stopemacs.plist
+   #+END_SRC
+
 ** Client Start-up
 
-   The following script will connect to the launchd daemon, if it exists, or
-   create a new server otherwise:
+   The following script will connect to the launchd daemon:
 
    #+name: emacsclient-start-script
    #+header: :tangle ~/.emacs.d/bin/e
+   #+header: :noweb no-export
    #+header: :mkdirp yes
    #+header: :tangle-mode (identity #o755)
    #+header: :shebang #!/bin/bash
    #+BEGIN_SRC sh
      TARGET=${1:-~/}
+     SOCKET_PATH=<<socket-path()>>
 
      EMACS_PATH=/usr/local/bin
      EMACSCLIENT=${EMACS_PATH}/emacsclient
 
-     $EMACSCLIENT -nc $TARGET
+     $EMACSCLIENT -s $SOCKET_PATH -nc $TARGET
    #+END_SRC
 
 ** Emacs Server
@@ -180,8 +252,8 @@
      (if (and (fboundp 'server-running-p)
               (not (server-running-p)))
          (progn
-           ;; (setq server-socket-dir (concat user-emacs-directory "server"))
-					 (setq server-name "toby")
+           (setq server-socket-dir (concat user-emacs-directory "server"))
+           (setq server-name "local-server")
            (server-start)))
    #+END_SRC
 

@@ -72,7 +72,7 @@
      - State "EXPERIMENTAL" from "TODO"       [2017-12-10 Sun 12:58]
      - State "TODO"       from              [2017-12-10 Sun 12:58]
 
-   smarparens comes with the command =sp-cheat-sheet=.
+   smartparens comes with the command =sp-cheat-sheet=.
 
    #+BEGIN_SRC emacs-lisp
      (defun toby/activate-structured-editing (&optional strict?)

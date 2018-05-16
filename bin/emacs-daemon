@@ -1,2 +1,2 @@
 #!/bin/bash
-exec /usr/local/bin/emacs --daemon
+exec /usr/local/bin/emacs --daemon=/Users/toby/.emacs.d/server/launchd.sock

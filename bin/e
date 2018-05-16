@@ -1,7 +1,8 @@
 #!/bin/bash
 TARGET=${1:-~/}
+SOCKET_PATH=/Users/toby/.emacs.d/server/launchd.sock
 
 EMACS_PATH=/usr/local/bin
 EMACSCLIENT=${EMACS_PATH}/emacsclient
 
-$EMACSCLIENT -s toby -nc $TARGET
+$EMACSCLIENT -s $SOCKET_PATH -nc $TARGET

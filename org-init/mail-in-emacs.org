@@ -433,6 +433,11 @@
      (require-package 'wanderlust "20180331.10" 'wl "wl")
    #+END_SRC
 
+   - Commands:
+
+     | C-c m       | wl-summary-toggle-mime-buttons | toggle mime-sections          |
+     | C-c C-t C-c | mime-preview-toggle-content    | preview mime type at ’button’ |
+
 *** Wanderlust Customization
     [2018-02-12 Mon]
 
@@ -489,6 +494,7 @@
     #+BEGIN_SRC emacs-lisp
       (eval-after-load 'wl
         '(progn
+           (require 'elmo)
            (require 'elmo-search)
            (elmo-search-register-engine
             'mu 'local-file
@@ -568,6 +574,11 @@
 
     =M-x wl=
 
+    #+BEGIN_SRC emacs-lisp
+      (add-hook 'wl-message-buffer-created-hook
+                '(lambda () (setq truncate-lines nil)))
+    #+END_SRC
+
 ** ADOPTED Setting wanderlust as the Emacs Mail composer
 
    - State "ADOPTED"    from "EXPERIMENTAL" [2018-02-28 Wed 20:41]
@@ -625,7 +636,7 @@
     #+RESULTS: smtp-set-up
     : ssl
 
-*** TODO BBDB for Contacts [0/1]
+*** TODO [[https://savannah.nongnu.org/projects/bbdb/][BBDB]] for Contacts [0/1]
     - State "ADOPTED"    from "EXPERIMENTAL" [2018-03-01 Thu 12:33]
     - State "EXPERIMENTAL" from "TODO"       [2018-02-21 Wed 12:46]
     - State "TODO"       from              [2018-02-21 Wed 12:46]
@@ -634,27 +645,89 @@
       - [[https://www.emacswiki.org/emacs/CategoryBbdb][Emacs Wiki Entry]]
       - [[http://bbdb.sourceforge.net/bbdb.html][BBDB Manual]]
       - [[https://emacs-fu.blogspot.com/2009/08/managing-e-mail-addresses-with-bbdb.html][Emacs-Fu Blog Entry]]
+      - [[https://github.com/Henry/dot-emacs/blob/master/init/init-wl.el][Example Config]]
 
     - [ ] [[https://www.emacswiki.org/emacs/BBDBV3-Wl][BBDB Wanderlust Integration]]
       - [ ] “BBDB: MUA ‘mime-view-mode’ Not Supported”
-        - [[bbdb-init][bbdb-init]] some change (it's unclear which) fixed this
-        - [ ] Turns out that it didn't There is a problem with the hook in
-          =wl-message-redisplay-hook=, currently set to:
-          =bbdb-mua-auto-update=.  This function appears unable or unwilling
-          to parse the headers from a message viewed with
-          =mime-view-mode=. [[http://savannah.nongnu.org/git/?group=bbdb][BBDB Source Repo]].
-
+        1. [ ] Turns out that it didn't There is a problem with the hook in
+           =wl-message-redisplay-hook=, currently set to:
+           =bbdb-mua-auto-update=.  This function appears unable or unwilling
+           to parse the headers from a message viewed with
+           =mime-view-mode=. [[http://savannah.nongnu.org/git/?group=bbdb][BBDB Source Repo]].
+        2. bbdb determines the current “MUA” with a call to =bbdb-mua=, if the
+           major mode of the message buffer isn’t in its expected list, the
+           above error is raised.
 
     #+NAME: bbdb-init
     #+BEGIN_SRC emacs-lisp
-      (require-package 'bbdb (version-to-list "3.2"))
       (eval-after-load 'wl
         '(progn
-           (require 'bbdb-wl)
+           (require-package 'bbdb (version-to-list "3.2"))
+           ;; (require 'bbdb-wl)
+           ;; (bbdb-insinuate-wl)
            (bbdb-initialize 'wl)
-           (bbdb-insinuate-wl)
            (bbdb-mua-auto-update-init 'wl)))
     #+END_SRC
+
+**** Try and Hack this together
+      :PROPERTIES:
+      :CATEGORY: Communication
+      :FROMEMAIL: notifications@github.com
+      :TOEMAIL:  wanderlust@noreply.github.com
+      :END:
+
+      Re: [wanderlust/wanderlust] support for bbdb-3.x (#64)
+      Thu, 10 May 2018 20:17:48 -0500
+
+      #+BEGIN_QUOTE
+      @tobytripp , I am idling on #wanderlust on freenode.  I have BBDBv3 + WL
+      working well.  It only required two small changes in the BBDB code.
+
+      1.  In bbdb-mua.el, inside of the (defconst bbdb-mua-mode-alist
+
+          (wl mime-view-mode wl-summary-mode wl-draft-mode)
+
+      2.  In bbdb-wl.el, change one function.
+
+      ;;;###autoload
+      (defun bbdb/wl-header (header)
+        (with-current-buffer (get-buffer wl-summary-buffer-name)
+          (elmo-message-entity-field
+           (elmo-message-entity wl-summary-buffer-elmo-folder
+                                (wl-summary-message-number))
+           (intern (downcase header)) 'string)))
+
+      After that, my configs worked fine.
+
+      #+END_QUOTE
+
+     #+BEGIN_SRC emacs-lisp
+       (eval-after-load 'wl
+         '(progn
+            (defconst bbdb-mua-mode-alist
+              '((vm vm-mode vm-virtual-mode vm-summary-mode vm-presentation-mode)
+                (gnus gnus-summary-mode gnus-article-mode gnus-tree-mode)
+                (rmail rmail-mode rmail-summary-mode)
+                (mh mhe-mode mhe-summary-mode mh-folder-mode)
+                (mu4e mu4e-view-mode)  ; Tackle `mu4e-headers-mode' later
+                (wl wl-summary-mode wl-draft-mode mime-view-mode)
+                (message message-mode mu4e-compose-mode notmuch-message-mode)
+                (mail mail-mode))
+              "Alist of MUA modes supported by BBDB.
+        Each element is of the form (MUA MODE MODE ...), where MODEs are used by MUA.")))
+
+       ;;;###autoload
+       (defun bbdb/wl-header (header)
+         (with-current-buffer (get-buffer wl-summary-buffer-name)
+           (elmo-message-entity-field
+            (elmo-message-entity wl-summary-buffer-elmo-folder
+                                 (wl-summary-message-number))
+            (intern (downcase header)) 'string)))
+     #+END_SRC
+
+     #+RESULTS:
+     : bbdb-mua-mode-alist
+
 
 ** Package Declaration Here
    #+BEGIN_SRC emacs-lisp

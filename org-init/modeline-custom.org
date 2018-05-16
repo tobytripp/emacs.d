@@ -11,6 +11,7 @@
      (require-package 'smart-mode-line)
      (if (require 'smart-mode-line nil 'noerror)
          (progn
+           (require-package 'smart-mode-line-powerline-theme)
            (setq sml/name-width 20)
            (setq sml/mode-width 'full)
            (setq sml/shorten-directory t)
@@ -18,7 +19,8 @@
 
            (rich-minority-mode 1)
            (setq rm-blacklist '(" GitGutter" " MRev" " company" " mate"
-                                " Paredit" " Wrap" " Fill"))
+                                " Paredit" " Wrap" " Fill"
+                                " counsel" " WK"))
 
            (if after-init-time
                (sml/setup)
@@ -74,6 +76,8 @@
            (set-face-attribute 'mode-line nil :box nil)
            (set-face-attribute 'mode-line-inactive nil :box nil)))
    #+END_SRC
+
+   #+RESULTS:
 
 ** Showing the Time
 

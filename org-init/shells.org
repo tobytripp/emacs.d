@@ -153,6 +153,7 @@
     (add-hook 'term-exec-hook 'toby/term-exec-hook)
   #+END_SRC
 
+
 #+BEGIN_SRC emacs-lisp :exports none
-  (provide 'eshell-hooks)
+  (provide 'shells)
 #+END_SRC

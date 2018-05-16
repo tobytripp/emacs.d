@@ -103,6 +103,15 @@
      (add-to-list 'load-path org-lib-dir)
    #+END_SRC
 
+   - First, pre-load some custom function definitions that may be used in my extensions.
+     #+BEGIN_SRC emacs-lisp
+       (require 'defuns)
+     #+END_SRC
+
+   - Make sure ‘brew‘ is on the path:
+     #+BEGIN_SRC emacs-lisp
+     (add-to-path "/usr/local/bin")
+     #+END_SRC
 ** Change the Destination of Customization Settings
 
    These are the settings saved from the customize menus and prompts within Emacs.
@@ -160,11 +169,6 @@
    #+END_SRC
 
 * Load Configurations
-
-  First, pre-load some custom function definitions that may be used in my extensions.
-  #+BEGIN_SRC emacs-lisp
-  (require 'defuns)
-  #+END_SRC
 
   Now, load every elisp file in the =lib= directory.  Demote errors to
   warnings so that a problem in a particular extension doesn't bring

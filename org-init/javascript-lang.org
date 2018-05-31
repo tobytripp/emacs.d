@@ -58,7 +58,7 @@
 *** Javascript editing modes
 
     #+BEGIN_SRC emacs-lisp
-      (require-package 'js-comint "20171129.20" 'run-js "js-comint")
+      (require-package 'js-comint "20171129.20")
       (require-package 'js2-mode "20180331.22" 'js2-mode)
 
       (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
@@ -74,7 +74,6 @@
       (add-to-list 'toby/js-prettify-alist '("assert"     . ?∃))
       (add-to-list 'toby/js-prettify-alist '("==="        . ?≣))
       (add-to-list 'toby/js-prettify-alist '("=="         . ?≈))
-
 
       (defun toby/js-init ()
         (glasses-mode t)

@@ -326,7 +326,7 @@
           (require 'ivy-hydra)
           (counsel-mode 1)
           (setq ivy-use-virtual-buffers t)
-          (setq enable-recursive-minibuffers t)
+          (setq enable-recursive-minibuffers nil)
           (global-set-key (kbd "C-c C-r") 'ivy-resume)
           (global-set-key (kbd "M-x") 'counsel-M-x)
 

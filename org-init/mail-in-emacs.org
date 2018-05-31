@@ -395,6 +395,7 @@
          </array>
 
          <key>StartInterval</key>
+         <!-- Run every n seconds -->
          <integer>300</integer>
 
          <key>RunAtLoad</key>
@@ -636,8 +637,8 @@
     #+RESULTS: smtp-set-up
     : ssl
 
-*** TODO [[https://savannah.nongnu.org/projects/bbdb/][BBDB]] for Contacts [0/1]
-    - State "ADOPTED"    from "EXPERIMENTAL" [2018-03-01 Thu 12:33]
+*** ADOPTED [[https://savannah.nongnu.org/projects/bbdb/][BBDB]] for Contacts [1/1]
+    - State "ADOPTED"    from "REJECTED"   [2018-05-16 Wed 15:02]
     - State "EXPERIMENTAL" from "TODO"       [2018-02-21 Wed 12:46]
     - State "TODO"       from              [2018-02-21 Wed 12:46]
 
@@ -647,9 +648,9 @@
       - [[https://emacs-fu.blogspot.com/2009/08/managing-e-mail-addresses-with-bbdb.html][Emacs-Fu Blog Entry]]
       - [[https://github.com/Henry/dot-emacs/blob/master/init/init-wl.el][Example Config]]
 
-    - [ ] [[https://www.emacswiki.org/emacs/BBDBV3-Wl][BBDB Wanderlust Integration]]
-      - [ ] “BBDB: MUA ‘mime-view-mode’ Not Supported”
-        1. [ ] Turns out that it didn't There is a problem with the hook in
+    - [X] [[https://www.emacswiki.org/emacs/BBDBV3-Wl][BBDB Wanderlust Integration]]
+      - [X] “BBDB: MUA ‘mime-view-mode’ Not Supported”
+        1. [X] Turns out that it didn't There is a problem with the hook in
            =wl-message-redisplay-hook=, currently set to:
            =bbdb-mua-auto-update=.  This function appears unable or unwilling
            to parse the headers from a message viewed with

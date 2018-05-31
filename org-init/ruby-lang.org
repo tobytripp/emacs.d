@@ -25,9 +25,9 @@
           (require-package 'rbenv)
           (let ((rbenv-installation-dir (or rbenv-installation-dir
                                             (concat (getenv "HOME") "/.rbenv"))))
-            (setq enh-ruby-program (concat rbenv-installation-dir "shims/ruby"))
-            (add-to-path (concat rbenv-installation-dir "shims"))
-            (add-to-path (concat rbenv-installation-dir "bin")))
+            (setq enh-ruby-program (concat rbenv-installation-dir "/shims/ruby"))
+            (add-to-path (concat rbenv-installation-dir "/shims"))
+            (add-to-path (concat rbenv-installation-dir "/bin")))
 
           (require-package 'inf-ruby)
           (require-package 'rspec-mode)

@@ -1,0 +1,19 @@
+#+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
+* Infrastructure Deployment with Terraform
+** Terraform-mode
+
+   #+BEGIN_SRC emacs-lisp
+     (require-package 'terraform-mode "20170111.2117" "terraform-mode")
+     (eval-after-load 'terraform-mode
+       '(progn
+          (require-package 'company-terraform)))
+
+     (defun toby/terraform-init ()
+       (smartparens-strict-mode t)
+       (show-smartparens-mode t)
+       (terraform-format-on-save-mode t)
+       (setq buffer-save-without-query t))
+
+     (add-hook 'terraform-mode-hook 'toby/terraform-init)
+
+   #+END_SRC

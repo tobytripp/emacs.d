@@ -79,11 +79,8 @@
 
 (defun add-to-path (path)
   "Add ‘path' to ‘exec-path' and to the PATH environment variable."
-  (message "Add path: '%s'" path)
   (add-to-list 'exec-path path)
   ;; (setenv "PATH" (string-join (list path (getenv "PATH")) ":"))
-  (setenv "PATH" (string-join exec-path ":"))
-  (message "PATH now: '%s'" (getenv "PATH"))
-  )
+  (setenv "PATH" (string-join exec-path ":")))
 
 (provide 'defuns)

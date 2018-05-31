@@ -54,9 +54,9 @@
 
      (org-babel-do-load-languages
       'org-babel-load-languages
-      '((shell . t)
-        (ruby . t)
-        (sql . t)
+      '((shell  . t)
+        (ruby   . t)
+        (sql    . t)
         (elixir . t)))
 
      (add-to-list 'org-structure-template-alist

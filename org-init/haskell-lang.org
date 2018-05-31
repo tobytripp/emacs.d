@@ -32,7 +32,6 @@
        "Call define-key with the given map, key spec, and target function."
        (let ((keys (kbd (car key->fun)))
              (func (cadr key->fun)))
-         (message "map: %s" map-var)
          (global-unset-key keys)
          (define-key map-var keys (intern func))))
    #+END_SRC
@@ -91,8 +90,7 @@
           (require-package 'smartparens)
           (require 'smartparens-config)
           (require 'haskell-process)
-          (require 'haskell-interactive-mode)
-          (toby/define-key-table haskell-mode-map keys)))
+          (require 'haskell-interactive-mode)))
    #+END_SRC
 
 *** EXPERIMENTAL Minor-Modes
@@ -171,7 +169,9 @@
 
        (define-key haskell-mode-map (kbd "C-x C-d") nil)
        (define-key haskell-mode-map (kbd "C-c M-.") nil)
-       (define-key haskell-mode-map (kbd "C-c C-d") nil))
+       (define-key haskell-mode-map (kbd "C-c C-d") nil)
+
+       (toby/define-key-table haskell-mode-map keys))
 
      (add-hook 'haskell-mode-hook 'toby/haskell-init)
      (add-hook 'haskell-mode-hook 'interactive-haskell-mode)

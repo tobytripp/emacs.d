@@ -1,5 +1,5 @@
 (deftheme toby
-  "Created 2018-05-15.")
+  "Created 2018-05-16.")
 
 (custom-theme-set-variables
  'toby
@@ -56,7 +56,7 @@
  '(font-lock-comment-delimiter-face ((t (:foreground "#586e75"))))
  '(font-lock-comment-face ((t (:foreground "#586e75"))))
  '(font-lock-constant-face ((((class color) (min-colors 89)) (:foreground "#268bd2" :weight bold))))
- '(font-lock-doc-face ((t (:background "#1a1a1a" :foreground "gray75" :slant italic))))
+ '(font-lock-doc-face ((t (:background "#1a1a1a" :foreground "gray65" :slant italic))))
  '(font-lock-function-name-face ((((class color) (min-colors 89)) (:foreground "#268bd2"))))
  '(font-lock-keyword-face ((((class color) (min-colors 89)) (:foreground "#859900" :weight bold))))
  '(font-lock-negation-char-face ((((class color) (min-colors 89)) (:foreground "#839496"))))

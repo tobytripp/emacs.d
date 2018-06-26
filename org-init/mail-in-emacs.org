@@ -7,7 +7,70 @@
   #+BEGIN_SRC emacs-lisp :exports none
    ;; -*- lexical-binding: t -*-
   #+END_SRC
+** TODO Signatures
 
+   Need to figure out how to manage email signatures in wanderlust.  For now,
+   here are my current ‘sig’s:
+
+   1. Knuth
+      #+BEGIN_QUOTE
+      —
+      Toby Tripp
+
+      “Beware of bugs in the above code; I have only proved it correct, not tried it.”
+        — Donald E. Knuth
+      #+END_QUOTE
+
+   2. Babbage
+      #+BEGIN_QUOTE
+      —
+      Toby Tripp
+
+      "On two occasions I have been asked [by members of Parliament!]: ‘Pray,
+      Mr. Babbage, if you put into the machine wrong figures, will the right
+      answers come out ?’  I am not able rightly to apprehend the kind of
+      confusion of ideas that could provoke such a question."
+        — Charles Babbage
+      #+END_QUOTE
+
+   3. Adams
+      #+BEGIN_QUOTE
+      —
+      Toby Tripp
+      toby@tripp.net
+
+      They know enough who know how to learn. —Henry Adams
+      #+END_QUOTE
+
+   4. Programmer
+      #+BEGIN_QUOTE
+      —
+      Toby Tripp
+      toby@tripp.net
+      http://tobytripp.github.io
+
+      Ada, Awk, C, C++(😟), Clojure, GOMSL, Haskell, Java(😟), Javascript, ksh, Perl, Php(😩), Ruby, Soar, Tcl… programmer
+      #+END_QUOTE
+
+   5. Twain
+      #+BEGIN_QUOTE
+      —
+      Toby Tripp
+      toby@tripp.net
+
+      It ain't what you don't know that gets you into trouble.  It's what you know for sure that just ain't so.
+        -- Mark Twain
+      #+END_QUOTE
+
+   6. Confucius
+      #+BEGIN_QUOTE
+      —
+      Toby Tripp
+      toby@tripp.net
+
+      If you know, to recognize that you know, if you don't know, to realize that you don't know: that is knowledge.
+        -- Confucius
+      #+END_QUOTE
 ** Maintaining Secrets
 *** GPG Encryption
 
@@ -424,7 +487,6 @@
    : - 61991	0	org.thetripps.isync
    : - -	0	org.thetripps.trashdownloads
 
-
 ** ADOPTED Wanderlust
 
    - State "ADOPTED"    from "EXPERIMENTAL" [2018-02-23 Fri 10:01]
@@ -728,7 +790,6 @@
 
      #+RESULTS:
      : bbdb-mua-mode-alist
-
 
 ** Package Declaration Here
    #+BEGIN_SRC emacs-lisp

@@ -32,13 +32,15 @@
 
      (eval-after-load 'clojure-mode
        '(setq clojure--prettify-symbols-alist
-              (append toby/clojure-prettify-alist
-                      clojure--prettify-symbols-alist)))
+	      (append toby/clojure-prettify-alist
+		      clojure--prettify-symbols-alist)))
 
      (eval-after-load 'lisp-mode
        '(setq lisp--prettify-symbols-alist
-              (append toby/clojure-prettify-alist
-                      lisp--prettify-symbols-alist)))
+	      (if (boundp 'lisp--prettify-symbols-alist)
+		  (append toby/clojure-prettify-alist
+			  lisp--prettify-symbols-alist)
+		toby/clojure-prettify-alist)))
    #+END_SRC
 
 ** Cider

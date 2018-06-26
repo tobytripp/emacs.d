@@ -57,9 +57,7 @@
       'org-babel-load-languages
       '((shell  . t)
         (ruby   . t)
-        (sql    . t)
-        (ditaa  . t)
-        (elixir . t)))
+        (sql    . t)))
 
      (add-to-list 'org-structure-template-alist
                   '("el"  "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC" "<src lang=\"?\">\n\n</src>"))

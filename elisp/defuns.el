@@ -77,6 +77,7 @@
              (if dedicated "no longer " "")
              (buffer-name))))
 
+(require 'subr-x)
 (defun add-to-path (path)
   "Add ‘path' to ‘exec-path' and to the PATH environment variable."
   (add-to-list 'exec-path path)

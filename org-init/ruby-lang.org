@@ -23,7 +23,7 @@
        '(progn
           (require-package 'smartparens)
           (require-package 'rbenv)
-          (let ((rbenv-installation-dir (or rbenv-installation-dir
+          (let ((rbenv-installation-dir (or (and (boundp 'rbenv-installation-dir) rbenv-installation-dir)
                                             (concat (getenv "HOME") "/.rbenv"))))
             (setq enh-ruby-program (concat rbenv-installation-dir "/shims/ruby"))
             (add-to-path (concat rbenv-installation-dir "/shims"))

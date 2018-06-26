@@ -19,7 +19,9 @@
 
            (rich-minority-mode 1)
            (setq rm-blacklist '(" GitGutter" " MRev" " company" " mate"
+                                " ivy" " yas" " ARev"
                                 " Paredit" " Wrap" " Fill"
+                                " Fly" " Abbrev"
                                 " counsel" " WK"))
 
            (if after-init-time

@@ -51,12 +51,14 @@
      (require 'ob-ruby)
      (require 'ob-sql)
      (require 'ob-clojure)
+     (require 'ob-tangle)
 
      (org-babel-do-load-languages
       'org-babel-load-languages
       '((shell  . t)
         (ruby   . t)
         (sql    . t)
+        (ditaa  . t)
         (elixir . t)))
 
      (add-to-list 'org-structure-template-alist

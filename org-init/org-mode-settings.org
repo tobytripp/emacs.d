@@ -65,9 +65,6 @@
                   '("pg"  "#+BEGIN_SRC sql :engine postgresql\n?\n#+END_SRC" "<src lang=\"?\">\n\n</src>"))
    #+END_SRC
 
-   #+RESULTS:
-   | hs | #+BEGIN_SRC haskell |
-
    This adds syntax highlighting to org-babel html exports.
    #+BEGIN_SRC emacs-lisp
      (require-package 'htmlize)
@@ -76,7 +73,7 @@
 
    To regenerate syntax highlighting CSS (for the active theme):
    #+BEGIN_SRC emacs-lisp :tangle no
-   (org-export-htmlize-generate-css)
+     (org-export-htmlize-generate-css)
    #+END_SRC
 
    Execute TεΧ and elisp without confirmation:

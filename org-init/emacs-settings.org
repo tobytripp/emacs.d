@@ -102,19 +102,6 @@
            <integer>6</integer>
          </dict>
 
-         <!-- <key>Sockets</key> -->
-         <!-- <dict> -->
-         <!--   <key>Listeners</key> -->
-         <!--   <dict> -->
-         <!--     <key>SockFamily</key> -->
-         <!--     <string>Unix</string> -->
-         <!--     <key>SockPathName</key> -->
-         <!--     <string><<socket-path()>></string> -->
-         <!--     <key>SockPathMode</key> -->
-         <!--     <integer>504</integer> <!-\- o770 -\-> -->
-         <!--   </dict> -->
-         <!-- </dict> -->
-
          <!-- Setting this implies RunAtLoad (it needs to get an exit code) -->
          <key>KeepAlive</key>
          <dict>
@@ -196,7 +183,7 @@
          <key>StartCalendarInterval</key>
          <dict>
            <key>Hour</key>
-           <integer>1</integer>
+           <integer>0</integer>
          </dict>
 
          <key>StandardOutPath</key>
@@ -295,6 +282,11 @@
      (when (display-graphic-p)
        (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING)))
    #+END_SRC
+*** Fonts
+    #+BEGIN_SRC emacs-lisp
+      (require-package 'unicode-fonts)
+      (unicode-fonts-setup)
+    #+END_SRC
 
 ** Save Hooks
    I don't like it when =delete-trailing-whitespace= moves my cursor

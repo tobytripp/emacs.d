@@ -110,33 +110,34 @@
    overrides to be switched off.
 
    #+BEGIN_SRC emacs-lisp
-   (defvar *tobys-mode-map*
-     (let ((map (make-sparse-keymap)))
-       (define-key map (kbd "C-x m")      'eshell)
-       (define-key map (kbd "M-g")        'goto-line)
-       (define-key map (kbd "s-z")        'undo)
-       (define-key map (kbd "M-z")        'zap-to-char)
-       (define-key map (kbd "C-x \\")     'align-regexp)
-       (define-key map (kbd "C-x \|")     'toby/align-columns)
-       (define-key map (kbd "M-/")        'hippie-expand)
-       (define-key map (kbd "s-/")        'hippie-expand)
+     (defvar *tobys-mode-map*
+       (let ((map (make-sparse-keymap)))
+         (define-key map (kbd "C-x m")      'eshell)
+         (define-key map (kbd "M-g")        'goto-line)
+         (define-key map (kbd "s-z")        'undo)
+         (define-key map (kbd "M-z")        'zap-to-char)
+         (define-key map (kbd "C-x \\")     'align-regexp)
+         (define-key map (kbd "C-x \|")     'toby/align-columns)
+         (define-key map (kbd "M-/")        'hippie-expand)
+         (define-key map (kbd "s-/")        'hippie-expand)
 
-       (define-key map (kbd "C-S-d")      'duplicate-line)
-       (define-key map (kbd "C-RET")      'toby/open-line)
+         (define-key map (kbd "C-S-d")      'duplicate-line)
+         (define-key map (kbd "C-RET")      'toby/open-line)
+         (define-key map (kbd "M-^")        'join-line)
 
-       (define-key map (kbd "H-t")        'peepopen-goto-file-gui)
-       ;; Watch out! This can crash an Emacs session with a frame inside
-       ;; a terminal.
-       ;;    (define-key map (kbd "M-O")        'ns-open-file-using-panel)
+         (define-key map (kbd "H-t")        'peepopen-goto-file-gui)
+         ;; Watch out! This can crash an Emacs session with a frame inside
+         ;; a terminal.
+         ;;    (define-key map (kbd "M-O")        'ns-open-file-using-panel)
 
-       (define-key map (kbd "S-s-<up>")   'move-text-up)
-       (define-key map (kbd "S-s-<down>") 'move-text-down)
+         (define-key map (kbd "S-s-<up>")   'move-text-up)
+         (define-key map (kbd "S-s-<down>") 'move-text-down)
 
-       (define-key map [f5] 'touch)
-       map)
-     "Keymap used for my local customizations.")
+         (define-key map [f5] 'touch)
+         map)
+       "Keymap used for my local customizations.")
 
-   (define-key *tobys-mode-map* (kbd "C-c C-a") 'toby/increment-number-at-point)
+     (define-key *tobys-mode-map* (kbd "C-c C-a") 'toby/increment-number-at-point)
    #+END_SRC
 
 ** Overlays

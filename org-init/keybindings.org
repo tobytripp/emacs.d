@@ -116,6 +116,10 @@
      (require-package 'ace-window)
      (global-set-key (kbd "C-x o") 'ace-window)
      (global-set-key (kbd "M-p")   'ace-window)
+     (global-unset-key (kbd "<f4>"))
+     (global-set-key   (kbd "<f4>") 'ace-window)
+     (global-set-key   (kbd "<f9>") 'other-window)
+
 
      (setq aw-keys '(?a ?o ?e ?u ?i  ?d ?h ?t ?n ?s))
    #+END_SRC

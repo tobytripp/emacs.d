@@ -60,8 +60,9 @@
 
     #+RESULTS:
     : dired-subtree
-*** EXPERIMENTAL neotree
+*** REJECTED neotree
 
+    - State "REJECTED"   from "EXPERIMENTAL" [2018-07-26 Thu 14:04]
     - State "EXPERIMENTAL" from              [2018-03-24 Sat 11:32]
 
       #+BEGIN_SRC emacs-lisp
@@ -84,9 +85,6 @@
      (projectile-global-mode)
 
      (global-set-key   (kbd "C-x f") 'projectile-find-file)
-
-     (global-unset-key (kbd "<f4>"))
-     (global-set-key   (kbd "<f4>") 'projectile-find-file)
 
      (def-projectile-commander-method ?j
        "Jack-in."

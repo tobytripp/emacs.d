@@ -1,8 +1,12 @@
 ;; -*- lexical-binding: t -*-
 (require 'package)
 
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
-(add-to-list 'package-archives '("org"   . "http://orgmode.org/elpa/") t)
+(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+                    (not (gnutls-available-p))))
+       (proto (if no-ssl "http" "https")))
+  ;;(add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
+  (add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t)
+  (add-to-list 'package-archives '("org"   . "http://orgmode.org/elpa/") t))
 (package-initialize)
 
 (defun do-install-package (package &optional minimum-version no-refresh)

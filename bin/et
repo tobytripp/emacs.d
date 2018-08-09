@@ -4,4 +4,4 @@ TARGET=${1:-~/}
 EMACS_PATH=/usr/local/bin
 EMACSCLIENT=${EMACS_PATH}/emacsclient
 
-$EMACSCLIENT -nc $TARGET
+$EMACSCLIENT -t $TARGET

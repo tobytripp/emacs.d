@@ -130,7 +130,6 @@
            (kbd "C-c C-s") 'inf-ruby-console-auto))
 
       (defun toby/inf-ruby-hooks ()
-        (color-identifiers-mode -1)
         (linum-mode -1))
 
       (add-hook 'inf-ruby-mode-hook 'toby/inf-ruby-hooks)

@@ -56,7 +56,18 @@
    #+END_SRC
 
    #+RESULTS: socket-path
-   : /Users/toby/.emacs.d/server/launchd.sock
+   : /Users/tobytripp/.emacs.d/server/launchd.sock
+
+   #+name: home-path
+   #+header: :results value
+   #+header: :tangle no
+   #+header: :var path="~/"
+   #+BEGIN_SRC emacs-lisp
+     (file-truename path)
+   #+END_SRC
+
+   #+RESULTS: home-path
+   : /Users/tobytripp/
 
    #+name: daemon-launch
    #+header: :tangle ~/.emacs.d/bin/emacs-daemon
@@ -65,7 +76,8 @@
    #+header: :tangle-mode (identity #o755)
    #+header: :shebang #!/bin/bash
    #+BEGIN_SRC sh
-     exec /usr/local/bin/emacs --daemon=<<socket-path()>>
+     # exec /usr/local/bin/emacs --eval "(setq server-name \"launchd\")" --daemon
+     exec /usr/local/bin/emacs --daemon
    #+END_SRC
 
    #+name: Emacs LaunchAgent Configuration PList
@@ -88,7 +100,7 @@
          </dict>
 
          <key>WorkingDirectory</key>
-         <string>/Users/toby</string>
+         <string><<home-path()>></string>
 
          <key>ProgramArguments</key>
          <array>
@@ -174,8 +186,6 @@
          <key>ProgramArguments</key>
          <array>
            <string><<which("emacsclient")>></string>
-           <string>-s</string>
-           <string><<socket-path()>></string>
            <string>-e</string>
            <string>'(toby/shutdown)'</string>
          </array>
@@ -212,12 +222,11 @@
    #+header: :shebang #!/bin/bash
    #+BEGIN_SRC sh
      TARGET=${1:-~/}
-     SOCKET_PATH=<<socket-path()>>
 
      EMACS_PATH=/usr/local/bin
      EMACSCLIENT=${EMACS_PATH}/emacsclient
 
-     $EMACSCLIENT -s $SOCKET_PATH -nc $TARGET
+     $EMACSCLIENT -nc $TARGET
    #+END_SRC
 
 ** Emacs Server
@@ -238,10 +247,7 @@
    #+BEGIN_SRC emacs-lisp
      (if (and (fboundp 'server-running-p)
               (not (server-running-p)))
-         (progn
-           (setq server-socket-dir (concat user-emacs-directory "server"))
-           (setq server-name "local-server")
-           (server-start)))
+         (server-start))
    #+END_SRC
 
 ** Abbrev-Mode

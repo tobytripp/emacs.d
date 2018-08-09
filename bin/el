@@ -1,0 +1,9 @@
+#!/bin/bash
+USAGE="$0 elisp-expression"
+
+if [ "$#" == "0" ]; then echo $USAGE && exit 1; fi
+
+EMACS_PATH=/usr/local/bin
+EMACSCLIENT=${EMACS_PATH}/emacsclient
+
+$EMACSCLIENT -e "$@"

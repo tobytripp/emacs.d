@@ -1,0 +1,11 @@
+#+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
+* SQL
+  #+BEGIN_SRC emacs-lisp
+    (eval-after-load 'sql-mode
+      (require-package 'sqlup-mode))
+
+    (defun toby/sql-init ()
+      (sqlup-mode t))
+
+    (add-hook 'sql-mode-hook #'toby/sql-init)
+  #+END_SRC

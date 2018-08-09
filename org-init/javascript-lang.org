@@ -34,27 +34,6 @@
    #+END_SRC
 
 ** Js-Mode
-*** Tern
-    [[http://ternjs.net/doc/manual.html#emacs][Tern js plugin]]
-
-    | key     | command            |
-    |---------+--------------------|
-    | M-.     | jump to def        |
-    | M-,     | return from jump   |
-    | C-c C-r | Rename variable    |
-    | C-c C-c | Find type          |
-    | C-c C-d | Find documentation |
-
-    #+BEGIN_SRC emacs-lisp
-      (add-to-list 'load-path (concat vendor-dir "tern/emacs"))
-      (autoload 'tern-mode "tern.el" nil t)
-
-      (require-package 'company-tern "20161004.11")
-      (eval-after-load 'company
-        '(progn
-           (add-to-list 'company-backends 'company-tern)))
-    #+END_SRC
-
 *** Javascript editing modes
 
     #+BEGIN_SRC emacs-lisp
@@ -77,7 +56,6 @@
 
       (defun toby/js-init ()
         (glasses-mode t)
-        (tern-mode t)
         (flycheck-mode t)
         (smartparens-strict-mode)
         (prettify-symbols-mode)

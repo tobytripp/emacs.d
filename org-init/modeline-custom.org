@@ -8,7 +8,9 @@
 ** Smart Mode Line
    The [[https://github.com/Bruce-Connor/smart-mode-line][smart-mode-line]] package gives you some control of what shows up in the mode-line.
    #+BEGIN_SRC emacs-lisp :tangle no
-     (require-package 'smart-mode-line)
+     (require-package 'smart-mode-line "2.11.0")
+     (require-package 'rich-minority   "1.0.1")
+
      (if (require 'smart-mode-line nil 'noerror)
          (progn
            (require-package 'smart-mode-line-powerline-theme)
@@ -18,19 +20,10 @@
            (setq sml/shorten-modes t)
 
            (rich-minority-mode 1)
-           (setq rm-blacklist '(" GitGutter" " MRev" " company" " mate"
-                                " ivy" " yas" " ARev"
-                                " Paredit" " Wrap" " Fill"
-                                " Fly" " Abbrev"
-                                " counsel" " WK"))
 
            (if after-init-time
                (sml/setup)
              (add-hook 'after-init-hook 'sml/setup))
-
-           (setq rm-text-properties
-                 '((" Paredit" 'display "()"
-                    'face 'sml/minor-modes)))
 
            (require-package 'smart-mode-line-powerline-theme)
            ;; Themes:
@@ -61,25 +54,6 @@
    | ^~/[Gg]it[Hh]ub/         | :Git:            |       |
    | ^~/[Gg]it\([Hh]ub\       | \)-?[Pp]rojects/ | :Git: |
 
-
-** SVG Modeline
-
-   [[https://github.com/sabof/svg-mode-line-themes][svg-mode-line-themes]]
-   [[https://github.com/ocodo/ocodo-svg-modelines][ocodo-svg-modelines]]
-
-   #+BEGIN_SRC emacs-lisp
-     (require-package 'svg-mode-line-themes)
-     (if (require 'svg-mode-line-themes nil 'noerror)
-         (progn
-           (smt/enable)
-           (require-package 'ocodo-svg-modelines)
-           (ocodo-svg-modelines-init)
-           (smt/set-theme 'ocodo-minimal-dark-smt)
-           (set-face-attribute 'mode-line nil :box nil)
-           (set-face-attribute 'mode-line-inactive nil :box nil)))
-   #+END_SRC
-
-   #+RESULTS:
 
 ** Showing the Time
 

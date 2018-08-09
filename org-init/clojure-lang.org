@@ -51,8 +51,8 @@
      (require-package 'clojure-mode "5.6.1" 'clojure-mode "clojure-mode")
 
      (defun toby/cider-onload ()
-       (require-package 'cider-eval-sexp-fu (version-to-list "1.1"))
-       (require 'cider-eval-sexp-fu)
+       ;; (require-package 'cider-eval-sexp-fu (version-to-list "1.1"))
+       ;; (require 'cider-eval-sexp-fu)
        (define-key cider-mode-map (kbd "<f3>")    'cider-eval-defun-at-point)
        (define-key cider-mode-map (kbd "<f5>")    'toby/save-and-eval-buffer)
        (define-key cider-mode-map (kbd "<f12>")   'cider-test-run-tests)
@@ -93,35 +93,66 @@
 
 ** Clojure
 
-*** ADOPTED Clojure Refactorings
+*** REJECTED Clojure Refactorings
 
+    - State "REJECTED"   from "ADOPTED"    [2018-07-11 Wed 12:18]
+      - clj-refactor is not currently working
     - State "ADOPTED"    from    [2018-02-05 Mon 10:09]
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle no
       (require-package 'clj-refactor "2.3.1" 'clj-refactor "clj-refactor-mode")
+      (defun activate-refactor ()
+        (clj-refactor-mode 1)
+        (yas-minor-mode 1)
+        (cljr-add-keybindings-with-prefix "C-c C-r"))
+
+      (add-hook 'clojure-mode-hook #'activate-refactor)
     #+END_SRC
 
 *** Set-up General Lisp Key-Bindings
 
-**** TODO Consider use of (current-local-map)
+**** EXPERIMENTAL Use Hydra instead
 
+     - State "EXPERIMENTAL" from "TODO"       [2018-08-07 Tue 09:41]
      #+BEGIN_SRC emacs-lisp
-       (require-package 'god-mode)
+       (require-package 'hydra)
 
-       (defun toby/insert-comma ()
-         "Insert commas in lisp environments where its binding may have
-         been overridden (given that `,` is considered white-space in
-         many lisps, its use can be more convenient elsewhere)"
-         (interactive)
-         (insert ",")
-         (god-local-mode -1))
+       (defhydra hydra-clojure (:pre  (set-cursor-color "#40e0d0")
+                                :post (set-cursor-color "#ffffff")
+                                :hint nil)
+         "
+       ^S-Exp^                      ^Cider^
+       ^^^^^^^^----------------------------------------------------
+         ^_n_^                      _c_onnect
+       _h_   _s_                    load _b_uffer
+         ^_t_^                      _p_: eval and pprint last s-exp
+       →_(_→ slurp)  (slurp ←_)_←   _e_val last s-exp
+       ←_[_← barf)   (barf →_]_→    _i_nspect last result
+        _a_lign^                   ^_t_est namespace
 
-       (defun toby/lisp-keys (kmap)
-         (require 'god-mode)
-         ;; Consider use of (current-local-map)
-         (define-key kmap (kbd ",")   'god-local-mode)
-         (global-set-key  (kbd "C-,") 'toby/insert-comma)
-         (define-key god-local-mode-map  (kbd "C-,") 'toby/insert-comma))
+       _,_: insert comma
+       "
+         ("h" sp-backward-sexp)
+         ("t" sp-down-sexp)
+         ("n" sp-up-sexp)
+         ("s" sp-forward-sexp)
+         (")" sp-forward-slurp-sexp)
+         ("(" sp-backward-slurp-sexp)
+         ("]" sp-forward-barf-sexp)
+         ("[" sp-backward-barf-sexp)
+
+         ("a" clojure-align :color blue)
+
+         ;; ("c" cider-connect-clj       :color blue)
+         ("c" cider-connect               :color blue)
+         ("b" cider-load-buffer           :color blue)
+         ("p" cider-pprint-eval-last-sexp :color blue)
+         ("e" cider-eval-last-sexp        :color blue)
+         ("i" cider-inspect-last-result   :color blue)
+         ("t" cider-test-run-ns-tests     :color blue)
+
+         ("," (insert ",")      :color blue)
+         ("q" nil "quit"        :color blue))
      #+END_SRC
 
 *** Clojure Init
@@ -131,12 +162,8 @@
         (toby/activate-structured-editing)
 
         (cider-mode 1)
-        (clj-refactor-mode 1)
+        ;; (clj-refactor-mode 1)
         (yas-minor-mode 1)
-
-        (cljr-add-keybindings-with-prefix "C-c c")
-
-        (toby/lisp-keys (current-local-map))
 
         ;; Compojure Macros:
         (define-clojure-indent
@@ -189,7 +216,8 @@
         (require-package 'cider "0.15.1" 'cider-mode "cider")
         (define-key clojure-mode-map (kbd "<C-down>") 'forward-sexp)
         (define-key clojure-mode-map (kbd "<C-up>")   'backward-sexp)
-        (define-key clojure-mode-map (kbd "C-c C-d o") 'toby/clojuredocs-web))
+        (define-key clojure-mode-map (kbd "C-c C-d o") 'toby/clojuredocs-web)
+        (define-key clojure-mode-map "," 'hydra-clojure/body))
 
       (eval-after-load 'clojure-mode #'toby/clojure-onload)
     #+END_SRC

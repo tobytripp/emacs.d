@@ -12,8 +12,7 @@
     #+BEGIN_SRC emacs-lisp
       (require-package 'smartparens)
       (require-package 'alchemist "20180312.604" 'alchemist-mode "alchemist")
-      (add-to-list 'package-pinned-packages
-                   '(alchemist . "melpa-stable") t)
+      (add-to-list 'package-pinned-packages '(alchemist . "melpa-stable") t)
 
       (require-package 'elixir-mode "20170918.2231" 'elixir-mode)
       (add-to-list 'package-pinned-packages
@@ -22,7 +21,7 @@
       (eval-after-load 'elixir-mode
         '(progn
            (require-package 'elixir-yasnippets "20150417.539")
-           (require-package 'ob-elixir) 
+           (require-package 'ob-elixir)
            ))
 
       (add-to-list 'auto-mode-alist '("\\.exs?$" . elixir-mode))

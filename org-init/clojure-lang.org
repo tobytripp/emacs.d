@@ -128,7 +128,7 @@
          ^_t_^                      _p_: eval and pprint last s-exp
        →_(_→ slurp)  (slurp ←_)_←   _e_val last s-exp
        ←_[_← barf)   (barf →_]_→    _i_nspect last result
-        _a_lign^                   ^_t_est namespace
+        _a_lign^                   ^_v_: test namespace
 
        _,_: insert comma
        "
@@ -149,7 +149,7 @@
          ("p" cider-pprint-eval-last-sexp :color blue)
          ("e" cider-eval-last-sexp        :color blue)
          ("i" cider-inspect-last-result   :color blue)
-         ("t" cider-test-run-ns-tests     :color blue)
+         ("v" cider-test-run-ns-tests     :color blue)
 
          ("," (insert ",")      :color blue)
          ("q" nil "quit"        :color blue))
@@ -214,6 +214,7 @@
     #+BEGIN_SRC emacs-lisp
       (defun toby/clojure-onload ()
         (require-package 'cider "0.15.1" 'cider-mode "cider")
+        (add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
         (define-key clojure-mode-map (kbd "<C-down>") 'forward-sexp)
         (define-key clojure-mode-map (kbd "<C-up>")   'backward-sexp)
         (define-key clojure-mode-map (kbd "C-c C-d o") 'toby/clojuredocs-web)

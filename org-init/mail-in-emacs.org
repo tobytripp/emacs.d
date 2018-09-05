@@ -413,11 +413,58 @@
     #+END_SRC
 
     #+RESULTS: icloud-mailbox-list
+
+*** Outlook
+   :PROPERTIES:
+   :tangle: ~/.mbsyncrc
+   :tangle-mode: (identity #o640)
+   :noweb: no-export
+   :END:
+
+   #+name: Outlook-Account
+   #+header: :tangle ~/.mbsyncrc
+   #+header: :noweb no-export
+   #+BEGIN_SRC conf
+     IMAPAccount outlook
+     Host outlook.office365.com
+     Port 993
+     User <<get-secret(property="outlook-user")>>
+     PassCmd "security find-internet-password -s outlook.office365.com -w"
+     SSLType IMAPS
+     CertificateFile /usr/local/etc/openssl/cert.pem
+
+     IMAPStore outlook-remote
+     Account outlook
+
+     MaildirStore outlook-local
+     Path ~/.mail/outlook/
+     Inbox ~/.mail/outlook/Inbox
+     Trash Trash
+
+     Channel outlook-folders
+     Master :outlook-remote:
+     Slave :outlook-local:
+     Patterns "INBOX" "Drafts" "Archive" "Sent*" "Deleted Items"
+     Create Both
+     Expunge Both
+     SyncState *
+
+     Group outlook
+     Channel outlook-folders
+   #+END_SRC
+
+    #+name: outlook-mailbox-list
+    #+BEGIN_SRC sh :tangle no :results output
+      mkdir -p ~/.mail/outlook
+      mbsync -l outlook
+    #+END_SRC
+
+    #+RESULTS: outlook-mailbox-list
     : INBOX
     : Archive
+    : Deleted Items
     : Drafts
-    : Sent Messages
-    : Trash
+    : Sent Items
 
 ** Under MacOS, this script can be triggered by =launchd= with the following plist:
    #+name: mail-sync-path
@@ -483,9 +530,9 @@
 
    #+RESULTS: install agent
    : - PID	Status	Label
-   : - -	78	org.thetripps.emacs
-   : - 61991	0	org.thetripps.isync
-   : - -	0	org.thetripps.trashdownloads
+   : - 61571	0	org.thetripps.emacs
+   : - 56620	0	org.thetripps.isync
+   : - -	0	org.thetripps.stopemacs
 
 ** ADOPTED Wanderlust
 

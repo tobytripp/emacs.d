@@ -129,6 +129,7 @@
        →_(_→ slurp)  (slurp ←_)_←   _e_val last s-exp
        ←_[_← barf)   (barf →_]_→    _i_nspect last result
         _a_lign^                   ^_v_: test namespace
+        un_w_rap
 
        _,_: insert comma
        "
@@ -140,6 +141,7 @@
          ("(" sp-backward-slurp-sexp)
          ("]" sp-forward-barf-sexp)
          ("[" sp-backward-barf-sexp)
+         ("w" sp-splice-sexp :color blue)
 
          ("a" clojure-align :color blue)
 

@@ -134,6 +134,7 @@
 
        ;; (highlight-changes-mode)
 
+       (linum-mode t)
        (rainbow-delimiters-mode))
 
      (add-hook 'prog-mode-hook 'toby/coding-hooks)

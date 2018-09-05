@@ -196,28 +196,33 @@
 
    #+BEGIN_SRC emacs-lisp
      (require 'align)
-     (add-hook 'align-load-hook
-               (lambda ()
-                 (add-to-list 'align-rules-list
-                              '(ruby-comma-delimiter
-                                (regexp . ",\\(\\s-*\\)[^# \t\n]")
-                                (repeat . t)
-                                (modes  . '(ruby-mode))))
-                 (add-to-list 'align-rules-list
-                              '(ruby-hash-literal
-                                (regexp . "\\(\\s-*\\)=>\\s-*[^# \t\n]")
-                                (repeat . t)
-                                (modes  . '(ruby-mode))))
-                 (add-to-list 'align-rules-list
-                              '(ruby-assignment-literal
-                                (regexp . "\\(\\s-*\\)=\\s-*[^# \t\n]")
-                                (repeat . t)
-                                (modes  . '(ruby-mode))))
-                 (add-to-list 'align-rules-list
-                              '(ruby-xmpfilter-mark
-                                (regexp . "\\(\\s-*\\)# => [^#\t\n]")
-                                (repeat . nil)
-                                (modes  . '(ruby-mode))))))
+
+     (defun toby/load-ruby-align-rules ()
+       "Add align rules for Ruby"
+       (add-to-list 'align-rules-list
+                    '(ruby-comma-delimiter
+                      (regexp . ",\\(\\s-*\\)[^# \t\n]")
+                      (repeat . t)
+                      (modes  . '(ruby-mode))))
+       (add-to-list 'align-rules-list
+                    '(ruby-hash-literal
+                      (regexp . "\\(\\s-*\\)=>\\s-*[^# \t\n]")
+                      (repeat . t)
+                      (modes  . '(ruby-mode))))
+       (add-to-list 'align-rules-list
+                    '(ruby-assignment-literal
+                      (regexp . "\\(\\s-*\\)=\\s-*[^# \t\n]")
+                      (repeat . t)
+                      (modes  . '(ruby-mode))))
+       (add-to-list 'align-rules-list
+                    '(ruby-xmpfilter-mark
+                      (regexp . "\\(\\s-*\\)# => [^#\t\n]")
+                      (repeat . nil)
+                      (modes  . '(ruby-mode)))))
+
+     (add-hook 'align-load-hook #'toby/load-ruby-align-rules)
+
+     (eval-after-load 'align '(toby/load-ruby-align-rules))
    #+END_SRC
 
 *** TODO Make sure this hack is still necessary:
@@ -268,3 +273,36 @@
 #+BEGIN_SRC emacs-lisp
 (provide 'ruby-lang)
 #+END_SRC
+
+** Hydra
+
+   #+BEGIN_SRC emacs-lisp
+     (defhydra hydra-ruby (:pre  (set-cursor-color "#40e0d0")
+                                 :post (set-cursor-color "#ffffff")
+                                 :hint nil)
+       "
+     ^Navigation^     ^Formatting  ^Develop
+     ^^^--------------------------------------------------
+       ^_n_           ^_a_lign     ^_r_un test
+     _h_   _s_         _f_ormatter ^run _c_urrent test
+       ^_t_           ^_=_>
+
+     "
+
+       ("h" sp-backward-sexp)
+       ("t" sp-down-sexp)
+       ("n" sp-up-sexp)
+       ("s" sp-forward-sexp)
+
+       ("a" align-current       :color blue)
+       ("f" add-pride           :color blue)
+       ("=" insert-rocket       :color blue)
+
+       ("r" rspec-verify        :color blue)
+       ("c" rspec-verify-single :color blue)
+
+       (";" (insert ";")        :color blue)
+       ("q" nil "exit"          :color blue))
+
+     (define-key ruby-mode-map ";" 'hydra-ruby/body)
+   #+END_SRC

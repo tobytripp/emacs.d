@@ -134,6 +134,10 @@
    #+END_SRC
 *** Buffer-Menu
 
+    - State "EXPERIMENTAL" from "REJECTED"   [2018-08-16 Thu 10:37]
+    - State "REJECTED"   from "ADOPTED"    [2018-08-16 Thu 10:37]
+    - State "ADOPTED"    from              [2018-08-16 Thu 10:37]
+    - State "ADOPTED"    from              [2018-08-16 Thu 10:37]
     #+BEGIN_SRC emacs-lisp
       (defhydra hydra-buffer-menu (:color pink
                                    :hint nil)
@@ -308,8 +312,57 @@
 
     #+RESULTS:
 
-** EXPERIMENTAL Ivy + Counsel + Swiper
+*** Global Hydra
 
+    #+BEGIN_SRC emacs-lisp
+      (defun toby/save-windows ()
+        (interactive)
+        (save-some-buffers 't)
+        (window-configuration-to-register ?w))
+      (defun toby/reload-windows ()
+        (interactive)
+        (jump-to-register ?w))
+      (defun toby/fullframe-window ()
+        (interactive)
+        (toby/save-windows)
+        (delete-other-windows))
+
+      (defun toby/split-right ()
+        (interactive)
+        (split-window-right)
+        (set-window-columns))
+
+      (defhydra hydra-global (:pre  (set-cursor-color "#40e0d0")
+                                    :post (set-cursor-color "#ffffff")
+                                    :hint nil)
+        "
+      ^Window^              ^Split^         ^Re-size^
+      ^^^---------------------------------------------
+      save _w_indow config  _-_ horizontal    ^_n_^
+      _l_oad config         _|_ vertical    ^_h_ _x_ _s_
+      _f_ullframe window                    ^_t_^
+      "
+        ("w" toby/save-windows     :color blue)
+        ("l" toby/reload-windows   :color blue)
+        ("f" toby/fullframe-window :color blue)
+
+        ("-" split-window-below    :color blue)
+        ("|" toby/split-right      :color blue)
+
+        ("h" enlarge-window-horizontally)
+        ("n" enlarge-window)
+        ("t" shrink-window)
+        ("s" shrink-window-horizontally)
+        ("x" shrink-window-if-larger-than-buffer)
+
+        ("q" nil "exit" :color blue))
+
+      (global-unset-key (kbd "<f8>"))
+      (global-set-key (kbd "<f8>") 'hydra-global/body)
+    #+END_SRC
+** ADOPTED Ivy + Counsel + Swiper
+
+   - State "ADOPTED"    from "REJECTED"   [2018-08-14 Tue 13:02]
    - State "EXPERIMENTAL" from "TODO"       [2018-04-03 Tue 08:15]
    - [[https://github.com/abo-abo/swiper][GitHub Page]]
 
@@ -355,6 +408,14 @@
      On a related note, you can paste symbol-at-point into the search with
      =M-n=, which is a common case for using =C-w= in Isearch.
      #+END_QUOTE
+
+   - How to complete a selection even though it doesn’t have a match?
+
+     #+BEGIN_QUOTE
+     Press =C-M-j=
+     #+END_QUOTE
+
+
 
 ** Open Recent Files
    Enable “Open Recent” and give it a keybinding:

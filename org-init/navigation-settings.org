@@ -341,6 +341,11 @@
       save _w_indow config  _-_ horizontal    ^_n_^
       _l_oad config         _|_ vertical    ^_h_ _x_ _s_
       _f_ullframe window                    ^_t_^
+
+      ^Util^
+      --------------
+      _c_heck spelling
+
       "
         ("w" toby/save-windows     :color blue)
         ("l" toby/reload-windows   :color blue)
@@ -354,6 +359,8 @@
         ("t" shrink-window)
         ("s" shrink-window-horizontally)
         ("x" shrink-window-if-larger-than-buffer)
+
+        ("c" ispell-word :color blue)
 
         ("q" nil "exit" :color blue))
 
@@ -379,7 +386,8 @@
           (setq ivy-use-virtual-buffers t)
           (setq enable-recursive-minibuffers nil)
           (global-set-key (kbd "C-c C-r") 'ivy-resume)
-          (global-set-key (kbd "M-x") 'counsel-M-x)
+          (global-set-key (kbd "M-x")  'counsel-M-x)
+          (global-set-key (kbd "<f6>") 'ivy-switch-buffer)
 
           ;; Prevent TAB from selecting only candidate
           (define-key ivy-minibuffer-map (kbd "TAB") 'ivy-partial)

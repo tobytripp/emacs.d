@@ -63,7 +63,8 @@
 
      (defun toby/cider-init ()
        (eldoc-mode 1)
-       (toby/activate-structured-editing))
+       (toby/activate-structured-editing)
+       (cider-auto-test-mode t))
      (add-hook 'cider-mode-hook #'toby/cider-init)
 
      (defun toby/clj-repl-init ()
@@ -74,7 +75,7 @@
 
      (defun toby/save-and-eval-buffer ()
        "Save open buffers and send the current buffer to the active
-        Cider session."
+	Cider session."
        (interactive)
        (save-some-buffers 't)
        (cider-eval-buffer))
@@ -93,14 +94,16 @@
 
 ** Clojure
 
-*** REJECTED Clojure Refactorings
+*** EXPERIMENTAL Clojure Refactorings
 
+    - State "EXPERIMENTAL" from "REJECTED"   [2018-09-21 Fri 14:12]
     - State "REJECTED"   from "ADOPTED"    [2018-07-11 Wed 12:18]
       - clj-refactor is not currently working
     - State "ADOPTED"    from    [2018-02-05 Mon 10:09]
 
-    #+BEGIN_SRC emacs-lisp :tangle no
-      (require-package 'clj-refactor "2.3.1" 'clj-refactor "clj-refactor-mode")
+    #+BEGIN_SRC emacs-lisp
+      (require-package 'clj-refactor "2.4.0")
+      (add-to-list 'package-pinned-packages '(clj-refactor . "melpa-stable") t)
       (defun activate-refactor ()
         (clj-refactor-mode 1)
         (yas-minor-mode 1)
@@ -126,8 +129,8 @@
          ^_n_^                      _c_onnect
        _h_   _s_                    load _b_uffer
          ^_t_^                      _p_: eval and pprint last s-exp
-       →_(_→ slurp)  (slurp ←_)_←   _e_val last s-exp
-       ←_[_← barf)   (barf →_]_→    _i_nspect last result
+       →_(_⬡ slurp)  (slurp ⬡_)_←   _e_val last s-exp
+       ⬡_[_← barf)   (barf →_]_⬡    _i_nspect last result
         _a_lign^                   ^_v_: test namespace
         un_w_rap
 
@@ -215,7 +218,7 @@
 
     #+BEGIN_SRC emacs-lisp
       (defun toby/clojure-onload ()
-        (require-package 'cider "0.17.0" 'cider-mode "cider")
+        (require-package 'cider "0.18.0" 'cider-mode "cider")
         (add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
         (define-key clojure-mode-map (kbd "<C-down>") 'forward-sexp)
         (define-key clojure-mode-map (kbd "<C-up>")   'backward-sexp)

@@ -213,10 +213,11 @@
       (defun toby/get-secret-var (sym)
         "Get the value of the symbol `sym' from the custom.el.gpg
         customization/configuration file."
-        (with-temp-buffer
-          (insert-file-contents "~/.emacs.d/secrets/custom.el.gpg")
-          (eval-buffer)
-          (alist-get sym toby/secret-custom)))
+        (ignore-errors
+          (with-temp-buffer
+            (insert-file-contents "~/.emacs.d/secrets/custom.el.gpg")
+            (eval-buffer)
+            (alist-get sym toby/secret-custom))))
     #+END_SRC
 
     #+name: get-secret

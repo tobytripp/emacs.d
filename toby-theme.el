@@ -1,5 +1,5 @@
 (deftheme toby
-  "Created 2018-07-13.")
+  "Created 2018-11-13.")
 
 (custom-theme-set-variables
  'toby
@@ -150,10 +150,10 @@
  '(comint-highlight-prompt ((t (:inherit minibuffer-prompt))))
  '(vc-locked-state ((default (:inherit (vc-state-base)))))
  '(web-mode-symbol-face ((t (:foreground "goldenrod2" :inherit (font-lock-constant-face)))))
- '(hl-line ((t (:background "#073642" :inherit (highlight)))))
+ '(hl-line ((t (:background "#073642"))))
  '(widget-field ((t (:background "gray21" :box (:line-width -1 :color "dark gray" :style pressed-button)))))
- '(default ((t (:background "#211E1E" :foreground "#DADADA"))))
  '(hi-green ((((min-colors 88) (background dark)) (:foreground "black" :background "light green")) (((background dark)) (:foreground "black" :background "green")) (((min-colors 88)) (:background "light green")) (t (:background "green"))))
- '(enh-ruby-op-face ((t (:foreground "powder blue")))))
+ '(enh-ruby-op-face ((t (:foreground "powder blue"))))
+ '(default ((t (:background "#211E1E" :foreground "#DADADA")))))
 
 (provide-theme 'toby)

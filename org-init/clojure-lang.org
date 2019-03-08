@@ -218,8 +218,8 @@
 
     #+BEGIN_SRC emacs-lisp
       (defun toby/clojure-onload ()
-        (require-package 'cider "0.18.0" 'cider-mode "cider")
         (add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
+        (require-package 'cider "0.21.0" 'cider-mode "cider")
         (define-key clojure-mode-map (kbd "<C-down>") 'forward-sexp)
         (define-key clojure-mode-map (kbd "<C-up>")   'backward-sexp)
         (define-key clojure-mode-map (kbd "C-c C-d o") 'toby/clojuredocs-web)

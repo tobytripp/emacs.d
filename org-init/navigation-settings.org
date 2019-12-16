@@ -82,7 +82,10 @@
      (require-package 'f) ;; undeclared dependency?
      (require-package 'projectile)
 
-     (projectile-global-mode)
+     (projectile-global-mode t)
+
+     (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+     (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
 
      (global-set-key   (kbd "C-x f") 'projectile-find-file)
 
@@ -332,9 +335,7 @@
         (split-window-right)
         (set-window-columns))
 
-      (defhydra hydra-global (:pre  (set-cursor-color "#40e0d0")
-                                    :post (set-cursor-color "#ffffff")
-                                    :hint nil)
+      (defhydra hydra-global (:hint nil)
         "
       ^Window^              ^Split^         ^Re-size^
       ^^^---------------------------------------------

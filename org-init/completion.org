@@ -18,8 +18,8 @@
 
      (if (require 'company nil 'noerror)
          (progn
-     ;      (add-hook 'after-init-hook 'global-company-mode)
-     ;      (company-quickhelp-mode 1)
+           (add-hook 'after-init-hook 'global-company-mode)
+           (company-quickhelp-mode 1)
      ;      (setq company-begin-commands '(self-insert-command))
            ))
    #+END_SRC

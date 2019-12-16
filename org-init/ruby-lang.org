@@ -40,9 +40,9 @@
           (require-package 'ruby-tools)
           (inf-ruby-switch-setup)))
 
-     ;; (require-package 'robe)
-     ;; (eval-after-load 'company
-     ;;   '(push 'company-robe company-backends))
+     (require-package 'robe)
+     (eval-after-load 'company
+       '(push 'company-robe company-backends))
 
      ;; Hide-show settings
      (add-to-list 'hs-special-modes-alist
@@ -92,7 +92,7 @@
        (global-rbenv-mode)
        (rbenv-use-corresponding)
 
-       ;; (robe-mode)
+       (robe-mode)
        ;; (yard-mode)
 
        (require 'smartparens-config)
@@ -277,9 +277,7 @@
 ** Hydra
 
    #+BEGIN_SRC emacs-lisp
-     (defhydra hydra-ruby (:pre  (set-cursor-color "#40e0d0")
-                                 :post (set-cursor-color "#ffffff")
-                                 :hint nil)
+     (defhydra hydra-ruby (:hint nil)
        "
      ^Navigation^     ^Formatting  ^Develop
      ^^^--------------------------------------------------

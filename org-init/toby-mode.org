@@ -144,11 +144,11 @@
 
    In some languages, I find code with compressed parenthesis to be
    more difficult to read.  For example:
-   #+BEGIN_SRC ruby :tangle no
+   #+BEGIN_EXAMPLE
    def wazzit(even,say,here)
      function_call(or_is_it, argument?)
    end
-   #+END_SRC
+   #+END_EXAMPLE
 
    I suppose I could play with different fonts to find one that shifts
    the parenthesis glyph outward, but I like the font I use.

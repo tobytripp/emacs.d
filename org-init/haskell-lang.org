@@ -107,9 +107,9 @@
 
     #+BEGIN_SRC emacs-lisp
       (defun toby/on-load-haskell ()
-        (require-package 'shm)
-        (require 'shm)
-        (add-hook 'haskell-mode-hook 'structured-haskell-mode)
+        ;; (require-package 'shm)
+        ;; (require 'shm)
+        ;; (add-hook 'haskell-mode-hook 'structured-haskell-mode)
 
         (require-package 'flycheck-haskell)
         (require 'flycheck)
@@ -145,8 +145,14 @@
      (eval-after-load 'haskell-mode
        '(progn
           (add-to-list 'org-babel-tangle-lang-exts '("haskell" . "hs"))
-          (add-to-list 'org-structure-template-alist
-                       '("hs"  "#+BEGIN_SRC haskell\n?\n#+END_SRC" "<src lang=\"?\">\n\n</src>"))
+          (tempo-define-template "inline-hs"
+                                 '("#+BEGIN_SRC haskell" n
+                                   p n
+                                   "#+END_SRC")
+                                 "<hs"
+                                 "Insert Haskell code"
+                                 'org-tempo-tags)
+
           (add-hook 'org-babel-post-tangle-hook 'toby/tangle-and-run)))
 
      (define-key org-mode-map (kbd "<f6>") 'org-babel-tangle)

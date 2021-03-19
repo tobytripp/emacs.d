@@ -22,11 +22,12 @@
      (global-set-key "\C-cb" 'org-iswitchb)
    #+END_SRC
 
-   | Key   | Command        | Action                                     |
-   |-------+----------------+--------------------------------------------|
-   | C-c l | org-store-link | Store an org-link to the current location. |
-   | C-c a | org-agenda     | Open an Org Agenda View                    |
-   | C-c b | org-iswitchb   | Switch directly to an org-mode buffer      |
+   | Key   | Command                | Action                                     |
+   |-------+------------------------+--------------------------------------------|
+   | C-c l | org-store-link         | Store an org-link to the current location. |
+   | C-c a | org-agenda             | Open an Org Agenda View                    |
+   | C-c b | org-iswitchb           | Switch directly to an org-mode buffer      |
+   | C-’   | org-cycle-agenda-files | Open each agenda file in turn              |
 
 ** Org-Babel
 
@@ -59,10 +60,10 @@
         (ruby   . t)
         (sql    . t)))
 
-     (add-to-list 'org-structure-template-alist
-                  '("el"  "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC" "<src lang=\"?\">\n\n</src>"))
-     (add-to-list 'org-structure-template-alist
-                  '("pg"  "#+BEGIN_SRC sql :engine postgresql\n?\n#+END_SRC" "<src lang=\"?\">\n\n</src>"))
+     ;; (add-to-list 'org-structure-template-alist
+     ;;              '("el"  "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC" "<src lang=\"?\">\n\n</src>"))
+     ;; (add-to-list 'org-structure-template-alist
+     ;;              '("pg"  "#+BEGIN_SRC sql :engine postgresql\n?\n#+END_SRC" "<src lang=\"?\">\n\n</src>"))
    #+END_SRC
 
    This adds syntax highlighting to org-babel html exports.
@@ -121,46 +122,6 @@
        (add-hook 'diary-list-entries-hook 'diary-sort-entries t)
      #+END_SRC
 ** Org-Mode Presentations
-
-*** REJECTED Security Vulerabilities in js Dependencies
-
-    - State "REJECTED"   from [2018-02-05 Mon 11:21]
-
-    [[https://github.com/yjwen/org-reveal][Org-Reveal]] is an =org-mode= export extension for creating
-    presentations with =reveal.js=.
-
-    #+BEGIN_SRC emacs-lisp :tangle no
-      (require-package 'ox-reveal)
-      (require 'ox-reveal)
-
-      (setq org-reveal-root
-            (concat "file://" (expand-file-name dotfiles-dir)
-                    "html/js/reveal.js-3.0.0/js/reveal.js"))
-
-      (add-hook 'org-mode-hook
-                (lambda ()
-                  ;; (load-library "ox-reveal")
-                  (local-set-key (kbd "s-r") 'org-babel-tangle)))
-
-      (defadvice org-html-src-block
-        (after toby/wrap-org-html-src-in-code-tag activate)
-        (setq ad-return-value (replace-regexp-in-string
-                               "\\(<pre[^>]+src-\\([^\"]+\\)\">\\)\\([^<]+\\)</pre>"
-                               "\\1<code class=\"\\2\">\\3</code></pre>"
-                               ad-return-value)))
-
-      (setq reveal-highlight-theme "zenburn")
-
-      (defadvice org-reveal-stylesheets
-        (after toby/add-highlight-styles (info) activate)
-        "Add stylesheet declaration for highlight.js formatting"
-        (let* ((root-path (plist-get info :reveal-root))
-               (css-path (concat root-path "/plugin/highlight/styles")))
-          (setq ad-return-value
-                (concat ad-return-value
-                        (format "<link rel=\"stylesheet\" href=\"%s\">\n"
-                                (concat css-path "/" reveal-highlight-theme ".css"))))))
-    #+END_SRC
 
 ** TODO Custom bullets with =org-bullets=
    - State "TODO"       from "EXPERIMENTAL" [2018-02-23 Fri 13:50]

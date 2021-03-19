@@ -1,5 +1,5 @@
 (deftheme toby
-  "Created 2018-11-13.")
+  "Created 2021-03-19.")
 
 (custom-theme-set-variables
  'toby
@@ -115,7 +115,6 @@
  '(org-level-6 ((((class color) (min-colors 89)) (:foreground "#859900"))))
  '(org-level-7 ((((class color) (min-colors 89)) (:foreground "#dc322f"))))
  '(org-level-8 ((((class color) (min-colors 89)) (:foreground "#268bd2"))))
- '(org-link ((((class color) (min-colors 89)) (:foreground "#b58900" :underline t))))
  '(org-sexp-date ((((class color) (min-colors 89)) (:foreground "#6c71c4"))))
  '(org-scheduled ((((class color) (min-colors 89)) (:foreground "#859900"))))
  '(org-scheduled-previously ((((class color) (min-colors 89)) (:foreground "#cb4b16"))))
@@ -152,8 +151,8 @@
  '(web-mode-symbol-face ((t (:foreground "goldenrod2" :inherit (font-lock-constant-face)))))
  '(hl-line ((t (:background "#073642"))))
  '(widget-field ((t (:background "gray21" :box (:line-width -1 :color "dark gray" :style pressed-button)))))
- '(hi-green ((((min-colors 88) (background dark)) (:foreground "black" :background "light green")) (((background dark)) (:foreground "black" :background "green")) (((min-colors 88)) (:background "light green")) (t (:background "green"))))
- '(enh-ruby-op-face ((t (:foreground "powder blue"))))
- '(default ((t (:background "#211E1E" :foreground "#DADADA")))))
+ '(ivy-subdir ((t (:inherit (dired-directory)))))
+ '(default ((t (:background "#211E1E" :foreground "#DADADA"))))
+ '(whitespace-line ((t (:underline "dark red")))))
 
 (provide-theme 'toby)

@@ -6,7 +6,21 @@
 
 ** Load Package
 
+   [[https://www.lambdacat.com/post-modern-emacs-setup-for-elm/][source]]
+
    #+BEGIN_SRC emacs-lisp
      (require-package 'elm-mode "20180114.9")
      (add-to-list 'auto-mode-alist '("\\.elm$" . elm-mode))
+
+     (require 'flycheck)
+     (with-eval-after-load 'flycheck
+       '(add-hook 'flycheck-mode-hook #'flycheck-elm-setup))
+
+     (eval-after-load 'elm-mode
+       '(progn
+          (elm-format-on-save-mode 1)))
+
+     (with-eval-after-load 'company
+       (add-to-list 'company-backends 'company-elm)
+       (add-hook 'elm-mode-hook #'elm-oracle-setup-completion))
    #+END_SRC

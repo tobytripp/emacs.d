@@ -1,0 +1,53 @@
+#    -*- mode: org -*-
+
+
+Archived entries from file /Users/ttripp/.emacs.d/org-init/org-mode-settings.org
+
+
+* REJECTED Security Vulerabilities in js Dependencies
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2020-01-15 Wed 14:06
+  :ARCHIVE_FILE: ~/.emacs.d/org-init/org-mode-settings.org
+  :ARCHIVE_OLPATH: Org/Org-Mode Presentations
+  :ARCHIVE_CATEGORY: org-mode-settings
+  :ARCHIVE_TODO: REJECTED
+  :END:
+
+  - State "REJECTED"   from [2018-02-05 Mon 11:21]
+
+  [[https://github.com/yjwen/org-reveal][Org-Reveal]] is an =org-mode= export extension for creating
+  presentations with =reveal.js=.
+
+  #+BEGIN_SRC emacs-lisp :tangle no
+    (require-package 'ox-reveal)
+    (require 'ox-reveal)
+
+    (setq org-reveal-root
+          (concat "file://" (expand-file-name dotfiles-dir)
+                  "html/js/reveal.js-3.0.0/js/reveal.js"))
+
+    (add-hook 'org-mode-hook
+              (lambda ()
+                ;; (load-library "ox-reveal")
+                (local-set-key (kbd "s-r") 'org-babel-tangle)))
+
+    (defadvice org-html-src-block
+      (after toby/wrap-org-html-src-in-code-tag activate)
+      (setq ad-return-value (replace-regexp-in-string
+                             "\\(<pre[^>]+src-\\([^\"]+\\)\">\\)\\([^<]+\\)</pre>"
+                             "\\1<code class=\"\\2\">\\3</code></pre>"
+                             ad-return-value)))
+
+    (setq reveal-highlight-theme "zenburn")
+
+    (defadvice org-reveal-stylesheets
+      (after toby/add-highlight-styles (info) activate)
+      "Add stylesheet declaration for highlight.js formatting"
+      (let* ((root-path (plist-get info :reveal-root))
+             (css-path (concat root-path "/plugin/highlight/styles")))
+        (setq ad-return-value
+              (concat ad-return-value
+                      (format "<link rel=\"stylesheet\" href=\"%s\">\n"
+                              (concat css-path "/" reveal-highlight-theme ".css"))))))
+  #+END_SRC
+

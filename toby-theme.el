@@ -1,5 +1,5 @@
 (deftheme toby
-  "Created 2021-03-19.")
+  "Created 2021-05-05.")
 
 (custom-theme-set-variables
  'toby
@@ -152,7 +152,8 @@
  '(hl-line ((t (:background "#073642"))))
  '(widget-field ((t (:background "gray21" :box (:line-width -1 :color "dark gray" :style pressed-button)))))
  '(ivy-subdir ((t (:inherit (dired-directory)))))
+ '(whitespace-line ((t (:underline "dark red"))))
  '(default ((t (:background "#211E1E" :foreground "#DADADA"))))
- '(whitespace-line ((t (:underline "dark red")))))
+ '(enh-ruby-op-face ((t (:foreground "dark gray")))))
 
 (provide-theme 'toby)

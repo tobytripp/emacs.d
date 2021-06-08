@@ -399,7 +399,7 @@
           (setq magit-completing-read-function 'ivy-completing-read)
           (setq projectile-completion-system 'ivy)
 
-          (global-set-key "\C-s" 'swiper)
+          ;; (global-set-key "\C-s" 'swiper)
           (setq ivy-re-builders-alist
                 '((swiper . ivy--regex)
                   (t . ivy--regex-plus)))

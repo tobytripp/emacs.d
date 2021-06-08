@@ -31,3 +31,4 @@ games
 /.emacs.desktop*
 /tmp/*
 /network-security.data
+/transient/

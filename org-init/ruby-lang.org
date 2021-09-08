@@ -13,6 +13,7 @@
 ** Start-up
 
    #+BEGIN_SRC emacs-lisp
+     (require-package 'lsp-mode)
      (require-package 'ruby-mode)
      (autoload 'ruby-mode "ruby-mode" "Major mode for Ruby" t)
 
@@ -23,6 +24,7 @@
        '(progn
           (require-package 'smartparens)
           (require-package 'rbenv)
+          (require-package 'ruby-refactor)
           (let ((rbenv-installation-dir (or (and (boundp 'rbenv-installation-dir) rbenv-installation-dir)
                                             (concat (getenv "HOME") "/.rbenv"))))
             (setq enh-ruby-program (concat rbenv-installation-dir "/shims/ruby"))
@@ -38,7 +40,8 @@
           (autoload 'enh-ruby-mode "enh-ruby-mode" "Major mode for ruby files" t)
           (require-package 'flyspell)
           (require-package 'ruby-tools)
-          (inf-ruby-switch-setup)))
+          (inf-ruby-switch-setup)
+          (require 'lsp-solargraph)))
 
      (require-package 'robe)
      (eval-after-load 'company
@@ -95,6 +98,8 @@
        (robe-mode)
        ;; (yard-mode)
 
+       (ruby-refactor-mode-launch)
+
        (require 'smartparens-config)
        ;; (smartparens-strict-mode)
        (smartparens-mode)
@@ -119,7 +124,6 @@
      (add-hook 'ruby-mode-hook     'toby/ruby-init)
      (add-hook 'enh-ruby-mode-hook 'toby/ruby-init)
      (add-hook 'enh-ruby-mode-hook (lambda () (electric-pair-mode 0)))
-
    #+END_SRC
 
 *** Inf-Ruby

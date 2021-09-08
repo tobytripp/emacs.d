@@ -142,6 +142,13 @@
 
 ** Overlays
 
+   - State "EXPERIMENTAL" from "REJECTED"   [2021-08-11 Wed 16:05]
+   - State "REJECTED"   from "ADOPTED"    [2021-08-11 Wed 16:05]
+   - State "ADOPTED"    from              [2021-08-11 Wed 16:05]
+   - State "EXPERIMENTAL" from "TODO"       [2021-08-11 Wed 16:01]
+   - State "EXPERIMENTAL" from "REJECTED"   [2021-08-11 Wed 16:01]
+   - State "REJECTED"   from "ADOPTED"    [2021-08-11 Wed 16:00]
+   - State "ADOPTED"    from              [2021-08-11 Wed 16:00]
    In some languages, I find code with compressed parenthesis to be
    more difficult to read.  For example:
    #+BEGIN_EXAMPLE

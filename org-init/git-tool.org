@@ -6,6 +6,7 @@
    #+BEGIN_SRC emacs-lisp
      (add-to-list 'exec-path "/usr/local/bin")
      (add-to-list 'exec-path (concat dotfiles-dir "bin"))
+     (add-to-list 'exec-path "/usr/local/MacGPG2/bin")
      (setenv "EDITOR" "/usr/local/bin/emacsclient")
    #+END_SRC
 
@@ -54,7 +55,7 @@
     (autoload 'diff-hl-magit-post-refresh "diff-hl")
     #+END_SRC
 
-*** Keybingings
+*** Keybindings
 
     Quick one-button git status:
 
@@ -91,6 +92,14 @@
         (yas-expand))
     #+END_SRC
 
+*** EXPERIMENTAL magit-gh-pulls
+    - State "EXPERIMENTAL" from "TODO"       [2022-01-24 Mon 09:47]
+
+    #+begin_src emacs-lisp
+;;      (require-package 'magit-gh-pulls)
+;;      (require 'magit-gh-pulls)
+;;      (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls)
+    #+end_src
 ** git-grep
    #+BEGIN_SRC emacs-lisp
      (defun git-grep-rb (regexp)

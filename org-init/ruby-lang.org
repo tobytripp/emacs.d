@@ -43,10 +43,6 @@
           (inf-ruby-switch-setup)
           (require 'lsp-solargraph)))
 
-     (require-package 'robe)
-     (eval-after-load 'company
-       '(push 'company-robe company-backends))
-
      ;; Hide-show settings
      (add-to-list 'hs-special-modes-alist
                   '(ruby-mode
@@ -94,9 +90,6 @@
 
        (global-rbenv-mode)
        (rbenv-use-corresponding)
-
-       (robe-mode)
-       ;; (yard-mode)
 
        (ruby-refactor-mode-launch)
 

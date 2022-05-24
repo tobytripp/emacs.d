@@ -21,12 +21,20 @@
    #+BEGIN_SRC emacs-lisp
      (defun set-window-width (n)
        "Set the current window to width N"
-       (adjust-window-trailing-edge (selected-window) (- n (window-width)) t))
+       (ignore-errors
+         (adjust-window-trailing-edge (selected-window) (- n (window-width)) t)))
 
      (defun set-window-columns ()
-       "Set the selected window to 80(ish) columns."
+       "Set the selected window to 80(ish) columns.  With prefix,
+     resize all windows in the current frame"
        (interactive)
-       (set-window-width 80))
+       (if (equal current-prefix-arg nil)
+           (set-window-width 80)
+         (save-excursion
+           (mapc (lambda (w)
+                   (select-window w)
+                   (set-window-width 80))
+                 (window-list)))))
 
      (global-set-key "\C-x7" 'set-window-columns)
    #+END_SRC
@@ -194,7 +202,6 @@
           (mmm-add-mode-ext-class 'ruby-mode "\\.rb\\'" 'toby/heredoc)
           (add-to-list 'mmm-set-file-name-for-modes 'ruby-mode)))
 
-
    #+END_SRC
 
 ** REJECTED Lenticular (multi-view) Coding
@@ -209,6 +216,7 @@
 
    =M-x global-lentic-mode=
 ** Compilation/Testing
+   - State "ADOPTED"    from              [2022-01-25 Tue 11:45]
    #+BEGIN_SRC emacs-lisp
      (setq mode-compile-always-save-buffer-p t)
      (setq compilation-window-height 12)

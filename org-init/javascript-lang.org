@@ -101,6 +101,32 @@
         '(define-key json-mode-map (kbd "C-c b") 'web-beautify-js))
     #+END_SRC
 
+* TypeScript
+
+** tide-mode
+   #+begin_src emacs-lisp
+     (defun setup-tide-mode ()
+       (interactive)
+       (tide-setup)
+       (flycheck-mode +1)
+       (setq flycheck-check-syntax-automatically '(save mode-enabled))
+       (eldoc-mode +1)
+       (tide-hl-identifier-mode +1)
+       (company-mode +1))
+
+     (setq company-tooltip-align-annotations t)
+
+     (add-hook 'before-save-hook 'tide-format-before-save)
+     (add-hook 'typescript-mode-hook #'setup-tide-mode)
+   #+end_src
+
+* LSP
+
+  #+begin_src emacs-lisp
+    (with-eval-after-load 'lsp-mode
+      (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]node_modules]"))
+  #+end_src
+
 #+BEGIN_SRC emacs-lisp
 (provide 'javascript-lang)
 #+END_SRC

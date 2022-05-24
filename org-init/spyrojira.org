@@ -1,0 +1,26 @@
+* Jira
+
+  I hate it, but people still use it.
+
+
+** Set-up
+
+   #+begin_src emacs-lisp
+     (require-package 'org-jira)
+
+     (make-directory "~/.org-jira" t)
+     (setq jiralib-url "https://teamprovi.atlassian.net")
+   #+end_src
+
+   Then ~M-x org-jira-get-issues~.
+
+
+** Queries
+
+   #+begin_src emacs-lisp
+     (setq org-jira-custom-jqls
+           '((:jql " project in (MPE) order by created DESC"
+                   :limit 100
+                   :filename "MPE")))
+
+   #+end_src

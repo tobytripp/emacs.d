@@ -1,6 +1,6 @@
 #+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
 * General Emacs Configurations
-** Path Utilities
+** [#B] Path Utilities
 
    #+name: expand-path
    #+header: :results value
@@ -249,6 +249,20 @@
               (not (server-running-p)))
          (server-start))
    #+END_SRC
+
+** Emacs edit-server (browser plugin)
+
+   https://github.com/stsquad/emacs_chrome
+
+   This supports a plugin for Firefox and Chrome that lets you edit text areas
+   in Emacs.
+
+   #+begin_src emacs-lisp
+     (require-package "edit-server")
+
+     (add-hook 'after-init-hook
+               #'(lambda() (edit-server-start)))
+   #+end_src
 
 ** Abbrev-Mode
 

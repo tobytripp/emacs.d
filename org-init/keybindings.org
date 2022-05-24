@@ -136,17 +136,27 @@
      (global-set-key (kbd "<f17>") 'ace-window)
    #+END_SRC
 
-   On larger screens, I like to divide me frame into thirds:
+   On larger screens, I like to divide my frame into thirds:
    #+BEGIN_SRC emacs-lisp
      (defun split-in-thirds ()
-       "Split the window vertically into three segments."
+       "Split the window vertically into three segments.  With prefix
+     arg, split into fifths."
        (interactive)
-       (split-window-horizontally)
-       (split-window-horizontally)
+       (if (equal current-prefix-arg nil)
+           (progn
+             (split-window-horizontally)
+             (split-window-horizontally))
+         (progn
+           (split-window-horizontally)
+           (split-window-horizontally)
+           (split-window-horizontally)
+           (split-window-horizontally)
+           ))
        (balance-windows))
 
      (global-set-key (kbd "C-x 6") 'split-in-thirds)
    #+END_SRC
+
 
 ** Getting Help
 

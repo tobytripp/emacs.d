@@ -1,7 +1,30 @@
 * Jira
 
-  I hate it, but people still use it.
+  I hate it, but people still use it.  [[https://github.com/ahungry/org-jira][Org-Jira]] makes it so I can interact
+  with stories in org mode instead of having to use Jira.
 
+  | Key    | Command                                  |
+  |--------+------------------------------------------|
+  | C-c pg | org-jira-get-projects                    |
+  | C-c ib | org-jira-browse-issue                    |
+  | C-c ig | org-jira-get-issues                      |
+  | C-c ij | org-jira-get-issues-from-custom-jql      |
+  | C-c ih | org-jira-get-issues-headonly             |
+  | C-c iu | org-jira-update-issue                    |
+  | C-c iw | org-jira-progress-issue                  |
+  | C-c in | org-jira-progress-issue-next             |
+  | C-c ia | org-jira-assign-issue                    |
+  | C-c ir | org-jira-refresh-issue                   |
+  | C-c iR | org-jira-refresh-issues-in-buffer        |
+  | C-c ic | org-jira-create-issue                    |
+  | C-c ik | org-jira-copy-current-issue-key          |
+  | C-c sc | org-jira-create-subtask                  |
+  | C-c sg | org-jira-get-subtasks                    |
+  | C-c cc | org-jira-add-comment                     |
+  | C-c cu | org-jira-update-comment                  |
+  | C-c wu | org-jira-update-worklogs-from-org-clocks |
+  | C-c tj | org-jira-todo-to-jira                    |
+  | C-c if | org-jira-get-issues-by-fixversion        |
 
 ** Set-up
 
@@ -12,15 +35,17 @@
      (setq jiralib-url "https://teamprovi.atlassian.net")
    #+end_src
 
-   Then ~M-x org-jira-get-issues~.
+   Then ~M-x org-jira-get-issues~ or ~C-c ig~.
 
 
 ** Queries
 
    #+begin_src emacs-lisp
      (setq org-jira-custom-jqls
-           '((:jql " project in (MPE) order by created DESC"
-                   :limit 100
-                   :filename "MPE")))
-
+           '((:jql  " project in (MPE) and type in (Story, Bug) and status in ('Prioritized', 'Pair I', 'Pair II', 'In Review') order by status DESC, rank ASC"
+              :limit 100
+              :filename "MPE-In-Progress")))
+     (setq org-jira-use-status-as-todo t)
    #+end_src
+
+   Update with ~C-c i j~.

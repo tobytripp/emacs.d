@@ -1,0 +1,15 @@
+* Svelte Mode
+
+  #+begin_src emacs-lisp
+    (require-package 'svelte-mode)
+    (require-package 'prettier-js)
+
+    (defun toby/svelte-mode-hooks ()
+      (glasses-mode t)
+      (smartparens-strict-mode t)
+      (prettier-js-mode t)
+      )
+
+    (add-to-list 'auto-mode-alist '("\\.svelte$" . svelte-mode))
+    (add-hook 'svelte-mode-hook 'toby/svelte-mode-hooks)
+  #+end_src

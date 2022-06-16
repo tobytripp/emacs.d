@@ -82,16 +82,18 @@
              (define-key enh-ruby-mode-map (kbd "C-c c") 'compile)))
 
        (hs-minor-mode 1) ;; Code folding
-
+     
        (flyspell-prog-mode)
        (eldoc-mode)
-
+     
        (require 'ruby-tools)
 
        (global-rbenv-mode)
        (rbenv-use-corresponding)
 
        (ruby-refactor-mode-launch)
+
+       (lsp)
 
        (require 'smartparens-config)
        ;; (smartparens-strict-mode)

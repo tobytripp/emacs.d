@@ -10,7 +10,7 @@
 (unless package-archive-contents    ;; Refresh the packages descriptions
   (package-refresh-contents))
 
-(do-install-package 'org-plus-contrib (version-to-list "9.1.9"))
+(do-install-package 'org-plus-contrib (version-to-list "9.5.4"))
 (require 'org-install)
 (require 'ob-tangle)
 

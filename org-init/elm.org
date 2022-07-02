@@ -11,20 +11,21 @@
    npm install -g @elm-tooling/elm-language-server
 
    then use lsp-mode
-   
+
    #+BEGIN_SRC emacs-lisp
      (require-package 'elm-mode "20180114.9")
      (require-package 'flycheck-elm)
 
+     (autoload 'elm-mode "elm-mode" "Major mode for Elm" t)
      (add-to-list 'auto-mode-alist '("\\.elm$" . elm-mode))
 
      (require 'flycheck)
      (with-eval-after-load 'flycheck
        '(add-hook 'flycheck-mode-hook #'flycheck-elm-setup))
 
-     (eval-after-load 'elm-mode
-       '(progn
-          (elm-format-on-save-mode 1)))
+     ;;(eval-after-load 'elm-mode
+     ;;  '(progn
+     ;;     (elm-format-on-save-mode 1)))
 
      (with-eval-after-load 'company
        (add-to-list 'company-backends 'company-elm))

@@ -23,6 +23,17 @@
 
    #+RESULTS: which
    : /usr/local/bin/emacsclient
+** Homebrew Path
+
+#+begin_src elisp
+  (setenv "PATH"
+          (concat "/opt/homebrew/bin:"
+                  (getenv "PATH")))
+  (setq exec-path
+        (cons "/opt/homebrew/bin"
+              exec-path))
+
+#+end_src
 
 ** Launchd Service [1/1]
 

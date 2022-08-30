@@ -1,3 +1,4 @@
+
 #+SETUPFILE: ~/.emacs.d/org-init/level-0.orgsetup
 #+TITLE: Toby's Emacs Keybindings
 
@@ -52,6 +53,14 @@
    (global-set-key (kbd "C-c j") 'flyspell-check-previous-highlighted-word)
    (global-set-key (kbd "s-s") 'ispell-word)
    #+END_SRC
+
+** Special Characters
+#+begin_src emacs-lisp
+  (defun toby/insert-ellipsis ()
+    (interactive)
+    (insert-char ?…))
+  (global-set-key (kbd "C-x 8 ;") 'toby/insert-ellipsis)
+#+end_src
 
 ** Navigation
 
@@ -156,7 +165,6 @@
 
      (global-set-key (kbd "C-x 6") 'split-in-thirds)
    #+END_SRC
-
 
 ** Getting Help
 
